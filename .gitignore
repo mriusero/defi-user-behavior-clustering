@@ -1,6 +1,22 @@
-
+# OS
 .DS_Store
+Thumbs.db
 
-.idea
+# IDE
+.idea/
+.vscode/
 
-.venv
+# Python environment
+.venv/
+env/
+
+# Python-specific
+__pycache__/
+*.py[cod]
+
+# Secrets
+.env
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints/
