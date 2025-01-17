@@ -150,7 +150,7 @@
         ],
         "website_url": "https://balancer.finance/",
         "symbol": "bal",
-        "market_cap_rank": 445,
+        "market_cap_rank": 443,
         "description": "Balancer is a DeFi protocol that provides permissionless technology to streamline AMM development for developers and empower liquidity providers with an ever-expanding DEX product suite.\r\n\r\nThis is made possible by unique \u2018Vault\u2019 architecture that fo"
     },
     {
@@ -238,7 +238,7 @@
         ],
         "website_url": "https://makerdao.com/",
         "symbol": "mkr",
-        "market_cap_rank": 104,
+        "market_cap_rank": 103,
         "description": "MKR is a cryptocurrency depicted as a smart contract platform and works alongside the Dai coin and aims to act as a hedge currency that provides traders with a stable alternative to the majority of coins currently available on the market. Maker offer"
     },
     {
@@ -300,7 +300,7 @@
         ],
         "website_url": "https://yearn.fi/",
         "symbol": "yfi",
-        "market_cap_rank": 295,
+        "market_cap_rank": 297,
         "description": "Yearn Finance is a suite of products in Decentralized Finance (DeFi) that provides lending aggregation, yield generation, and insurance on the Ethereum blockchain. The protocol is maintained by various independent developers and is governed by YFI ho"
     },
     {
@@ -322,7 +322,7 @@
         ],
         "website_url": "https://harvest.finance/",
         "symbol": "farm",
-        "market_cap_rank": 1110,
+        "market_cap_rank": 1108,
         "description": "Harvest automatically farms the highest yields in DeFi\r\n\r\n"
     },
     {
@@ -474,7 +474,7 @@
         ],
         "website_url": "https://nftfifoundation.org/",
         "symbol": "nftfi",
-        "market_cap_rank": 3941,
+        "market_cap_rank": 3936,
         "description": "NFTFI is the governance token of the NFTfi protocol, which has the vision of becoming the primary NFT finance settlement layer across all major chains. "
     }
 ]
