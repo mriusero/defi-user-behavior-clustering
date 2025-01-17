@@ -1,130 +1,233 @@
-2025-01-17 17:12:44,580 - INFO - ====== PARAMETERS ======
-2025-01-17 17:12:44,581 - INFO - --> save_to_mongo=True
-2025-01-17 17:12:44,581 - INFO - --> protocols=True
-2025-01-17 17:12:44,581 - INFO - --> contracts=True
-2025-01-17 17:12:44,581 - INFO - 
+2025-01-17 20:31:43,365 - INFO - ====== PARAMETERS ======
+2025-01-17 20:31:43,365 - INFO - --> protocols=True
+2025-01-17 20:31:43,365 - INFO - --> contracts=True
+2025-01-17 20:31:43,365 - INFO - --> transactions=True
+2025-01-17 20:31:43,365 - INFO - 
 
-2025-01-17 17:12:44,581 - INFO - ====== Starting ETL pipeline ======
-2025-01-17 17:12:44,581 - INFO - ------ Step 1: Extracting Protocols ------
-2025-01-17 17:12:44,817 - INFO - Successfully retrieved data for protocol ID: uniswap
-2025-01-17 17:12:47,272 - INFO - Successfully retrieved data for protocol ID: curve-dao-token
-2025-01-17 17:12:49,685 - INFO - Successfully retrieved data for protocol ID: balancer
-2025-01-17 17:12:52,143 - INFO - Successfully retrieved data for protocol ID: aave
-2025-01-17 17:12:54,443 - INFO - Successfully retrieved data for protocol ID: maker
-2025-01-17 17:12:57,058 - INFO - Successfully retrieved data for protocol ID: yearn-finance
-2025-01-17 17:12:59,515 - INFO - Successfully retrieved data for protocol ID: harvest-finance
-2025-01-17 17:13:01,973 - INFO - Successfully retrieved data for protocol ID: dai
-2025-01-17 17:13:04,155 - INFO - Successfully retrieved data for protocol ID: usd-coin
-2025-01-17 17:13:06,350 - INFO - Successfully retrieved data for protocol ID: tether
-2025-01-17 17:13:08,730 - INFO - Successfully retrieved data for protocol ID: nftfi
-2025-01-17 17:13:10,743 - INFO - Protocol already exists 'Uniswap': with unique ID 'a32977262a1f49ca460aa0f158e86b03'
-2025-01-17 17:13:10,744 - INFO - Protocol already exists 'Curve DAO': with unique ID 'a1b975d2463b8528b60c4757e61d375f'
-2025-01-17 17:13:10,744 - INFO - Protocol already exists 'Balancer': with unique ID '831bbef62d5c22abf7edbc3f93645176'
-2025-01-17 17:13:10,745 - INFO - Protocol already exists 'Aave': with unique ID '08d9acfaf8b0c20caa531ece3ad3fad2'
-2025-01-17 17:13:10,745 - INFO - Protocol already exists 'Maker': with unique ID '35977a76fc8a3239867a67a62cf45f0d'
-2025-01-17 17:13:10,746 - INFO - Protocol already exists 'yearn.finance': with unique ID '649ccddd314a5557ec2278361951951f'
-2025-01-17 17:13:10,746 - INFO - Protocol already exists 'Harvest Finance': with unique ID '790fbd1db1b1c6d74c14632e376c8712'
-2025-01-17 17:13:10,747 - INFO - Protocol already exists 'Dai': with unique ID '9dbc4db24ab137cf03e23043880896b1'
-2025-01-17 17:13:10,747 - INFO - Protocol already exists 'USDC': with unique ID 'c2242f2c3a5cea4aeb8f9dda7565792e'
-2025-01-17 17:13:10,748 - INFO - Protocol already exists 'Tether': with unique ID 'cabb8fabc55ebdd43cbc2eae969d6a50'
-2025-01-17 17:13:10,748 - INFO - Protocol already exists 'NFTFI': with unique ID '67b4b31cafbe917fd568ff7e68450f17'
-2025-01-17 17:13:10,748 - INFO - Protocols extraction completed: 11 protocols retrieved.
+2025-01-17 20:31:43,365 - INFO - ====== Starting ETL pipeline ======
+2025-01-17 20:31:43,365 - INFO - ------ Step 1: Extracting Protocols ------
+2025-01-17 20:31:43,803 - INFO - Successfully retrieved data for protocol ID: uniswap
+2025-01-17 20:31:46,206 - INFO - Successfully retrieved data for protocol ID: curve-dao-token
+2025-01-17 20:31:48,452 - INFO - Successfully retrieved data for protocol ID: balancer
+2025-01-17 20:31:50,874 - INFO - Successfully retrieved data for protocol ID: aave
+2025-01-17 20:31:53,210 - INFO - Successfully retrieved data for protocol ID: maker
+2025-01-17 20:31:55,464 - INFO - Successfully retrieved data for protocol ID: yearn-finance
+2025-01-17 20:31:57,878 - INFO - Successfully retrieved data for protocol ID: harvest-finance
+2025-01-17 20:32:00,288 - INFO - Successfully retrieved data for protocol ID: dai
+2025-01-17 20:32:02,349 - INFO - Successfully retrieved data for protocol ID: usd-coin
+2025-01-17 20:32:04,415 - INFO - Successfully retrieved data for protocol ID: tether
+2025-01-17 20:32:06,971 - INFO - Successfully retrieved data for protocol ID: nftfi
+2025-01-17 20:32:08,988 - INFO - Protocol already exists 'Uniswap': with unique ID 'a32977262a1f49ca460aa0f158e86b03'
+2025-01-17 20:32:08,989 - INFO - Protocol already exists 'Curve DAO': with unique ID 'a1b975d2463b8528b60c4757e61d375f'
+2025-01-17 20:32:08,989 - INFO - Protocol already exists 'Balancer': with unique ID '831bbef62d5c22abf7edbc3f93645176'
+2025-01-17 20:32:08,990 - INFO - Protocol already exists 'Aave': with unique ID '08d9acfaf8b0c20caa531ece3ad3fad2'
+2025-01-17 20:32:08,990 - INFO - Protocol already exists 'Maker': with unique ID '35977a76fc8a3239867a67a62cf45f0d'
+2025-01-17 20:32:08,991 - INFO - Protocol already exists 'yearn.finance': with unique ID '649ccddd314a5557ec2278361951951f'
+2025-01-17 20:32:08,991 - INFO - Protocol already exists 'Harvest Finance': with unique ID '790fbd1db1b1c6d74c14632e376c8712'
+2025-01-17 20:32:08,992 - INFO - Protocol already exists 'Dai': with unique ID '9dbc4db24ab137cf03e23043880896b1'
+2025-01-17 20:32:08,992 - INFO - Protocol already exists 'USDC': with unique ID 'c2242f2c3a5cea4aeb8f9dda7565792e'
+2025-01-17 20:32:08,993 - INFO - Protocol already exists 'Tether': with unique ID 'cabb8fabc55ebdd43cbc2eae969d6a50'
+2025-01-17 20:32:08,993 - INFO - Protocol already exists 'NFTFI': with unique ID '67b4b31cafbe917fd568ff7e68450f17'
+2025-01-17 20:32:08,993 - INFO - Protocols extraction completed: 11 protocols retrieved.
 
-2025-01-17 17:13:10,748 - INFO - ------ Step 2: Deducting Contracts ------
-2025-01-17 17:13:10,748 - INFO - Starting contract extraction and insertion process.
-2025-01-17 17:13:10,754 - INFO - Contract 0x1f9840a85d5af5bf1d1762f925bdaddc4201f984 already exists in the 'contracts' collection.
-2025-01-17 17:13:10,755 - INFO - Contract 0x4537e328bf7e4efa29d05caea260d7fe26af9d74 already exists in the 'contracts' collection.
-2025-01-17 17:13:10,755 - INFO - Contract 1f9840a85d5af5bf1d1762f925bdaddc4201f984.factory.bridge.near already exists in the 'contracts' collection.
-2025-01-17 17:13:10,755 - INFO - Contract 0x6fd9d7ad17242c41f7131d257212c54a0e816691 already exists in the 'contracts' collection.
-2025-01-17 17:13:10,756 - INFO - Contract 0x22c54ce8321a4015740ee1109d9cbc25815c46e6 already exists in the 'contracts' collection.
-2025-01-17 17:13:10,756 - INFO - Contract 0xfa7f8980b0f1e64a2062791cc3b0871572f1f7f0 already exists in the 'contracts' collection.
-2025-01-17 17:13:10,756 - INFO - Contract 0xb33eaad8d922b1083446dc23f610c2567fb5180f already exists in the 'contracts' collection.
-2025-01-17 17:13:10,757 - INFO - Contract 0x90d81749da8867962c760414c1c25ec926e889b6 already exists in the 'contracts' collection.
-2025-01-17 17:13:10,757 - INFO - Contract 0x8ebaf22b6f053dffeaf46f4dd9efa95d89ba8580 already exists in the 'contracts' collection.
-2025-01-17 17:13:10,758 - INFO - Contract 0x665b3a802979ec24e076c80025bff33c18eb6007 already exists in the 'contracts' collection.
-2025-01-17 17:13:10,758 - INFO - Contract 0x009be848df92a400da2f217256c88d1a9b1a0304f9b3e90991a67418e1d3b08c already exists in the 'contracts' collection.
-2025-01-17 17:13:10,758 - INFO - Contract 0xbf5140a22578168fd562dccf235e5d43a02ce9b1 already exists in the 'contracts' collection.
-2025-01-17 17:13:10,759 - INFO - Contract 0xd533a949740bb3306d119cc777fa900ba034cd52 already exists in the 'contracts' collection.
-2025-01-17 17:13:10,759 - INFO - Contract 0x0994206dfe8de6ec6920ff4d779b0d950605fb53 already exists in the 'contracts' collection.
-2025-01-17 17:13:10,760 - INFO - Contract 0x172370d5cd63279efa6d502dab29171933a610af already exists in the 'contracts' collection.
-2025-01-17 17:13:10,760 - INFO - Contract 0x1e4f97b9f9f913c46f1632781732927b9019c68b already exists in the 'contracts' collection.
-2025-01-17 17:13:10,760 - INFO - Contract 0x11cdb42b0eb46d95f990bedd4695a6e3fa034978 already exists in the 'contracts' collection.
-2025-01-17 17:13:10,761 - INFO - Contract 0xd3319eaf3c4743ac75aace77befcfa445ed6e69e already exists in the 'contracts' collection.
-2025-01-17 17:13:10,761 - INFO - Contract 0x002ead91a2de57b8855b53d4a62c25277073fd7f65f7e5e79f4936ed747fcad0 already exists in the 'contracts' collection.
-2025-01-17 17:13:10,762 - INFO - Contract 0xba100000625a3754423978a60c9317c58a424e3d already exists in the 'contracts' collection.
-2025-01-17 17:13:10,762 - INFO - Contract 0x7ef541e2a22058048904fe5744f9c7e4c57af717 already exists in the 'contracts' collection.
-2025-01-17 17:13:10,762 - INFO - Contract 0x120ef59b80774f02211563834d8e3b72cb1649d6 already exists in the 'contracts' collection.
-2025-01-17 17:13:10,763 - INFO - Contract 0xfe8b128ba8c78aabc59d4c64cee7ff28e9379921 already exists in the 'contracts' collection.
-2025-01-17 17:13:10,763 - INFO - Contract ba100000625a3754423978a60c9317c58a424e3d.factory.bridge.near already exists in the 'contracts' collection.
-2025-01-17 17:13:10,763 - INFO - Contract 0x4158734d47fc9692176b5085e0f52ee0da5d47f1 already exists in the 'contracts' collection.
-2025-01-17 17:13:10,764 - INFO - Contract 0xdc5f76104d0b8d2bf2c2bbe06cdfe17004e9010f already exists in the 'contracts' collection.
-2025-01-17 17:13:10,764 - INFO - Contract 0x045de15ca76e76426e8fc7cba8392a3138078d0f already exists in the 'contracts' collection.
-2025-01-17 17:13:10,765 - INFO - Contract 0x9a71012b13ca4d3d0cdc72a177df3ef03b0e76a3 already exists in the 'contracts' collection.
-2025-01-17 17:13:10,765 - INFO - Contract 0x040d1edc9569d4bab2d15287dc5a4f10f56a56b8 already exists in the 'contracts' collection.
-2025-01-17 17:13:10,765 - INFO - Contract 0xe15bcb9e0ea69e6ab9fa080c4c4a5632896298c3 already exists in the 'contracts' collection.
-2025-01-17 17:13:10,766 - INFO - Contract 0x9b817c6e9a38e604606aea3ad6ed271ce8eaa9d6 already exists in the 'contracts' collection.
-2025-01-17 17:13:10,766 - INFO - Contract 0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9 already exists in the 'contracts' collection.
-2025-01-17 17:13:10,766 - INFO - Contract 0x76fb31fb4af56892a25e32cfc43de717950c9278 already exists in the 'contracts' collection.
-2025-01-17 17:13:10,767 - INFO - Contract 7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9.factory.bridge.near already exists in the 'contracts' collection.
-2025-01-17 17:13:10,767 - INFO - Contract 0x202b4936fe1a82a4965220860ae46d7d3939bb25 already exists in the 'contracts' collection.
-2025-01-17 17:13:10,767 - INFO - Contract 0xd6df932a45c0f255f85145f286ea0b292b21c90b already exists in the 'contracts' collection.
-2025-01-17 17:13:10,768 - INFO - Contract 0x6a07a792ab2965c72a5b8088d3a069a7ac3a993b already exists in the 'contracts' collection.
-2025-01-17 17:13:10,768 - INFO - Contract 0xcf323aad9e522b93f11c352caa519ad0e14eb40f already exists in the 'contracts' collection.
-2025-01-17 17:13:10,768 - INFO - Contract 0xba5ddd1f9d7f570dc94a51479a000e3bce967196 already exists in the 'contracts' collection.
-2025-01-17 17:13:10,769 - INFO - Contract 0x63a72806098bd3d9520cc43356dd78afe5d386d9 already exists in the 'contracts' collection.
-2025-01-17 17:13:10,769 - INFO - Contract 0xa7f2f790355e0c32cab03f92f6eb7f488e6f049a already exists in the 'contracts' collection.
-2025-01-17 17:13:10,769 - INFO - Contract 0x0091bd8d8295b25cab5a7b8b0e44498e678cfc15d872ede3215f7d4c7635ba36 already exists in the 'contracts' collection.
-2025-01-17 17:13:10,770 - INFO - Contract 0xfb6115445bff7b52feb98650c87f44907e58f802 already exists in the 'contracts' collection.
-2025-01-17 17:13:10,770 - INFO - Contract 0x9f8f72aa9304c8b593d555f12ef6589cc3a579a2 already exists in the 'contracts' collection.
-2025-01-17 17:13:10,770 - INFO - Contract 0x6f7c932e7684666c9fd1d44527765433e01ff61d already exists in the 'contracts' collection.
-2025-01-17 17:13:10,771 - INFO - Contract 0x88128fd4b259552a9a1d457f435a6527aab72d42 already exists in the 'contracts' collection.
-2025-01-17 17:13:10,771 - INFO - Contract 0x050317d93f29d1ba5ff3eac3b8157fd4e345588d already exists in the 'contracts' collection.
-2025-01-17 17:13:10,771 - INFO - Contract 0x00ec184ef0b4bd955db05eea5a8489ae72888ab6e63682a15beca1cd39344c8f already exists in the 'contracts' collection.
-2025-01-17 17:13:10,772 - INFO - Contract 0x0bc529c00c6401aef6d220be8c6ea1667f6ad93e already exists in the 'contracts' collection.
-2025-01-17 17:13:10,772 - INFO - Contract 0xbf65bfcb5da067446cee6a706ba3fe2fb1a9fdfd already exists in the 'contracts' collection.
-2025-01-17 17:13:10,772 - INFO - Contract 0x9046d36440290ffde54fe0dd84db8b1cfee9107b already exists in the 'contracts' collection.
-2025-01-17 17:13:10,772 - INFO - Contract 0bc529c00c6401aef6d220be8c6ea1667f6ad93e.factory.bridge.near already exists in the 'contracts' collection.
-2025-01-17 17:13:10,773 - INFO - Contract 0x9eaf8c1e34f05a589eda6bafdf391cf6ad3cb239 already exists in the 'contracts' collection.
-2025-01-17 17:13:10,773 - INFO - Contract 0x2726dd5efb3a209a54c512e9562a2045b8f45dbc already exists in the 'contracts' collection.
-2025-01-17 17:13:10,773 - INFO - Contract 0xb4f019beac758abbee2f906033aaa2f0f6dacb35 already exists in the 'contracts' collection.
-2025-01-17 17:13:10,774 - INFO - Contract 0xda537104d6a5edd53c6fbba9a898708e465260b6 already exists in the 'contracts' collection.
-2025-01-17 17:13:10,774 - INFO - Contract 0x29b0da86e484e1c0029b56e817912d778ac0ec69 already exists in the 'contracts' collection.
-2025-01-17 17:13:10,774 - INFO - Contract 0x82e3a8f066a6989666b031d916c43672085b1582 already exists in the 'contracts' collection.
-2025-01-17 17:13:10,774 - INFO - Contract 0xa0dc05f84a27fccbd341305839019ab86576bc07 already exists in the 'contracts' collection.
-2025-01-17 17:13:10,775 - INFO - Contract 0x9eaac1b23d935365bd7b542fe22ceee2922f52dc already exists in the 'contracts' collection.
-2025-01-17 17:13:10,775 - INFO - Contract 0x002676c3edea5b08bc0f9b6809a91aa313b7da35e28b190222e9dc032bf1e662 already exists in the 'contracts' collection.
-2025-01-17 17:13:10,775 - INFO - Contract 0xa0246c9032bc3a600820415ae600c6388619a14d already exists in the 'contracts' collection.
-2025-01-17 17:13:10,776 - INFO - Contract 0x4b5c23cac08a567ecf0c1ffca8372a45a5d33743 already exists in the 'contracts' collection.
-2025-01-17 17:13:10,776 - INFO - Contract 0xc59a4b20ea0f8a7e6e216e7f1b070247520a4514 already exists in the 'contracts' collection.
-2025-01-17 17:13:10,776 - INFO - Contract 0x6b175474e89094c44da98b954eedeac495271d0f already exists in the 'contracts' collection.
-2025-01-17 17:13:10,777 - INFO - Contract 0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48 already exists in the 'contracts' collection.
-2025-01-17 17:13:10,777 - INFO - Contract 0x1d17cbcf0d6d143135ae902365d2e5e2a16538d4 already exists in the 'contracts' collection.
-2025-01-17 17:13:10,777 - INFO - Contract 0x0b2c639c533813f4aa9d7837caf62653d097ff85 already exists in the 'contracts' collection.
-2025-01-17 17:13:10,778 - INFO - Contract 1337 already exists in the 'contracts' collection.
-2025-01-17 17:13:10,778 - INFO - Contract TEkxiTehnzSmSe2XqrBj4w32RUN966rdz8 already exists in the 'contracts' collection.
-2025-01-17 17:13:10,778 - INFO - Contract 17208628f84f5d6ad33f0da3bbbeb27ffcb398eac501a31bd6ad2011e36133a1 already exists in the 'contracts' collection.
-2025-01-17 17:13:10,778 - INFO - Contract 0.0.456858 already exists in the 'contracts' collection.
-2025-01-17 17:13:10,779 - INFO - Contract 0x833589fcd6edb6e08f4c7c32d4f71b54bda02913 already exists in the 'contracts' collection.
-2025-01-17 17:13:10,779 - INFO - Contract 0xaf88d065e77c8cc2239327c5edb3a432268e5831 already exists in the 'contracts' collection.
-2025-01-17 17:13:10,779 - INFO - Contract 0x3c499c542cef5e3811e1192ce70d8cc03d5c3359 already exists in the 'contracts' collection.
-2025-01-17 17:13:10,779 - INFO - Contract 0xbae207659db88bea0cbead6da0ed00aac12edcdda169e591cd41c94180b46f3b already exists in the 'contracts' collection.
-2025-01-17 17:13:10,780 - INFO - Contract 0xdba34672e30cb065b1f93e3ab55318768fd6fef66c15942c9f7cb846e2f900e7::usdc::USDC already exists in the 'contracts' collection.
-2025-01-17 17:13:10,780 - INFO - Contract 31566704 already exists in the 'contracts' collection.
-2025-01-17 17:13:10,780 - INFO - Contract 0xb97ef9ef8734c71904d8002f8b6bc66dd9c48a6e already exists in the 'contracts' collection.
-2025-01-17 17:13:10,780 - INFO - Contract USDC-GA5ZSEJYB37JRC5AVCIA5MOP4RHTM335X2KGX3IHOJAPP5RE34K4KZVN already exists in the 'contracts' collection.
-2025-01-17 17:13:10,781 - INFO - Contract EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v already exists in the 'contracts' collection.
-2025-01-17 17:13:10,781 - INFO - Contract 0xceba9300f2b948710d2653dd7b07f33a8b32118c already exists in the 'contracts' collection.
-2025-01-17 17:13:10,781 - INFO - Contract 0xdac17f958d2ee523a2206206994597c13d831ec7 already exists in the 'contracts' collection.
-2025-01-17 17:13:10,782 - INFO - Contract 0x357b0b74bc833e95a115ad22604854d6b0fca151cecd94111770e5d6ffc9dc2b already exists in the 'contracts' collection.
-2025-01-17 17:13:10,782 - INFO - Contract TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t already exists in the 'contracts' collection.
-2025-01-17 17:13:10,782 - INFO - Contract 0x9702230a8ea53601f5cd2dc00fdbc13d4df4a8c7 already exists in the 'contracts' collection.
-2025-01-17 17:13:10,782 - INFO - Contract usdt.tether-token.near already exists in the 'contracts' collection.
-2025-01-17 17:13:10,783 - INFO - Contract Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB already exists in the 'contracts' collection.
-2025-01-17 17:13:10,783 - INFO - Contract 0x919c1c267bc06a7039e03fcc2ef738525769109c already exists in the 'contracts' collection.
-2025-01-17 17:13:10,783 - INFO - Contract 0x48065fbbe25f71c9282ddf5e1cd6d6a887483d5e already exists in the 'contracts' collection.
-2025-01-17 17:13:10,783 - INFO - Contract EQCxE6mUtQJKFnGfaROTKOt1lZbDiiX1kCixRv7Nw2Id_sDs already exists in the 'contracts' collection.
-2025-01-17 17:13:10,784 - INFO - Contract 0x09d6f0f5a21f5be4f59e209747e2d07f50bc694c already exists in the 'contracts' collection.
-2025-01-17 17:13:10,784 - INFO - Contracts collection has been fully processed.
-2025-01-17 17:13:10,784 - INFO - Contracts deducted successfully.
+2025-01-17 20:32:08,993 - INFO - ------ Step 2: Deducting Contracts ------
+2025-01-17 20:32:08,994 - INFO - Starting contract extraction and insertion process.
+2025-01-17 20:32:09,000 - INFO - Contract 0x1f9840a85d5af5bf1d1762f925bdaddc4201f984 already exists in the 'contracts' collection.
+2025-01-17 20:32:09,000 - INFO - Contract 0x4537e328bf7e4efa29d05caea260d7fe26af9d74 already exists in the 'contracts' collection.
+2025-01-17 20:32:09,001 - INFO - Contract 1f9840a85d5af5bf1d1762f925bdaddc4201f984.factory.bridge.near already exists in the 'contracts' collection.
+2025-01-17 20:32:09,001 - INFO - Contract 0x6fd9d7ad17242c41f7131d257212c54a0e816691 already exists in the 'contracts' collection.
+2025-01-17 20:32:09,001 - INFO - Contract 0x22c54ce8321a4015740ee1109d9cbc25815c46e6 already exists in the 'contracts' collection.
+2025-01-17 20:32:09,002 - INFO - Contract 0xfa7f8980b0f1e64a2062791cc3b0871572f1f7f0 already exists in the 'contracts' collection.
+2025-01-17 20:32:09,002 - INFO - Contract 0xb33eaad8d922b1083446dc23f610c2567fb5180f already exists in the 'contracts' collection.
+2025-01-17 20:32:09,003 - INFO - Contract 0x90d81749da8867962c760414c1c25ec926e889b6 already exists in the 'contracts' collection.
+2025-01-17 20:32:09,003 - INFO - Contract 0x8ebaf22b6f053dffeaf46f4dd9efa95d89ba8580 already exists in the 'contracts' collection.
+2025-01-17 20:32:09,004 - INFO - Contract 0x665b3a802979ec24e076c80025bff33c18eb6007 already exists in the 'contracts' collection.
+2025-01-17 20:32:09,004 - INFO - Contract 0x009be848df92a400da2f217256c88d1a9b1a0304f9b3e90991a67418e1d3b08c already exists in the 'contracts' collection.
+2025-01-17 20:32:09,005 - INFO - Contract 0xbf5140a22578168fd562dccf235e5d43a02ce9b1 already exists in the 'contracts' collection.
+2025-01-17 20:32:09,005 - INFO - Contract 0xd533a949740bb3306d119cc777fa900ba034cd52 already exists in the 'contracts' collection.
+2025-01-17 20:32:09,006 - INFO - Contract 0x0994206dfe8de6ec6920ff4d779b0d950605fb53 already exists in the 'contracts' collection.
+2025-01-17 20:32:09,006 - INFO - Contract 0x172370d5cd63279efa6d502dab29171933a610af already exists in the 'contracts' collection.
+2025-01-17 20:32:09,007 - INFO - Contract 0x1e4f97b9f9f913c46f1632781732927b9019c68b already exists in the 'contracts' collection.
+2025-01-17 20:32:09,007 - INFO - Contract 0x11cdb42b0eb46d95f990bedd4695a6e3fa034978 already exists in the 'contracts' collection.
+2025-01-17 20:32:09,008 - INFO - Contract 0xd3319eaf3c4743ac75aace77befcfa445ed6e69e already exists in the 'contracts' collection.
+2025-01-17 20:32:09,008 - INFO - Contract 0x002ead91a2de57b8855b53d4a62c25277073fd7f65f7e5e79f4936ed747fcad0 already exists in the 'contracts' collection.
+2025-01-17 20:32:09,009 - INFO - Contract 0xba100000625a3754423978a60c9317c58a424e3d already exists in the 'contracts' collection.
+2025-01-17 20:32:09,009 - INFO - Contract 0x7ef541e2a22058048904fe5744f9c7e4c57af717 already exists in the 'contracts' collection.
+2025-01-17 20:32:09,010 - INFO - Contract 0x120ef59b80774f02211563834d8e3b72cb1649d6 already exists in the 'contracts' collection.
+2025-01-17 20:32:09,010 - INFO - Contract 0xfe8b128ba8c78aabc59d4c64cee7ff28e9379921 already exists in the 'contracts' collection.
+2025-01-17 20:32:09,011 - INFO - Contract ba100000625a3754423978a60c9317c58a424e3d.factory.bridge.near already exists in the 'contracts' collection.
+2025-01-17 20:32:09,011 - INFO - Contract 0x4158734d47fc9692176b5085e0f52ee0da5d47f1 already exists in the 'contracts' collection.
+2025-01-17 20:32:09,012 - INFO - Contract 0xdc5f76104d0b8d2bf2c2bbe06cdfe17004e9010f already exists in the 'contracts' collection.
+2025-01-17 20:32:09,012 - INFO - Contract 0x045de15ca76e76426e8fc7cba8392a3138078d0f already exists in the 'contracts' collection.
+2025-01-17 20:32:09,013 - INFO - Contract 0x9a71012b13ca4d3d0cdc72a177df3ef03b0e76a3 already exists in the 'contracts' collection.
+2025-01-17 20:32:09,013 - INFO - Contract 0x040d1edc9569d4bab2d15287dc5a4f10f56a56b8 already exists in the 'contracts' collection.
+2025-01-17 20:32:09,014 - INFO - Contract 0xe15bcb9e0ea69e6ab9fa080c4c4a5632896298c3 already exists in the 'contracts' collection.
+2025-01-17 20:32:09,014 - INFO - Contract 0x9b817c6e9a38e604606aea3ad6ed271ce8eaa9d6 already exists in the 'contracts' collection.
+2025-01-17 20:32:09,014 - INFO - Contract 0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9 already exists in the 'contracts' collection.
+2025-01-17 20:32:09,015 - INFO - Contract 0x76fb31fb4af56892a25e32cfc43de717950c9278 already exists in the 'contracts' collection.
+2025-01-17 20:32:09,015 - INFO - Contract 7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9.factory.bridge.near already exists in the 'contracts' collection.
+2025-01-17 20:32:09,015 - INFO - Contract 0x202b4936fe1a82a4965220860ae46d7d3939bb25 already exists in the 'contracts' collection.
+2025-01-17 20:32:09,016 - INFO - Contract 0xd6df932a45c0f255f85145f286ea0b292b21c90b already exists in the 'contracts' collection.
+2025-01-17 20:32:09,016 - INFO - Contract 0x6a07a792ab2965c72a5b8088d3a069a7ac3a993b already exists in the 'contracts' collection.
+2025-01-17 20:32:09,016 - INFO - Contract 0xcf323aad9e522b93f11c352caa519ad0e14eb40f already exists in the 'contracts' collection.
+2025-01-17 20:32:09,016 - INFO - Contract 0xba5ddd1f9d7f570dc94a51479a000e3bce967196 already exists in the 'contracts' collection.
+2025-01-17 20:32:09,017 - INFO - Contract 0x63a72806098bd3d9520cc43356dd78afe5d386d9 already exists in the 'contracts' collection.
+2025-01-17 20:32:09,017 - INFO - Contract 0xa7f2f790355e0c32cab03f92f6eb7f488e6f049a already exists in the 'contracts' collection.
+2025-01-17 20:32:09,017 - INFO - Contract 0x0091bd8d8295b25cab5a7b8b0e44498e678cfc15d872ede3215f7d4c7635ba36 already exists in the 'contracts' collection.
+2025-01-17 20:32:09,018 - INFO - Contract 0xfb6115445bff7b52feb98650c87f44907e58f802 already exists in the 'contracts' collection.
+2025-01-17 20:32:09,018 - INFO - Contract 0x9f8f72aa9304c8b593d555f12ef6589cc3a579a2 already exists in the 'contracts' collection.
+2025-01-17 20:32:09,018 - INFO - Contract 0x6f7c932e7684666c9fd1d44527765433e01ff61d already exists in the 'contracts' collection.
+2025-01-17 20:32:09,019 - INFO - Contract 0x88128fd4b259552a9a1d457f435a6527aab72d42 already exists in the 'contracts' collection.
+2025-01-17 20:32:09,019 - INFO - Contract 0x050317d93f29d1ba5ff3eac3b8157fd4e345588d already exists in the 'contracts' collection.
+2025-01-17 20:32:09,019 - INFO - Contract 0x00ec184ef0b4bd955db05eea5a8489ae72888ab6e63682a15beca1cd39344c8f already exists in the 'contracts' collection.
+2025-01-17 20:32:09,020 - INFO - Contract 0x0bc529c00c6401aef6d220be8c6ea1667f6ad93e already exists in the 'contracts' collection.
+2025-01-17 20:32:09,020 - INFO - Contract 0xbf65bfcb5da067446cee6a706ba3fe2fb1a9fdfd already exists in the 'contracts' collection.
+2025-01-17 20:32:09,020 - INFO - Contract 0x9046d36440290ffde54fe0dd84db8b1cfee9107b already exists in the 'contracts' collection.
+2025-01-17 20:32:09,021 - INFO - Contract 0bc529c00c6401aef6d220be8c6ea1667f6ad93e.factory.bridge.near already exists in the 'contracts' collection.
+2025-01-17 20:32:09,021 - INFO - Contract 0x9eaf8c1e34f05a589eda6bafdf391cf6ad3cb239 already exists in the 'contracts' collection.
+2025-01-17 20:32:09,021 - INFO - Contract 0x2726dd5efb3a209a54c512e9562a2045b8f45dbc already exists in the 'contracts' collection.
+2025-01-17 20:32:09,022 - INFO - Contract 0xb4f019beac758abbee2f906033aaa2f0f6dacb35 already exists in the 'contracts' collection.
+2025-01-17 20:32:09,022 - INFO - Contract 0xda537104d6a5edd53c6fbba9a898708e465260b6 already exists in the 'contracts' collection.
+2025-01-17 20:32:09,022 - INFO - Contract 0x29b0da86e484e1c0029b56e817912d778ac0ec69 already exists in the 'contracts' collection.
+2025-01-17 20:32:09,023 - INFO - Contract 0x82e3a8f066a6989666b031d916c43672085b1582 already exists in the 'contracts' collection.
+2025-01-17 20:32:09,023 - INFO - Contract 0xa0dc05f84a27fccbd341305839019ab86576bc07 already exists in the 'contracts' collection.
+2025-01-17 20:32:09,023 - INFO - Contract 0x9eaac1b23d935365bd7b542fe22ceee2922f52dc already exists in the 'contracts' collection.
+2025-01-17 20:32:09,024 - INFO - Contract 0x002676c3edea5b08bc0f9b6809a91aa313b7da35e28b190222e9dc032bf1e662 already exists in the 'contracts' collection.
+2025-01-17 20:32:09,024 - INFO - Contract 0xa0246c9032bc3a600820415ae600c6388619a14d already exists in the 'contracts' collection.
+2025-01-17 20:32:09,024 - INFO - Contract 0x4b5c23cac08a567ecf0c1ffca8372a45a5d33743 already exists in the 'contracts' collection.
+2025-01-17 20:32:09,024 - INFO - Contract 0xc59a4b20ea0f8a7e6e216e7f1b070247520a4514 already exists in the 'contracts' collection.
+2025-01-17 20:32:09,025 - INFO - Contract 0x6b175474e89094c44da98b954eedeac495271d0f already exists in the 'contracts' collection.
+2025-01-17 20:32:09,025 - INFO - Contract 0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48 already exists in the 'contracts' collection.
+2025-01-17 20:32:09,025 - INFO - Contract 0x1d17cbcf0d6d143135ae902365d2e5e2a16538d4 already exists in the 'contracts' collection.
+2025-01-17 20:32:09,026 - INFO - Contract 0x0b2c639c533813f4aa9d7837caf62653d097ff85 already exists in the 'contracts' collection.
+2025-01-17 20:32:09,026 - INFO - Contract 1337 already exists in the 'contracts' collection.
+2025-01-17 20:32:09,027 - INFO - Contract TEkxiTehnzSmSe2XqrBj4w32RUN966rdz8 already exists in the 'contracts' collection.
+2025-01-17 20:32:09,027 - INFO - Contract 17208628f84f5d6ad33f0da3bbbeb27ffcb398eac501a31bd6ad2011e36133a1 already exists in the 'contracts' collection.
+2025-01-17 20:32:09,028 - INFO - Contract 0.0.456858 already exists in the 'contracts' collection.
+2025-01-17 20:32:09,028 - INFO - Contract 0x833589fcd6edb6e08f4c7c32d4f71b54bda02913 already exists in the 'contracts' collection.
+2025-01-17 20:32:09,028 - INFO - Contract 0xaf88d065e77c8cc2239327c5edb3a432268e5831 already exists in the 'contracts' collection.
+2025-01-17 20:32:09,029 - INFO - Contract 0x3c499c542cef5e3811e1192ce70d8cc03d5c3359 already exists in the 'contracts' collection.
+2025-01-17 20:32:09,029 - INFO - Contract 0xbae207659db88bea0cbead6da0ed00aac12edcdda169e591cd41c94180b46f3b already exists in the 'contracts' collection.
+2025-01-17 20:32:09,029 - INFO - Contract 0xdba34672e30cb065b1f93e3ab55318768fd6fef66c15942c9f7cb846e2f900e7::usdc::USDC already exists in the 'contracts' collection.
+2025-01-17 20:32:09,030 - INFO - Contract 31566704 already exists in the 'contracts' collection.
+2025-01-17 20:32:09,030 - INFO - Contract 0xb97ef9ef8734c71904d8002f8b6bc66dd9c48a6e already exists in the 'contracts' collection.
+2025-01-17 20:32:09,030 - INFO - Contract USDC-GA5ZSEJYB37JRC5AVCIA5MOP4RHTM335X2KGX3IHOJAPP5RE34K4KZVN already exists in the 'contracts' collection.
+2025-01-17 20:32:09,031 - INFO - Contract EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v already exists in the 'contracts' collection.
+2025-01-17 20:32:09,031 - INFO - Contract 0xceba9300f2b948710d2653dd7b07f33a8b32118c already exists in the 'contracts' collection.
+2025-01-17 20:32:09,031 - INFO - Contract 0xdac17f958d2ee523a2206206994597c13d831ec7 already exists in the 'contracts' collection.
+2025-01-17 20:32:09,032 - INFO - Contract 0x357b0b74bc833e95a115ad22604854d6b0fca151cecd94111770e5d6ffc9dc2b already exists in the 'contracts' collection.
+2025-01-17 20:32:09,032 - INFO - Contract TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t already exists in the 'contracts' collection.
+2025-01-17 20:32:09,032 - INFO - Contract 0x9702230a8ea53601f5cd2dc00fdbc13d4df4a8c7 already exists in the 'contracts' collection.
+2025-01-17 20:32:09,032 - INFO - Contract usdt.tether-token.near already exists in the 'contracts' collection.
+2025-01-17 20:32:09,033 - INFO - Contract Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB already exists in the 'contracts' collection.
+2025-01-17 20:32:09,033 - INFO - Contract 0x919c1c267bc06a7039e03fcc2ef738525769109c already exists in the 'contracts' collection.
+2025-01-17 20:32:09,033 - INFO - Contract 0x48065fbbe25f71c9282ddf5e1cd6d6a887483d5e already exists in the 'contracts' collection.
+2025-01-17 20:32:09,034 - INFO - Contract EQCxE6mUtQJKFnGfaROTKOt1lZbDiiX1kCixRv7Nw2Id_sDs already exists in the 'contracts' collection.
+2025-01-17 20:32:09,034 - INFO - Contract 0x09d6f0f5a21f5be4f59e209747e2d07f50bc694c already exists in the 'contracts' collection.
+2025-01-17 20:32:09,034 - INFO - Contracts collection has been fully processed.
+2025-01-17 20:32:09,034 - INFO - Contracts deducted successfully.
 
-2025-01-17 17:13:10,784 - INFO - ETL pipeline completed.
+2025-01-17 20:32:09,035 - INFO - ------ Step 3: Fetching Associated Transactions ------
+2025-01-17 20:32:10,025 - INFO - Fetching transactions between blocks 21303634 and 21310807...
+2025-01-17 20:32:10,031 - INFO - ---- Processing contract '0x1f9840a85d5af5bf1d1762f925bdaddc4201f984' for protocol 'Uniswap':
+2025-01-17 20:32:10,032 - INFO - Fetching transactions for blocks 21303634 to 21308633
+2025-01-17 20:32:10,032 - INFO - Fetching transactions for blocks 21308634 to 21310807
+2025-01-17 20:32:10,908 - INFO - Fetched 575 transactions for blocks 21308634-21310807
+2025-01-17 20:32:11,117 - INFO - Fetched 1684 transactions for blocks 21303634-21308633
+2025-01-17 20:32:11,117 - INFO - Fetched 2259 total transactions for contract 0x1f9840a85d5af5bf1d1762f925bdaddc4201f984
+2025-01-17 20:32:11,204 - INFO - 0 new transactions added to MongoDB.
+2025-01-17 20:32:11,206 - INFO - Successfully fetched and processed 2259 transactions for contract '0x1f9840a85d5af5bf1d1762f925bdaddc4201f984' under protocol 'Uniswap'.
+
+2025-01-17 20:32:11,206 - INFO - ---- Processing contract '0xd533a949740bb3306d119cc777fa900ba034cd52' for protocol 'Curve DAO':
+2025-01-17 20:32:11,207 - INFO - Fetching transactions for blocks 21303634 to 21308633
+2025-01-17 20:32:11,207 - INFO - Fetching transactions for blocks 21308634 to 21310807
+2025-01-17 20:32:12,007 - INFO - Fetched 381 transactions for blocks 21308634-21310807
+2025-01-17 20:32:12,346 - INFO - Fetched 1209 transactions for blocks 21303634-21308633
+2025-01-17 20:32:12,347 - INFO - Fetched 1590 total transactions for contract 0xd533a949740bb3306d119cc777fa900ba034cd52
+2025-01-17 20:32:12,412 - INFO - 0 new transactions added to MongoDB.
+2025-01-17 20:32:12,413 - INFO - Successfully fetched and processed 1590 transactions for contract '0xd533a949740bb3306d119cc777fa900ba034cd52' under protocol 'Curve DAO'.
+
+2025-01-17 20:32:12,413 - INFO - ---- Processing contract '0xba100000625a3754423978a60c9317c58a424e3d' for protocol 'Balancer':
+2025-01-17 20:32:12,413 - INFO - Fetching transactions for blocks 21303634 to 21308633
+2025-01-17 20:32:12,413 - INFO - Fetching transactions for blocks 21308634 to 21310807
+2025-01-17 20:32:12,893 - INFO - Fetched 50 transactions for blocks 21308634-21310807
+2025-01-17 20:32:13,019 - INFO - Fetched 174 transactions for blocks 21303634-21308633
+2025-01-17 20:32:13,020 - INFO - Fetched 224 total transactions for contract 0xba100000625a3754423978a60c9317c58a424e3d
+2025-01-17 20:32:13,050 - INFO - 0 new transactions added to MongoDB.
+2025-01-17 20:32:13,050 - INFO - Successfully fetched and processed 224 transactions for contract '0xba100000625a3754423978a60c9317c58a424e3d' under protocol 'Balancer'.
+
+2025-01-17 20:32:13,050 - INFO - ---- Processing contract '0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9' for protocol 'Aave':
+2025-01-17 20:32:13,050 - INFO - Fetching transactions for blocks 21303634 to 21308633
+2025-01-17 20:32:13,051 - INFO - Fetching transactions for blocks 21308634 to 21310807
+2025-01-17 20:32:13,792 - INFO - Fetched 394 transactions for blocks 21308634-21310807
+2025-01-17 20:32:13,930 - INFO - Fetched 780 transactions for blocks 21303634-21308633
+2025-01-17 20:32:13,930 - INFO - Fetched 1174 total transactions for contract 0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9
+2025-01-17 20:32:13,997 - INFO - 0 new transactions added to MongoDB.
+2025-01-17 20:32:13,998 - INFO - Successfully fetched and processed 1174 transactions for contract '0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9' under protocol 'Aave'.
+
+2025-01-17 20:32:13,998 - INFO - ---- Processing contract '0x9f8f72aa9304c8b593d555f12ef6589cc3a579a2' for protocol 'Maker':
+2025-01-17 20:32:13,999 - INFO - Fetching transactions for blocks 21303634 to 21308633
+2025-01-17 20:32:13,999 - INFO - Fetching transactions for blocks 21308634 to 21310807
+2025-01-17 20:32:14,605 - INFO - Fetched 128 transactions for blocks 21308634-21310807
+2025-01-17 20:32:14,729 - INFO - Fetched 230 transactions for blocks 21303634-21308633
+2025-01-17 20:32:14,730 - INFO - Fetched 358 total transactions for contract 0x9f8f72aa9304c8b593d555f12ef6589cc3a579a2
+2025-01-17 20:32:14,765 - INFO - 0 new transactions added to MongoDB.
+2025-01-17 20:32:14,766 - INFO - Successfully fetched and processed 358 transactions for contract '0x9f8f72aa9304c8b593d555f12ef6589cc3a579a2' under protocol 'Maker'.
+
+2025-01-17 20:32:14,766 - INFO - ---- Processing contract '0x0bc529c00c6401aef6d220be8c6ea1667f6ad93e' for protocol 'yearn.finance':
+2025-01-17 20:32:14,766 - INFO - Fetching transactions for blocks 21303634 to 21308633
+2025-01-17 20:32:14,767 - INFO - Fetching transactions for blocks 21308634 to 21310807
+2025-01-17 20:32:15,356 - INFO - Fetched 66 transactions for blocks 21308634-21310807
+2025-01-17 20:32:15,370 - INFO - Fetched 175 transactions for blocks 21303634-21308633
+2025-01-17 20:32:15,371 - INFO - Fetched 241 total transactions for contract 0x0bc529c00c6401aef6d220be8c6ea1667f6ad93e
+2025-01-17 20:32:15,396 - INFO - 0 new transactions added to MongoDB.
+2025-01-17 20:32:15,396 - INFO - Successfully fetched and processed 241 transactions for contract '0x0bc529c00c6401aef6d220be8c6ea1667f6ad93e' under protocol 'yearn.finance'.
+
+2025-01-17 20:32:15,396 - INFO - ---- Processing contract '0xa0246c9032bc3a600820415ae600c6388619a14d' for protocol 'Harvest Finance':
+2025-01-17 20:32:15,397 - INFO - Fetching transactions for blocks 21303634 to 21308633
+2025-01-17 20:32:15,397 - INFO - Fetching transactions for blocks 21308634 to 21310807
+2025-01-17 20:32:15,894 - INFO - Fetched 28 transactions for blocks 21308634-21310807
+2025-01-17 20:32:15,894 - INFO - Fetched 26 transactions for blocks 21303634-21308633
+2025-01-17 20:32:15,895 - INFO - Fetched 54 total transactions for contract 0xa0246c9032bc3a600820415ae600c6388619a14d
+2025-01-17 20:32:15,908 - INFO - 0 new transactions added to MongoDB.
+2025-01-17 20:32:15,909 - INFO - Successfully fetched and processed 54 transactions for contract '0xa0246c9032bc3a600820415ae600c6388619a14d' under protocol 'Harvest Finance'.
+
+2025-01-17 20:32:15,909 - INFO - ---- Processing contract '0x6b175474e89094c44da98b954eedeac495271d0f' for protocol 'Dai':
+2025-01-17 20:32:15,909 - INFO - Fetching transactions for blocks 21303634 to 21308633
+2025-01-17 20:32:15,909 - INFO - Fetching transactions for blocks 21308634 to 21310807
+2025-01-17 20:32:16,792 - INFO - Fetched 740 transactions for blocks 21308634-21310807
+2025-01-17 20:32:17,002 - INFO - Fetched 1225 transactions for blocks 21303634-21308633
+2025-01-17 20:32:17,002 - INFO - Fetched 1965 total transactions for contract 0x6b175474e89094c44da98b954eedeac495271d0f
+2025-01-17 20:32:17,087 - INFO - 0 new transactions added to MongoDB.
+2025-01-17 20:32:17,087 - INFO - Successfully fetched and processed 1965 transactions for contract '0x6b175474e89094c44da98b954eedeac495271d0f' under protocol 'Dai'.
+
+2025-01-17 20:32:17,087 - INFO - ---- Processing contract '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48' for protocol 'USDC':
+2025-01-17 20:32:17,088 - INFO - Fetching transactions for blocks 21303634 to 21308633
+2025-01-17 20:32:17,088 - INFO - Fetching transactions for blocks 21308634 to 21310807
+2025-01-17 20:32:19,124 - INFO - Fetched 10000 transactions for blocks 21308634-21310807
+2025-01-17 20:32:21,203 - INFO - Fetched 10000 transactions for blocks 21303634-21308633
+2025-01-17 20:32:21,203 - INFO - Fetched 20000 total transactions for contract 0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48
+2025-01-17 20:32:21,581 - INFO - 0 new transactions added to MongoDB.
+2025-01-17 20:32:21,588 - INFO - Successfully fetched and processed 20000 transactions for contract '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48' under protocol 'USDC'.
+
+2025-01-17 20:32:21,588 - INFO - ---- Processing contract '0xdac17f958d2ee523a2206206994597c13d831ec7' for protocol 'Tether':
+2025-01-17 20:32:21,588 - INFO - Fetching transactions for blocks 21303634 to 21308633
+2025-01-17 20:32:21,589 - INFO - Fetching transactions for blocks 21308634 to 21310807
+2025-01-17 20:32:23,633 - INFO - Fetched 10000 transactions for blocks 21303634-21308633
+2025-01-17 20:32:24,552 - INFO - Fetched 10000 transactions for blocks 21308634-21310807
+2025-01-17 20:32:24,555 - INFO - Fetched 20000 total transactions for contract 0xdac17f958d2ee523a2206206994597c13d831ec7
+2025-01-17 20:32:24,933 - INFO - 0 new transactions added to MongoDB.
+2025-01-17 20:32:24,941 - INFO - Successfully fetched and processed 20000 transactions for contract '0xdac17f958d2ee523a2206206994597c13d831ec7' under protocol 'Tether'.
+
+2025-01-17 20:32:24,941 - INFO - ---- Processing contract '0x09d6f0f5a21f5be4f59e209747e2d07f50bc694c' for protocol 'NFTFI':
+2025-01-17 20:32:24,942 - INFO - Fetching transactions for blocks 21303634 to 21308633
+2025-01-17 20:32:24,942 - INFO - Fetching transactions for blocks 21308634 to 21310807
+2025-01-17 20:32:25,418 - INFO - Fetched 2 transactions for blocks 21303634-21308633
+2025-01-17 20:32:25,418 - INFO - Fetched 2 transactions for blocks 21308634-21310807
+2025-01-17 20:32:25,428 - INFO - Fetched 4 total transactions for contract 0x09d6f0f5a21f5be4f59e209747e2d07f50bc694c
+2025-01-17 20:32:25,434 - INFO - 0 new transactions added to MongoDB.
+2025-01-17 20:32:25,435 - INFO - Successfully fetched and processed 4 transactions for contract '0x09d6f0f5a21f5be4f59e209747e2d07f50bc694c' under protocol 'NFTFI'.
+
+2025-01-17 20:32:25,435 - INFO - Transactions Fetched successfully.
+
+2025-01-17 20:32:25,435 - INFO - ETL pipeline completed.

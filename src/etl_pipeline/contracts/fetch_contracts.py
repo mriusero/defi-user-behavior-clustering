@@ -25,12 +25,8 @@ def deduct_contracts():
     'protocols' collection and extracts relevant contract details, including contract address, blockchain, and
     protocol metadata. If the contract does not exist in the 'contracts' collection, it is inserted; otherwise,
     the function logs that the contract already exists.
-
-    Logs are generated for each added contract, as well as for any duplicate contract addresses found in the 'contracts' collection.
-
     The function uses MongoDB's update_one method with the 'upsert' option to either insert or skip contracts as appropriate.
-
-    Returns:
+    :return:
         None
     """
 
@@ -43,12 +39,10 @@ def deduct_contracts():
         protocols_collection = get_mongo_collection(
             db_name='defi_db',
             collection_name='protocols',
-            mongo_uri="mongodb://localhost:27017"
         )
         contracts_collection = get_mongo_collection(
             db_name='defi_db',
             collection_name='contracts',
-            mongo_uri="mongodb://localhost:27017"
         )
 
         # Retrieve all protocols from the collection
