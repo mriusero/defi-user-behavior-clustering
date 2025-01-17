@@ -1,9 +1,10 @@
-import requests
+import logging
 import time
-import logging.config
 
-from .config import LOGGING_CONFIG, CG_API_KEY
-logging.config.dictConfig(LOGGING_CONFIG)
+import requests
+
+from .transform import infer_protocol_type, generate_protocol_id
+from ..config import CG_API_KEY, KEY_PROTOCOLS
 
 
 def get_defi_protocol_info(protocol_id):
@@ -35,6 +36,7 @@ def get_defi_protocol_info(protocol_id):
             platforms = data.get('platforms', {})
 
             protocol_info = {
+                'protocol_id': generate_protocol_id(data.get('name', 'N/A')),  # Generate the ID
                 'name': data.get('name', 'N/A'),
                 'type': infer_protocol_type(protocol_id),
                 'blockchain_contracts': [
@@ -64,23 +66,26 @@ def get_defi_protocol_info(protocol_id):
 
     return None
 
-def infer_protocol_type(protocol_id):
+
+def extract_protocols():
     """
-    Infers the type of a protocol based on its identifier.
-    :param:
-        protocol_id (str): The identifier of the protocol.
+    Extracts data for each protocol from a predefined list of protocols.
     :return:
-        str: The inferred type of the protocol (e.g., DEX, Lending, Yield Farming, Stablecoin, NFT-Fi, or DeFi).
+        List[Dict]: The list of protocol data, where each item is a dictionary containing information about a protocol.
+    :raise:
+        Exception: If there's an error fetching data for any protocol.
     """
-    if protocol_id in ["uniswap", "sushiswap", "curve-dao-token", "balancer"]:
-        return "DEX"
-    elif protocol_id in ["aave", "compound", "maker"]:
-        return "Lending"
-    elif protocol_id in ["yearn-finance", "harvest-finance", "curve-dao-token"]:
-        return "Yield Farming"
-    elif protocol_id in ["dai", "usd-coin", "tether"]:
-        return "Stablecoin"
-    elif protocol_id in ["nftfi", "nifty-gateway", "opensea"]:
-        return "NFT-Fi"
-    else:
-        return "DeFi"
+    protocols_data = []
+    for protocol_id in KEY_PROTOCOLS:
+        try:
+            protocol_info = get_defi_protocol_info(protocol_id)
+            if protocol_info:
+                protocols_data.append(protocol_info)
+            else:
+                logging.warning(f"No data found for protocol ID: {protocol_id}")
+        except Exception as e:
+            logging.error(f"Error fetching data for protocol ID: {protocol_id} - {e}")
+
+        time.sleep(2)       # Avoid hitting rate limits
+
+    return protocols_data

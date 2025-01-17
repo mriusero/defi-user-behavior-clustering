@@ -32,3 +32,236 @@
 2025-01-17 14:19:46,746 - INFO - Successfully retrieved data for protocol ID: nftfi
 2025-01-17 14:19:48,756 - INFO - Data successfully saved to 'data/protocols.json'.
 2025-01-17 14:19:48,756 - INFO - -----Protocols extraction completed: 11 protocols retrieved.-----
+2025-01-17 14:44:08,986 - INFO - Logging configured successfully !
+2025-01-17 14:44:08,986 - INFO - protocols=True
+2025-01-17 14:44:08,986 - INFO - ====== Starting ETL pipeline ======
+2025-01-17 14:44:08,986 - INFO - -----Extracting protocols-----
+2025-01-17 14:44:09,409 - INFO - Successfully retrieved data for protocol ID: uniswap
+2025-01-17 14:44:11,644 - INFO - Successfully retrieved data for protocol ID: curve-dao-token
+2025-01-17 14:44:14,078 - INFO - Successfully retrieved data for protocol ID: balancer
+2025-01-17 14:44:16,535 - INFO - Successfully retrieved data for protocol ID: aave
+2025-01-17 14:44:18,992 - INFO - Successfully retrieved data for protocol ID: maker
+2025-01-17 14:44:21,820 - INFO - Successfully retrieved data for protocol ID: yearn-finance
+2025-01-17 14:44:24,275 - INFO - Successfully retrieved data for protocol ID: harvest-finance
+2025-01-17 14:44:26,853 - INFO - Successfully retrieved data for protocol ID: dai
+2025-01-17 14:44:29,025 - INFO - Successfully retrieved data for protocol ID: usd-coin
+2025-01-17 14:44:32,631 - INFO - Successfully retrieved data for protocol ID: tether
+2025-01-17 14:44:34,964 - INFO - Successfully retrieved data for protocol ID: nftfi
+2025-01-17 14:44:36,971 - INFO - Connected to MongoDB at mongodb://localhost:27017/
+2025-01-17 14:45:07,259 - ERROR - Error inserting data into MongoDB: localhost:27017: [Errno 61] Connection refused (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms), Timeout: 30s, Topology Description: <TopologyDescription id: 678a5ec48c4d9cfc38073641, topology_type: Unknown, servers: [<ServerDescription ('localhost', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('localhost:27017: [Errno 61] Connection refused (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>]>
+2025-01-17 14:45:07,259 - ERROR - Failed to insert data into MongoDB.
+2025-01-17 14:45:07,259 - INFO - -----Protocols extraction completed: 11 protocols retrieved.-----
+2025-01-17 14:50:34,349 - INFO - Logging configured successfully !
+2025-01-17 14:50:34,350 - INFO - save_to_mongo=True
+2025-01-17 14:50:34,350 - INFO - protocols=True
+2025-01-17 14:50:34,350 - INFO - ====== Starting ETL pipeline ======
+2025-01-17 14:50:34,350 - INFO - -----Extracting protocols-----
+2025-01-17 14:50:35,085 - INFO - Successfully retrieved data for protocol ID: uniswap
+2025-01-17 14:50:37,592 - INFO - Successfully retrieved data for protocol ID: curve-dao-token
+2025-01-17 14:50:40,171 - INFO - Successfully retrieved data for protocol ID: balancer
+2025-01-17 14:50:42,352 - INFO - Successfully retrieved data for protocol ID: aave
+2025-01-17 14:50:44,714 - INFO - Successfully retrieved data for protocol ID: maker
+2025-01-17 14:50:47,051 - INFO - Successfully retrieved data for protocol ID: yearn-finance
+2025-01-17 14:50:49,284 - INFO - Successfully retrieved data for protocol ID: harvest-finance
+2025-01-17 14:50:51,332 - INFO - Successfully retrieved data for protocol ID: dai
+2025-01-17 14:50:53,696 - INFO - Successfully retrieved data for protocol ID: usd-coin
+2025-01-17 14:50:55,779 - INFO - Successfully retrieved data for protocol ID: tether
+2025-01-17 14:50:58,108 - INFO - Successfully retrieved data for protocol ID: nftfi
+2025-01-17 14:51:00,111 - INFO - Connected to MongoDB at mongodb://localhost:27017/
+2025-01-17 14:51:00,139 - INFO - Inserted 11 documents into protocols
+2025-01-17 14:51:00,139 - INFO - Data successfully inserted into MongoDB.
+2025-01-17 14:51:00,139 - INFO - -----Protocols extraction completed: 11 protocols retrieved.-----
+2025-01-17 15:06:08,364 - INFO - Logging configured successfully !
+2025-01-17 15:06:08,364 - INFO - ====== PARAMS ======
+2025-01-17 15:06:08,364 - INFO - --> save_to_mongo=True
+2025-01-17 15:06:08,364 - INFO - -->protocols=True
+2025-01-17 15:06:08,364 - INFO - ====== Starting ETL pipeline ======
+2025-01-17 15:06:08,364 - INFO - -----Extracting protocols-----
+2025-01-17 15:07:03,840 - INFO - Successfully retrieved data for protocol ID: uniswap
+2025-01-17 15:07:06,076 - INFO - Successfully retrieved data for protocol ID: curve-dao-token
+2025-01-17 15:07:08,384 - INFO - Successfully retrieved data for protocol ID: balancer
+2025-01-17 15:07:10,574 - INFO - Successfully retrieved data for protocol ID: aave
+2025-01-17 15:07:12,950 - INFO - Successfully retrieved data for protocol ID: maker
+2025-01-17 15:07:15,185 - INFO - Successfully retrieved data for protocol ID: yearn-finance
+2025-01-17 15:07:17,624 - INFO - Successfully retrieved data for protocol ID: harvest-finance
+2025-01-17 15:07:19,725 - INFO - Successfully retrieved data for protocol ID: dai
+2025-01-17 15:07:21,794 - INFO - Successfully retrieved data for protocol ID: usd-coin
+2025-01-17 15:07:24,236 - INFO - Successfully retrieved data for protocol ID: tether
+2025-01-17 15:07:26,569 - INFO - Successfully retrieved data for protocol ID: nftfi
+2025-01-17 15:07:28,582 - INFO - Connected to MongoDB at mongodb://localhost:27017/
+2025-01-17 15:07:28,586 - INFO - Inserted 11 documents into protocols
+2025-01-17 15:07:28,586 - INFO - Data successfully inserted into MongoDB.
+2025-01-17 15:07:28,587 - INFO - -----Protocols extraction completed: 11 protocols retrieved.-----
+2025-01-17 15:32:35,033 - INFO - Logging configured successfully !
+2025-01-17 15:32:35,033 - INFO - ====== PARAMETERS ======
+2025-01-17 15:32:35,034 - INFO - --> save_to_mongo=True
+2025-01-17 15:32:35,034 - INFO - --> protocols=True
+
+2025-01-17 15:32:35,034 - INFO - ====== Starting ETL pipeline ======
+2025-01-17 15:32:35,034 - INFO - ----- Extracting protocols -----
+2025-01-17 15:32:35,415 - INFO - Successfully retrieved data for protocol ID: uniswap
+2025-01-17 15:32:38,120 - INFO - Successfully retrieved data for protocol ID: curve-dao-token
+2025-01-17 15:32:40,701 - INFO - Successfully retrieved data for protocol ID: balancer
+2025-01-17 15:32:42,948 - INFO - Successfully retrieved data for protocol ID: aave
+2025-01-17 15:32:45,379 - INFO - Successfully retrieved data for protocol ID: maker
+2025-01-17 15:32:48,073 - INFO - Successfully retrieved data for protocol ID: yearn-finance
+2025-01-17 15:32:50,779 - INFO - Successfully retrieved data for protocol ID: harvest-finance
+2025-01-17 15:32:53,602 - INFO - Successfully retrieved data for protocol ID: dai
+2025-01-17 15:32:55,671 - INFO - Successfully retrieved data for protocol ID: usd-coin
+2025-01-17 15:32:57,752 - INFO - Successfully retrieved data for protocol ID: tether
+2025-01-17 15:33:00,112 - INFO - Successfully retrieved data for protocol ID: nftfi
+2025-01-17 15:33:02,123 - INFO - Connected to MongoDB at mongodb://localhost:27017/
+2025-01-17 15:33:02,128 - INFO - Inserted 11 documents into protocols
+2025-01-17 15:33:02,128 - INFO - Data successfully inserted into MongoDB.
+2025-01-17 15:33:02,128 - INFO - Protocols extraction completed: 11 protocols retrieved.
+
+2025-01-17 15:40:20,806 - INFO - ====== PARAMETERS ======
+2025-01-17 15:40:20,806 - INFO - --> save_to_mongo=True
+2025-01-17 15:40:20,806 - INFO - --> protocols=True
+
+2025-01-17 15:40:20,806 - INFO - ====== Starting ETL pipeline ======
+2025-01-17 15:40:20,806 - INFO - 1. Extracting protocols
+2025-01-17 15:40:21,009 - INFO - Successfully retrieved data for protocol ID: uniswap
+2025-01-17 15:40:23,829 - INFO - Successfully retrieved data for protocol ID: curve-dao-token
+2025-01-17 15:40:26,164 - INFO - Successfully retrieved data for protocol ID: balancer
+2025-01-17 15:40:28,546 - INFO - Successfully retrieved data for protocol ID: aave
+2025-01-17 15:40:30,991 - INFO - Successfully retrieved data for protocol ID: maker
+2025-01-17 15:40:33,244 - INFO - Successfully retrieved data for protocol ID: yearn-finance
+2025-01-17 15:40:35,465 - INFO - Successfully retrieved data for protocol ID: harvest-finance
+2025-01-17 15:40:37,657 - INFO - Successfully retrieved data for protocol ID: dai
+2025-01-17 15:40:39,842 - INFO - Successfully retrieved data for protocol ID: usd-coin
+2025-01-17 15:40:42,046 - INFO - Successfully retrieved data for protocol ID: tether
+2025-01-17 15:40:44,351 - INFO - Successfully retrieved data for protocol ID: nftfi
+2025-01-17 15:40:46,401 - INFO - Inserted new protocol: None
+2025-01-17 15:40:46,402 - INFO - Protocol already exists: None
+2025-01-17 15:40:46,404 - INFO - Protocol already exists: None
+2025-01-17 15:40:46,405 - INFO - Protocol already exists: None
+2025-01-17 15:40:46,406 - INFO - Protocol already exists: None
+2025-01-17 15:40:46,407 - INFO - Protocol already exists: None
+2025-01-17 15:40:46,408 - INFO - Protocol already exists: None
+2025-01-17 15:40:46,409 - INFO - Protocol already exists: None
+2025-01-17 15:40:46,410 - INFO - Protocol already exists: None
+2025-01-17 15:40:46,411 - INFO - Protocol already exists: None
+2025-01-17 15:40:46,412 - INFO - Protocol already exists: None
+2025-01-17 15:40:46,413 - INFO - Protocols extraction completed: 11 protocols retrieved.
+
+2025-01-17 15:42:30,632 - INFO - ====== PARAMETERS ======
+2025-01-17 15:42:30,632 - INFO - --> save_to_mongo=True
+2025-01-17 15:42:30,632 - INFO - --> protocols=True
+
+2025-01-17 15:42:30,632 - INFO - ====== Starting ETL pipeline ======
+2025-01-17 15:42:30,632 - INFO - 1. Extracting protocols
+2025-01-17 15:42:30,822 - INFO - Successfully retrieved data for protocol ID: uniswap
+2025-01-17 15:42:33,390 - INFO - Successfully retrieved data for protocol ID: curve-dao-token
+2025-01-17 15:42:35,670 - INFO - Successfully retrieved data for protocol ID: balancer
+2025-01-17 15:42:38,171 - INFO - Successfully retrieved data for protocol ID: aave
+2025-01-17 15:42:40,715 - INFO - Successfully retrieved data for protocol ID: maker
+2025-01-17 15:42:43,050 - INFO - Successfully retrieved data for protocol ID: yearn-finance
+2025-01-17 15:42:45,413 - INFO - Successfully retrieved data for protocol ID: harvest-finance
+2025-01-17 15:42:47,481 - INFO - Successfully retrieved data for protocol ID: dai
+2025-01-17 15:42:49,554 - INFO - Successfully retrieved data for protocol ID: usd-coin
+2025-01-17 15:42:51,624 - INFO - Successfully retrieved data for protocol ID: tether
+2025-01-17 15:42:53,983 - INFO - Successfully retrieved data for protocol ID: nftfi
+2025-01-17 15:42:55,996 - INFO - Inserted new protocol: None
+2025-01-17 15:42:55,996 - INFO - Protocol already exists: None
+2025-01-17 15:42:55,997 - INFO - Protocol already exists: None
+2025-01-17 15:42:55,997 - INFO - Protocol already exists: None
+2025-01-17 15:42:55,998 - INFO - Protocol already exists: None
+2025-01-17 15:42:55,998 - INFO - Protocol already exists: None
+2025-01-17 15:42:55,999 - INFO - Protocol already exists: None
+2025-01-17 15:42:55,999 - INFO - Protocol already exists: None
+2025-01-17 15:42:56,000 - INFO - Protocol already exists: None
+2025-01-17 15:42:56,000 - INFO - Protocol already exists: None
+2025-01-17 15:42:56,000 - INFO - Protocol already exists: None
+2025-01-17 15:42:56,000 - INFO - Protocols extraction completed: 11 protocols retrieved.
+
+2025-01-17 15:48:02,319 - INFO - ====== PARAMETERS ======
+2025-01-17 15:48:02,319 - INFO - --> save_to_mongo=True
+2025-01-17 15:48:02,319 - INFO - --> protocols=True
+
+2025-01-17 15:48:02,319 - INFO - ====== Starting ETL pipeline ======
+2025-01-17 15:48:02,319 - INFO - 1. Extracting protocols
+2025-01-17 15:48:02,778 - INFO - Successfully retrieved data for protocol ID: uniswap
+2025-01-17 15:48:04,954 - INFO - Successfully retrieved data for protocol ID: curve-dao-token
+2025-01-17 15:48:07,570 - INFO - Successfully retrieved data for protocol ID: balancer
+2025-01-17 15:48:09,756 - INFO - Successfully retrieved data for protocol ID: aave
+2025-01-17 15:48:11,925 - INFO - Successfully retrieved data for protocol ID: maker
+2025-01-17 15:48:14,206 - INFO - Successfully retrieved data for protocol ID: yearn-finance
+2025-01-17 15:48:16,459 - INFO - Successfully retrieved data for protocol ID: harvest-finance
+2025-01-17 15:48:18,875 - INFO - Successfully retrieved data for protocol ID: dai
+2025-01-17 15:48:20,939 - INFO - Successfully retrieved data for protocol ID: usd-coin
+2025-01-17 15:48:23,011 - INFO - Successfully retrieved data for protocol ID: tether
+2025-01-17 15:48:25,303 - INFO - Successfully retrieved data for protocol ID: nftfi
+2025-01-17 15:48:27,313 - INFO - Inserted new protocol: a32977262a1f49ca460aa0f158e86b03
+2025-01-17 15:48:27,314 - INFO - Inserted new protocol: a1b975d2463b8528b60c4757e61d375f
+2025-01-17 15:48:27,314 - INFO - Inserted new protocol: 831bbef62d5c22abf7edbc3f93645176
+2025-01-17 15:48:27,315 - INFO - Inserted new protocol: 08d9acfaf8b0c20caa531ece3ad3fad2
+2025-01-17 15:48:27,315 - INFO - Inserted new protocol: 35977a76fc8a3239867a67a62cf45f0d
+2025-01-17 15:48:27,315 - INFO - Inserted new protocol: 649ccddd314a5557ec2278361951951f
+2025-01-17 15:48:27,316 - INFO - Inserted new protocol: 790fbd1db1b1c6d74c14632e376c8712
+2025-01-17 15:48:27,316 - INFO - Inserted new protocol: 9dbc4db24ab137cf03e23043880896b1
+2025-01-17 15:48:27,317 - INFO - Inserted new protocol: c2242f2c3a5cea4aeb8f9dda7565792e
+2025-01-17 15:48:27,317 - INFO - Inserted new protocol: cabb8fabc55ebdd43cbc2eae969d6a50
+2025-01-17 15:48:27,319 - INFO - Inserted new protocol: 67b4b31cafbe917fd568ff7e68450f17
+2025-01-17 15:48:27,319 - INFO - Protocols extraction completed: 11 protocols retrieved.
+
+2025-01-17 15:51:59,960 - INFO - ====== PARAMETERS ======
+2025-01-17 15:51:59,960 - INFO - --> save_to_mongo=True
+2025-01-17 15:51:59,960 - INFO - --> protocols=True
+
+2025-01-17 15:51:59,960 - INFO - ====== Starting ETL pipeline ======
+2025-01-17 15:51:59,960 - INFO - 1. Extracting protocols
+2025-01-17 15:52:00,316 - INFO - Successfully retrieved data for protocol ID: uniswap
+2025-01-17 15:52:02,636 - INFO - Successfully retrieved data for protocol ID: curve-dao-token
+2025-01-17 15:52:04,971 - INFO - Successfully retrieved data for protocol ID: balancer
+2025-01-17 15:52:07,247 - INFO - Successfully retrieved data for protocol ID: aave
+2025-01-17 15:52:09,640 - INFO - Successfully retrieved data for protocol ID: maker
+2025-01-17 15:52:11,860 - INFO - Successfully retrieved data for protocol ID: yearn-finance
+2025-01-17 15:52:14,101 - INFO - Successfully retrieved data for protocol ID: harvest-finance
+2025-01-17 15:52:16,644 - INFO - Successfully retrieved data for protocol ID: dai
+2025-01-17 15:52:18,714 - INFO - Successfully retrieved data for protocol ID: usd-coin
+2025-01-17 15:52:20,782 - INFO - Successfully retrieved data for protocol ID: tether
+2025-01-17 15:52:23,156 - INFO - Successfully retrieved data for protocol ID: nftfi
+2025-01-17 15:52:25,169 - INFO - Protocol already exists 'Uniswap': with unique ID 'a32977262a1f49ca460aa0f158e86b03'
+2025-01-17 15:52:25,170 - INFO - Protocol already exists 'Curve DAO': with unique ID 'a1b975d2463b8528b60c4757e61d375f'
+2025-01-17 15:52:25,172 - INFO - Protocol already exists 'Balancer': with unique ID '831bbef62d5c22abf7edbc3f93645176'
+2025-01-17 15:52:25,173 - INFO - Protocol already exists 'Aave': with unique ID '08d9acfaf8b0c20caa531ece3ad3fad2'
+2025-01-17 15:52:25,173 - INFO - Protocol already exists 'Maker': with unique ID '35977a76fc8a3239867a67a62cf45f0d'
+2025-01-17 15:52:25,174 - INFO - Protocol already exists 'yearn.finance': with unique ID '649ccddd314a5557ec2278361951951f'
+2025-01-17 15:52:25,175 - INFO - Protocol already exists 'Harvest Finance': with unique ID '790fbd1db1b1c6d74c14632e376c8712'
+2025-01-17 15:52:25,176 - INFO - Protocol already exists 'Dai': with unique ID '9dbc4db24ab137cf03e23043880896b1'
+2025-01-17 15:52:25,178 - INFO - Protocol already exists 'USDC': with unique ID 'c2242f2c3a5cea4aeb8f9dda7565792e'
+2025-01-17 15:52:25,179 - INFO - Protocol already exists 'Tether': with unique ID 'cabb8fabc55ebdd43cbc2eae969d6a50'
+2025-01-17 15:52:25,180 - INFO - Protocol already exists 'NFTFI': with unique ID '67b4b31cafbe917fd568ff7e68450f17'
+2025-01-17 15:52:25,180 - INFO - Protocols extraction completed: 11 protocols retrieved.
+
+2025-01-17 16:16:48,642 - INFO - ====== PARAMETERS ======
+2025-01-17 16:16:48,642 - INFO - --> save_to_mongo=True
+2025-01-17 16:16:48,642 - INFO - --> protocols=True
+
+2025-01-17 16:16:48,642 - INFO - ====== Starting ETL pipeline ======
+2025-01-17 16:16:48,642 - INFO - 1. Extracting protocols
+2025-01-17 16:16:49,091 - INFO - Successfully retrieved data for protocol ID: uniswap
+2025-01-17 16:16:51,286 - INFO - Successfully retrieved data for protocol ID: curve-dao-token
+2025-01-17 16:16:53,536 - INFO - Successfully retrieved data for protocol ID: balancer
+2025-01-17 16:16:55,727 - INFO - Successfully retrieved data for protocol ID: aave
+2025-01-17 16:16:58,186 - INFO - Successfully retrieved data for protocol ID: maker
+2025-01-17 16:17:00,520 - INFO - Successfully retrieved data for protocol ID: yearn-finance
+2025-01-17 16:17:02,975 - INFO - Successfully retrieved data for protocol ID: harvest-finance
+2025-01-17 16:17:05,219 - INFO - Successfully retrieved data for protocol ID: dai
+2025-01-17 16:17:07,293 - INFO - Successfully retrieved data for protocol ID: usd-coin
+2025-01-17 16:17:09,483 - INFO - Successfully retrieved data for protocol ID: tether
+2025-01-17 16:17:11,822 - INFO - Successfully retrieved data for protocol ID: nftfi
+2025-01-17 16:17:13,835 - INFO - Protocol already exists 'Uniswap': with unique ID 'a32977262a1f49ca460aa0f158e86b03'
+2025-01-17 16:17:13,836 - INFO - Protocol already exists 'Curve DAO': with unique ID 'a1b975d2463b8528b60c4757e61d375f'
+2025-01-17 16:17:13,837 - INFO - Protocol already exists 'Balancer': with unique ID '831bbef62d5c22abf7edbc3f93645176'
+2025-01-17 16:17:13,838 - INFO - Protocol already exists 'Aave': with unique ID '08d9acfaf8b0c20caa531ece3ad3fad2'
+2025-01-17 16:17:13,839 - INFO - Protocol already exists 'Maker': with unique ID '35977a76fc8a3239867a67a62cf45f0d'
+2025-01-17 16:17:13,840 - INFO - Protocol already exists 'yearn.finance': with unique ID '649ccddd314a5557ec2278361951951f'
+2025-01-17 16:17:13,841 - INFO - Protocol already exists 'Harvest Finance': with unique ID '790fbd1db1b1c6d74c14632e376c8712'
+2025-01-17 16:17:13,842 - INFO - Protocol already exists 'Dai': with unique ID '9dbc4db24ab137cf03e23043880896b1'
+2025-01-17 16:17:13,842 - INFO - Protocol already exists 'USDC': with unique ID 'c2242f2c3a5cea4aeb8f9dda7565792e'
+2025-01-17 16:17:13,843 - INFO - Protocol already exists 'Tether': with unique ID 'cabb8fabc55ebdd43cbc2eae969d6a50'
+2025-01-17 16:17:13,843 - INFO - Protocol already exists 'NFTFI': with unique ID '67b4b31cafbe917fd568ff7e68450f17'
+2025-01-17 16:17:13,844 - INFO - Protocols extraction completed: 11 protocols retrieved.
+
