@@ -2,10 +2,11 @@ import logging.config
 
 from .config import LOGGING_CONFIG
 from .protocols import extract_protocols, load_protocols
+from .contracts import deduct_contracts
 
 logging.config.dictConfig(LOGGING_CONFIG)
 
-def process_etl_pipeline(save_to_mongo=False, protocols=False):
+def process_etl_pipeline(save_to_mongo=False, protocols=False, contracts=False):
     """
      Executes an ETL (Extract, Transform, Load) pipeline to process DeFi protocol data.
 
@@ -21,15 +22,27 @@ def process_etl_pipeline(save_to_mongo=False, protocols=False):
      """
     logging.info("====== PARAMETERS ======")
     logging.info(f"--> save_to_mongo={save_to_mongo}")
-    logging.info(f"--> protocols={protocols}\n")
+    logging.info(f"--> protocols={protocols}")
+    logging.info(f"--> contracts={contracts}")
+    logging.info("\n")
 
     logging.info("====== Starting ETL pipeline ======")
 
+    # Etape 1 : Extraction des protocoles
     if protocols:
-        logging.info("1. Extracting protocols")
-        protocols_data = extract_protocols()                                                            # Extract protocol data
-        load_protocols(protocols_data, save_to_mongo)                                                   # Load data into the appropriate destination
+        logging.info("------ Step 1: Extracting Protocols ------")
+        protocols_data = extract_protocols()  # Extraction des données des protocoles
+        load_protocols(protocols_data, save_to_mongo)  # Chargement des données dans la destination appropriée
         logging.info(f"Protocols extraction completed: {len(protocols_data)} protocols retrieved.\n")
     else:
-        logging.info("No protocols extraction needed.\n")
+        logging.info("No protocols extraction needed. Skipping step 1.\n")
 
+    # Etape 2 : Déduction des contrats
+    if contracts:
+        logging.info("------ Step 2: Deducting Contracts ------")
+        deduct_contracts()  # Déduction des contrats
+        logging.info("Contracts deducted successfully.\n")
+    else:
+        logging.info("No contract deduction needed. Skipping step 2.\n")
+
+    logging.info("ETL pipeline completed.")
