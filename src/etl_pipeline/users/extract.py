@@ -68,8 +68,10 @@ def extract_users() -> None:
                 {},                             # All transactions
                 {
                     "from": 1,
+                    "transaction_hash": 1,
                     "to": 1,
                     "value (ETH)": 1,
+                    "gas_used": 1,
                     "timestamp": 1,
                     "metadata.protocol_name": 1,
                     "metadata.type": 1,
