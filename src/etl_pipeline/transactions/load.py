@@ -1,5 +1,6 @@
-from datetime import datetime
 import logging
+from datetime import datetime
+
 from pymongo import UpdateOne
 
 from ..mongodb_handler import get_mongo_collection

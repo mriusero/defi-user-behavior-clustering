@@ -1,6 +1,7 @@
 import json
-import requests
 import logging
+
+import requests
 
 from .config import ETH_API_KEY
 

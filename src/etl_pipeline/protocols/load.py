@@ -1,4 +1,5 @@
 import logging
+
 from ..mongodb_handler import get_mongo_collection
 
 

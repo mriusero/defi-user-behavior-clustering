@@ -1,14 +1,13 @@
-# extract.py
-
-import requests
-from datetime import datetime
 import logging
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from datetime import datetime
 
-from ..config import ETH_API_KEY
-from ..utils import get_block_by_timestamp
+import requests
+
 from .load import upsert_transactions
+from ..config import ETH_API_KEY
 from ..mongodb_handler import get_mongo_collection
+from ..utils import get_block_by_timestamp
 
 
 def fetch_transactions(contract_address: str, start_block: int, end_block: int, page: int = 1, offset: int = 10000):
