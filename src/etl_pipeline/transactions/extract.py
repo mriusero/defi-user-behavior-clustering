@@ -14,22 +14,13 @@ from ..mongodb_handler import get_mongo_collection
 def fetch_transactions(contract_address: str, start_block: int, end_block: int, page: int = 1, offset: int = 10000):
     """
     Retrieves Ethereum transactions related to a contract between two blocks, paginated if necessary.
-
-    :param contract_address: The Ethereum contract address. (str)
-    :param start_block: The starting block number. (int)
-    :param end_block: The ending block number. (int)
-    :param page: The page number for pagination. Defaults to 1. (int)
-    :param offset: The number of transactions per page. Defaults to 10000. (int)
-
-    :return: A list of transactions. (list)
-
-    :raise ValueError: If there is an error during the transaction retrieval.
     """
-    url = f"https://api.etherscan.io/api"  # API URL
+    url = "https://api.etherscan.io/v2/api"
     params = {
+        "chainid": 1,
         "module": "account",
-        "action": "txlist",
-        "address": contract_address,
+        "action": "tokentx",
+        "contractaddress": contract_address,
         "startblock": start_block,
         "endblock": end_block,
         "page": page,
@@ -37,14 +28,20 @@ def fetch_transactions(contract_address: str, start_block: int, end_block: int, 
         "sort": "asc",
         "apikey": ETH_API_KEY,
     }
+
     response = requests.get(url, params=params)
+
+    if response.status_code != 200:
+        raise ValueError(f"HTTP error: {response.status_code}, response: {response.text}")
+
     data = response.json()
-    if data["status"] == "1":
+
+    if "status" in data and data["status"] == "1" and "result" in data:
         return data["result"]
-    elif data["status"] == "0" and data["message"] == "No transactions found":
+    elif "status" in data and data["status"] == "0" and data["message"] == "No transactions found":
         return []
     else:
-        raise ValueError(f"Error retrieving transactions: {data['message']}")
+        raise ValueError(f"Error retrieving transactions: {data.get('message', 'Unknown error')}")
 
 
 def fetch_transactions_for_range(contract_address: str, start_block: int, end_block: int):
