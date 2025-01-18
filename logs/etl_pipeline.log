@@ -1,233 +1,417 @@
-2025-01-17 20:31:43,365 - INFO - ====== PARAMETERS ======
-2025-01-17 20:31:43,365 - INFO - --> protocols=True
-2025-01-17 20:31:43,365 - INFO - --> contracts=True
-2025-01-17 20:31:43,365 - INFO - --> transactions=True
-2025-01-17 20:31:43,365 - INFO - 
+2025-01-18 19:08:19,078 - INFO - ====== PARAMETERS ======
+2025-01-18 19:08:19,079 - INFO - --> protocols=False
+2025-01-18 19:08:19,079 - INFO - --> contracts=False
+2025-01-18 19:08:19,079 - INFO - --> transactions=False
+2025-01-18 19:08:19,079 - INFO - --> users=True
+2025-01-18 19:08:19,079 - INFO - 
 
-2025-01-17 20:31:43,365 - INFO - ====== Starting ETL pipeline ======
-2025-01-17 20:31:43,365 - INFO - ------ Step 1: Extracting Protocols ------
-2025-01-17 20:31:43,803 - INFO - Successfully retrieved data for protocol ID: uniswap
-2025-01-17 20:31:46,206 - INFO - Successfully retrieved data for protocol ID: curve-dao-token
-2025-01-17 20:31:48,452 - INFO - Successfully retrieved data for protocol ID: balancer
-2025-01-17 20:31:50,874 - INFO - Successfully retrieved data for protocol ID: aave
-2025-01-17 20:31:53,210 - INFO - Successfully retrieved data for protocol ID: maker
-2025-01-17 20:31:55,464 - INFO - Successfully retrieved data for protocol ID: yearn-finance
-2025-01-17 20:31:57,878 - INFO - Successfully retrieved data for protocol ID: harvest-finance
-2025-01-17 20:32:00,288 - INFO - Successfully retrieved data for protocol ID: dai
-2025-01-17 20:32:02,349 - INFO - Successfully retrieved data for protocol ID: usd-coin
-2025-01-17 20:32:04,415 - INFO - Successfully retrieved data for protocol ID: tether
-2025-01-17 20:32:06,971 - INFO - Successfully retrieved data for protocol ID: nftfi
-2025-01-17 20:32:08,988 - INFO - Protocol already exists 'Uniswap': with unique ID 'a32977262a1f49ca460aa0f158e86b03'
-2025-01-17 20:32:08,989 - INFO - Protocol already exists 'Curve DAO': with unique ID 'a1b975d2463b8528b60c4757e61d375f'
-2025-01-17 20:32:08,989 - INFO - Protocol already exists 'Balancer': with unique ID '831bbef62d5c22abf7edbc3f93645176'
-2025-01-17 20:32:08,990 - INFO - Protocol already exists 'Aave': with unique ID '08d9acfaf8b0c20caa531ece3ad3fad2'
-2025-01-17 20:32:08,990 - INFO - Protocol already exists 'Maker': with unique ID '35977a76fc8a3239867a67a62cf45f0d'
-2025-01-17 20:32:08,991 - INFO - Protocol already exists 'yearn.finance': with unique ID '649ccddd314a5557ec2278361951951f'
-2025-01-17 20:32:08,991 - INFO - Protocol already exists 'Harvest Finance': with unique ID '790fbd1db1b1c6d74c14632e376c8712'
-2025-01-17 20:32:08,992 - INFO - Protocol already exists 'Dai': with unique ID '9dbc4db24ab137cf03e23043880896b1'
-2025-01-17 20:32:08,992 - INFO - Protocol already exists 'USDC': with unique ID 'c2242f2c3a5cea4aeb8f9dda7565792e'
-2025-01-17 20:32:08,993 - INFO - Protocol already exists 'Tether': with unique ID 'cabb8fabc55ebdd43cbc2eae969d6a50'
-2025-01-17 20:32:08,993 - INFO - Protocol already exists 'NFTFI': with unique ID '67b4b31cafbe917fd568ff7e68450f17'
-2025-01-17 20:32:08,993 - INFO - Protocols extraction completed: 11 protocols retrieved.
+2025-01-18 19:08:19,079 - INFO - ====== Starting ETL pipeline ======
+2025-01-18 19:08:19,079 - INFO - No protocols extraction asked. Skipping step 1.
 
-2025-01-17 20:32:08,993 - INFO - ------ Step 2: Deducting Contracts ------
-2025-01-17 20:32:08,994 - INFO - Starting contract extraction and insertion process.
-2025-01-17 20:32:09,000 - INFO - Contract 0x1f9840a85d5af5bf1d1762f925bdaddc4201f984 already exists in the 'contracts' collection.
-2025-01-17 20:32:09,000 - INFO - Contract 0x4537e328bf7e4efa29d05caea260d7fe26af9d74 already exists in the 'contracts' collection.
-2025-01-17 20:32:09,001 - INFO - Contract 1f9840a85d5af5bf1d1762f925bdaddc4201f984.factory.bridge.near already exists in the 'contracts' collection.
-2025-01-17 20:32:09,001 - INFO - Contract 0x6fd9d7ad17242c41f7131d257212c54a0e816691 already exists in the 'contracts' collection.
-2025-01-17 20:32:09,001 - INFO - Contract 0x22c54ce8321a4015740ee1109d9cbc25815c46e6 already exists in the 'contracts' collection.
-2025-01-17 20:32:09,002 - INFO - Contract 0xfa7f8980b0f1e64a2062791cc3b0871572f1f7f0 already exists in the 'contracts' collection.
-2025-01-17 20:32:09,002 - INFO - Contract 0xb33eaad8d922b1083446dc23f610c2567fb5180f already exists in the 'contracts' collection.
-2025-01-17 20:32:09,003 - INFO - Contract 0x90d81749da8867962c760414c1c25ec926e889b6 already exists in the 'contracts' collection.
-2025-01-17 20:32:09,003 - INFO - Contract 0x8ebaf22b6f053dffeaf46f4dd9efa95d89ba8580 already exists in the 'contracts' collection.
-2025-01-17 20:32:09,004 - INFO - Contract 0x665b3a802979ec24e076c80025bff33c18eb6007 already exists in the 'contracts' collection.
-2025-01-17 20:32:09,004 - INFO - Contract 0x009be848df92a400da2f217256c88d1a9b1a0304f9b3e90991a67418e1d3b08c already exists in the 'contracts' collection.
-2025-01-17 20:32:09,005 - INFO - Contract 0xbf5140a22578168fd562dccf235e5d43a02ce9b1 already exists in the 'contracts' collection.
-2025-01-17 20:32:09,005 - INFO - Contract 0xd533a949740bb3306d119cc777fa900ba034cd52 already exists in the 'contracts' collection.
-2025-01-17 20:32:09,006 - INFO - Contract 0x0994206dfe8de6ec6920ff4d779b0d950605fb53 already exists in the 'contracts' collection.
-2025-01-17 20:32:09,006 - INFO - Contract 0x172370d5cd63279efa6d502dab29171933a610af already exists in the 'contracts' collection.
-2025-01-17 20:32:09,007 - INFO - Contract 0x1e4f97b9f9f913c46f1632781732927b9019c68b already exists in the 'contracts' collection.
-2025-01-17 20:32:09,007 - INFO - Contract 0x11cdb42b0eb46d95f990bedd4695a6e3fa034978 already exists in the 'contracts' collection.
-2025-01-17 20:32:09,008 - INFO - Contract 0xd3319eaf3c4743ac75aace77befcfa445ed6e69e already exists in the 'contracts' collection.
-2025-01-17 20:32:09,008 - INFO - Contract 0x002ead91a2de57b8855b53d4a62c25277073fd7f65f7e5e79f4936ed747fcad0 already exists in the 'contracts' collection.
-2025-01-17 20:32:09,009 - INFO - Contract 0xba100000625a3754423978a60c9317c58a424e3d already exists in the 'contracts' collection.
-2025-01-17 20:32:09,009 - INFO - Contract 0x7ef541e2a22058048904fe5744f9c7e4c57af717 already exists in the 'contracts' collection.
-2025-01-17 20:32:09,010 - INFO - Contract 0x120ef59b80774f02211563834d8e3b72cb1649d6 already exists in the 'contracts' collection.
-2025-01-17 20:32:09,010 - INFO - Contract 0xfe8b128ba8c78aabc59d4c64cee7ff28e9379921 already exists in the 'contracts' collection.
-2025-01-17 20:32:09,011 - INFO - Contract ba100000625a3754423978a60c9317c58a424e3d.factory.bridge.near already exists in the 'contracts' collection.
-2025-01-17 20:32:09,011 - INFO - Contract 0x4158734d47fc9692176b5085e0f52ee0da5d47f1 already exists in the 'contracts' collection.
-2025-01-17 20:32:09,012 - INFO - Contract 0xdc5f76104d0b8d2bf2c2bbe06cdfe17004e9010f already exists in the 'contracts' collection.
-2025-01-17 20:32:09,012 - INFO - Contract 0x045de15ca76e76426e8fc7cba8392a3138078d0f already exists in the 'contracts' collection.
-2025-01-17 20:32:09,013 - INFO - Contract 0x9a71012b13ca4d3d0cdc72a177df3ef03b0e76a3 already exists in the 'contracts' collection.
-2025-01-17 20:32:09,013 - INFO - Contract 0x040d1edc9569d4bab2d15287dc5a4f10f56a56b8 already exists in the 'contracts' collection.
-2025-01-17 20:32:09,014 - INFO - Contract 0xe15bcb9e0ea69e6ab9fa080c4c4a5632896298c3 already exists in the 'contracts' collection.
-2025-01-17 20:32:09,014 - INFO - Contract 0x9b817c6e9a38e604606aea3ad6ed271ce8eaa9d6 already exists in the 'contracts' collection.
-2025-01-17 20:32:09,014 - INFO - Contract 0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9 already exists in the 'contracts' collection.
-2025-01-17 20:32:09,015 - INFO - Contract 0x76fb31fb4af56892a25e32cfc43de717950c9278 already exists in the 'contracts' collection.
-2025-01-17 20:32:09,015 - INFO - Contract 7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9.factory.bridge.near already exists in the 'contracts' collection.
-2025-01-17 20:32:09,015 - INFO - Contract 0x202b4936fe1a82a4965220860ae46d7d3939bb25 already exists in the 'contracts' collection.
-2025-01-17 20:32:09,016 - INFO - Contract 0xd6df932a45c0f255f85145f286ea0b292b21c90b already exists in the 'contracts' collection.
-2025-01-17 20:32:09,016 - INFO - Contract 0x6a07a792ab2965c72a5b8088d3a069a7ac3a993b already exists in the 'contracts' collection.
-2025-01-17 20:32:09,016 - INFO - Contract 0xcf323aad9e522b93f11c352caa519ad0e14eb40f already exists in the 'contracts' collection.
-2025-01-17 20:32:09,016 - INFO - Contract 0xba5ddd1f9d7f570dc94a51479a000e3bce967196 already exists in the 'contracts' collection.
-2025-01-17 20:32:09,017 - INFO - Contract 0x63a72806098bd3d9520cc43356dd78afe5d386d9 already exists in the 'contracts' collection.
-2025-01-17 20:32:09,017 - INFO - Contract 0xa7f2f790355e0c32cab03f92f6eb7f488e6f049a already exists in the 'contracts' collection.
-2025-01-17 20:32:09,017 - INFO - Contract 0x0091bd8d8295b25cab5a7b8b0e44498e678cfc15d872ede3215f7d4c7635ba36 already exists in the 'contracts' collection.
-2025-01-17 20:32:09,018 - INFO - Contract 0xfb6115445bff7b52feb98650c87f44907e58f802 already exists in the 'contracts' collection.
-2025-01-17 20:32:09,018 - INFO - Contract 0x9f8f72aa9304c8b593d555f12ef6589cc3a579a2 already exists in the 'contracts' collection.
-2025-01-17 20:32:09,018 - INFO - Contract 0x6f7c932e7684666c9fd1d44527765433e01ff61d already exists in the 'contracts' collection.
-2025-01-17 20:32:09,019 - INFO - Contract 0x88128fd4b259552a9a1d457f435a6527aab72d42 already exists in the 'contracts' collection.
-2025-01-17 20:32:09,019 - INFO - Contract 0x050317d93f29d1ba5ff3eac3b8157fd4e345588d already exists in the 'contracts' collection.
-2025-01-17 20:32:09,019 - INFO - Contract 0x00ec184ef0b4bd955db05eea5a8489ae72888ab6e63682a15beca1cd39344c8f already exists in the 'contracts' collection.
-2025-01-17 20:32:09,020 - INFO - Contract 0x0bc529c00c6401aef6d220be8c6ea1667f6ad93e already exists in the 'contracts' collection.
-2025-01-17 20:32:09,020 - INFO - Contract 0xbf65bfcb5da067446cee6a706ba3fe2fb1a9fdfd already exists in the 'contracts' collection.
-2025-01-17 20:32:09,020 - INFO - Contract 0x9046d36440290ffde54fe0dd84db8b1cfee9107b already exists in the 'contracts' collection.
-2025-01-17 20:32:09,021 - INFO - Contract 0bc529c00c6401aef6d220be8c6ea1667f6ad93e.factory.bridge.near already exists in the 'contracts' collection.
-2025-01-17 20:32:09,021 - INFO - Contract 0x9eaf8c1e34f05a589eda6bafdf391cf6ad3cb239 already exists in the 'contracts' collection.
-2025-01-17 20:32:09,021 - INFO - Contract 0x2726dd5efb3a209a54c512e9562a2045b8f45dbc already exists in the 'contracts' collection.
-2025-01-17 20:32:09,022 - INFO - Contract 0xb4f019beac758abbee2f906033aaa2f0f6dacb35 already exists in the 'contracts' collection.
-2025-01-17 20:32:09,022 - INFO - Contract 0xda537104d6a5edd53c6fbba9a898708e465260b6 already exists in the 'contracts' collection.
-2025-01-17 20:32:09,022 - INFO - Contract 0x29b0da86e484e1c0029b56e817912d778ac0ec69 already exists in the 'contracts' collection.
-2025-01-17 20:32:09,023 - INFO - Contract 0x82e3a8f066a6989666b031d916c43672085b1582 already exists in the 'contracts' collection.
-2025-01-17 20:32:09,023 - INFO - Contract 0xa0dc05f84a27fccbd341305839019ab86576bc07 already exists in the 'contracts' collection.
-2025-01-17 20:32:09,023 - INFO - Contract 0x9eaac1b23d935365bd7b542fe22ceee2922f52dc already exists in the 'contracts' collection.
-2025-01-17 20:32:09,024 - INFO - Contract 0x002676c3edea5b08bc0f9b6809a91aa313b7da35e28b190222e9dc032bf1e662 already exists in the 'contracts' collection.
-2025-01-17 20:32:09,024 - INFO - Contract 0xa0246c9032bc3a600820415ae600c6388619a14d already exists in the 'contracts' collection.
-2025-01-17 20:32:09,024 - INFO - Contract 0x4b5c23cac08a567ecf0c1ffca8372a45a5d33743 already exists in the 'contracts' collection.
-2025-01-17 20:32:09,024 - INFO - Contract 0xc59a4b20ea0f8a7e6e216e7f1b070247520a4514 already exists in the 'contracts' collection.
-2025-01-17 20:32:09,025 - INFO - Contract 0x6b175474e89094c44da98b954eedeac495271d0f already exists in the 'contracts' collection.
-2025-01-17 20:32:09,025 - INFO - Contract 0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48 already exists in the 'contracts' collection.
-2025-01-17 20:32:09,025 - INFO - Contract 0x1d17cbcf0d6d143135ae902365d2e5e2a16538d4 already exists in the 'contracts' collection.
-2025-01-17 20:32:09,026 - INFO - Contract 0x0b2c639c533813f4aa9d7837caf62653d097ff85 already exists in the 'contracts' collection.
-2025-01-17 20:32:09,026 - INFO - Contract 1337 already exists in the 'contracts' collection.
-2025-01-17 20:32:09,027 - INFO - Contract TEkxiTehnzSmSe2XqrBj4w32RUN966rdz8 already exists in the 'contracts' collection.
-2025-01-17 20:32:09,027 - INFO - Contract 17208628f84f5d6ad33f0da3bbbeb27ffcb398eac501a31bd6ad2011e36133a1 already exists in the 'contracts' collection.
-2025-01-17 20:32:09,028 - INFO - Contract 0.0.456858 already exists in the 'contracts' collection.
-2025-01-17 20:32:09,028 - INFO - Contract 0x833589fcd6edb6e08f4c7c32d4f71b54bda02913 already exists in the 'contracts' collection.
-2025-01-17 20:32:09,028 - INFO - Contract 0xaf88d065e77c8cc2239327c5edb3a432268e5831 already exists in the 'contracts' collection.
-2025-01-17 20:32:09,029 - INFO - Contract 0x3c499c542cef5e3811e1192ce70d8cc03d5c3359 already exists in the 'contracts' collection.
-2025-01-17 20:32:09,029 - INFO - Contract 0xbae207659db88bea0cbead6da0ed00aac12edcdda169e591cd41c94180b46f3b already exists in the 'contracts' collection.
-2025-01-17 20:32:09,029 - INFO - Contract 0xdba34672e30cb065b1f93e3ab55318768fd6fef66c15942c9f7cb846e2f900e7::usdc::USDC already exists in the 'contracts' collection.
-2025-01-17 20:32:09,030 - INFO - Contract 31566704 already exists in the 'contracts' collection.
-2025-01-17 20:32:09,030 - INFO - Contract 0xb97ef9ef8734c71904d8002f8b6bc66dd9c48a6e already exists in the 'contracts' collection.
-2025-01-17 20:32:09,030 - INFO - Contract USDC-GA5ZSEJYB37JRC5AVCIA5MOP4RHTM335X2KGX3IHOJAPP5RE34K4KZVN already exists in the 'contracts' collection.
-2025-01-17 20:32:09,031 - INFO - Contract EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v already exists in the 'contracts' collection.
-2025-01-17 20:32:09,031 - INFO - Contract 0xceba9300f2b948710d2653dd7b07f33a8b32118c already exists in the 'contracts' collection.
-2025-01-17 20:32:09,031 - INFO - Contract 0xdac17f958d2ee523a2206206994597c13d831ec7 already exists in the 'contracts' collection.
-2025-01-17 20:32:09,032 - INFO - Contract 0x357b0b74bc833e95a115ad22604854d6b0fca151cecd94111770e5d6ffc9dc2b already exists in the 'contracts' collection.
-2025-01-17 20:32:09,032 - INFO - Contract TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t already exists in the 'contracts' collection.
-2025-01-17 20:32:09,032 - INFO - Contract 0x9702230a8ea53601f5cd2dc00fdbc13d4df4a8c7 already exists in the 'contracts' collection.
-2025-01-17 20:32:09,032 - INFO - Contract usdt.tether-token.near already exists in the 'contracts' collection.
-2025-01-17 20:32:09,033 - INFO - Contract Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB already exists in the 'contracts' collection.
-2025-01-17 20:32:09,033 - INFO - Contract 0x919c1c267bc06a7039e03fcc2ef738525769109c already exists in the 'contracts' collection.
-2025-01-17 20:32:09,033 - INFO - Contract 0x48065fbbe25f71c9282ddf5e1cd6d6a887483d5e already exists in the 'contracts' collection.
-2025-01-17 20:32:09,034 - INFO - Contract EQCxE6mUtQJKFnGfaROTKOt1lZbDiiX1kCixRv7Nw2Id_sDs already exists in the 'contracts' collection.
-2025-01-17 20:32:09,034 - INFO - Contract 0x09d6f0f5a21f5be4f59e209747e2d07f50bc694c already exists in the 'contracts' collection.
-2025-01-17 20:32:09,034 - INFO - Contracts collection has been fully processed.
-2025-01-17 20:32:09,034 - INFO - Contracts deducted successfully.
+2025-01-18 19:08:19,079 - INFO - No contract deduction asked. Skipping step 2.
 
-2025-01-17 20:32:09,035 - INFO - ------ Step 3: Fetching Associated Transactions ------
-2025-01-17 20:32:10,025 - INFO - Fetching transactions between blocks 21303634 and 21310807...
-2025-01-17 20:32:10,031 - INFO - ---- Processing contract '0x1f9840a85d5af5bf1d1762f925bdaddc4201f984' for protocol 'Uniswap':
-2025-01-17 20:32:10,032 - INFO - Fetching transactions for blocks 21303634 to 21308633
-2025-01-17 20:32:10,032 - INFO - Fetching transactions for blocks 21308634 to 21310807
-2025-01-17 20:32:10,908 - INFO - Fetched 575 transactions for blocks 21308634-21310807
-2025-01-17 20:32:11,117 - INFO - Fetched 1684 transactions for blocks 21303634-21308633
-2025-01-17 20:32:11,117 - INFO - Fetched 2259 total transactions for contract 0x1f9840a85d5af5bf1d1762f925bdaddc4201f984
-2025-01-17 20:32:11,204 - INFO - 0 new transactions added to MongoDB.
-2025-01-17 20:32:11,206 - INFO - Successfully fetched and processed 2259 transactions for contract '0x1f9840a85d5af5bf1d1762f925bdaddc4201f984' under protocol 'Uniswap'.
+2025-01-18 19:08:19,079 - INFO - No transactions fetching asked. Skipping step 3.
 
-2025-01-17 20:32:11,206 - INFO - ---- Processing contract '0xd533a949740bb3306d119cc777fa900ba034cd52' for protocol 'Curve DAO':
-2025-01-17 20:32:11,207 - INFO - Fetching transactions for blocks 21303634 to 21308633
-2025-01-17 20:32:11,207 - INFO - Fetching transactions for blocks 21308634 to 21310807
-2025-01-17 20:32:12,007 - INFO - Fetched 381 transactions for blocks 21308634-21310807
-2025-01-17 20:32:12,346 - INFO - Fetched 1209 transactions for blocks 21303634-21308633
-2025-01-17 20:32:12,347 - INFO - Fetched 1590 total transactions for contract 0xd533a949740bb3306d119cc777fa900ba034cd52
-2025-01-17 20:32:12,412 - INFO - 0 new transactions added to MongoDB.
-2025-01-17 20:32:12,413 - INFO - Successfully fetched and processed 1590 transactions for contract '0xd533a949740bb3306d119cc777fa900ba034cd52' under protocol 'Curve DAO'.
+2025-01-18 19:08:19,079 - INFO - ------ Step 4: Extracting User Data ------
+2025-01-18 19:08:19,079 - INFO - Starting to extract user data from transactions collection.
+2025-01-18 19:08:19,081 - INFO - Using batch_size: 100000.
+2025-01-18 19:08:19,081 - INFO - MongoDB session started.
+2025-01-18 19:08:19,081 - INFO - Cursor initialized. Starting to fetch transactions.
+2025-01-18 19:09:07,227 - INFO - Total batches to process: 17, each with 714243 transactions.
+2025-01-18 19:09:14,949 - INFO - Batch ab861373-51f2-4c31-85f9-1d93d27e230b: Processed 714243 transactions in 2.33 seconds.
+2025-01-18 19:09:17,359 - INFO - Batch 1736a0c9-8534-49dc-a7bc-ad7070b0db47: Processed 714243 transactions in 1.70 seconds.
+2025-01-18 19:09:21,085 - INFO - Batch baf5fe50-df1d-4a48-9fe9-1585666cef6b: Processed 714243 transactions in 2.26 seconds.
+2025-01-18 19:09:24,301 - INFO - Batch 95384080-1720-46fb-bef2-58b7a9e96807: Processed 714243 transactions in 2.40 seconds.
+2025-01-18 19:09:27,324 - INFO - Batch 5e815628-074f-4c9d-92ce-232872a595eb: Processed 714243 transactions in 2.33 seconds.
+2025-01-18 19:09:30,715 - INFO - Batch 2e2f4f09-abfe-4a54-b573-299c0684dd76: Processed 714243 transactions in 2.52 seconds.
+2025-01-18 19:09:34,540 - INFO - Batch e95fa741-f1d6-4f15-bd47-78859db417a7: Processed 714243 transactions in 3.21 seconds.
+2025-01-18 19:09:37,706 - INFO - Batch 8d3b8c8e-7c76-468d-9a03-dfafa58b5a48: Processed 714243 transactions in 3.25 seconds.
+2025-01-18 19:09:41,101 - INFO - Batch 6e927e56-d5f5-4d5a-b635-d84d70cc86e7: Processed 714243 transactions in 3.25 seconds.
+2025-01-18 19:09:44,534 - INFO - Batch c0655658-ede8-495f-80bf-a79cedf1f431: Processed 714243 transactions in 3.21 seconds.
+2025-01-18 19:09:54,887 - INFO - Batch 31551809-ecb5-49e6-a89d-ea3bee2d1bab: Processed 714243 transactions in 3.41 seconds.
+2025-01-18 19:09:58,429 - INFO - Batch 147060aa-f0e9-4d23-a386-31a5a5e879b0: Processed 714243 transactions in 3.50 seconds.
+2025-01-18 19:10:01,813 - INFO - Batch 4ddbe5ed-adcc-4ca0-ae23-da37e20f160e: Processed 714243 transactions in 3.54 seconds.
+2025-01-18 19:10:05,112 - INFO - Batch 4bd151b2-e219-4dfa-9a7d-0c2a51ae585c: Processed 714243 transactions in 3.52 seconds.
+2025-01-18 19:10:08,925 - INFO - Batch db717d7e-f6f0-45a3-8abe-847fa911f6f4: Processed 714243 transactions in 3.58 seconds.
+2025-01-18 19:10:15,289 - INFO - Batch f53ad047-cf97-4df0-9005-52b010045df5: Processed 5 transactions in 0.00 seconds.
+2025-01-18 19:10:20,307 - INFO - Batch 59ea5c5a-0d68-42f1-9408-b7a1fc98db8e: Processed 714243 transactions in 2.94 seconds.
+2025-01-18 19:10:32,649 - INFO - User data extraction completed for 3713471 users.
+2025-01-18 19:10:33,317 - INFO - Preparing to load 3713471 users in 372 batches.
+2025-01-18 19:10:33,559 - INFO - Starting to process 372 chunks in parallel...
+2025-01-18 19:10:33,982 - INFO - Batch of 10000 records processed in 0.30 seconds.
+2025-01-18 19:10:33,986 - INFO - Batch of 10000 records processed in 0.27 seconds.
+2025-01-18 19:10:34,009 - INFO - Batch of 10000 records processed in 0.25 seconds.
+2025-01-18 19:10:34,047 - INFO - Batch of 10000 records processed in 0.25 seconds.
+2025-01-18 19:10:34,088 - INFO - Batch of 10000 records processed in 0.25 seconds.
+2025-01-18 19:10:34,123 - INFO - Batch of 10000 records processed in 0.25 seconds.
+2025-01-18 19:10:34,161 - INFO - Batch of 10000 records processed in 0.25 seconds.
+2025-01-18 19:10:34,188 - INFO - Batch of 10000 records processed in 0.25 seconds.
+2025-01-18 19:10:34,228 - INFO - Batch of 10000 records processed in 0.25 seconds.
+2025-01-18 19:10:34,255 - INFO - Batch of 10000 records processed in 0.25 seconds.
+2025-01-18 19:10:34,293 - INFO - Batch of 10000 records processed in 0.25 seconds.
+2025-01-18 19:10:34,327 - INFO - Batch of 10000 records processed in 0.25 seconds.
+2025-01-18 19:10:34,365 - INFO - Batch of 10000 records processed in 0.25 seconds.
+2025-01-18 19:10:34,407 - INFO - Batch of 10000 records processed in 0.26 seconds.
+2025-01-18 19:10:34,438 - INFO - Batch of 10000 records processed in 0.26 seconds.
+2025-01-18 19:10:34,462 - INFO - Batch of 10000 records processed in 0.26 seconds.
+2025-01-18 19:10:34,493 - INFO - Batch of 10000 records processed in 0.26 seconds.
+2025-01-18 19:10:34,509 - INFO - Batch of 10000 records processed in 0.25 seconds.
+2025-01-18 19:10:34,542 - INFO - Batch of 10000 records processed in 0.26 seconds.
+2025-01-18 19:10:34,569 - INFO - Batch of 10000 records processed in 0.25 seconds.
+2025-01-18 19:10:34,594 - INFO - Batch of 10000 records processed in 0.25 seconds.
+2025-01-18 19:10:34,634 - INFO - Batch of 10000 records processed in 0.25 seconds.
+2025-01-18 19:10:34,662 - INFO - Batch of 10000 records processed in 0.25 seconds.
+2025-01-18 19:10:34,698 - INFO - Batch of 10000 records processed in 0.25 seconds.
+2025-01-18 19:10:34,731 - INFO - Batch of 10000 records processed in 0.25 seconds.
+2025-01-18 19:10:34,767 - INFO - Batch of 10000 records processed in 0.25 seconds.
+2025-01-18 19:10:34,796 - INFO - Batch of 10000 records processed in 0.25 seconds.
+2025-01-18 19:10:34,829 - INFO - Batch of 10000 records processed in 0.25 seconds.
+2025-01-18 19:10:34,863 - INFO - Batch of 10000 records processed in 0.25 seconds.
+2025-01-18 19:10:34,897 - INFO - Batch of 10000 records processed in 0.26 seconds.
+2025-01-18 19:10:34,925 - INFO - Batch of 10000 records processed in 0.25 seconds.
+2025-01-18 19:10:34,958 - INFO - Batch of 10000 records processed in 0.26 seconds.
+2025-01-18 19:10:35,004 - INFO - Batch of 10000 records processed in 0.28 seconds.
+2025-01-18 19:10:35,016 - INFO - Batch of 10000 records processed in 0.26 seconds.
+2025-01-18 19:10:35,051 - INFO - Batch of 10000 records processed in 0.27 seconds.
+2025-01-18 19:10:35,077 - INFO - Batch of 10000 records processed in 0.26 seconds.
+2025-01-18 19:10:35,102 - INFO - Batch of 10000 records processed in 0.26 seconds.
+2025-01-18 19:10:35,129 - INFO - Batch of 10000 records processed in 0.26 seconds.
+2025-01-18 19:10:35,163 - INFO - Batch of 10000 records processed in 0.26 seconds.
+2025-01-18 19:10:35,185 - INFO - Batch of 10000 records processed in 0.26 seconds.
+2025-01-18 19:10:35,215 - INFO - Batch of 10000 records processed in 0.26 seconds.
+2025-01-18 19:10:35,240 - INFO - Batch of 10000 records processed in 0.26 seconds.
+2025-01-18 19:10:35,277 - INFO - Batch of 10000 records processed in 0.26 seconds.
+2025-01-18 19:10:35,310 - INFO - Batch of 10000 records processed in 0.26 seconds.
+2025-01-18 19:10:35,340 - INFO - Batch of 10000 records processed in 0.26 seconds.
+2025-01-18 19:10:35,370 - INFO - Batch of 10000 records processed in 0.26 seconds.
+2025-01-18 19:10:35,409 - INFO - Batch of 10000 records processed in 0.27 seconds.
+2025-01-18 19:10:35,439 - INFO - Batch of 10000 records processed in 0.27 seconds.
+2025-01-18 19:10:35,468 - INFO - Batch of 10000 records processed in 0.26 seconds.
+2025-01-18 19:10:35,503 - INFO - Batch of 10000 records processed in 0.26 seconds.
+2025-01-18 19:10:35,534 - INFO - Batch of 10000 records processed in 0.27 seconds.
+2025-01-18 19:10:35,567 - INFO - Batch of 10000 records processed in 0.27 seconds.
+2025-01-18 19:10:35,598 - INFO - Batch of 10000 records processed in 0.27 seconds.
+2025-01-18 19:10:35,630 - INFO - Batch of 10000 records processed in 0.27 seconds.
+2025-01-18 19:10:35,668 - INFO - Batch of 10000 records processed in 0.28 seconds.
+2025-01-18 19:10:35,695 - INFO - Batch of 10000 records processed in 0.28 seconds.
+2025-01-18 19:10:35,728 - INFO - Batch of 10000 records processed in 0.28 seconds.
+2025-01-18 19:10:35,762 - INFO - Batch of 10000 records processed in 0.29 seconds.
+2025-01-18 19:10:35,805 - INFO - Batch of 10000 records processed in 0.30 seconds.
+2025-01-18 19:10:35,835 - INFO - Batch of 10000 records processed in 0.31 seconds.
+2025-01-18 19:10:35,875 - INFO - Batch of 10000 records processed in 0.32 seconds.
+2025-01-18 19:10:35,917 - INFO - Batch of 10000 records processed in 0.33 seconds.
+2025-01-18 19:10:35,988 - INFO - Batch of 10000 records processed in 0.37 seconds.
+2025-01-18 19:10:36,061 - INFO - Batch of 10000 records processed in 0.42 seconds.
+2025-01-18 19:10:36,119 - INFO - Batch of 10000 records processed in 0.46 seconds.
+2025-01-18 19:10:36,164 - INFO - Batch of 10000 records processed in 0.48 seconds.
+2025-01-18 19:10:36,280 - INFO - Batch of 10000 records processed in 0.56 seconds.
+2025-01-18 19:10:36,371 - INFO - Batch of 10000 records processed in 0.63 seconds.
+2025-01-18 19:10:36,379 - INFO - Batch of 10000 records processed in 0.61 seconds.
+2025-01-18 19:10:36,403 - INFO - Batch of 10000 records processed in 0.60 seconds.
+2025-01-18 19:10:36,490 - INFO - Batch of 10000 records processed in 0.66 seconds.
+2025-01-18 19:10:36,568 - INFO - Batch of 10000 records processed in 0.71 seconds.
+2025-01-18 19:10:36,601 - INFO - Batch of 10000 records processed in 0.71 seconds.
+2025-01-18 19:10:36,621 - INFO - Batch of 10000 records processed in 0.70 seconds.
+2025-01-18 19:10:36,676 - INFO - Batch of 10000 records processed in 0.70 seconds.
+2025-01-18 19:10:36,692 - INFO - Batch of 10000 records processed in 0.71 seconds.
+2025-01-18 19:10:36,753 - INFO - Batch of 10000 records processed in 0.73 seconds.
+2025-01-18 19:10:36,757 - INFO - Batch of 10000 records processed in 0.76 seconds.
+2025-01-18 19:10:36,776 - INFO - Batch of 10000 records processed in 0.73 seconds.
+2025-01-18 19:10:36,809 - INFO - Batch of 10000 records processed in 0.68 seconds.
+2025-01-18 19:10:36,871 - INFO - Batch of 10000 records processed in 0.72 seconds.
+2025-01-18 19:10:36,921 - INFO - Batch of 10000 records processed in 0.73 seconds.
+2025-01-18 19:10:37,021 - INFO - Batch of 10000 records processed in 0.71 seconds.
+2025-01-18 19:10:37,119 - INFO - Batch of 10000 records processed in 0.72 seconds.
+2025-01-18 19:10:37,227 - INFO - Batch of 10000 records processed in 0.77 seconds.
+2025-01-18 19:10:37,292 - INFO - Batch of 10000 records processed in 0.83 seconds.
+2025-01-18 19:10:37,340 - INFO - Batch of 10000 records processed in 0.75 seconds.
+2025-01-18 19:10:37,377 - INFO - Batch of 10000 records processed in 0.82 seconds.
+2025-01-18 19:10:37,417 - INFO - Batch of 10000 records processed in 0.76 seconds.
+2025-01-18 19:10:37,423 - INFO - Batch of 10000 records processed in 0.77 seconds.
+2025-01-18 19:10:37,490 - INFO - Batch of 10000 records processed in 0.79 seconds.
+2025-01-18 19:10:37,590 - INFO - Batch of 10000 records processed in 0.81 seconds.
+2025-01-18 19:10:37,597 - INFO - Batch of 10000 records processed in 0.84 seconds.
+2025-01-18 19:10:37,611 - INFO - Batch of 10000 records processed in 0.76 seconds.
+2025-01-18 19:10:37,667 - INFO - Batch of 10000 records processed in 0.77 seconds.
+2025-01-18 19:10:37,681 - INFO - Batch of 10000 records processed in 0.83 seconds.
+2025-01-18 19:10:37,683 - INFO - Batch of 10000 records processed in 0.83 seconds.
+2025-01-18 19:10:37,725 - INFO - Batch of 10000 records processed in 0.73 seconds.
+2025-01-18 19:10:37,786 - INFO - Batch of 10000 records processed in 0.69 seconds.
+2025-01-18 19:10:37,956 - INFO - Batch of 10000 records processed in 0.77 seconds.
+2025-01-18 19:10:38,057 - INFO - Batch of 10000 records processed in 0.74 seconds.
+2025-01-18 19:10:38,102 - INFO - Batch of 10000 records processed in 0.81 seconds.
+2025-01-18 19:10:38,146 - INFO - Batch of 10000 records processed in 0.76 seconds.
+2025-01-18 19:10:38,224 - INFO - Batch of 10000 records processed in 0.82 seconds.
+2025-01-18 19:10:38,263 - INFO - Batch of 10000 records processed in 0.77 seconds.
+2025-01-18 19:10:38,278 - INFO - Batch of 10000 records processed in 0.79 seconds.
+2025-01-18 19:10:38,296 - INFO - Batch of 10000 records processed in 0.78 seconds.
+2025-01-18 19:10:38,375 - INFO - Batch of 10000 records processed in 0.76 seconds.
+2025-01-18 19:10:38,466 - INFO - Batch of 10000 records processed in 0.79 seconds.
+2025-01-18 19:10:38,499 - INFO - Batch of 10000 records processed in 0.82 seconds.
+2025-01-18 19:10:38,505 - INFO - Batch of 10000 records processed in 0.78 seconds.
+2025-01-18 19:10:38,519 - INFO - Batch of 10000 records processed in 0.83 seconds.
+2025-01-18 19:10:38,533 - INFO - Batch of 10000 records processed in 0.76 seconds.
+2025-01-18 19:10:38,589 - INFO - Batch of 10000 records processed in 0.82 seconds.
+2025-01-18 19:10:38,600 - INFO - Batch of 10000 records processed in 0.79 seconds.
+2025-01-18 19:10:38,764 - INFO - Batch of 10000 records processed in 0.78 seconds.
+2025-01-18 19:10:38,847 - INFO - Batch of 10000 records processed in 0.76 seconds.
+2025-01-18 19:10:38,951 - INFO - Batch of 10000 records processed in 0.82 seconds.
+2025-01-18 19:10:39,035 - INFO - Batch of 10000 records processed in 0.78 seconds.
+2025-01-18 19:10:39,080 - INFO - Batch of 10000 records processed in 0.83 seconds.
+2025-01-18 19:10:39,105 - INFO - Batch of 10000 records processed in 0.82 seconds.
+2025-01-18 19:10:39,162 - INFO - Batch of 10000 records processed in 0.85 seconds.
+2025-01-18 19:10:39,187 - INFO - Batch of 10000 records processed in 0.85 seconds.
+2025-01-18 19:10:39,260 - INFO - Batch of 10000 records processed in 0.81 seconds.
+2025-01-18 19:10:39,298 - INFO - Batch of 10000 records processed in 0.81 seconds.
+2025-01-18 19:10:39,383 - INFO - Batch of 10000 records processed in 0.86 seconds.
+2025-01-18 19:10:39,400 - INFO - Batch of 10000 records processed in 0.81 seconds.
+2025-01-18 19:10:39,426 - INFO - Batch of 10000 records processed in 0.83 seconds.
+2025-01-18 19:10:39,428 - INFO - Batch of 10000 records processed in 0.83 seconds.
+2025-01-18 19:10:39,449 - INFO - Batch of 10000 records processed in 0.82 seconds.
+2025-01-18 19:10:39,481 - INFO - Batch of 10000 records processed in 0.74 seconds.
+2025-01-18 19:10:39,573 - INFO - Batch of 10000 records processed in 0.78 seconds.
+2025-01-18 19:10:39,606 - INFO - Batch of 10000 records processed in 0.72 seconds.
+2025-01-18 19:10:39,775 - INFO - Batch of 10000 records processed in 0.79 seconds.
+2025-01-18 19:10:39,946 - INFO - Batch of 10000 records processed in 0.83 seconds.
+2025-01-18 19:10:39,950 - INFO - Batch of 10000 records processed in 0.87 seconds.
+2025-01-18 19:10:39,983 - INFO - Batch of 10000 records processed in 0.81 seconds.
+2025-01-18 19:10:40,035 - INFO - Batch of 10000 records processed in 0.82 seconds.
+2025-01-18 19:10:40,049 - INFO - Batch of 10000 records processed in 0.85 seconds.
+2025-01-18 19:10:40,075 - INFO - Batch of 10000 records processed in 0.78 seconds.
+2025-01-18 19:10:40,151 - INFO - Batch of 10000 records processed in 0.78 seconds.
+2025-01-18 19:10:40,197 - INFO - Batch of 10000 records processed in 0.78 seconds.
+2025-01-18 19:10:40,330 - INFO - Batch of 10000 records processed in 0.89 seconds.
+2025-01-18 19:10:40,346 - INFO - Batch of 10000 records processed in 0.88 seconds.
+2025-01-18 19:10:40,385 - INFO - Batch of 10000 records processed in 0.83 seconds.
+2025-01-18 19:10:40,397 - INFO - Batch of 10000 records processed in 0.84 seconds.
+2025-01-18 19:10:40,405 - INFO - Batch of 10000 records processed in 0.85 seconds.
+2025-01-18 19:10:40,406 - INFO - Batch of 10000 records processed in 0.80 seconds.
+2025-01-18 19:10:40,495 - INFO - Batch of 10000 records processed in 0.84 seconds.
+2025-01-18 19:10:40,657 - INFO - Batch of 10000 records processed in 0.81 seconds.
+2025-01-18 19:10:40,846 - INFO - Batch of 10000 records processed in 0.87 seconds.
+2025-01-18 19:10:40,905 - INFO - Batch of 10000 records processed in 0.86 seconds.
+2025-01-18 19:10:40,914 - INFO - Batch of 10000 records processed in 0.87 seconds.
+2025-01-18 19:10:40,926 - INFO - Batch of 10000 records processed in 0.86 seconds.
+2025-01-18 19:10:40,946 - INFO - Batch of 10000 records processed in 0.81 seconds.
+2025-01-18 19:10:40,951 - INFO - Batch of 10000 records processed in 0.81 seconds.
+2025-01-18 19:10:41,002 - INFO - Batch of 10000 records processed in 0.82 seconds.
+2025-01-18 19:10:41,024 - INFO - Batch of 10000 records processed in 0.74 seconds.
+2025-01-18 19:10:41,133 - INFO - Batch of 10000 records processed in 0.75 seconds.
+2025-01-18 19:10:41,174 - INFO - Batch of 10000 records processed in 0.79 seconds.
+2025-01-18 19:10:41,257 - INFO - Batch of 10000 records processed in 0.85 seconds.
+2025-01-18 19:10:41,280 - INFO - Batch of 10000 records processed in 0.80 seconds.
+2025-01-18 19:10:41,287 - INFO - Batch of 10000 records processed in 0.81 seconds.
+2025-01-18 19:10:41,290 - INFO - Batch of 10000 records processed in 0.81 seconds.
+2025-01-18 19:10:41,361 - INFO - Batch of 10000 records processed in 0.84 seconds.
+2025-01-18 19:10:41,543 - INFO - Batch of 10000 records processed in 0.83 seconds.
+2025-01-18 19:10:41,715 - INFO - Batch of 10000 records processed in 0.80 seconds.
+2025-01-18 19:10:41,774 - INFO - Batch of 10000 records processed in 0.84 seconds.
+2025-01-18 19:10:41,821 - INFO - Batch of 10000 records processed in 0.81 seconds.
+2025-01-18 19:10:41,821 - INFO - Batch of 10000 records processed in 0.81 seconds.
+2025-01-18 19:10:41,854 - INFO - Batch of 10000 records processed in 0.84 seconds.
+2025-01-18 19:10:41,876 - INFO - Batch of 10000 records processed in 0.84 seconds.
+2025-01-18 19:10:41,898 - INFO - Batch of 10000 records processed in 0.80 seconds.
+2025-01-18 19:10:41,977 - INFO - Batch of 10000 records processed in 0.87 seconds.
+2025-01-18 19:10:42,000 - INFO - Batch of 10000 records processed in 0.75 seconds.
+2025-01-18 19:10:42,034 - INFO - Batch of 10000 records processed in 0.78 seconds.
+2025-01-18 19:10:42,062 - INFO - Batch of 10000 records processed in 0.78 seconds.
+2025-01-18 19:10:42,173 - INFO - Batch of 10000 records processed in 0.82 seconds.
+2025-01-18 19:10:42,174 - INFO - Batch of 10000 records processed in 0.82 seconds.
+2025-01-18 19:10:42,176 - INFO - Batch of 10000 records processed in 0.82 seconds.
+2025-01-18 19:10:42,208 - INFO - Batch of 10000 records processed in 0.82 seconds.
+2025-01-18 19:10:42,376 - INFO - Batch of 10000 records processed in 0.81 seconds.
+2025-01-18 19:10:42,610 - INFO - Batch of 10000 records processed in 0.82 seconds.
+2025-01-18 19:10:42,656 - INFO - Batch of 10000 records processed in 0.85 seconds.
+2025-01-18 19:10:42,666 - INFO - Batch of 10000 records processed in 0.78 seconds.
+2025-01-18 19:10:42,675 - INFO - Batch of 10000 records processed in 0.78 seconds.
+2025-01-18 19:10:42,694 - INFO - Batch of 10000 records processed in 0.77 seconds.
+2025-01-18 19:10:42,737 - INFO - Batch of 10000 records processed in 0.76 seconds.
+2025-01-18 19:10:42,746 - INFO - Batch of 10000 records processed in 0.86 seconds.
+2025-01-18 19:10:42,863 - INFO - Batch of 10000 records processed in 0.82 seconds.
+2025-01-18 19:10:42,865 - INFO - Batch of 10000 records processed in 0.83 seconds.
+2025-01-18 19:10:42,871 - INFO - Batch of 10000 records processed in 0.81 seconds.
+2025-01-18 19:10:42,929 - INFO - Batch of 10000 records processed in 0.76 seconds.
+2025-01-18 19:10:43,011 - INFO - Batch of 10000 records processed in 0.81 seconds.
+2025-01-18 19:10:43,043 - INFO - Batch of 10000 records processed in 0.81 seconds.
+2025-01-18 19:10:43,065 - INFO - Batch of 10000 records processed in 0.81 seconds.
+2025-01-18 19:10:43,182 - INFO - Batch of 10000 records processed in 0.82 seconds.
+2025-01-18 19:10:43,222 - INFO - Batch of 10000 records processed in 0.82 seconds.
+2025-01-18 19:10:43,451 - INFO - Batch of 10000 records processed in 0.81 seconds.
+2025-01-18 19:10:43,503 - INFO - Batch of 10000 records processed in 0.82 seconds.
+2025-01-18 19:10:43,533 - INFO - Batch of 10000 records processed in 0.79 seconds.
+2025-01-18 19:10:43,584 - INFO - Batch of 10000 records processed in 0.84 seconds.
+2025-01-18 19:10:43,610 - INFO - Batch of 10000 records processed in 0.85 seconds.
+2025-01-18 19:10:43,642 - INFO - Batch of 10000 records processed in 0.86 seconds.
+2025-01-18 19:10:43,722 - INFO - Batch of 10000 records processed in 0.88 seconds.
+2025-01-18 19:10:43,733 - INFO - Batch of 10000 records processed in 0.84 seconds.
+2025-01-18 19:10:43,752 - INFO - Batch of 10000 records processed in 0.81 seconds.
+2025-01-18 19:10:43,759 - INFO - Batch of 10000 records processed in 0.82 seconds.
+2025-01-18 19:10:43,815 - INFO - Batch of 10000 records processed in 0.85 seconds.
+2025-01-18 19:10:43,845 - INFO - Batch of 10000 records processed in 0.80 seconds.
+2025-01-18 19:10:43,919 - INFO - Batch of 10000 records processed in 0.84 seconds.
+2025-01-18 19:10:44,074 - INFO - Batch of 10000 records processed in 0.88 seconds.
+2025-01-18 19:10:44,081 - INFO - Batch of 10000 records processed in 0.86 seconds.
+2025-01-18 19:10:44,147 - INFO - Batch of 10000 records processed in 0.86 seconds.
+2025-01-18 19:10:44,364 - INFO - Batch of 10000 records processed in 0.87 seconds.
+2025-01-18 19:10:44,412 - INFO - Batch of 10000 records processed in 0.78 seconds.
+2025-01-18 19:10:44,483 - INFO - Batch of 10000 records processed in 0.85 seconds.
+2025-01-18 19:10:44,492 - INFO - Batch of 10000 records processed in 0.85 seconds.
+2025-01-18 19:10:44,503 - INFO - Batch of 10000 records processed in 0.88 seconds.
+2025-01-18 19:10:44,514 - INFO - Batch of 10000 records processed in 0.79 seconds.
+2025-01-18 19:10:44,551 - INFO - Batch of 10000 records processed in 0.79 seconds.
+2025-01-18 19:10:44,684 - INFO - Batch of 10000 records processed in 0.86 seconds.
+2025-01-18 19:10:44,703 - INFO - Batch of 10000 records processed in 0.85 seconds.
+2025-01-18 19:10:44,704 - INFO - Batch of 10000 records processed in 0.88 seconds.
+2025-01-18 19:10:44,715 - INFO - Batch of 10000 records processed in 0.80 seconds.
+2025-01-18 19:10:44,716 - INFO - Batch of 10000 records processed in 0.90 seconds.
+2025-01-18 19:10:44,780 - INFO - Batch of 10000 records processed in 0.83 seconds.
+2025-01-18 19:10:44,938 - INFO - Batch of 10000 records processed in 0.79 seconds.
+2025-01-18 19:10:44,947 - INFO - Batch of 10000 records processed in 0.80 seconds.
+2025-01-18 19:10:45,145 - INFO - Batch of 10000 records processed in 0.97 seconds.
+2025-01-18 19:10:45,163 - INFO - Batch of 10000 records processed in 0.67 seconds.
+2025-01-18 19:10:45,272 - INFO - Batch of 10000 records processed in 0.78 seconds.
+2025-01-18 19:10:45,354 - INFO - Batch of 10000 records processed in 0.84 seconds.
+2025-01-18 19:10:45,360 - INFO - Batch of 10000 records processed in 0.82 seconds.
+2025-01-18 19:10:45,383 - INFO - Batch of 10000 records processed in 0.82 seconds.
+2025-01-18 19:10:45,437 - INFO - Batch of 10000 records processed in 0.76 seconds.
+2025-01-18 19:10:45,480 - INFO - Batch of 10000 records processed in 0.80 seconds.
+2025-01-18 19:10:45,533 - INFO - Batch of 10000 records processed in 0.82 seconds.
+2025-01-18 19:10:45,602 - INFO - Batch of 10000 records processed in 0.83 seconds.
+2025-01-18 19:10:45,642 - INFO - Batch of 10000 records processed in 0.87 seconds.
+2025-01-18 19:10:45,666 - INFO - Batch of 10000 records processed in 0.86 seconds.
+2025-01-18 19:10:45,669 - INFO - Batch of 10000 records processed in 0.76 seconds.
+2025-01-18 19:10:45,674 - INFO - Batch of 10000 records processed in 0.89 seconds.
+2025-01-18 19:10:45,772 - INFO - Batch of 10000 records processed in 0.81 seconds.
+2025-01-18 19:10:45,860 - INFO - Batch of 10000 records processed in 0.87 seconds.
+2025-01-18 19:10:45,978 - INFO - Batch of 10000 records processed in 0.81 seconds.
+2025-01-18 19:10:46,017 - INFO - Batch of 10000 records processed in 0.82 seconds.
+2025-01-18 19:10:46,087 - INFO - Batch of 10000 records processed in 0.79 seconds.
+2025-01-18 19:10:46,202 - INFO - Batch of 10000 records processed in 0.80 seconds.
+2025-01-18 19:10:46,224 - INFO - Batch of 10000 records processed in 0.84 seconds.
+2025-01-18 19:10:46,279 - INFO - Batch of 10000 records processed in 0.85 seconds.
+2025-01-18 19:10:46,314 - INFO - Batch of 10000 records processed in 0.78 seconds.
+2025-01-18 19:10:46,353 - INFO - Batch of 10000 records processed in 0.80 seconds.
+2025-01-18 19:10:46,381 - INFO - Batch of 10000 records processed in 0.82 seconds.
+2025-01-18 19:10:46,442 - INFO - Batch of 10000 records processed in 0.80 seconds.
+2025-01-18 19:10:46,452 - INFO - Batch of 10000 records processed in 0.78 seconds.
+2025-01-18 19:10:46,454 - INFO - Batch of 10000 records processed in 0.71 seconds.
+2025-01-18 19:10:46,523 - INFO - Batch of 10000 records processed in 0.77 seconds.
+2025-01-18 19:10:46,528 - INFO - Batch of 10000 records processed in 0.79 seconds.
+2025-01-18 19:10:46,623 - INFO - Batch of 10000 records processed in 0.78 seconds.
+2025-01-18 19:10:46,674 - INFO - Batch of 10000 records processed in 0.79 seconds.
+2025-01-18 19:10:46,860 - INFO - Batch of 10000 records processed in 0.85 seconds.
+2025-01-18 19:10:46,892 - INFO - Batch of 10000 records processed in 0.80 seconds.
+2025-01-18 19:10:46,947 - INFO - Batch of 10000 records processed in 0.83 seconds.
+2025-01-18 19:10:47,012 - INFO - Batch of 10000 records processed in 0.78 seconds.
+2025-01-18 19:10:47,060 - INFO - Batch of 10000 records processed in 0.78 seconds.
+2025-01-18 19:10:47,101 - INFO - Batch of 10000 records processed in 0.79 seconds.
+2025-01-18 19:10:47,216 - INFO - Batch of 10000 records processed in 0.84 seconds.
+2025-01-18 19:10:47,227 - INFO - Batch of 10000 records processed in 0.85 seconds.
+2025-01-18 19:10:47,231 - INFO - Batch of 10000 records processed in 0.82 seconds.
+2025-01-18 19:10:47,318 - INFO - Batch of 10000 records processed in 0.85 seconds.
+2025-01-18 19:10:47,325 - INFO - Batch of 10000 records processed in 0.81 seconds.
+2025-01-18 19:10:47,325 - INFO - Batch of 10000 records processed in 0.81 seconds.
+2025-01-18 19:10:47,397 - INFO - Batch of 10000 records processed in 0.85 seconds.
+2025-01-18 19:10:47,466 - INFO - Batch of 10000 records processed in 0.85 seconds.
+2025-01-18 19:10:47,490 - INFO - Batch of 10000 records processed in 0.84 seconds.
+2025-01-18 19:10:47,584 - INFO - Batch of 10000 records processed in 0.83 seconds.
+2025-01-18 19:10:47,707 - INFO - Batch of 10000 records processed in 0.82 seconds.
+2025-01-18 19:10:47,797 - INFO - Batch of 10000 records processed in 0.85 seconds.
+2025-01-18 19:10:47,807 - INFO - Batch of 10000 records processed in 0.83 seconds.
+2025-01-18 19:10:47,920 - INFO - Batch of 10000 records processed in 0.82 seconds.
+2025-01-18 19:10:47,932 - INFO - Batch of 10000 records processed in 0.84 seconds.
+2025-01-18 19:10:47,944 - INFO - Batch of 10000 records processed in 0.82 seconds.
+2025-01-18 19:10:48,073 - INFO - Batch of 10000 records processed in 0.78 seconds.
+2025-01-18 19:10:48,125 - INFO - Batch of 10000 records processed in 0.83 seconds.
+2025-01-18 19:10:48,129 - INFO - Batch of 10000 records processed in 0.84 seconds.
+2025-01-18 19:10:48,259 - INFO - Batch of 10000 records processed in 0.82 seconds.
+2025-01-18 19:10:48,280 - INFO - Batch of 10000 records processed in 0.84 seconds.
+2025-01-18 19:10:48,282 - INFO - Batch of 10000 records processed in 0.85 seconds.
+2025-01-18 19:10:48,318 - INFO - Batch of 10000 records processed in 0.88 seconds.
+2025-01-18 19:10:48,351 - INFO - Batch of 10000 records processed in 0.82 seconds.
+2025-01-18 19:10:48,355 - INFO - Batch of 10000 records processed in 0.82 seconds.
+2025-01-18 19:10:48,485 - INFO - Batch of 10000 records processed in 0.81 seconds.
+2025-01-18 19:10:48,632 - INFO - Batch of 10000 records processed in 0.86 seconds.
+2025-01-18 19:10:48,762 - INFO - Batch of 10000 records processed in 0.84 seconds.
+2025-01-18 19:10:48,772 - INFO - Batch of 10000 records processed in 0.85 seconds.
+2025-01-18 19:10:48,794 - INFO - Batch of 10000 records processed in 0.85 seconds.
+2025-01-18 19:10:48,828 - INFO - Batch of 10000 records processed in 0.85 seconds.
+2025-01-18 19:10:48,859 - INFO - Batch of 10000 records processed in 0.86 seconds.
+2025-01-18 19:10:48,932 - INFO - Batch of 10000 records processed in 0.82 seconds.
+2025-01-18 19:10:48,949 - INFO - Batch of 10000 records processed in 0.80 seconds.
+2025-01-18 19:10:49,049 - INFO - Batch of 10000 records processed in 0.83 seconds.
+2025-01-18 19:10:49,151 - INFO - Batch of 10000 records processed in 0.87 seconds.
+2025-01-18 19:10:49,160 - INFO - Batch of 10000 records processed in 0.81 seconds.
+2025-01-18 19:10:49,180 - INFO - Batch of 10000 records processed in 0.82 seconds.
+2025-01-18 19:10:49,183 - INFO - Batch of 10000 records processed in 0.83 seconds.
+2025-01-18 19:10:49,195 - INFO - Batch of 10000 records processed in 0.81 seconds.
+2025-01-18 19:10:49,214 - INFO - Batch of 10000 records processed in 0.76 seconds.
+2025-01-18 19:10:49,323 - INFO - Batch of 10000 records processed in 0.78 seconds.
+2025-01-18 19:10:49,425 - INFO - Batch of 10000 records processed in 0.76 seconds.
+2025-01-18 19:10:49,566 - INFO - Batch of 10000 records processed in 0.78 seconds.
+2025-01-18 19:10:49,588 - INFO - Batch of 10000 records processed in 0.77 seconds.
+2025-01-18 19:10:49,670 - INFO - Batch of 10000 records processed in 0.77 seconds.
+2025-01-18 19:10:49,752 - INFO - Batch of 10000 records processed in 0.82 seconds.
+2025-01-18 19:10:49,771 - INFO - Batch of 10000 records processed in 0.81 seconds.
+2025-01-18 19:10:49,790 - INFO - Batch of 10000 records processed in 0.86 seconds.
+2025-01-18 19:10:49,883 - INFO - Batch of 10000 records processed in 0.85 seconds.
+2025-01-18 19:10:49,940 - INFO - Batch of 10000 records processed in 0.81 seconds.
+2025-01-18 19:10:49,974 - INFO - Batch of 10000 records processed in 0.80 seconds.
+2025-01-18 19:10:50,069 - INFO - Batch of 10000 records processed in 0.86 seconds.
+2025-01-18 19:10:50,144 - INFO - Batch of 10000 records processed in 0.82 seconds.
+2025-01-18 19:10:50,150 - INFO - Batch of 10000 records processed in 0.83 seconds.
+2025-01-18 19:10:50,154 - INFO - Batch of 10000 records processed in 0.83 seconds.
+2025-01-18 19:10:50,179 - INFO - Batch of 10000 records processed in 0.83 seconds.
+2025-01-18 19:10:50,202 - INFO - Batch of 10000 records processed in 0.88 seconds.
+2025-01-18 19:10:50,407 - INFO - Batch of 10000 records processed in 0.90 seconds.
+2025-01-18 19:10:50,414 - INFO - Batch of 10000 records processed in 0.82 seconds.
+2025-01-18 19:10:50,443 - INFO - Batch of 10000 records processed in 0.79 seconds.
+2025-01-18 19:10:50,469 - INFO - Batch of 10000 records processed in 0.77 seconds.
+2025-01-18 19:10:50,566 - INFO - Batch of 10000 records processed in 0.79 seconds.
+2025-01-18 19:10:50,653 - INFO - Batch of 10000 records processed in 0.81 seconds.
+2025-01-18 19:10:50,669 - INFO - Batch of 10000 records processed in 0.82 seconds.
+2025-01-18 19:10:50,746 - INFO - Batch of 10000 records processed in 0.80 seconds.
+2025-01-18 19:10:50,758 - INFO - Batch of 10000 records processed in 0.79 seconds.
+2025-01-18 19:10:50,832 - INFO - Batch of 10000 records processed in 0.79 seconds.
+2025-01-18 19:10:50,988 - INFO - Batch of 10000 records processed in 0.84 seconds.
+2025-01-18 19:10:51,006 - INFO - Batch of 10000 records processed in 0.83 seconds.
+2025-01-18 19:10:51,031 - INFO - Batch of 10000 records processed in 0.79 seconds.
+2025-01-18 19:10:51,039 - INFO - Batch of 10000 records processed in 0.80 seconds.
+2025-01-18 19:10:51,049 - INFO - Batch of 10000 records processed in 0.80 seconds.
+2025-01-18 19:10:51,155 - INFO - Batch of 10000 records processed in 0.88 seconds.
+2025-01-18 19:10:51,285 - INFO - Batch of 10000 records processed in 0.84 seconds.
+2025-01-18 19:10:51,399 - INFO - Batch of 10000 records processed in 0.93 seconds.
+2025-01-18 19:10:51,431 - INFO - Batch of 10000 records processed in 0.85 seconds.
+2025-01-18 19:10:51,466 - INFO - Batch of 10000 records processed in 0.88 seconds.
+2025-01-18 19:10:51,472 - INFO - Batch of 10000 records processed in 0.87 seconds.
+2025-01-18 19:10:51,531 - INFO - Batch of 10000 records processed in 0.80 seconds.
+2025-01-18 19:10:51,565 - INFO - Batch of 10000 records processed in 0.84 seconds.
+2025-01-18 19:10:51,654 - INFO - Batch of 10000 records processed in 0.83 seconds.
+2025-01-18 19:10:51,661 - INFO - Batch of 10000 records processed in 0.84 seconds.
+2025-01-18 19:10:51,682 - INFO - Batch of 10000 records processed in 0.82 seconds.
+2025-01-18 19:10:51,918 - INFO - Batch of 10000 records processed in 0.90 seconds.
+2025-01-18 19:10:51,950 - INFO - Batch of 10000 records processed in 0.91 seconds.
+2025-01-18 19:10:52,001 - INFO - Batch of 10000 records processed in 0.85 seconds.
+2025-01-18 19:10:52,019 - INFO - Batch of 10000 records processed in 0.86 seconds.
+2025-01-18 19:10:52,043 - INFO - Batch of 10000 records processed in 0.86 seconds.
+2025-01-18 19:10:52,046 - INFO - Batch of 10000 records processed in 0.88 seconds.
+2025-01-18 19:10:52,226 - INFO - Batch of 10000 records processed in 0.86 seconds.
+2025-01-18 19:10:52,264 - INFO - Batch of 10000 records processed in 0.84 seconds.
+2025-01-18 19:10:52,295 - INFO - Batch of 10000 records processed in 0.80 seconds.
+2025-01-18 19:10:52,301 - INFO - Batch of 3471 records processed in 0.24 seconds.
+2025-01-18 19:10:52,307 - INFO - Batch of 10000 records processed in 0.81 seconds.
+2025-01-18 19:10:52,361 - INFO - Batch of 10000 records processed in 0.85 seconds.
+2025-01-18 19:10:52,385 - INFO - Batch of 10000 records processed in 0.75 seconds.
+2025-01-18 19:10:52,392 - INFO - Batch of 10000 records processed in 0.76 seconds.
+2025-01-18 19:10:52,406 - INFO - Batch of 10000 records processed in 0.73 seconds.
+2025-01-18 19:10:52,423 - INFO - Batch of 10000 records processed in 0.69 seconds.
+2025-01-18 19:10:52,439 - INFO - Batch of 10000 records processed in 0.70 seconds.
+2025-01-18 19:10:52,493 - INFO - Batch of 10000 records processed in 0.55 seconds.
+2025-01-18 19:10:52,530 - INFO - Batch of 10000 records processed in 0.51 seconds.
+2025-01-18 19:10:52,533 - INFO - Batch of 10000 records processed in 0.51 seconds.
+2025-01-18 19:10:52,541 - INFO - Batch of 10000 records processed in 0.49 seconds.
+2025-01-18 19:10:52,588 - INFO - All user data has been processed and inserted into MongoDB.
+2025-01-18 19:10:52,769 - INFO - User data loading completed.
+2025-01-18 19:10:56,618 - INFO - User data extraction completed.
 
-2025-01-17 20:32:12,413 - INFO - ---- Processing contract '0xba100000625a3754423978a60c9317c58a424e3d' for protocol 'Balancer':
-2025-01-17 20:32:12,413 - INFO - Fetching transactions for blocks 21303634 to 21308633
-2025-01-17 20:32:12,413 - INFO - Fetching transactions for blocks 21308634 to 21310807
-2025-01-17 20:32:12,893 - INFO - Fetched 50 transactions for blocks 21308634-21310807
-2025-01-17 20:32:13,019 - INFO - Fetched 174 transactions for blocks 21303634-21308633
-2025-01-17 20:32:13,020 - INFO - Fetched 224 total transactions for contract 0xba100000625a3754423978a60c9317c58a424e3d
-2025-01-17 20:32:13,050 - INFO - 0 new transactions added to MongoDB.
-2025-01-17 20:32:13,050 - INFO - Successfully fetched and processed 224 transactions for contract '0xba100000625a3754423978a60c9317c58a424e3d' under protocol 'Balancer'.
-
-2025-01-17 20:32:13,050 - INFO - ---- Processing contract '0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9' for protocol 'Aave':
-2025-01-17 20:32:13,050 - INFO - Fetching transactions for blocks 21303634 to 21308633
-2025-01-17 20:32:13,051 - INFO - Fetching transactions for blocks 21308634 to 21310807
-2025-01-17 20:32:13,792 - INFO - Fetched 394 transactions for blocks 21308634-21310807
-2025-01-17 20:32:13,930 - INFO - Fetched 780 transactions for blocks 21303634-21308633
-2025-01-17 20:32:13,930 - INFO - Fetched 1174 total transactions for contract 0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9
-2025-01-17 20:32:13,997 - INFO - 0 new transactions added to MongoDB.
-2025-01-17 20:32:13,998 - INFO - Successfully fetched and processed 1174 transactions for contract '0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9' under protocol 'Aave'.
-
-2025-01-17 20:32:13,998 - INFO - ---- Processing contract '0x9f8f72aa9304c8b593d555f12ef6589cc3a579a2' for protocol 'Maker':
-2025-01-17 20:32:13,999 - INFO - Fetching transactions for blocks 21303634 to 21308633
-2025-01-17 20:32:13,999 - INFO - Fetching transactions for blocks 21308634 to 21310807
-2025-01-17 20:32:14,605 - INFO - Fetched 128 transactions for blocks 21308634-21310807
-2025-01-17 20:32:14,729 - INFO - Fetched 230 transactions for blocks 21303634-21308633
-2025-01-17 20:32:14,730 - INFO - Fetched 358 total transactions for contract 0x9f8f72aa9304c8b593d555f12ef6589cc3a579a2
-2025-01-17 20:32:14,765 - INFO - 0 new transactions added to MongoDB.
-2025-01-17 20:32:14,766 - INFO - Successfully fetched and processed 358 transactions for contract '0x9f8f72aa9304c8b593d555f12ef6589cc3a579a2' under protocol 'Maker'.
-
-2025-01-17 20:32:14,766 - INFO - ---- Processing contract '0x0bc529c00c6401aef6d220be8c6ea1667f6ad93e' for protocol 'yearn.finance':
-2025-01-17 20:32:14,766 - INFO - Fetching transactions for blocks 21303634 to 21308633
-2025-01-17 20:32:14,767 - INFO - Fetching transactions for blocks 21308634 to 21310807
-2025-01-17 20:32:15,356 - INFO - Fetched 66 transactions for blocks 21308634-21310807
-2025-01-17 20:32:15,370 - INFO - Fetched 175 transactions for blocks 21303634-21308633
-2025-01-17 20:32:15,371 - INFO - Fetched 241 total transactions for contract 0x0bc529c00c6401aef6d220be8c6ea1667f6ad93e
-2025-01-17 20:32:15,396 - INFO - 0 new transactions added to MongoDB.
-2025-01-17 20:32:15,396 - INFO - Successfully fetched and processed 241 transactions for contract '0x0bc529c00c6401aef6d220be8c6ea1667f6ad93e' under protocol 'yearn.finance'.
-
-2025-01-17 20:32:15,396 - INFO - ---- Processing contract '0xa0246c9032bc3a600820415ae600c6388619a14d' for protocol 'Harvest Finance':
-2025-01-17 20:32:15,397 - INFO - Fetching transactions for blocks 21303634 to 21308633
-2025-01-17 20:32:15,397 - INFO - Fetching transactions for blocks 21308634 to 21310807
-2025-01-17 20:32:15,894 - INFO - Fetched 28 transactions for blocks 21308634-21310807
-2025-01-17 20:32:15,894 - INFO - Fetched 26 transactions for blocks 21303634-21308633
-2025-01-17 20:32:15,895 - INFO - Fetched 54 total transactions for contract 0xa0246c9032bc3a600820415ae600c6388619a14d
-2025-01-17 20:32:15,908 - INFO - 0 new transactions added to MongoDB.
-2025-01-17 20:32:15,909 - INFO - Successfully fetched and processed 54 transactions for contract '0xa0246c9032bc3a600820415ae600c6388619a14d' under protocol 'Harvest Finance'.
-
-2025-01-17 20:32:15,909 - INFO - ---- Processing contract '0x6b175474e89094c44da98b954eedeac495271d0f' for protocol 'Dai':
-2025-01-17 20:32:15,909 - INFO - Fetching transactions for blocks 21303634 to 21308633
-2025-01-17 20:32:15,909 - INFO - Fetching transactions for blocks 21308634 to 21310807
-2025-01-17 20:32:16,792 - INFO - Fetched 740 transactions for blocks 21308634-21310807
-2025-01-17 20:32:17,002 - INFO - Fetched 1225 transactions for blocks 21303634-21308633
-2025-01-17 20:32:17,002 - INFO - Fetched 1965 total transactions for contract 0x6b175474e89094c44da98b954eedeac495271d0f
-2025-01-17 20:32:17,087 - INFO - 0 new transactions added to MongoDB.
-2025-01-17 20:32:17,087 - INFO - Successfully fetched and processed 1965 transactions for contract '0x6b175474e89094c44da98b954eedeac495271d0f' under protocol 'Dai'.
-
-2025-01-17 20:32:17,087 - INFO - ---- Processing contract '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48' for protocol 'USDC':
-2025-01-17 20:32:17,088 - INFO - Fetching transactions for blocks 21303634 to 21308633
-2025-01-17 20:32:17,088 - INFO - Fetching transactions for blocks 21308634 to 21310807
-2025-01-17 20:32:19,124 - INFO - Fetched 10000 transactions for blocks 21308634-21310807
-2025-01-17 20:32:21,203 - INFO - Fetched 10000 transactions for blocks 21303634-21308633
-2025-01-17 20:32:21,203 - INFO - Fetched 20000 total transactions for contract 0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48
-2025-01-17 20:32:21,581 - INFO - 0 new transactions added to MongoDB.
-2025-01-17 20:32:21,588 - INFO - Successfully fetched and processed 20000 transactions for contract '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48' under protocol 'USDC'.
-
-2025-01-17 20:32:21,588 - INFO - ---- Processing contract '0xdac17f958d2ee523a2206206994597c13d831ec7' for protocol 'Tether':
-2025-01-17 20:32:21,588 - INFO - Fetching transactions for blocks 21303634 to 21308633
-2025-01-17 20:32:21,589 - INFO - Fetching transactions for blocks 21308634 to 21310807
-2025-01-17 20:32:23,633 - INFO - Fetched 10000 transactions for blocks 21303634-21308633
-2025-01-17 20:32:24,552 - INFO - Fetched 10000 transactions for blocks 21308634-21310807
-2025-01-17 20:32:24,555 - INFO - Fetched 20000 total transactions for contract 0xdac17f958d2ee523a2206206994597c13d831ec7
-2025-01-17 20:32:24,933 - INFO - 0 new transactions added to MongoDB.
-2025-01-17 20:32:24,941 - INFO - Successfully fetched and processed 20000 transactions for contract '0xdac17f958d2ee523a2206206994597c13d831ec7' under protocol 'Tether'.
-
-2025-01-17 20:32:24,941 - INFO - ---- Processing contract '0x09d6f0f5a21f5be4f59e209747e2d07f50bc694c' for protocol 'NFTFI':
-2025-01-17 20:32:24,942 - INFO - Fetching transactions for blocks 21303634 to 21308633
-2025-01-17 20:32:24,942 - INFO - Fetching transactions for blocks 21308634 to 21310807
-2025-01-17 20:32:25,418 - INFO - Fetched 2 transactions for blocks 21303634-21308633
-2025-01-17 20:32:25,418 - INFO - Fetched 2 transactions for blocks 21308634-21310807
-2025-01-17 20:32:25,428 - INFO - Fetched 4 total transactions for contract 0x09d6f0f5a21f5be4f59e209747e2d07f50bc694c
-2025-01-17 20:32:25,434 - INFO - 0 new transactions added to MongoDB.
-2025-01-17 20:32:25,435 - INFO - Successfully fetched and processed 4 transactions for contract '0x09d6f0f5a21f5be4f59e209747e2d07f50bc694c' under protocol 'NFTFI'.
-
-2025-01-17 20:32:25,435 - INFO - Transactions Fetched successfully.
-
-2025-01-17 20:32:25,435 - INFO - ETL pipeline completed.
+2025-01-18 19:10:56,618 - INFO - ETL pipeline completed.

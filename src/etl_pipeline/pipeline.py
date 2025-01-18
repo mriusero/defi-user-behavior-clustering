@@ -1,31 +1,20 @@
-import logging.config
+import logging
 
-from .config import LOGGING_CONFIG
-from .protocols import extract_protocols, load_protocols
 from .contracts import deduct_contracts
+from .protocols import extract_protocols, load_protocols
 from .transactions import process_ethereum_contracts
+from .users import extract_users
 
-logging.config.dictConfig(LOGGING_CONFIG)
 
-def process_etl_pipeline(protocols=False, contracts=False, transactions=False):
+def process_etl_pipeline(protocols=False, contracts=False, transactions=False, users=False):
     """
-     Executes an ETL (Extract, Transform, Load) pipeline to process DeFi protocol data.
-
-     :param protocols: Boolean indicating whether to extract and process DeFi protocols.
-     :param contracts: Boolean indicating whether to deduct contracts from the extracted protocols.
-     :param transactions: Boolean indicating whether to fetch transactions for the deducted contracts.
-
-     Steps:
-     1. Extract key DeFi protocols from a predefined list (KEY_PROTOCOLS).
-     2. Transform the extracted data by fetching detailed information for each protocol.
-     3. Save the transformed data into a JSON file or MongoDB based on user preference.
-
-     Logs are generated for each step to facilitate debugging and tracking of the pipeline process.
-     """
+    Executes an ETL (Extract, Transform, Load) pipeline to process DeFi protocol data.
+    """
     logging.info("====== PARAMETERS ======")
     logging.info(f"--> protocols={protocols}")
     logging.info(f"--> contracts={contracts}")
     logging.info(f"--> transactions={transactions}")
+    logging.info(f"--> users={users}")
     logging.info("\n")
 
     logging.info("====== Starting ETL pipeline ======")
@@ -37,8 +26,7 @@ def process_etl_pipeline(protocols=False, contracts=False, transactions=False):
         load_protocols(protocols_data)
         logging.info(f"Protocols extraction completed: {len(protocols_data)} protocols retrieved.\n")
     else:
-        logging.info("No protocols extraction needed. Skipping step 1.\n")
-
+        logging.info("No protocols extraction asked. Skipping step 1.\n")
 
     # Etape 2 : Déduction des contrats
     if contracts:
@@ -46,18 +34,25 @@ def process_etl_pipeline(protocols=False, contracts=False, transactions=False):
         deduct_contracts()
         logging.info("Contracts deducted successfully.\n")
     else:
-        logging.info("No contract deduction needed. Skipping step 2.\n")
+        logging.info("No contract deduction asked. Skipping step 2.\n")
 
-
-    # Etape 3 : Extraction des transactions
+    # Etape 3 : Extraction des transactions associées aux contrats
     if transactions:
         logging.info("------ Step 3: Fetching Associated Transactions ------")
         process_ethereum_contracts(
-            start_date='2024-12-01',
-            end_date='2024-12-02'
+            start_date='2024-01-01',
+            end_date='2024-12-31'
         )
         logging.info("Transactions Fetched successfully.\n")
     else:
-        logging.info("No transactions fetching needed. Skipping step 3.\n")
+        logging.info("No transactions fetching asked. Skipping step 3.\n")
+
+    # Etape 4 : Extraction des utilisateurs associés aux transactions
+    if users:
+        logging.info("------ Step 4: Extracting User Data ------")
+        extract_users()
+        logging.info("User data extraction completed.\n")
+    else:
+        logging.info("No user data extraction asked. Skipping step 4.\n")
 
     logging.info("ETL pipeline completed.")
