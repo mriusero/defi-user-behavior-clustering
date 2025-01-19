@@ -30,7 +30,7 @@ def load_batch(batch_data: list, db_name: str, collection_name: str) -> None:
             start_time = time.time()
             users_collection.bulk_write(bulk_operations, ordered=False)
             elapsed_time = time.time() - start_time
-            logging.info(f"Batch of {len(bulk_operations)} records processed in {elapsed_time:.2f} seconds.")
+            #logging.info(f"Batch of {len(bulk_operations)} records processed in {elapsed_time:.2f} seconds.")
         except Exception as e:
             logging.error(f"Failed to insert batch: {e}")
 
@@ -59,7 +59,7 @@ def load_users_data(users_data: dict) -> None:
     :param users_data: A dictionary where keys are user addresses and values are
                         the corresponding user data.
     """
-    BATCH_SIZE = 10000  # Reduced batch size for better performance
+    BATCH_SIZE = 10000
     user_data_list = list(users_data.items())
     data_chunks = list(chunk_data(user_data_list, BATCH_SIZE))
 

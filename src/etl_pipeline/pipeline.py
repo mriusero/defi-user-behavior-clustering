@@ -4,9 +4,10 @@ from .contracts import deduct_contracts
 from .protocols import extract_protocols, load_protocols
 from .transactions import process_ethereum_contracts
 from .users import extract_users
+from .price import fetch_prices
 
 
-def process_etl_pipeline(protocols=False, contracts=False, transactions=False, users=False):
+def process_etl_pipeline(protocols=False, contracts=False, transactions=False, users=False, price=False):
     """
     Executes an ETL (Extract, Transform, Load) pipeline to process DeFi protocol data.
     """
@@ -40,7 +41,7 @@ def process_etl_pipeline(protocols=False, contracts=False, transactions=False, u
     if transactions:
         logging.info("------ Step 3: Fetching Associated Transactions ------")
         process_ethereum_contracts(
-            start_date='2024-01-01',
+            start_date='2023-01-01',
             end_date='2024-12-31'
         )
         logging.info("Transactions Fetched successfully.\n")
@@ -54,5 +55,14 @@ def process_etl_pipeline(protocols=False, contracts=False, transactions=False, u
         logging.info("User data extraction completed.\n")
     else:
         logging.info("No user data extraction asked. Skipping step 4.\n")
+
+    # Etape 5 : Extraction des prix sur la période
+    if price:
+        logging.info("------ Step 5: Fetching Cryptocurrency Prices ------")
+        fetch_prices()
+        logging.info("Cryptocurrency prices fetched successfully.\n")
+    else:
+        logging.info("No cryptocurrency price fetching asked. Skipping step 5.\n")
+
 
     logging.info("ETL pipeline completed.")
