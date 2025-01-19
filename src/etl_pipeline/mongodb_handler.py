@@ -22,7 +22,17 @@ def get_mongo_client(mongo_uri="mongodb://localhost:27017/"):
         raise ValueError(f"Invalid URI: {mongo_uri}")
 
 
-def get_mongo_collection(db_name, collection_name, mongo_uri="mongodb://localhost:27017"):
+def get_mongo_database(db_name):
+    """
+    Get a specific database from the MongoDB client.
+    :param db_name: Name of the database (str)
+    :return: Database instance
+    """
+    client = MongoClient()
+    return client[db_name]
+
+
+def get_mongo_collection(db_name, collection_name):
     """
     Returns a MongoDB collection object.
     :param:
@@ -35,9 +45,9 @@ def get_mongo_collection(db_name, collection_name, mongo_uri="mongodb://localhos
         ConnectionError: If the connection to MongoDB fails.
     """
     try:
-        client = MongoClient(mongo_uri)  # Connect to the MongoDB server
-        database = client[db_name]  # Access the database
-        collection = database[collection_name]  # Access the collection
+        client = MongoClient()                          # Connect to the MongoDB server
+        database = client[db_name]                      # Access the database
+        collection = database[collection_name]          # Access the collection
 
         return collection
     except Exception as e:

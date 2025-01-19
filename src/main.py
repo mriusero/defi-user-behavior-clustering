@@ -14,7 +14,8 @@ def run_etl():
         contracts=False,
         transactions=False,
         users=False,
-        price=True,
+        price=False,
+        market=True,
     )
 
 if __name__ == '__main__':
