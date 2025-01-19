@@ -13,7 +13,8 @@ def run_etl():
         protocols=False,
         contracts=False,
         transactions=False,
-        users=True
+        users=False,
+        price=True,
     )
 
 if __name__ == '__main__':
