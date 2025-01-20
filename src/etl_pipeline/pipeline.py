@@ -9,7 +9,7 @@ from .protocols import extract_protocols, load_protocols
 from .transactions import process_ethereum_contracts
 from .users import extract_users
 from .price import fetch_prices
-from .market import improve_market
+from .market import aggregation_task
 
 # INITIALIZE LOGGING
 setup_logging()
@@ -87,7 +87,7 @@ def process_etl_pipeline(protocols=False, contracts=False, transactions=False, u
     if market:
         console.rule("Step 6: Enriching Market Data")
         logger.info("Enriching market data...")
-        improve_market(
+        aggregation_task(
             start_date='2023-01-01',
             end_date='2024-12-31'
         )

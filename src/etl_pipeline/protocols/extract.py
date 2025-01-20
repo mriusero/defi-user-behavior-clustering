@@ -14,7 +14,7 @@ def get_defi_protocol_info(protocol_id):
         protocol_id (str): The identifier of the protocol to fetch data for.
     :return:
         dict: A dictionary containing protocol information such as name, type, blockchain contracts,
-              website URL, symbol, market cap rank, and a short description. Returns None if the
+              website URL, symbol, old_market cap rank, and a short description. Returns None if the
               protocol information cannot be retrieved.
     :raise:
         - INFO: Successful data retrieval.

@@ -1,115 +1,104 @@
-from datetime import datetime, timedelta
-import pytz
+import pandas as pd
 from tqdm import tqdm
+from ..mongodb_handler import get_mongo_collection
 
-
-def aggregate_transactions(db, protocol_name, start_date, end_date):
+def aggregate_transactions(df, time_delta=None):
     """
-    Aggregates transaction data from the 'transactions' collection for a specified protocol
-    between the given start and end dates. The aggregation computes metrics for hourly and
-    daily periods.
+    Aggregates the transaction data from the MongoDB collection based on the given DataFrame.
 
-    :param db: The MongoDB database object where the transactions collection resides.
-    :param protocol_name: The name of the protocol for which the transactions are aggregated.
-    :param start_date: The start date (datetime object) for filtering transactions.
-    :param end_date: The end date (datetime object) for filtering transactions.
-    :return: A list of aggregated transaction data for hourly and daily periods.
+    :param df: A DataFrame containing the timestamps and protocol names.
+    :param time_delta: The time interval (in hours) used to group the transactions.
+    :return: A DataFrame enriched with the aggregated transaction data.
+    :raise: Exception: If an error occurs during the aggregation process.
     """
-    match_stage = {
-        "$match": {
-            "metadata.protocol_name": protocol_name,
-            "timestamp": {"$gte": start_date, "$lt": end_date}
-        }
-    }
-    group_stage = {
-        "$group": {
-            "_id": {
-                "year": {"$year": "$timestamp"},
-                "month": {"$month": "$timestamp"},
-                "day": {"$dayOfMonth": "$timestamp"},
-                "hour": {"$hour": "$timestamp"}
-            },
-            "original_timestamp": {"$first": "$timestamp"},
-            "total_transactions": {"$sum": 1},
-            "unique_users": {"$addToSet": "$from"},
-            "unique_senders": {"$addToSet": "$from"},
-            "unique_receivers": {"$addToSet": "$to"},
-            "total_volume_eth": {"$sum": "$value (ETH)"},
-            "total_gas_used": {"$sum": "$gas_used"}
-        }
-    }
-    projection_stage = {
-        "$project": {
-            "total_transactions": 1,
-            "unique_users": {"$size": "$unique_users"},
-            "unique_senders": {"$size": "$unique_senders"},
-            "unique_receivers": {"$size": "$unique_receivers"},
-            "total_volume_eth": 1,
-            "total_gas_used": 1,
-            "original_timestamp": 1
-        }
-    }
-    pipeline = [match_stage, group_stage, projection_stage]
-    return list(db.transactions.aggregate(pipeline))
+    transactions_collection = get_mongo_collection(db_name='defi_db', collection_name='transactions')
+    results = []
 
-
-def aggregate_24h_data(db, protocol_name, hourly_data_list):
-    """
-    Aggregates sliding 24-hour data based on the hourly transaction data.
-
-    :param db: The MongoDB database object where the transactions collection resides.
-    :param protocol_name: The name of the protocol for which the data is aggregated.
-    :param hourly_data_list: A list of hourly aggregated transaction data.
-    :return: A list of enhanced data with additional 24-hour aggregated metrics.
-    """
-    enhanced_data = []
-    for i, hourly_data in tqdm(enumerate(hourly_data_list), desc=f"Aggregating 24h data for {protocol_name}",
-                               unit="hour", total=len(hourly_data_list)):
-        timestamp_dict = hourly_data["_id"]
-        timestamp = datetime(
-            timestamp_dict["year"],
-            timestamp_dict["month"],
-            timestamp_dict["day"],
-            timestamp_dict["hour"]
-        ).replace(tzinfo=pytz.utc)
-        timestamp = timestamp.replace(minute=0, second=0, microsecond=0)
-
-        window_start_time = timestamp - timedelta(hours=23)
-        match_stage_24h = {
-            "$match": {
-                "metadata.protocol_name": protocol_name,
-                "timestamp": {"$gte": window_start_time, "$lt": timestamp}
-            }
+    for _, row in tqdm(df.iterrows(), total=len(df), desc=f"Aggregating transactions for {df['protocol_name'][0]} ; frequency={time_delta}h ", unit="row"):
+        start_time = pd.to_datetime(row['timestamp'])
+        end_time = start_time + pd.Timedelta(hours=time_delta)
+        query = {
+            "metadata.protocol_name": row['protocol_name'],
+            "timestamp": {"$gte": start_time, "$lt": end_time}
         }
-        group_stage_24h = {
-            "$group": {
+        pipeline = [
+            {"$match": query},
+            {"$group": {
                 "_id": None,
-                "total_transactions_24h": {"$sum": 1},
-                "unique_users_24h": {"$addToSet": "$from"},
-                "unique_senders_24h": {"$addToSet": "$from"},
-                "unique_receivers_24h": {"$addToSet": "$to"},
-                "total_volume_eth_24h": {"$sum": "$value (ETH)"},
-                "total_gas_used_24h": {"$sum": "$gas_used"}
-            }
-        }
-        projection_stage_24h = {
-            "$project": {
-                "total_transactions_24h": 1,
-                "unique_users_24h": {"$size": "$unique_users_24h"},
-                "unique_senders_24h": {"$size": "$unique_senders_24h"},
-                "unique_receivers_24h": {"$size": "$unique_receivers_24h"},
-                "total_volume_eth_24h": 1,
-                "total_gas_used_24h": 1,
-            }
-        }
-        pipeline_24h = [match_stage_24h, group_stage_24h, projection_stage_24h]
-        sliding_24h_result = list(db.transactions.aggregate(pipeline_24h))
+                "nb_tx": {"$sum": 1},                                                                                           # Total number of transactions
+                "unique_senders": {"$addToSet": "$from"},                                                                       # Unique senders
+                "unique_receivers": {"$addToSet": "$to"},                                                                       # Unique receivers
+                "total_value_eth": {"$sum": "$value (ETH)"},                                                                    # Total value of transactions in ETH
+                "avg_value_eth_per_tx": {"$avg": "$value (ETH)"},                                                               # Average value per transaction
+                "max_value_eth": {"$max": "$value (ETH)"},                                                                      # Maximum transaction value in ETH
+                "min_value_eth": {"$min": "$value (ETH)"},                                                                      # Minimum transaction value in ETH
+                "std_value_eth": {"$stdDevPop": "$value (ETH)"},                                                                # Standard deviation of transaction values
+                "total_gas_used": {"$sum": "$gas_used"},                                                                        # Total gas used in transactions
+                "avg_gas_used": {"$avg": "$gas_used"},                                                                          # Average gas used
+                "max_gas_used": {"$max": "$gas_used"},                                                                          # Maximum gas used in a transaction
+                "min_gas_used": {"$min": "$gas_used"},                                                                          # Minimum gas used in a transaction
+                "std_gas_used": {"$stdDevPop": "$gas_used"},                                                                    # Standard deviation of gas used
+                "num_errors": {"$sum": {"$cond": [{"$eq": ["$is_error", "1"]}, 1, 0]}},                                         # Count of transactions with errors
+                "error_rate": {"$avg": {"$cond": [{"$eq": ["$is_error", "1"]}, 1, 0]}},                                         # Error rate
+                "median_value_eth": {"$avg": {"$cond": [{"$eq": [{"$mod": ["$value (ETH)", 2]}, 0]}, "$value (ETH)", None]}}},  # Median value of transactions
+            },
+        {"$project": {
+            "nb_tx": 1,
+            "unique_senders": 1,
+            "unique_receivers": 1,
+            "total_value_eth": 1,
+            "avg_value_eth_per_tx": 1,
+            "max_value_eth": 1,
+            "min_value_eth": 1,
+            "std_value_eth": 1,
+            "total_gas_used": 1,
+            "avg_gas_used": 1,
+            "max_gas_used": 1,
+            "min_gas_used": 1,
+            "std_gas_used": 1,
+            "num_errors": 1,
+            "error_rate": 1,
+            "median_value_eth": 1,
+        }}
+    ]
 
-        if sliding_24h_result:
-            sliding_data = sliding_24h_result[0]
-            enhanced_data.append({**hourly_data, **sliding_data})
+        aggregation_result = list(transactions_collection.aggregate(pipeline))
+
+        if aggregation_result:
+            agg_data = aggregation_result[0]
+            results.append({
+                "timestamp": row['timestamp'],
+                "protocol_name": row['protocol_name'],
+                "nb_tx": agg_data.get("nb_tx", 0),
+                "nb_unique_senders": len(agg_data.get("unique_senders", [])),
+                "nb_unique_receivers": len(agg_data.get("unique_receivers", [])),
+                "total_value_eth": agg_data.get("total_value_eth", 0.0),
+                "avg_value_eth_per_tx": agg_data.get("avg_value_eth_per_tx", 0.0),
+                "total_gas_used": agg_data.get("total_gas_used", 0.0),
+                "avg_gas_used": agg_data.get("avg_gas_used", 0.0),
+                "num_errors": agg_data.get("num_errors", 0),
+                "error_rate": agg_data.get("error_rate", 0.0),
+            })
         else:
-            enhanced_data.append(hourly_data)
-    return enhanced_data
+            results.append({
+                "timestamp": row['timestamp'],
+                "protocol_name": row['protocol_name'],
+                "nb_tx": 0,
+                "nb_unique_senders": 0,
+                "nb_unique_receivers": 0,
+                "total_value_eth": 0.0,
+                "avg_value_eth_per_tx": 0.0,
+                "total_gas_used": 0.0,
+                "avg_gas_used": 0.0,
+                "num_errors": 0,
+                "error_rate": 0.0,
+            })
+    agg_df = pd.DataFrame(results)
 
+    if time_delta:
+        suffix = f"_{time_delta}h"
+        agg_df = agg_df.rename(columns=lambda x: f"{x}{suffix}" if x not in ["protocol_name", "timestamp"] else x)
 
+    enriched_df = df.merge(agg_df, on=["timestamp", "protocol_name"], how="left")
+
+    return enriched_df
