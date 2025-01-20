@@ -1,5 +1,9 @@
+from datetime import datetime
 import logging
+from rich.console import Console
 
+from .config import setup_logging
+from .utils import clear_log_file
 from .contracts import deduct_contracts
 from .protocols import extract_protocols, load_protocols
 from .transactions import process_ethereum_contracts
@@ -7,74 +11,88 @@ from .users import extract_users
 from .price import fetch_prices
 from .market import improve_market
 
+# INITIALIZE LOGGING
+setup_logging()
+logger = logging.getLogger()
+console = Console()
+
+
+#PIPELINE
 def process_etl_pipeline(protocols=False, contracts=False, transactions=False, users=False, price=False, market=False):
     """
     Executes an ETL (Extract, Transform, Load) pipeline to process DeFi protocol data.
     """
-    logging.info("====== PARAMETERS ======")
-    logging.info(f"--> protocols={protocols}")
-    logging.info(f"--> contracts={contracts}")
-    logging.info(f"--> transactions={transactions}")
-    logging.info(f"--> users={users}")
-    logging.info(f"--> price={price}")
-    logging.info(f"--> market={market}\n")
+    clear_log_file()
 
-    logging.info("====== Starting ETL pipeline ======")
+    console.rule("[bold blue]ETL Pipeline Parameters")
+    logger.info(f"protocols: {protocols}")
+    logger.info(f"contracts: {contracts}")
+    logger.info(f"transactions: {transactions}")
+    logger.info(f"users: {users}")
+    logger.info(f"price: {price}")
+    logger.info(f"market: {market}\n")
 
-    # Etape 1 : Extraction des protocoles
+    console.rule(f"[bold green]Starting ETL Pipeline{datetime.now()}")
+
+    # Step 1: Extracting Protocols
     if protocols:
-        logging.info("------ Step 1: Extracting Protocols ------")
+        console.rule("[bold yellow]Step 1: Extracting Protocols")
+        logger.info("Extracting protocols...")
         protocols_data = extract_protocols()
         load_protocols(protocols_data)
-        logging.info(f"Protocols extraction completed: {len(protocols_data)} protocols retrieved.\n")
+        logger.info(f"Protocols extraction completed: {len(protocols_data)} protocols retrieved.\n")
     else:
-        logging.info("No protocols extraction asked. Skipping step 1.\n")
+        logger.warning("No protocols extraction asked. Skipping step 1.\n")
 
-    # Etape 2 : Déduction des contrats
+    # Step 2: Deducting Contracts
     if contracts:
-        logging.info("------ Step 2: Deducting Contracts ------")
+        console.rule("[bold yellow]Step 2: Deducting Contracts")
+        logger.info("Deducting contracts...")
         deduct_contracts()
-        logging.info("Contracts deducted successfully.\n")
+        logger.info("Contracts deducted successfully.\n")
     else:
-        logging.info("No contract deduction asked. Skipping step 2.\n")
+        logger.warning("No contract deduction asked. Skipping step 2.\n")
 
-    # Etape 3 : Extraction des transactions associées aux contrats
+    # Step 3: Fetching Associated Transactions
     if transactions:
-        logging.info("------ Step 3: Fetching Associated Transactions ------")
+        console.rule("Step 3: Fetching Associated Transactions")
+        logger.info("Fetching associated transactions...")
         process_ethereum_contracts(
             start_date='2023-01-01',
             end_date='2024-12-31'
         )
-        logging.info("Transactions Fetched successfully.\n")
+        logger.info("Transactions fetched successfully.\n")
     else:
-        logging.info("No transactions fetching asked. Skipping step 3.\n")
+        logger.warning("No transactions fetching asked. Skipping step 3.\n")
 
-    # Etape 4 : Extraction des utilisateurs associés aux transactions
+    # Step 4: Extracting User Data
     if users:
-        logging.info("------ Step 4: Extracting User Data ------")
+        console.rule("Step 4: Extracting User Data")
+        logger.info("Extracting user data...")
         extract_users()
-        logging.info("User data extraction completed.\n")
+        logger.info("User data extraction completed.\n")
     else:
-        logging.info("No user data extraction asked. Skipping step 4.\n")
+        logger.warning("No user data extraction asked. Skipping step 4.\n")
 
-    # Etape 5 : Extraction des prix sur la période
+    # Step 5: Fetching Cryptocurrency Prices
     if price:
-        logging.info("------ Step 5: Fetching Cryptocurrency Prices ------")
+        console.rule("Step 5: Fetching Cryptocurrency Prices")
+        logger.info("Fetching cryptocurrency prices...")
         fetch_prices()
-        logging.info("Cryptocurrency prices fetched successfully.\n")
+        logger.info("Cryptocurrency prices fetched successfully.\n")
     else:
-        logging.info("No cryptocurrency price fetching asked. Skipping step 5.\n")
+        logger.warning("No cryptocurrency price fetching asked. Skipping step 5.\n")
 
-    # Etape 6 : Enrichissement des données de marché
+    # Step 6: Enriching Market Data
     if market:
-        logging.info("------ Step 6: Enriching Market Data ------")
+        console.rule("Step 6: Enriching Market Data")
+        logger.info("Enriching market data...")
         improve_market(
             start_date='2023-01-01',
             end_date='2024-12-31'
         )
-        logging.info("Market data enriched successfully.\n")
+        logger.info("Market data enriched successfully.\n")
     else:
-        logging.info("No market data enrichment asked. Skipping step 6.\n")
+        logger.warning("No market data enrichment asked. Skipping step 6.\n")
 
-
-    logging.info("ETL pipeline completed.")
+    console.rule("ETL Pipeline Completed")

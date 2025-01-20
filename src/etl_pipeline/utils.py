@@ -1,22 +1,18 @@
 import json
 import logging
-
+import os
 import requests
 
-from .config import ETH_API_KEY
 
-
-def reset_log_file():
+def clear_log_file(log_filename='logs/etl_pipeline.log'):
     """
-    Reset the log file to avoid duplicate logs.
-    :return: Empty log file.
+    Vide le fichier de logs spécifié.
     """
-    for handler in logging.root.handlers[:]:
-        if isinstance(handler, logging.FileHandler):
-            handler.stream.close()
-            logging.root.removeHandler(handler)
-
-    logging.basicConfig(filename='votre_fichier_de_log.log', level=logging.INFO)
+    if os.path.exists(log_filename):
+        open(log_filename, 'w').close()  # Ouvre le fichier en mode écriture et le vide
+        print(f"[INFO] Le fichier de logs '{log_filename}' a été vidé.")
+    else:
+        print(f"[WARNING] Le fichier de logs '{log_filename}' n'existe pas.")
 
 
 def save_to_json(output, filename):
@@ -39,6 +35,8 @@ def get_block_by_timestamp(timestamp: int, closest: str = "before"):
     :return: The block number closest to the specified timestamp. (int)
     :raise ValueError: If there is an error retrieving the block number from the API.
     """
+    from .config import ETH_API_KEY
+
     url = "https://api.etherscan.io/api"  # Correct endpoint for block lookup
     params = {
         "module": "block",
@@ -47,7 +45,6 @@ def get_block_by_timestamp(timestamp: int, closest: str = "before"):
         "closest": closest,
         "apikey": ETH_API_KEY,
     }
-
     response = requests.get(url, params=params)
 
     if response.status_code != 200:

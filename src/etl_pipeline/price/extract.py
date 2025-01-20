@@ -1,9 +1,24 @@
 import logging
 import yfinance as yf
+from rich.console import Console
+from rich.table import Table
 
 from ..mongodb_handler import get_mongo_collection
 from .transform import transform_ohlc_data
 from .load import load_data_to_mongodb
+
+
+def display_arrays(df, symbol):
+    console = Console()
+    table = Table(title=f"----- OHLC Data for `{symbol}` -----")
+
+    for column in df.columns:
+        table.add_column(column, justify="right")
+
+    for _, row in df.iterrows():
+        table.add_row(*map(str, row))
+
+    console.print(table)
 
 
 def fetch_ohlc_data(symbol: str) -> yf.Ticker.history:
@@ -70,7 +85,8 @@ def fetch_prices():
             logging.info(f"Processing symbol: {symbol}")
 
             raw_data = fetch_ohlc_data(symbol)
-            print(raw_data.head(5))
+            display_arrays(raw_data.head(5), symbol)
+
             transformed_data = transform_ohlc_data(contract, symbol, raw_data)
             logging.info(f"Transformed data for {symbol}")
 
