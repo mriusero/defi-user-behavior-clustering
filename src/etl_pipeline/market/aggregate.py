@@ -40,27 +40,27 @@ def aggregate_transactions(df, time_delta=None):
                 "std_gas_used": {"$stdDevPop": "$gas_used"},                                                                    # Standard deviation of gas used
                 "num_errors": {"$sum": {"$cond": [{"$eq": ["$is_error", "1"]}, 1, 0]}},                                         # Count of transactions with errors
                 "error_rate": {"$avg": {"$cond": [{"$eq": ["$is_error", "1"]}, 1, 0]}},                                         # Error rate
-                "median_value_eth": {"$avg": {"$cond": [{"$eq": [{"$mod": ["$value (ETH)", 2]}, 0]}, "$value (ETH)", None]}}},  # Median value of transactions
-            },
-        {"$project": {
-            "nb_tx": 1,
-            "unique_senders": 1,
-            "unique_receivers": 1,
-            "total_value_eth": 1,
-            "avg_value_eth_per_tx": 1,
-            "max_value_eth": 1,
-            "min_value_eth": 1,
-            "std_value_eth": 1,
-            "total_gas_used": 1,
-            "avg_gas_used": 1,
-            "max_gas_used": 1,
-            "min_gas_used": 1,
-            "std_gas_used": 1,
-            "num_errors": 1,
-            "error_rate": 1,
-            "median_value_eth": 1,
-        }}
-    ]
+                "median_value_eth": {"$avg": {"$cond": [{"$eq": [{"$mod": ["$value (ETH)", 2]}, 0]}, "$value (ETH)", None]}}    # Median value in ETH
+            }},
+            {"$project": {
+                "nb_tx": 1,
+                "unique_senders": 1,
+                "unique_receivers": 1,
+                "total_value_eth": 1,
+                "avg_value_eth_per_tx": 1,
+                "max_value_eth": 1,
+                "min_value_eth": 1,
+                "std_value_eth": 1,
+                "total_gas_used": 1,
+                "avg_gas_used": 1,
+                "max_gas_used": 1,
+                "min_gas_used": 1,
+                "std_gas_used": 1,
+                "num_errors": 1,
+                "error_rate": 1,
+                "median_value_eth": 1
+            }}
+        ]
 
         aggregation_result = list(transactions_collection.aggregate(pipeline))
 
@@ -74,10 +74,17 @@ def aggregate_transactions(df, time_delta=None):
                 "nb_unique_receivers": len(agg_data.get("unique_receivers", [])),
                 "total_value_eth": agg_data.get("total_value_eth", 0.0),
                 "avg_value_eth_per_tx": agg_data.get("avg_value_eth_per_tx", 0.0),
+                "max_value_eth": agg_data.get("max_value_eth", 0.0),  # Maximum value in ETH
+                "min_value_eth": agg_data.get("min_value_eth", 0.0),  # Minimum value in ETH
+                "std_value_eth": agg_data.get("std_value_eth", 0.0),  # Standard deviation in ETH
                 "total_gas_used": agg_data.get("total_gas_used", 0.0),
                 "avg_gas_used": agg_data.get("avg_gas_used", 0.0),
+                "max_gas_used": agg_data.get("max_gas_used", 0.0),
+                "min_gas_used": agg_data.get("min_gas_used", 0.0),
+                "std_gas_used": agg_data.get("std_gas_used", 0.0),
                 "num_errors": agg_data.get("num_errors", 0),
                 "error_rate": agg_data.get("error_rate", 0.0),
+                "median_value_eth": agg_data.get("median_value_eth", 0.0)  # Median value in ETH
             })
         else:
             results.append({
@@ -88,12 +95,20 @@ def aggregate_transactions(df, time_delta=None):
                 "nb_unique_receivers": 0,
                 "total_value_eth": 0.0,
                 "avg_value_eth_per_tx": 0.0,
+                "max_value_eth": 0.0,
+                "min_value_eth": 0.0,
+                "std_value_eth": 0.0,
                 "total_gas_used": 0.0,
                 "avg_gas_used": 0.0,
+                "max_gas_used": 0.0,
+                "min_gas_used": 0.0,
+                "std_gas_used": 0.0,
                 "num_errors": 0,
                 "error_rate": 0.0,
+                "median_value_eth": 0.0
             })
-    agg_df = pd.DataFrame(results)
+
+        agg_df = pd.DataFrame(results)
 
     if time_delta:
         suffix = f"_{time_delta}h"
