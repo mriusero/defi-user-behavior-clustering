@@ -10,6 +10,7 @@ from .transactions import process_ethereum_contracts
 from .users import extract_users
 from .price import fetch_prices
 from .market import aggregation_task
+from .dataset import generate_dataset, save_mongodb_to_parquet
 
 # INITIALIZE LOGGING
 setup_logging()
@@ -18,7 +19,7 @@ console = Console()
 
 
 #PIPELINE
-def process_etl_pipeline(protocols=False, contracts=False, transactions=False, users=False, price=False, market=False):
+def process_etl_pipeline(protocols=False, contracts=False, transactions=False, users=False, price=False, market=False, dataset=False, save=False):
     """
     Executes an ETL (Extract, Transform, Load) pipeline to process DeFi protocol data.
     """
@@ -30,7 +31,9 @@ def process_etl_pipeline(protocols=False, contracts=False, transactions=False, u
     logger.info(f"transactions: {transactions}")
     logger.info(f"users: {users}")
     logger.info(f"price: {price}")
-    logger.info(f"market: {market}\n")
+    logger.info(f"market: {market}")
+    logger.info(f"dataset: {dataset}")
+    logger.info(f"save: {save}\n")
 
     console.rule(f"[bold green]Starting ETL Pipeline{datetime.now()}")
 
@@ -95,4 +98,23 @@ def process_etl_pipeline(protocols=False, contracts=False, transactions=False, u
     else:
         logger.warning("No market data enrichment asked. Skipping step 6.\n")
 
+    # Step 7: Generating Dataset
+    if dataset:
+        console.rule("Step 7: Generating Dataset")
+        logger.info("Generating dataset...")
+        generate_dataset()
+        logger.info("Dataset generated successfully.\n")
+    else:
+        logger.warning("No dataset generation asked. Skipping step 7.\n")
+
+    # Step 8: Saving Dataset
+    if save:
+        console.rule("Step 8: Saving Dataset")
+        logger.info("Saving dataset...")
+        save_mongodb_to_parquet()
+        logger.info("Dataset saved successfully.\n")
+    else:
+        logger.warning("No dataset saving asked. Skipping step 8.\n")
+
     console.rule("ETL Pipeline Completed")
+
