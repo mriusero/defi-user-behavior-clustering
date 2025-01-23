@@ -1,0 +1,17 @@
+[project]
+name = "defi-user-behavior-clustering"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "ipykernel>=6.29.5",
+    "pyarrow>=19.0.0",
+    "pymongo>=4.10.1",
+    "python-dotenv>=1.0.1",
+    "requests>=2.32.3",
+    "rich>=13.9.4",
+    "sortedcontainers>=2.4.0",
+    "tqdm>=4.67.1",
+    "yfinance>=0.2.52",
+]
