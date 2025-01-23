@@ -1,0 +1,480 @@
+[
+    {
+        "name": "Uniswap",
+        "type": "DEX",
+        "blockchain_contracts": [
+            {
+                "blockchain": "ethereum",
+                "contract": "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984"
+            },
+            {
+                "blockchain": "xdai",
+                "contract": "0x4537e328bf7e4efa29d05caea260d7fe26af9d74"
+            },
+            {
+                "blockchain": "near-protocol",
+                "contract": "1f9840a85d5af5bf1d1762f925bdaddc4201f984.factory.bridge.near"
+            },
+            {
+                "blockchain": "optimistic-ethereum",
+                "contract": "0x6fd9d7ad17242c41f7131d257212c54a0e816691"
+            },
+            {
+                "blockchain": "huobi-token",
+                "contract": "0x22c54ce8321a4015740ee1109d9cbc25815c46e6"
+            },
+            {
+                "blockchain": "arbitrum-one",
+                "contract": "0xfa7f8980b0f1e64a2062791cc3b0871572f1f7f0"
+            },
+            {
+                "blockchain": "polygon-pos",
+                "contract": "0xb33eaad8d922b1083446dc23f610c2567fb5180f"
+            },
+            {
+                "blockchain": "harmony-shard-0",
+                "contract": "0x90d81749da8867962c760414c1c25ec926e889b6"
+            },
+            {
+                "blockchain": "avalanche",
+                "contract": "0x8ebaf22b6f053dffeaf46f4dd9efa95d89ba8580"
+            },
+            {
+                "blockchain": "energi",
+                "contract": "0x665b3a802979ec24e076c80025bff33c18eb6007"
+            },
+            {
+                "blockchain": "sora",
+                "contract": "0x009be848df92a400da2f217256c88d1a9b1a0304f9b3e90991a67418e1d3b08c"
+            },
+            {
+                "blockchain": "binance-smart-chain",
+                "contract": "0xbf5140a22578168fd562dccf235e5d43a02ce9b1"
+            }
+        ],
+        "website_url": "https://uniswap.org/",
+        "symbol": "uni",
+        "market_cap_rank": 26,
+        "description": "UNI is the governance token for Uniswap, an Automated Market Marker DEX on the Ethereum blockchain. The UNI token allows token holders to participate in the governance of the protocol. Key decisions such as usage of the treasury or future upgrades ca"
+    },
+    {
+        "name": "Curve DAO",
+        "type": "DEX",
+        "blockchain_contracts": [
+            {
+                "blockchain": "ethereum",
+                "contract": "0xd533a949740bb3306d119cc777fa900ba034cd52"
+            },
+            {
+                "blockchain": "optimistic-ethereum",
+                "contract": "0x0994206dfe8de6ec6920ff4d779b0d950605fb53"
+            },
+            {
+                "blockchain": "polygon-pos",
+                "contract": "0x172370d5cd63279efa6d502dab29171933a610af"
+            },
+            {
+                "blockchain": "fantom",
+                "contract": "0x1e4f97b9f9f913c46f1632781732927b9019c68b"
+            },
+            {
+                "blockchain": "arbitrum-one",
+                "contract": "0x11cdb42b0eb46d95f990bedd4695a6e3fa034978"
+            },
+            {
+                "blockchain": "energi",
+                "contract": "0xd3319eaf3c4743ac75aace77befcfa445ed6e69e"
+            },
+            {
+                "blockchain": "sora",
+                "contract": "0x002ead91a2de57b8855b53d4a62c25277073fd7f65f7e5e79f4936ed747fcad0"
+            }
+        ],
+        "website_url": "https://www.curve.fi/",
+        "symbol": "crv",
+        "market_cap_rank": 109,
+        "description": "Similar to Uniswap, Curve Finance is an Automated Market Maker (AMM) based Decentralised Exchange (DEX). Unlike Uniswap, its main focus is only to swap between assets that are supposed to have the same value. This is useful in the DeFi ecosystem as t"
+    },
+    {
+        "name": "Balancer",
+        "type": "DEX",
+        "blockchain_contracts": [
+            {
+                "blockchain": "ethereum",
+                "contract": "0xba100000625a3754423978a60c9317c58a424e3d"
+            },
+            {
+                "blockchain": "xdai",
+                "contract": "0x7ef541e2a22058048904fe5744f9c7e4c57af717"
+            },
+            {
+                "blockchain": "polygon-zkevm",
+                "contract": "0x120ef59b80774f02211563834d8e3b72cb1649d6"
+            },
+            {
+                "blockchain": "optimistic-ethereum",
+                "contract": "0xfe8b128ba8c78aabc59d4c64cee7ff28e9379921"
+            },
+            {
+                "blockchain": "near-protocol",
+                "contract": "ba100000625a3754423978a60c9317c58a424e3d.factory.bridge.near"
+            },
+            {
+                "blockchain": "base",
+                "contract": "0x4158734d47fc9692176b5085e0f52ee0da5d47f1"
+            },
+            {
+                "blockchain": "harmony-shard-0",
+                "contract": "0xdc5f76104d0b8d2bf2c2bbe06cdfe17004e9010f"
+            },
+            {
+                "blockchain": "huobi-token",
+                "contract": "0x045de15ca76e76426e8fc7cba8392a3138078d0f"
+            },
+            {
+                "blockchain": "polygon-pos",
+                "contract": "0x9a71012b13ca4d3d0cdc72a177df3ef03b0e76a3"
+            },
+            {
+                "blockchain": "arbitrum-one",
+                "contract": "0x040d1edc9569d4bab2d15287dc5a4f10f56a56b8"
+            },
+            {
+                "blockchain": "avalanche",
+                "contract": "0xe15bcb9e0ea69e6ab9fa080c4c4a5632896298c3"
+            },
+            {
+                "blockchain": "energi",
+                "contract": "0x9b817c6e9a38e604606aea3ad6ed271ce8eaa9d6"
+            }
+        ],
+        "website_url": "https://balancer.finance/",
+        "symbol": "bal",
+        "market_cap_rank": 443,
+        "description": "Balancer is a DeFi protocol that provides permissionless technology to streamline AMM development for developers and empower liquidity providers with an ever-expanding DEX product suite.\r\n\r\nThis is made possible by unique \u2018Vault\u2019 architecture that fo"
+    },
+    {
+        "name": "Aave",
+        "type": "Lending",
+        "blockchain_contracts": [
+            {
+                "blockchain": "ethereum",
+                "contract": "0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9"
+            },
+            {
+                "blockchain": "optimistic-ethereum",
+                "contract": "0x76fb31fb4af56892a25e32cfc43de717950c9278"
+            },
+            {
+                "blockchain": "near-protocol",
+                "contract": "7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9.factory.bridge.near"
+            },
+            {
+                "blockchain": "huobi-token",
+                "contract": "0x202b4936fe1a82a4965220860ae46d7d3939bb25"
+            },
+            {
+                "blockchain": "polygon-pos",
+                "contract": "0xd6df932a45c0f255f85145f286ea0b292b21c90b"
+            },
+            {
+                "blockchain": "fantom",
+                "contract": "0x6a07a792ab2965c72a5b8088d3a069a7ac3a993b"
+            },
+            {
+                "blockchain": "harmony-shard-0",
+                "contract": "0xcf323aad9e522b93f11c352caa519ad0e14eb40f"
+            },
+            {
+                "blockchain": "arbitrum-one",
+                "contract": "0xba5ddd1f9d7f570dc94a51479a000e3bce967196"
+            },
+            {
+                "blockchain": "avalanche",
+                "contract": "0x63a72806098bd3d9520cc43356dd78afe5d386d9"
+            },
+            {
+                "blockchain": "energi",
+                "contract": "0xa7f2f790355e0c32cab03f92f6eb7f488e6f049a"
+            },
+            {
+                "blockchain": "sora",
+                "contract": "0x0091bd8d8295b25cab5a7b8b0e44498e678cfc15d872ede3215f7d4c7635ba36"
+            },
+            {
+                "blockchain": "binance-smart-chain",
+                "contract": "0xfb6115445bff7b52feb98650c87f44907e58f802"
+            }
+        ],
+        "website_url": "https://app.aave.com/",
+        "symbol": "aave",
+        "market_cap_rank": 36,
+        "description": "Aave is a decentralized money market protocol where users can lend and borrow cryptocurrency across 20 different assets as collateral. The protocol has a native token called AAVE, which is also a governance token that lets the community decide the di"
+    },
+    {
+        "name": "Maker",
+        "type": "Lending",
+        "blockchain_contracts": [
+            {
+                "blockchain": "ethereum",
+                "contract": "0x9f8f72aa9304c8b593d555f12ef6589cc3a579a2"
+            },
+            {
+                "blockchain": "polygon-pos",
+                "contract": "0x6f7c932e7684666c9fd1d44527765433e01ff61d"
+            },
+            {
+                "blockchain": "avalanche",
+                "contract": "0x88128fd4b259552a9a1d457f435a6527aab72d42"
+            },
+            {
+                "blockchain": "energi",
+                "contract": "0x050317d93f29d1ba5ff3eac3b8157fd4e345588d"
+            },
+            {
+                "blockchain": "sora",
+                "contract": "0x00ec184ef0b4bd955db05eea5a8489ae72888ab6e63682a15beca1cd39344c8f"
+            }
+        ],
+        "website_url": "https://makerdao.com/",
+        "symbol": "mkr",
+        "market_cap_rank": 103,
+        "description": "MKR is a cryptocurrency depicted as a smart contract platform and works alongside the Dai coin and aims to act as a hedge currency that provides traders with a stable alternative to the majority of coins currently available on the market. Maker offer"
+    },
+    {
+        "name": "yearn.finance",
+        "type": "Yield Farming",
+        "blockchain_contracts": [
+            {
+                "blockchain": "ethereum",
+                "contract": "0x0bc529c00c6401aef6d220be8c6ea1667f6ad93e"
+            },
+            {
+                "blockchain": "xdai",
+                "contract": "0xbf65bfcb5da067446cee6a706ba3fe2fb1a9fdfd"
+            },
+            {
+                "blockchain": "optimistic-ethereum",
+                "contract": "0x9046d36440290ffde54fe0dd84db8b1cfee9107b"
+            },
+            {
+                "blockchain": "near-protocol",
+                "contract": "0bc529c00c6401aef6d220be8c6ea1667f6ad93e.factory.bridge.near"
+            },
+            {
+                "blockchain": "base",
+                "contract": "0x9eaf8c1e34f05a589eda6bafdf391cf6ad3cb239"
+            },
+            {
+                "blockchain": "energi",
+                "contract": "0x2726dd5efb3a209a54c512e9562a2045b8f45dbc"
+            },
+            {
+                "blockchain": "huobi-token",
+                "contract": "0xb4f019beac758abbee2f906033aaa2f0f6dacb35"
+            },
+            {
+                "blockchain": "polygon-pos",
+                "contract": "0xda537104d6a5edd53c6fbba9a898708e465260b6"
+            },
+            {
+                "blockchain": "fantom",
+                "contract": "0x29b0da86e484e1c0029b56e817912d778ac0ec69"
+            },
+            {
+                "blockchain": "arbitrum-one",
+                "contract": "0x82e3a8f066a6989666b031d916c43672085b1582"
+            },
+            {
+                "blockchain": "harmony-shard-0",
+                "contract": "0xa0dc05f84a27fccbd341305839019ab86576bc07"
+            },
+            {
+                "blockchain": "avalanche",
+                "contract": "0x9eaac1b23d935365bd7b542fe22ceee2922f52dc"
+            },
+            {
+                "blockchain": "sora",
+                "contract": "0x002676c3edea5b08bc0f9b6809a91aa313b7da35e28b190222e9dc032bf1e662"
+            }
+        ],
+        "website_url": "https://yearn.fi/",
+        "symbol": "yfi",
+        "market_cap_rank": 297,
+        "description": "Yearn Finance is a suite of products in Decentralized Finance (DeFi) that provides lending aggregation, yield generation, and insurance on the Ethereum blockchain. The protocol is maintained by various independent developers and is governed by YFI ho"
+    },
+    {
+        "name": "Harvest Finance",
+        "type": "Yield Farming",
+        "blockchain_contracts": [
+            {
+                "blockchain": "ethereum",
+                "contract": "0xa0246c9032bc3a600820415ae600c6388619a14d"
+            },
+            {
+                "blockchain": "binance-smart-chain",
+                "contract": "0x4b5c23cac08a567ecf0c1ffca8372a45a5d33743"
+            },
+            {
+                "blockchain": "energi",
+                "contract": "0xc59a4b20ea0f8a7e6e216e7f1b070247520a4514"
+            }
+        ],
+        "website_url": "https://harvest.finance/",
+        "symbol": "farm",
+        "market_cap_rank": 1108,
+        "description": "Harvest automatically farms the highest yields in DeFi\r\n\r\n"
+    },
+    {
+        "name": "Dai",
+        "type": "Stablecoin",
+        "blockchain_contracts": [
+            {
+                "blockchain": "ethereum",
+                "contract": "0x6b175474e89094c44da98b954eedeac495271d0f"
+            }
+        ],
+        "website_url": "https://makerdao.com/",
+        "symbol": "dai",
+        "market_cap_rank": 50,
+        "description": "MakerDAO has launched Multi-collateral DAI (MCD). This token refers to the new DAI that is collaterized by multiple assets.\r\n"
+    },
+    {
+        "name": "USDC",
+        "type": "Stablecoin",
+        "blockchain_contracts": [
+            {
+                "blockchain": "ethereum",
+                "contract": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+            },
+            {
+                "blockchain": "zksync",
+                "contract": "0x1d17cbcf0d6d143135ae902365d2e5e2a16538d4"
+            },
+            {
+                "blockchain": "optimistic-ethereum",
+                "contract": "0x0b2c639c533813f4aa9d7837caf62653d097ff85"
+            },
+            {
+                "blockchain": "polkadot",
+                "contract": "1337"
+            },
+            {
+                "blockchain": "tron",
+                "contract": "TEkxiTehnzSmSe2XqrBj4w32RUN966rdz8"
+            },
+            {
+                "blockchain": "near-protocol",
+                "contract": "17208628f84f5d6ad33f0da3bbbeb27ffcb398eac501a31bd6ad2011e36133a1"
+            },
+            {
+                "blockchain": "hedera-hashgraph",
+                "contract": "0.0.456858"
+            },
+            {
+                "blockchain": "base",
+                "contract": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913"
+            },
+            {
+                "blockchain": "arbitrum-one",
+                "contract": "0xaf88d065e77c8cc2239327c5edb3a432268e5831"
+            },
+            {
+                "blockchain": "polygon-pos",
+                "contract": "0x3c499c542cef5e3811e1192ce70d8cc03d5c3359"
+            },
+            {
+                "blockchain": "aptos",
+                "contract": "0xbae207659db88bea0cbead6da0ed00aac12edcdda169e591cd41c94180b46f3b"
+            },
+            {
+                "blockchain": "sui",
+                "contract": "0xdba34672e30cb065b1f93e3ab55318768fd6fef66c15942c9f7cb846e2f900e7::usdc::USDC"
+            },
+            {
+                "blockchain": "algorand",
+                "contract": "31566704"
+            },
+            {
+                "blockchain": "avalanche",
+                "contract": "0xb97ef9ef8734c71904d8002f8b6bc66dd9c48a6e"
+            },
+            {
+                "blockchain": "stellar",
+                "contract": "USDC-GA5ZSEJYB37JRC5AVCIA5MOP4RHTM335X2KGX3IHOJAPP5RE34K4KZVN"
+            },
+            {
+                "blockchain": "solana",
+                "contract": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
+            },
+            {
+                "blockchain": "celo",
+                "contract": "0xceba9300f2b948710d2653dd7b07f33a8b32118c"
+            }
+        ],
+        "website_url": "https://www.circle.com/en/usdc",
+        "symbol": "usdc",
+        "market_cap_rank": 8,
+        "description": "USDC is a fully collateralized US dollar stablecoin. USDC is the bridge between dollars and trading on cryptocurrency exchanges. The technology behind CENTRE makes it possible to exchange value between people, businesses and financial institutions ju"
+    },
+    {
+        "name": "Tether",
+        "type": "Stablecoin",
+        "blockchain_contracts": [
+            {
+                "blockchain": "ethereum",
+                "contract": "0xdac17f958d2ee523a2206206994597c13d831ec7"
+            },
+            {
+                "blockchain": "aptos",
+                "contract": "0x357b0b74bc833e95a115ad22604854d6b0fca151cecd94111770e5d6ffc9dc2b"
+            },
+            {
+                "blockchain": "tron",
+                "contract": "TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t"
+            },
+            {
+                "blockchain": "avalanche",
+                "contract": "0x9702230a8ea53601f5cd2dc00fdbc13d4df4a8c7"
+            },
+            {
+                "blockchain": "near-protocol",
+                "contract": "usdt.tether-token.near"
+            },
+            {
+                "blockchain": "solana",
+                "contract": "Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB"
+            },
+            {
+                "blockchain": "kava",
+                "contract": "0x919c1c267bc06a7039e03fcc2ef738525769109c"
+            },
+            {
+                "blockchain": "celo",
+                "contract": "0x48065fbbe25f71c9282ddf5e1cd6d6a887483d5e"
+            },
+            {
+                "blockchain": "the-open-network",
+                "contract": "EQCxE6mUtQJKFnGfaROTKOt1lZbDiiX1kCixRv7Nw2Id_sDs"
+            }
+        ],
+        "website_url": "https://tether.to/",
+        "symbol": "usdt",
+        "market_cap_rank": 4,
+        "description": "Tether (USDT) is a cryptocurrency with a value meant to mirror the value of the U.S. dollar. The idea was to create a stable cryptocurrency that can be used like digital dollars. Coins that serve this purpose of being a stable dollar substitute are c"
+    },
+    {
+        "name": "NFTFI",
+        "type": "NFT-Fi",
+        "blockchain_contracts": [
+            {
+                "blockchain": "ethereum",
+                "contract": "0x09d6f0f5a21f5be4f59e209747e2d07f50bc694c"
+            }
+        ],
+        "website_url": "https://nftfifoundation.org/",
+        "symbol": "nftfi",
+        "market_cap_rank": 3936,
+        "description": "NFTFI is the governance token of the NFTfi protocol, which has the vision of becoming the primary NFT finance settlement layer across all major chains. "
+    }
+]

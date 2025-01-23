@@ -1,0 +1,138 @@
+2025-01-19 21:17:49,860 - INFO - ====== PARAMETERS ======
+2025-01-19 21:17:49,860 - INFO - --> protocols=False
+2025-01-19 21:17:49,860 - INFO - --> contracts=False
+2025-01-19 21:17:49,860 - INFO - --> transactions=False
+2025-01-19 21:17:49,860 - INFO - --> users=False
+2025-01-19 21:17:49,860 - INFO - --> price=True
+2025-01-19 21:17:49,860 - INFO - --> market=True
+
+2025-01-19 21:17:49,860 - INFO - ====== Starting ETL pipeline ======
+2025-01-19 21:17:49,860 - INFO - No protocols extraction asked. Skipping step 1.
+
+2025-01-19 21:17:49,860 - INFO - No contract deduction asked. Skipping step 2.
+
+2025-01-19 21:17:49,860 - INFO - No transactions fetching asked. Skipping step 3.
+
+2025-01-19 21:17:49,861 - INFO - No user data extraction asked. Skipping step 4.
+
+2025-01-19 21:17:49,861 - INFO - ------ Step 5: Fetching Cryptocurrency Prices ------
+2025-01-19 21:17:49,861 - INFO - Starting the ETL process for fetching Ethereum contract prices...
+2025-01-19 21:17:49,861 - INFO - Fetching Ethereum contracts from MongoDB...
+2025-01-19 21:17:49,864 - INFO - Processing symbol: uni
+2025-01-19 21:17:49,864 - INFO - Fetching OHLC data for symbol: uni
+2025-01-19 21:17:50,578 - INFO - Fetched 17332 rows of data for uni
+2025-01-19 21:17:50,677 - INFO - Transformed data for uni
+2025-01-19 21:17:51,243 - INFO - Inserted 17332 new records into defi_db.market collection.
+2025-01-19 21:17:51,245 - INFO - Loaded transformed data to MongoDB for uni
+2025-01-19 21:17:51,245 - INFO - Processing symbol: crv
+2025-01-19 21:17:51,245 - INFO - Fetching OHLC data for symbol: crv
+2025-01-19 21:17:51,593 - INFO - Fetched 17332 rows of data for crv
+2025-01-19 21:17:51,697 - INFO - Transformed data for crv
+2025-01-19 21:17:52,276 - INFO - Inserted 17332 new records into defi_db.market collection.
+2025-01-19 21:17:52,277 - INFO - Loaded transformed data to MongoDB for crv
+2025-01-19 21:17:52,277 - INFO - Processing symbol: bal
+2025-01-19 21:17:52,277 - INFO - Fetching OHLC data for symbol: bal
+2025-01-19 21:17:52,774 - INFO - Fetched 17432 rows of data for bal
+2025-01-19 21:17:52,865 - INFO - Transformed data for bal
+2025-01-19 21:17:53,464 - INFO - Inserted 17432 new records into defi_db.market collection.
+2025-01-19 21:17:53,465 - INFO - Loaded transformed data to MongoDB for bal
+2025-01-19 21:17:53,465 - INFO - Processing symbol: aave
+2025-01-19 21:17:53,465 - INFO - Fetching OHLC data for symbol: aave
+2025-01-19 21:17:53,804 - INFO - Fetched 17332 rows of data for aave
+2025-01-19 21:17:53,895 - INFO - Transformed data for aave
+2025-01-19 21:17:54,463 - INFO - Inserted 17332 new records into defi_db.market collection.
+2025-01-19 21:17:54,464 - INFO - Loaded transformed data to MongoDB for aave
+2025-01-19 21:17:54,465 - INFO - Processing symbol: mkr
+2025-01-19 21:17:54,465 - INFO - Fetching OHLC data for symbol: mkr
+2025-01-19 21:17:54,749 - INFO - Fetched 17426 rows of data for mkr
+2025-01-19 21:17:54,854 - INFO - Transformed data for mkr
+2025-01-19 21:17:55,436 - INFO - Inserted 17426 new records into defi_db.market collection.
+2025-01-19 21:17:55,438 - INFO - Loaded transformed data to MongoDB for mkr
+2025-01-19 21:17:55,438 - INFO - Processing symbol: yfi
+2025-01-19 21:17:55,438 - INFO - Fetching OHLC data for symbol: yfi
+2025-01-19 21:17:55,715 - INFO - Fetched 17332 rows of data for yfi
+2025-01-19 21:17:55,818 - INFO - Transformed data for yfi
+2025-01-19 21:17:56,394 - INFO - Inserted 17332 new records into defi_db.market collection.
+2025-01-19 21:17:56,396 - INFO - Loaded transformed data to MongoDB for yfi
+2025-01-19 21:17:56,396 - INFO - Processing symbol: farm
+2025-01-19 21:17:56,396 - INFO - Fetching OHLC data for symbol: farm
+2025-01-19 21:17:56,694 - INFO - Fetched 17332 rows of data for farm
+2025-01-19 21:17:56,793 - INFO - Transformed data for farm
+2025-01-19 21:17:57,382 - INFO - Inserted 17332 new records into defi_db.market collection.
+2025-01-19 21:17:57,383 - INFO - Loaded transformed data to MongoDB for farm
+2025-01-19 21:17:57,383 - INFO - Processing symbol: dai
+2025-01-19 21:17:57,383 - INFO - Fetching OHLC data for symbol: dai
+2025-01-19 21:17:57,685 - INFO - Fetched 17425 rows of data for dai
+2025-01-19 21:17:57,776 - INFO - Transformed data for dai
+2025-01-19 21:17:58,388 - INFO - Inserted 17425 new records into defi_db.market collection.
+2025-01-19 21:17:58,390 - INFO - Loaded transformed data to MongoDB for dai
+2025-01-19 21:17:58,390 - INFO - Processing symbol: usdc
+2025-01-19 21:17:58,390 - INFO - Fetching OHLC data for symbol: usdc
+2025-01-19 21:17:58,685 - INFO - Fetched 17432 rows of data for usdc
+2025-01-19 21:17:58,774 - INFO - Transformed data for usdc
+2025-01-19 21:17:59,359 - INFO - Inserted 17432 new records into defi_db.market collection.
+2025-01-19 21:17:59,362 - INFO - Loaded transformed data to MongoDB for usdc
+2025-01-19 21:17:59,362 - INFO - Processing symbol: usdt
+2025-01-19 21:17:59,362 - INFO - Fetching OHLC data for symbol: usdt
+2025-01-19 21:17:59,700 - INFO - Fetched 17423 rows of data for usdt
+2025-01-19 21:17:59,802 - INFO - Transformed data for usdt
+2025-01-19 21:18:00,392 - INFO - Inserted 17423 new records into defi_db.market collection.
+2025-01-19 21:18:00,394 - INFO - Loaded transformed data to MongoDB for usdt
+2025-01-19 21:18:00,394 - INFO - Processing symbol: nftfi
+2025-01-19 21:18:00,394 - INFO - Fetching OHLC data for symbol: nftfi
+2025-01-19 21:18:00,527 - INFO - Fetched 3902 rows of data for nftfi
+2025-01-19 21:18:00,561 - INFO - Transformed data for nftfi
+2025-01-19 21:18:00,739 - INFO - Inserted 3902 new records into defi_db.market collection.
+2025-01-19 21:18:00,739 - INFO - Loaded transformed data to MongoDB for nftfi
+2025-01-19 21:18:00,740 - INFO - Cryptocurrency prices fetched successfully.
+
+2025-01-19 21:18:00,740 - INFO - ------ Step 6: Enriching Market Data ------
+2025-01-19 21:18:00,742 - INFO - Found 11 protocols to process : ['Aave', 'Balancer', 'Curve DAO', 'Dai', 'Harvest Finance', 'Maker', 'NFTFI', 'Tether', 'USDC', 'Uniswap', 'yearn.finance']
+2025-01-19 21:18:01,169 - INFO - Starting enrichment for protocol: Aave from 2023-01-01 00:00:00 to 2024-12-31 00:00:00
+2025-01-19 21:18:01,169 - INFO - Starting enrichment for protocol: Balancer from 2023-01-01 00:00:00 to 2024-12-31 00:00:00
+2025-01-19 21:18:01,182 - INFO - Starting enrichment for protocol: Curve DAO from 2023-01-01 00:00:00 to 2024-12-31 00:00:00
+2025-01-19 21:18:01,182 - INFO - Starting enrichment for protocol: Dai from 2023-01-01 00:00:00 to 2024-12-31 00:00:00
+2025-01-19 21:18:01,187 - INFO - Starting enrichment for protocol: Harvest Finance from 2023-01-01 00:00:00 to 2024-12-31 00:00:00
+2025-01-19 21:18:01,190 - INFO - Starting enrichment for protocol: Maker from 2023-01-01 00:00:00 to 2024-12-31 00:00:00
+2025-01-19 21:18:01,190 - INFO - Starting enrichment for protocol: NFTFI from 2023-01-01 00:00:00 to 2024-12-31 00:00:00
+2025-01-19 21:18:01,193 - INFO - Starting enrichment for protocol: Tether from 2023-01-01 00:00:00 to 2024-12-31 00:00:00
+2025-01-19 21:18:01,208 - INFO - Starting enrichment for protocol: USDC from 2023-01-01 00:00:00 to 2024-12-31 00:00:00
+2025-01-19 21:18:01,208 - INFO - Starting enrichment for protocol: Uniswap from 2023-01-01 00:00:00 to 2024-12-31 00:00:00
+2025-01-19 21:18:01,211 - INFO - Starting enrichment for protocol: yearn.finance from 2023-01-01 00:00:00 to 2024-12-31 00:00:00
+2025-01-19 21:18:17,345 - INFO - Processing 585 hourly entries for protocol: NFTFI
+2025-01-19 21:18:17,376 - INFO - Bulk write result: {'writeErrors': [], 'writeConcernErrors': [], 'nInserted': 0, 'nUpserted': 0, 'nMatched': 222, 'nModified': 222, 'nRemoved': 0, 'upserted': []}
+2025-01-19 21:18:17,377 - INFO - Enrichment completed for protocol: NFTFI
+2025-01-19 21:20:00,311 - INFO - Processing 2908 hourly entries for protocol: Tether
+2025-01-19 21:20:00,482 - INFO - Bulk write result: {'writeErrors': [], 'writeConcernErrors': [], 'nInserted': 0, 'nUpserted': 0, 'nMatched': 2807, 'nModified': 2807, 'nRemoved': 0, 'upserted': []}
+2025-01-19 21:20:00,482 - INFO - Enrichment completed for protocol: Tether
+2025-01-19 21:21:20,745 - INFO - Processing 7260 hourly entries for protocol: Harvest Finance
+2025-01-19 21:21:21,194 - INFO - Bulk write result: {'writeErrors': [], 'writeConcernErrors': [], 'nInserted': 0, 'nUpserted': 0, 'nMatched': 7040, 'nModified': 7040, 'nRemoved': 0, 'upserted': []}
+2025-01-19 21:21:21,195 - INFO - Enrichment completed for protocol: Harvest Finance
+2025-01-19 21:21:22,485 - INFO - Processing 4957 hourly entries for protocol: USDC
+2025-01-19 21:21:22,757 - INFO - Bulk write result: {'writeErrors': [], 'writeConcernErrors': [], 'nInserted': 0, 'nUpserted': 0, 'nMatched': 4814, 'nModified': 4814, 'nRemoved': 0, 'upserted': []}
+2025-01-19 21:21:22,757 - INFO - Enrichment completed for protocol: USDC
+2025-01-19 21:23:41,460 - INFO - Processing 13045 hourly entries for protocol: Balancer
+2025-01-19 21:23:42,171 - INFO - Bulk write result: {'writeErrors': [], 'writeConcernErrors': [], 'nInserted': 0, 'nUpserted': 0, 'nMatched': 12613, 'nModified': 12613, 'nRemoved': 0, 'upserted': []}
+2025-01-19 21:23:42,171 - INFO - Enrichment completed for protocol: Balancer
+2025-01-19 21:23:43,434 - INFO - Processing 13038 hourly entries for protocol: yearn.finance
+2025-01-19 21:23:44,018 - INFO - Bulk write result: {'writeErrors': [], 'writeConcernErrors': [], 'nInserted': 0, 'nUpserted': 0, 'nMatched': 12536, 'nModified': 12536, 'nRemoved': 0, 'upserted': []}
+2025-01-19 21:23:44,018 - INFO - Enrichment completed for protocol: yearn.finance
+2025-01-19 21:24:46,740 - INFO - Processing 16112 hourly entries for protocol: Maker
+2025-01-19 21:24:47,417 - INFO - Bulk write result: {'writeErrors': [], 'writeConcernErrors': [], 'nInserted': 0, 'nUpserted': 0, 'nMatched': 15650, 'nModified': 15650, 'nRemoved': 0, 'upserted': []}
+2025-01-19 21:24:47,417 - INFO - Enrichment completed for protocol: Maker
+2025-01-19 21:25:12,583 - INFO - Processing 17292 hourly entries for protocol: Aave
+2025-01-19 21:25:13,199 - INFO - Bulk write result: {'writeErrors': [], 'writeConcernErrors': [], 'nInserted': 0, 'nUpserted': 0, 'nMatched': 16632, 'nModified': 16632, 'nRemoved': 0, 'upserted': []}
+2025-01-19 21:25:13,199 - INFO - Enrichment completed for protocol: Aave
+2025-01-19 21:25:15,678 - INFO - Processing 17509 hourly entries for protocol: Curve DAO
+2025-01-19 21:25:16,218 - INFO - Bulk write result: {'writeErrors': [], 'writeConcernErrors': [], 'nInserted': 0, 'nUpserted': 0, 'nMatched': 16845, 'nModified': 16845, 'nRemoved': 0, 'upserted': []}
+2025-01-19 21:25:16,218 - INFO - Enrichment completed for protocol: Curve DAO
+2025-01-19 21:25:18,542 - INFO - Processing 17472 hourly entries for protocol: Uniswap
+2025-01-19 21:25:19,021 - INFO - Bulk write result: {'writeErrors': [], 'writeConcernErrors': [], 'nInserted': 0, 'nUpserted': 0, 'nMatched': 16823, 'nModified': 16823, 'nRemoved': 0, 'upserted': []}
+2025-01-19 21:25:19,021 - INFO - Enrichment completed for protocol: Uniswap
+2025-01-19 21:25:38,398 - INFO - Processing 17446 hourly entries for protocol: Dai
+2025-01-19 21:25:38,874 - INFO - Bulk write result: {'writeErrors': [], 'writeConcernErrors': [], 'nInserted': 0, 'nUpserted': 0, 'nMatched': 16875, 'nModified': 16875, 'nRemoved': 0, 'upserted': []}
+2025-01-19 21:25:38,874 - INFO - Enrichment completed for protocol: Dai
+2025-01-19 21:25:38,906 - INFO - All protocols processed.
+2025-01-19 21:25:38,906 - INFO - Market data enriched successfully.
+
+2025-01-19 21:25:38,906 - INFO - ETL pipeline completed.
