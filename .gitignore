@@ -23,3 +23,7 @@ __pycache__/
 
 # Logs
 *.log
+
+# Data
+data/defi_db
+data/dataset
