@@ -2,14 +2,6 @@
 This section outlines the steps involved in preparing the dataset for analyzing decentralized finance (DeFi) protocols and transactions. The process includes selecting DeFi protocols, extracting relevant contract data, collecting transaction information, and analyzing market trends. 
 The dataset enables a comprehensive analysis of user behavior, protocol usage, transaction dynamics, and market performance on ethereum blockchain.
 
-## Dataset
-```
-    ├── protocols.parquet         # Contains protocols details for selected DeFi protocols.
-    ├── contracts.parquet         # Contains contract details for selected DeFi protocols.
-    ├── transactions.parquet      # Contains transaction data for Ethereum-based contracts.
-    ├── market.parquet            # Contains enriched market data with aggregated transaction metrics.
-    └── users.parquet             # User profiles based on transaction data.
-```
 ---
 ## Table of Contents
 1. [Selection of DeFi Protocols](#1-selection-of-defi-protocols)
@@ -375,7 +367,9 @@ To aggregate transaction and market data into meaningful metrics that represent 
 
 ---
 ## Credits
-This dataset preparation process establishes the foundation for analysis of user behavior, market trends, and protocol performance within the DeFi space. Each step builds upon the previous one, ensuring that the final dataset is rich and well-structured for deeper insights. It includes various technical steps for data extraction, user profiling, and market data aggregation, based on a combination of APIs and data sources. Special thanks to the following sources and tools used in this process:  
+This dataset preparation process establishes the foundation for analysis of user behavior, market trends, and protocol performance within the DeFi space. Each step builds upon the previous one, ensuring that the final dataset is rich and well-structured for deeper insights. It includes various technical steps for data extraction, user profiling, and market data aggregation, based on a combination of APIs and data sources. 
+
+Sources and tools used in this process:  
 1.	**CoinGecko API** - For contract data related to DeFi protocols and their market details.
 2.	**Etherscan API** - For transaction data extraction on Ethereum smart contracts.
 3.	**Yahoo Finance API** - For market data including OHLC values of tokens and trading volume.  
