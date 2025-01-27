@@ -44,7 +44,7 @@ You can run the application locally or inside a Docker container.
 To run the application locally, execute the following command:
 
 ```bash
- uv run streamlit run src/app.py
+ uv run streamlit run app.py
 ```
 
 ### Running with Docker

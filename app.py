@@ -1,4 +1,4 @@
-from frontend.layout import app_layout
+from src.frontend.layout import app_layout
 
 
 def main():
