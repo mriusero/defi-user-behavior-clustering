@@ -4,7 +4,7 @@ import streamlit as st
 def github_button(
     url, logo_url="https://github.githubassets.com/favicons/favicon-dark.png"
 ):
-    button_style = f"""
+    button_style = """
         <style>
         .github-button {{
             display: inline-flex;

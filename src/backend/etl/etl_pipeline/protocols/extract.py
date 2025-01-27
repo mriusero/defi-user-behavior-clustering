@@ -48,22 +48,26 @@ def get_defi_protocol_info(protocol_id):
                 "description": data.get("description", {}).get("en", "")[:250],
             }
 
-            logging.info(f"Successfully retrieved data for protocol ID: {protocol_id}")
+            logging.info("Successfully retrieved data for protocol ID: %s", protocol_id)
             return protocol_info
 
         elif response.status_code == 404:
-            logging.warning(f"Protocol not found: {protocol_id}")
+            logging.warning("Protocol not found: %s", protocol_id)
         elif response.status_code == 429:
             logging.warning("Too many requests. Waiting for 10 seconds...")
             time.sleep(10)  # Wait 10 seconds and retry
             return get_defi_protocol_info(protocol_id)
         else:
             logging.error(
-                f"Unexpected error for protocol ID {protocol_id}: HTTP {response.status_code}"
+                "Unexpected error for protocol ID %s: HTTP %d",
+                protocol_id,
+                response.status_code,
             )
 
     except Exception as e:
-        logging.error(f"Error while fetching data for protocol ID {protocol_id}: {e}")
+        logging.error(
+            "Error while fetching data for protocol ID %s: %s", protocol_id, e
+        )
 
     return None
 
@@ -83,9 +87,11 @@ def extract_protocols():
             if protocol_info:
                 protocols_data.append(protocol_info)
             else:
-                logging.warning(f"No data found for protocol ID: {protocol_id}")
+                logging.warning("No data found for protocol ID: %s", protocol_id)
         except Exception as e:
-            logging.error(f"Error fetching data for protocol ID: {protocol_id} - {e}")
+            logging.error(
+                "Error fetching data for protocol ID: %s - %s", protocol_id, e
+            )
 
         time.sleep(2)  # Avoid hitting rate limits
 

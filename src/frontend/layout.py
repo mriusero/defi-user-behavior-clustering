@@ -9,7 +9,7 @@ from .components import github_button
 
 def load_css():
     css_path = os.path.join(os.path.dirname(__file__), "styles.css")
-    with open(css_path) as f:
+    with open(css_path, "r", encoding="utf-8") as f:  # Ajout de l'encodage ici
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
 
