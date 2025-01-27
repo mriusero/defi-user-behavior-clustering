@@ -25,5 +25,4 @@ __pycache__/
 *.log
 
 # Data
-data/defi_db
-data/dataset
+data/raw
