@@ -17,7 +17,7 @@ def run_etl():
         price=False,
         market=False,
         dataset=False,
-        save=True
+        save=False,
     )
 
 if __name__ == '__main__':

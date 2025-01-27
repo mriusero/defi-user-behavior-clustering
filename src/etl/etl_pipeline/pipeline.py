@@ -21,11 +21,11 @@ console = Console()
 #PIPELINE
 def process_etl_pipeline(protocols=False, contracts=False, transactions=False, users=False, price=False, market=False, dataset=False, save=False):
     """
-    Executes an ETL (Extract, Transform, Load) pipeline to process DeFi protocol data.
+    Executes an etl (Extract, Transform, Load) pipeline to process DeFi protocol data.
     """
     clear_log_file()
 
-    console.rule("[bold blue]ETL Pipeline Parameters")
+    console.rule("[bold blue]etl Pipeline Parameters")
     logger.info(f"protocols: {protocols}")
     logger.info(f"contracts: {contracts}")
     logger.info(f"transactions: {transactions}")
@@ -35,7 +35,7 @@ def process_etl_pipeline(protocols=False, contracts=False, transactions=False, u
     logger.info(f"dataset: {dataset}")
     logger.info(f"save: {save}\n")
 
-    console.rule(f"[bold green]Starting ETL Pipeline{datetime.now()}")
+    console.rule(f"[bold green]Starting etl Pipeline{datetime.now()}")
 
     # Step 1: Extracting Protocols
     if protocols:
@@ -116,5 +116,5 @@ def process_etl_pipeline(protocols=False, contracts=False, transactions=False, u
     else:
         logger.warning("No dataset saving asked. Skipping step 8.\n")
 
-    console.rule("ETL Pipeline Completed")
+    console.rule("etl Pipeline Completed")
 
