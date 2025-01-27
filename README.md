@@ -13,6 +13,12 @@ See documentation for more details: [DeFi Protocol Data on Ethereum (doc)](docs/
 Dataset available on :
 * Kaggle: [DeFi Protocol Data on Ethereum 2023-2024](https://www.kaggle.com/datasets/mariusayrault/defi-protocol-data-on-ethereum-2yr-23-to-24)
 * Hugging Face: [DeFi Protocol Data on Ethereum 2023-2024](https://huggingface.co/datasets/mriusero/DeFi-Protocol-Data-on-Ethereum-2023-2024)
+
+To trigger pipeline:
+```bash
+uv run src/etl/main.py
+```
+
 ---
 ## Step 2 : Data Preprocessing
 > Work in progress

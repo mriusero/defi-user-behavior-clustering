@@ -69,9 +69,9 @@ def get_contracts() -> list:
 def fetch_prices():
     """
     Main function to fetch, transform, and load OHLC data for each Ethereum contract.
-    :raise Exception: If the ETL process fails, an error is logged and an exception is raised.
+    :raise Exception: If the etl process fails, an error is logged and an exception is raised.
     """
-    logging.info("Starting the ETL process for fetching Ethereum contract prices...")
+    logging.info("Starting the etl process for fetching Ethereum contract prices...")
 
     try:
         contracts_metadata = get_contracts()
@@ -95,5 +95,5 @@ def fetch_prices():
 
 
     except Exception as e:
-        logging.error(f"ETL process failed: {e}")
+        logging.error(f"etl process failed: {e}")
         raise
