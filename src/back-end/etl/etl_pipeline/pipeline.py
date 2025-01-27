@@ -18,8 +18,17 @@ logger = logging.getLogger()
 console = Console()
 
 
-#PIPELINE
-def process_etl_pipeline(protocols=False, contracts=False, transactions=False, users=False, price=False, market=False, dataset=False, save=False):
+# PIPELINE
+def process_etl_pipeline(
+    protocols=False,
+    contracts=False,
+    transactions=False,
+    users=False,
+    price=False,
+    market=False,
+    dataset=False,
+    save=False,
+):
     """
     Executes an etl (Extract, Transform, Load) pipeline to process DeFi protocol data.
     """
@@ -43,7 +52,9 @@ def process_etl_pipeline(protocols=False, contracts=False, transactions=False, u
         logger.info("Extracting protocols...")
         protocols_data = extract_protocols()
         load_protocols(protocols_data)
-        logger.info(f"Protocols extraction completed: {len(protocols_data)} protocols retrieved.\n")
+        logger.info(
+            f"Protocols extraction completed: {len(protocols_data)} protocols retrieved.\n"
+        )
     else:
         logger.warning("No protocols extraction asked. Skipping step 1.\n")
 
@@ -60,10 +71,7 @@ def process_etl_pipeline(protocols=False, contracts=False, transactions=False, u
     if transactions:
         console.rule("Step 3: Fetching Associated Transactions")
         logger.info("Fetching associated transactions...")
-        process_ethereum_contracts(
-            start_date='2023-01-01',
-            end_date='2024-12-31'
-        )
+        process_ethereum_contracts(start_date="2023-01-01", end_date="2024-12-31")
         logger.info("Transactions fetched successfully.\n")
     else:
         logger.warning("No transactions fetching asked. Skipping step 3.\n")
@@ -90,10 +98,7 @@ def process_etl_pipeline(protocols=False, contracts=False, transactions=False, u
     if market:
         console.rule("Step 6: Enriching Market Data")
         logger.info("Enriching market data...")
-        aggregation_task(
-            start_date='2023-01-01',
-            end_date='2024-12-31'
-        )
+        aggregation_task(start_date="2023-01-01", end_date="2024-12-31")
         logger.info("Market data enriched successfully.\n")
     else:
         logger.warning("No market data enrichment asked. Skipping step 6.\n")
@@ -117,4 +122,3 @@ def process_etl_pipeline(protocols=False, contracts=False, transactions=False, u
         logger.warning("No dataset saving asked. Skipping step 8.\n")
 
     console.rule("etl Pipeline Completed")
-

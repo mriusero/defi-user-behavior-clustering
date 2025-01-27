@@ -22,10 +22,7 @@ def get_defi_protocol_info(protocol_id):
         - ERROR: Exceptions encountered during API requests.
     """
     url = f"https://api.coingecko.com/api/v3/coins/{protocol_id}"
-    headers = {
-        "accept": "application/json",
-        "x-cg-demo-api-key": CG_API_KEY
-    }
+    headers = {"accept": "application/json", "x-cg-demo-api-key": CG_API_KEY}
 
     try:
         logging.debug(f"Requesting data for protocol ID: {protocol_id}")
@@ -33,20 +30,22 @@ def get_defi_protocol_info(protocol_id):
 
         if response.status_code == 200:
             data = response.json()
-            platforms = data.get('platforms', {})
+            platforms = data.get("platforms", {})
 
             protocol_info = {
-                'protocol_id': generate_protocol_id(data.get('name', 'N/A')),  # Generate the ID
-                'name': data.get('name', 'N/A'),
-                'type': infer_protocol_type(protocol_id),
-                'blockchain_contracts': [
-                    {'blockchain': blockchain, 'contract': contract}
+                "protocol_id": generate_protocol_id(
+                    data.get("name", "N/A")
+                ),  # Generate the ID
+                "name": data.get("name", "N/A"),
+                "type": infer_protocol_type(protocol_id),
+                "blockchain_contracts": [
+                    {"blockchain": blockchain, "contract": contract}
                     for blockchain, contract in platforms.items()
                 ],
-                'website_url': data.get('links', {}).get('homepage', ['N/A'])[0],
-                'symbol': data.get('symbol', 'N/A'),
-                'market_cap_rank': data.get('market_cap_rank', 'N/A'),
-                'description': data.get('description', {}).get('en', '')[:250],
+                "website_url": data.get("links", {}).get("homepage", ["N/A"])[0],
+                "symbol": data.get("symbol", "N/A"),
+                "market_cap_rank": data.get("market_cap_rank", "N/A"),
+                "description": data.get("description", {}).get("en", "")[:250],
             }
 
             logging.info(f"Successfully retrieved data for protocol ID: {protocol_id}")
@@ -59,7 +58,9 @@ def get_defi_protocol_info(protocol_id):
             time.sleep(10)  # Wait 10 seconds and retry
             return get_defi_protocol_info(protocol_id)
         else:
-            logging.error(f"Unexpected error for protocol ID {protocol_id}: HTTP {response.status_code}")
+            logging.error(
+                f"Unexpected error for protocol ID {protocol_id}: HTTP {response.status_code}"
+            )
 
     except Exception as e:
         logging.error(f"Error while fetching data for protocol ID {protocol_id}: {e}")
@@ -86,6 +87,6 @@ def extract_protocols():
         except Exception as e:
             logging.error(f"Error fetching data for protocol ID: {protocol_id} - {e}")
 
-        time.sleep(2)       # Avoid hitting rate limits
+        time.sleep(2)  # Avoid hitting rate limits
 
     return protocols_data

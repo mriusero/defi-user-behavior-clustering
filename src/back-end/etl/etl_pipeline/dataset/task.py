@@ -11,6 +11,7 @@ from ..mongodb_handler import get_mongo_database
 
 logger = logging.getLogger(__name__)
 
+
 def batch_users(iterable, size):
     it = iter(iterable)
     while True:
@@ -18,6 +19,7 @@ def batch_users(iterable, size):
         if not batch:
             break
         yield batch
+
 
 def generate_dataset():
     """
@@ -44,18 +46,28 @@ def generate_dataset():
     market_data_cache = load_market_data(db)
 
     manager = Manager()
-    counter = manager.Value('i', 0)
+    counter = manager.Value("i", 0)
     lock = manager.Lock()
 
     batch_size = 100000
 
-    with ThreadPoolExecutor(max_workers=min(8, multiprocessing.cpu_count())) as executor:
-        for users_batch in tqdm(batch_users(users, batch_size), total=len(users) // batch_size,
-                                desc="Processing batches"):
-            future = executor.submit(wrapped_tasks, (users_batch, counter, lock, protocol_ranges, market_data_cache))
+    with ThreadPoolExecutor(
+        max_workers=min(8, multiprocessing.cpu_count())
+    ) as executor:
+        for users_batch in tqdm(
+            batch_users(users, batch_size),
+            total=len(users) // batch_size,
+            desc="Processing batches",
+        ):
+            future = executor.submit(
+                wrapped_tasks,
+                (users_batch, counter, lock, protocol_ranges, market_data_cache),
+            )
             try:
                 future.result()
             except Exception as e:
                 logger.error(f"Error in thread: {e}", exc_info=True)
 
-        logger.info(f"User enrichment completed. Total users processed: {counter.value}")
+        logger.info(
+            f"User enrichment completed. Total users processed: {counter.value}"
+        )

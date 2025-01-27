@@ -45,9 +45,9 @@ def get_mongo_collection(db_name, collection_name):
         ConnectionError: If the connection to MongoDB fails.
     """
     try:
-        client = MongoClient()                          # Connect to the MongoDB server
-        database = client[db_name]                      # Access the database
-        collection = database[collection_name]          # Access the collection
+        client = MongoClient()  # Connect to the MongoDB server
+        database = client[db_name]  # Access the database
+        collection = database[collection_name]  # Access the collection
 
         return collection
     except Exception as e:

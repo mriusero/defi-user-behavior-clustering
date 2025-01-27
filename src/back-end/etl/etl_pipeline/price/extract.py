@@ -32,7 +32,7 @@ def fetch_ohlc_data(symbol: str) -> yf.Ticker.history:
     try:
         logging.info(f"Fetching OHLC data for symbol: {symbol}")
         key = yf.Ticker(f"{symbol}-USD")
-        key_data = key.history(period='730d', interval='1h')
+        key_data = key.history(period="730d", interval="1h")
         logging.info(f"Fetched {len(key_data)} rows of data for {symbol}")
         return key_data
     except Exception as e:
@@ -48,7 +48,9 @@ def get_contracts() -> list:
     """
     try:
         logging.info("Fetching Ethereum contracts from MongoDB...")
-        contracts_collection = get_mongo_collection(db_name='defi_db', collection_name='contracts')
+        contracts_collection = get_mongo_collection(
+            db_name="defi_db", collection_name="contracts"
+        )
         contracts_metadata = contracts_collection.find(
             {"blockchain": "ethereum"},
             {
@@ -57,8 +59,8 @@ def get_contracts() -> list:
                 "contract_address": 1,
                 "protocol_symbol": 1,
                 "type": 1,
-                "_id": 0
-            }
+                "_id": 0,
+            },
         )
         return contracts_metadata
     except Exception as e:
@@ -81,7 +83,7 @@ def fetch_prices():
             return
 
         for contract in contracts_metadata:
-            symbol = contract['protocol_symbol']
+            symbol = contract["protocol_symbol"]
             logging.info(f"Processing symbol: {symbol}")
 
             raw_data = fetch_ohlc_data(symbol)
@@ -92,7 +94,6 @@ def fetch_prices():
 
             load_data_to_mongodb(transformed_data)
             logging.info(f"Loaded transformed data to MongoDB for {symbol}")
-
 
     except Exception as e:
         logging.error(f"etl process failed: {e}")

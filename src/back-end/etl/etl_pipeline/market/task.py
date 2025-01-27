@@ -10,6 +10,7 @@ from ..mongodb_handler import get_mongo_database
 
 logger = logging.getLogger(__name__)
 
+
 def wrapped_enrich(args):
     """
     Wrapper function to enrich a protocol and update the shared counter.
@@ -44,7 +45,7 @@ def aggregation_task(start_date, end_date):
     :return: None
     :raise: Exception: If an error occurs during the database retrieval or task execution.
     """
-    db = get_mongo_database(db_name='defi_db')
+    db = get_mongo_database(db_name="defi_db")
     protocols = db.transactions.distinct("metadata.protocol_name")
     logger.info(f"Found {len(protocols)} protocols to process: {protocols}")
 
@@ -52,18 +53,22 @@ def aggregation_task(start_date, end_date):
         start_date = datetime.fromisoformat(start_date.replace("Z", "+00:00"))
     if isinstance(end_date, str):
         end_date = datetime.fromisoformat(end_date.replace("Z", "+00:00"))
-    logger.info(f"Enriching old_market collection for the period `{start_date}` to `{end_date}`.")
+    logger.info(
+        f"Enriching old_market collection for the period `{start_date}` to `{end_date}`."
+    )
 
     manager = multiprocessing.Manager()
-    counter = manager.Value('i', 0)
+    counter = manager.Value("i", 0)
     lock = manager.Lock()
 
     tasks = [(protocol, start_date, end_date, counter, lock) for protocol in protocols]
-    #tasks = [(protocol, start_date, end_date, counter, lock) for protocol in protocols if protocol == "NFTFI"]
+    # tasks = [(protocol, start_date, end_date, counter, lock) for protocol in protocols if protocol == "NFTFI"]
 
     logger.info("Launching multiprocessing pool...")
 
-    with tqdm(total=len(protocols), desc="Processing protocols", unit="protocol") as pbar:
+    with tqdm(
+        total=len(protocols), desc="Processing protocols", unit="protocol"
+    ) as pbar:
         with multiprocessing.Pool(processes=multiprocessing.cpu_count()) as pool:
             results = []
 

@@ -8,9 +8,9 @@ from .components import github_button
 
 
 def load_css():
-    css_path = os.path.join(os.path.dirname(__file__), 'styles.css')
+    css_path = os.path.join(os.path.dirname(__file__), "styles.css")
     with open(css_path) as f:
-        st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
+        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
 
 def app_layout():
@@ -18,54 +18,62 @@ def app_layout():
 
     st.set_page_config(
         page_title="SDA-MACHINE-LEARNING",
-        layout='wide',
+        layout="wide",
         initial_sidebar_state="auto",
     )
 
     load_css()
 
-    st.sidebar.markdown("# --- DeFi Ecosystem ---\n\n"
-                        " ## *'User Behavior Pattern Analysis in DeFi Applications'*\n")
+    st.sidebar.markdown(
+        "# --- DeFi Ecosystem ---\n\n"
+        " ## *'User Behavior Pattern Analysis in DeFi Applications'*\n"
+    )
 
-    page = st.sidebar.radio("Project_", ["#0 Introduction_",
-                                         "#1 Exploration_",
-                                         "#2 Feature Engineering_",
-                                         "#3 Page_",
-                                         "#4 Page_",
-                                         "#5 Page_",
-                                         "#6 Page_",
-                                         ])
-    col1, col2 = st.columns([6,4])
+    page = st.sidebar.radio(
+        "Project_",
+        [
+            "#0 Introduction_",
+            "#1 Exploration_",
+            "#2 Feature Engineering_",
+            "#3 Page_",
+            "#4 Page_",
+            "#5 Page_",
+            "#6 Page_",
+        ],
+    )
+    col1, col2 = st.columns([6, 4])
     with col1:
 
         st.markdown('<div class="title">DeFi Ecosystem</div>', unsafe_allow_html=True)
         st.markdown("#### *'User Behavior Pattern Analysis in DeFi Applications'* ")
-        col_a, col_b, col_c, col_d = st.columns ([1,4,4,2])
+        col_a, col_b, col_c, col_d = st.columns([1, 4, 4, 2])
 
         with col_a:
-            github_button('https://github.com/mriusero/defi-user-behavior-clustering')
+            github_button("https://github.com/mriusero/defi-user-behavior-clustering")
 
         with col_b:
             st.text("")
-            st.link_button('Kaggle Dataset',
-                           'https://www.kaggle.com/datasets/mariusayrault/defi-protocol-data-on-ethereum-2yr-23-to-24')
+            st.link_button(
+                "Kaggle Dataset",
+                "https://www.kaggle.com/datasets/mariusayrault/defi-protocol-data-on-ethereum-2yr-23-to-24",
+            )
 
         with col_c:
             st.text("")
-            st.link_button('Hugging Face Dataset',
-                           'https://huggingface.co/datasets/mriusero/DeFi-Protocol-Data-on-Ethereum-2023-2024')
+            st.link_button(
+                "Hugging Face Dataset",
+                "https://huggingface.co/datasets/mriusero/DeFi-Protocol-Data-on-Ethereum-2023-2024",
+            )
 
         with col_d:
             st.text("")
-            if st.button('👾'):
-                os.system('clear')
+            if st.button("👾"):
+                os.system("clear")
 
     with col2:
         st.text("")
         st.text("")
         st.text("")
-
-
 
     line_style = """
         <style>
@@ -100,6 +108,3 @@ def app_layout():
     st.sidebar.markdown("&nbsp;")
 
     gc.collect()
-
-
-

@@ -1,0 +1,46 @@
+name: Health Check
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+jobs:
+  test-streamlit:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install uv
+        uv sync
+
+    - name: Format code with Black # Formats the app.py file using the black code formatter through Poetry.
+      run: |
+        uv run black -- check src/
+        uv run black src/
+
+    - name: Lint code with Pylint # Performs linting on the app.py file using pylint. The --disable=R,C flag disables specific pylint checks.
+      run: |
+        uv run pylint --disable=R,C src/
+
+    - name: Verify Streamlit app runs
+      run: |
+        nohup streamlit run src/front-end/app.py --server.port 8501 --server.headless true &
+        sleep 10  
+        curl --fail http://localhost:8501/_stcore/health || exit 1
+
+    - name: Cleanup Streamlit process
+      run: |
+        pkill -f "streamlit"

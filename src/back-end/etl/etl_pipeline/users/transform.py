@@ -41,47 +41,53 @@ def transform_to_user_data(transactions: list) -> defaultdict:
         if isinstance(tx, str):
             tx = json.loads(tx)
 
-        from_address = tx['from']
-        to_address = tx['to']
-        value_eth = tx['value (ETH)']
-        timestamp = tx['timestamp']
-        gas_used = tx['gas_used']  # Extract gas used
-        protocol_name = tx.get('metadata', {}).get('protocol_name', None)
-        protocol_type = tx.get('metadata', {}).get('type', None)
-        protocol_blockchain = tx.get('metadata', {}).get('blockchain', None)
-        protocol_contract_id = tx.get('metadata', {}).get('contract_id', None)
+        from_address = tx["from"]
+        to_address = tx["to"]
+        value_eth = tx["value (ETH)"]
+        timestamp = tx["timestamp"]
+        gas_used = tx["gas_used"]  # Extract gas used
+        protocol_name = tx.get("metadata", {}).get("protocol_name", None)
+        protocol_type = tx.get("metadata", {}).get("type", None)
+        protocol_blockchain = tx.get("metadata", {}).get("blockchain", None)
+        protocol_contract_id = tx.get("metadata", {}).get("contract_id", None)
 
         def update_user(address, is_sender):
             user = users_data[address]
-            if user['address'] is None:
-                user['address'] = address
-            user['last_seen'] = max(user['last_seen'], timestamp) if user['last_seen'] else timestamp
-            user['first_seen'] = min(user['first_seen'], timestamp) if user['first_seen'] else timestamp
+            if user["address"] is None:
+                user["address"] = address
+            user["last_seen"] = (
+                max(user["last_seen"], timestamp) if user["last_seen"] else timestamp
+            )
+            user["first_seen"] = (
+                min(user["first_seen"], timestamp) if user["first_seen"] else timestamp
+            )
             if is_sender:
-                user['sent_count'] += 1
-                user['total_sent (ETH)'] += value_eth
+                user["sent_count"] += 1
+                user["total_sent (ETH)"] += value_eth
             else:
-                user['received_count'] += 1
-                user['total_received (ETH)'] += value_eth
+                user["received_count"] += 1
+                user["total_received (ETH)"] += value_eth
             if protocol_name:
-                protocols = user['protocols_used'][protocol_name]
-                protocols['count'] += 1
-                protocols['blockchain'] = protocol_blockchain
-                protocols['contract_id'] = protocol_contract_id
+                protocols = user["protocols_used"][protocol_name]
+                protocols["count"] += 1
+                protocols["blockchain"] = protocol_blockchain
+                protocols["contract_id"] = protocol_contract_id
             if protocol_type:
-                user['protocol_types'][protocol_type] += 1
+                user["protocol_types"][protocol_type] += 1
 
-            user['transactions'].append({
-                "transaction_hash": tx['transaction_hash'],
-                "timestamp": timestamp,
-                "value (ETH)": value_eth,
-                "is_sender": is_sender,
-                "gas_used": gas_used,
-                "protocol_name": protocol_name,
-                "protocol_type": protocol_type,
-                "blockchain": protocol_blockchain,
-                "contract_id": protocol_contract_id,
-            })
+            user["transactions"].append(
+                {
+                    "transaction_hash": tx["transaction_hash"],
+                    "timestamp": timestamp,
+                    "value (ETH)": value_eth,
+                    "is_sender": is_sender,
+                    "gas_used": gas_used,
+                    "protocol_name": protocol_name,
+                    "protocol_type": protocol_type,
+                    "blockchain": protocol_blockchain,
+                    "contract_id": protocol_contract_id,
+                }
+            )
 
         update_user(from_address, is_sender=True)
         update_user(to_address, is_sender=False)

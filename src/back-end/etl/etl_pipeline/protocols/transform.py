@@ -1,5 +1,6 @@
 import hashlib
 
+
 def generate_protocol_id(name):
     """
     Generate a unique protocol_id based on the protocol name.
@@ -8,8 +9,12 @@ def generate_protocol_id(name):
     :return:
         str: A unique protocol_id.
     """
-    normalized_name = name.strip().lower()                                  # Normalize the name (lowercase and strip whitespace)
-    protocol_id = hashlib.md5(normalized_name.encode()).hexdigest()         # Generate a hash from the normalized name
+    normalized_name = (
+        name.strip().lower()
+    )  # Normalize the name (lowercase and strip whitespace)
+    protocol_id = hashlib.md5(
+        normalized_name.encode()
+    ).hexdigest()  # Generate a hash from the normalized name
 
     return protocol_id
 

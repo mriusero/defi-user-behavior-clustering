@@ -19,17 +19,19 @@ def precompute_protocol_ranges(db):
     :return: A dictionary with protocol names as keys and (min_date, max_date) as values.
     """
     ranges = {}
-    protocol_data = db['market_enriched'].aggregate([
-        {
-            "$group": {
-                "_id": "$protocol_name",
-                "min_date": {"$min": "$timestamp"},
-                "max_date": {"$max": "$timestamp"}
+    protocol_data = db["market_enriched"].aggregate(
+        [
+            {
+                "$group": {
+                    "_id": "$protocol_name",
+                    "min_date": {"$min": "$timestamp"},
+                    "max_date": {"$max": "$timestamp"},
+                }
             }
-        }
-    ])
+        ]
+    )
     for protocol in protocol_data:
-        ranges[protocol['_id']] = (protocol['min_date'], protocol['max_date'])
+        ranges[protocol["_id"]] = (protocol["min_date"], protocol["max_date"])
     return ranges
 
 
@@ -41,10 +43,10 @@ def load_market_data(db):
     :return: A dictionary with protocol names as keys and their respective market data.
     """
     market_data = {}
-    cursor = db['market_enriched'].find({})
+    cursor = db["market_enriched"].find({})
     for document in cursor:
-        protocol_name = document['protocol_name']
-        timestamp = document['timestamp']
+        protocol_name = document["protocol_name"]
+        timestamp = document["timestamp"]
         market_data.setdefault(protocol_name, SortedDict())[timestamp] = document
     return market_data
 
@@ -60,7 +62,11 @@ def find_closest_timestamp(sorted_dict, target_timestamp):
         return keys[-1]
     before = keys[pos - 1]
     after = keys[pos]
-    return before if abs(before - target_timestamp) <= abs(after - target_timestamp) else after
+    return (
+        before
+        if abs(before - target_timestamp) <= abs(after - target_timestamp)
+        else after
+    )
 
 
 def wrapped_tasks(args):
@@ -84,9 +90,9 @@ def wrapped_tasks(args):
 
         transactions_with_market_data = []
 
-        for transaction in user.get('transactions', []):
-            transaction_timestamp = transaction['timestamp']
-            protocol_name = transaction['protocol_name']
+        for transaction in user.get("transactions", []):
+            transaction_timestamp = transaction["timestamp"]
+            protocol_name = transaction["protocol_name"]
 
             if protocol_name in protocol_ranges:
                 min_date, max_date = protocol_ranges[protocol_name]
@@ -94,61 +100,67 @@ def wrapped_tasks(args):
                 if not (min_date <= transaction_timestamp <= max_date):
                     continue
 
-                protocol_market_data = market_data_cache.get(protocol_name, SortedDict())
-                closest_timestamp = find_closest_timestamp(protocol_market_data, transaction_timestamp)
+                protocol_market_data = market_data_cache.get(
+                    protocol_name, SortedDict()
+                )
+                closest_timestamp = find_closest_timestamp(
+                    protocol_market_data, transaction_timestamp
+                )
                 market_data = protocol_market_data[closest_timestamp]
             else:
-                market_data = {'market_data': 'Protocol not found'}
+                market_data = {"market_data": "Protocol not found"}
 
             transaction_with_market_data = {
-                "transaction_hash": transaction['transaction_hash'],
+                "transaction_hash": transaction["transaction_hash"],
                 "timestamp": transaction_timestamp,
-                "value_eth": transaction['value (ETH)'],
+                "value_eth": transaction["value (ETH)"],
                 "protocol_name": protocol_name,
-                "protocol_type": transaction['protocol_type'],
-                "gas_used": transaction['gas_used'],
-                "market_data": market_data
+                "protocol_type": transaction["protocol_type"],
+                "gas_used": transaction["gas_used"],
+                "market_data": market_data,
             }
 
             transactions_with_market_data.append(transaction_with_market_data)
 
         dataset_document = {
-            'user_id': user['_id'],
-            'user_address': user['address'],
-            'first_seen': user['first_seen'],
-            'last_seen': user['last_seen'],
-            'protocol_types': user['protocol_types'],
-            'protocols_used': user['protocols_used'],
-            'received_count': user['received_count'],
-            'sent_count': user['sent_count'],
-            'total_received (ETH)': user['total_received (ETH)'],
-            'total_sent (ETH)': user['total_sent (ETH)'],
-            'transactions': transactions_with_market_data
+            "user_id": user["_id"],
+            "user_address": user["address"],
+            "first_seen": user["first_seen"],
+            "last_seen": user["last_seen"],
+            "protocol_types": user["protocol_types"],
+            "protocols_used": user["protocols_used"],
+            "received_count": user["received_count"],
+            "sent_count": user["sent_count"],
+            "total_received (ETH)": user["total_received (ETH)"],
+            "total_sent (ETH)": user["total_sent (ETH)"],
+            "transactions": transactions_with_market_data,
         }
 
-        dataset_updates.append(UpdateOne(
-            {'user_id': user['_id']},
-            {'$set': dataset_document},
-            upsert=True
-        ))
+        dataset_updates.append(
+            UpdateOne({"user_id": user["_id"]}, {"$set": dataset_document}, upsert=True)
+        )
 
         with lock:
             counter.value += 1
 
     if dataset_updates:
         BATCH_SIZE = 5000
-        for i in tqdm(range(0, len(dataset_updates), BATCH_SIZE), desc="Updating dataset"):
+        for i in tqdm(
+            range(0, len(dataset_updates), BATCH_SIZE), desc="Updating dataset"
+        ):
             try:
                 # Essayer d'effectuer un bulk_write sur tout le batch
-                db['dataset'].bulk_write(dataset_updates[i:i + BATCH_SIZE], ordered=False)
+                db["dataset"].bulk_write(
+                    dataset_updates[i : i + BATCH_SIZE], ordered=False
+                )
             except Exception as e:
                 if "BSONObjectTooLarge" in str(e):
                     # L'erreur est liée à un document trop volumineux
                     # Nous devons identifier le document fautif
-                    for update in dataset_updates[i:i + BATCH_SIZE]:
+                    for update in dataset_updates[i : i + BATCH_SIZE]:
                         try:
                             # Essayer d'ajouter chaque document individuellement
-                            db['dataset'].bulk_write([update], ordered=False)
+                            db["dataset"].bulk_write([update], ordered=False)
                         except Exception as inner_e:
                             if "BSONObjectTooLarge" in str(inner_e):
                                 # Créer un identifiant unique pour le fichier
@@ -157,10 +169,14 @@ def wrapped_tasks(args):
 
                                 # Extraire les données du document à partir de l'opération UpdateOne ou InsertOne
                                 document_to_save = None
-                                if hasattr(update, 'update') and update.update:
-                                    document_to_save = update.update  # C'est une mise à jour
-                                elif hasattr(update, 'document') and update.document:
-                                    document_to_save = update.document  # C'est une insertion
+                                if hasattr(update, "update") and update.update:
+                                    document_to_save = (
+                                        update.update
+                                    )  # C'est une mise à jour
+                                elif hasattr(update, "document") and update.document:
+                                    document_to_save = (
+                                        update.document
+                                    )  # C'est une insertion
 
                                 if document_to_save:
                                     # Enregistrer le document fautif dans un fichier JSON
@@ -168,7 +184,9 @@ def wrapped_tasks(args):
                                         json.dump(document_to_save, f, indent=4)
                                         f.write("\n")
 
-                                    print(f"Document trop volumineux, enregistré dans '{filename}'.")
+                                    print(
+                                        f"Document trop volumineux, enregistré dans '{filename}'."
+                                    )
                             else:
                                 # Si l'erreur n'est pas liée à la taille, la relancer
                                 raise inner_e

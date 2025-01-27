@@ -1,5 +1,9 @@
 import streamlit as st
-def github_button(url, logo_url="https://github.githubassets.com/favicons/favicon-dark.png"):
+
+
+def github_button(
+    url, logo_url="https://github.githubassets.com/favicons/favicon-dark.png"
+):
     button_style = f"""
         <style>
         .github-button {{

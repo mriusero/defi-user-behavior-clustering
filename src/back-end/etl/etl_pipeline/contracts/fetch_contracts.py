@@ -12,8 +12,12 @@ def generate_contract_id(adress):
     :return:
         str: A unique protocol_id.
     """
-    normalized_name = adress.strip().lower()                                  # Normalize the name (lowercase and strip whitespace)
-    contract_id = hashlib.md5(normalized_name.encode()).hexdigest()           # Generate a hash from the normalized name
+    normalized_name = (
+        adress.strip().lower()
+    )  # Normalize the name (lowercase and strip whitespace)
+    contract_id = hashlib.md5(
+        normalized_name.encode()
+    ).hexdigest()  # Generate a hash from the normalized name
 
     return contract_id
 
@@ -31,18 +35,20 @@ def deduct_contracts():
     """
 
     # Set up logging configuration
-    logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+    logging.basicConfig(
+        level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
+    )
 
     logging.info("Starting contract extraction and insertion process.")
 
     try:
         protocols_collection = get_mongo_collection(
-            db_name='defi_db',
-            collection_name='protocols',
+            db_name="defi_db",
+            collection_name="protocols",
         )
         contracts_collection = get_mongo_collection(
-            db_name='defi_db',
-            collection_name='contracts',
+            db_name="defi_db",
+            collection_name="contracts",
         )
 
         # Retrieve all protocols from the collection
@@ -62,7 +68,9 @@ def deduct_contracts():
                 contract_address = blockchain_contract["contract"]
 
                 contract_document = {
-                    "contract_id": generate_contract_id(contract_address),  # Generate the ID for the contract
+                    "contract_id": generate_contract_id(
+                        contract_address
+                    ),  # Generate the ID for the contract
                     "contract_address": contract_address,
                     "protocol_name": name,
                     "protocol_id": protocol_id,
@@ -76,13 +84,17 @@ def deduct_contracts():
                 result = contracts_collection.update_one(
                     {"contract_id": generate_contract_id(contract_address)},
                     {"$setOnInsert": contract_document},
-                    upsert=True
+                    upsert=True,
                 )
 
                 if result.upserted_id:
-                    logging.info(f"Contract {contract_address} on {blockchain} added to the 'contracts' collection.")
+                    logging.info(
+                        f"Contract {contract_address} on {blockchain} added to the 'contracts' collection."
+                    )
                 else:
-                    logging.info(f"Contract {contract_address} already exists in the 'contracts' collection.")
+                    logging.info(
+                        f"Contract {contract_address} already exists in the 'contracts' collection."
+                    )
 
         logging.info("Contracts collection has been fully processed.")
 
