@@ -47,13 +47,13 @@ def app_layout():
 
         with col_b:
             st.text("")
-            st.link_button('Something',
-                           'https://www.something.com')
+            st.link_button('Kaggle Dataset',
+                           'https://www.kaggle.com/datasets/mariusayrault/defi-protocol-data-on-ethereum-2yr-23-to-24')
 
         with col_c:
             st.text("")
-            st.link_button('Something',
-                           'https://www.something.com')
+            st.link_button('Hugging Face Dataset',
+                           'https://huggingface.co/datasets/mriusero/DeFi-Protocol-Data-on-Ethereum-2023-2024')
 
         with col_d:
             st.text("")
