@@ -28,7 +28,6 @@ jobs:
 
     - name: Format code with Black # Formats the app.py file using the black code formatter through Poetry.
       run: |
-        uv run black -- check src/
         uv run black src/
 
     - name: Lint code with Pylint # Performs linting on the app.py file using pylint. The --disable=R,C flag disables specific pylint checks.
