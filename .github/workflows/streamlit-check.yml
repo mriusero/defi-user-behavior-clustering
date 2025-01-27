@@ -28,6 +28,6 @@ jobs:
 
     - name: Verify Streamlit app runs
       run: |
-        streamlit run app.py --server.headless true &
+        streamlit run src/front-end/app.py --server.headless true &
         sleep 5  # Attendre que l'application démarre
         curl -f http://localhost:8501 || exit 1
