@@ -1,0 +1,40 @@
+# Ignore environment-specific configuration files
+.venv
+*.env
+
+# Ignore version control files and folders
+.git
+.github
+.gitignore
+
+# Ignore compiled Python files
+**/__pycache__/
+**/*.pyc
+**/*.pyo
+
+# Outputs and generated files
+LICENSE
+README.md
+docs/
+logs/
+notebooks/
+scripts/
+src/tests/
+src/backend/etl/
+
+# Ignore cache folders
+**/.mypy_cache/
+**/.pytest_cache/
+**/.cache/
+
+# Ignore logs and other temporary files
+*.log
+*.tmp
+
+# Ignore IDE/editor-specific files
+.vscode/
+.idea/
+
+# Ignore system-generated files
+.DS_Store
+Thumbs.db
