@@ -16,9 +16,16 @@ Dataset available on :
 
 To trigger pipeline:
 ```bash
-uv run src/etl/main.py
+uv run src/back-end/etl/main.py
 ```
 
 ---
 ## Step 2 : Data Preprocessing
+
+
+ ```bash
+ streamlit run src/front-end/app.py
+ ```
+
+...
 > Work in progress
