@@ -26,6 +26,7 @@ uv run src/back-end/etl/main.py
  ```bash
  streamlit run src/front-end/app.py
  ```
+> CI test
 
-...
+
 > Work in progress
