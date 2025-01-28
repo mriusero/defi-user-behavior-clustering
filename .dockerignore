@@ -22,6 +22,10 @@ scripts/
 src/tests/
 src/backend/etl/
 
+# Data files
+data/processed
+data/raw
+
 # Ignore cache folders
 **/.mypy_cache/
 **/.pytest_cache/
