@@ -5,7 +5,7 @@ from multiprocessing import Pool, cpu_count
 from pymongo import UpdateOne
 from tqdm import tqdm
 
-from ..mongodb_handler import get_mongo_collection
+from src.backend.db.mongodb_handler import get_mongo_collection
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)

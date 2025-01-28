@@ -3,7 +3,7 @@ import yfinance as yf
 from rich.console import Console
 from rich.table import Table
 
-from ..mongodb_handler import get_mongo_collection
+from src.backend.db.mongodb_handler import get_mongo_collection
 from .transform import transform_ohlc_data
 from .load import load_data_to_mongodb
 

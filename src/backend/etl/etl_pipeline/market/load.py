@@ -2,7 +2,7 @@ import pandas as pd
 from pymongo import UpdateOne, ASCENDING
 import logging
 
-from ..mongodb_handler import get_mongo_collection
+from src.backend.db.mongodb_handler import get_mongo_collection
 
 logger = logging.getLogger(__name__)
 

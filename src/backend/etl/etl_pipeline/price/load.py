@@ -1,7 +1,7 @@
 import logging
 from pymongo import UpdateOne
 
-from ..mongodb_handler import get_mongo_collection
+from src.backend.db.mongodb_handler import get_mongo_collection
 
 
 def load_data_to_mongodb(data: list):
