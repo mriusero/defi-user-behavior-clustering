@@ -16,6 +16,7 @@ dependencies = [
     "python-dotenv>=1.0.1",
     "requests>=2.32.3",
     "rich>=13.9.4",
+    "scikit-learn>=1.6.1",
     "seaborn>=0.13.2",
     "streamlit>=1.41.1",
     "tqdm>=4.67.1",

@@ -25,6 +25,7 @@ src/backend/etl/
 # Data files
 data/processed
 data/raw
+data/features
 
 # Ignore cache folders
 **/.mypy_cache/
