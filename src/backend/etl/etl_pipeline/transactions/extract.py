@@ -6,7 +6,7 @@ import requests
 
 from .load import upsert_transactions
 from ..config import ETH_API_KEY
-from ..mongodb_handler import get_mongo_collection
+from src.backend.db.mongodb_handler import get_mongo_collection
 from ..utils import get_block_by_timestamp
 
 

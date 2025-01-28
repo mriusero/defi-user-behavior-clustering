@@ -18,7 +18,6 @@ __pycache__/
 .env
 
 # Jupyter
-.ipynb_checkpoints/
 *.ipynb_checkpoints/
 
 # Logs
@@ -26,3 +25,4 @@ __pycache__/
 
 # Data
 data/raw
+data/processed

@@ -1,13 +1,12 @@
 import logging
 import multiprocessing
-from pymongo import MongoClient
-from multiprocessing import Pool, Manager
+from multiprocessing import Manager
 from concurrent.futures import ThreadPoolExecutor
 from tqdm import tqdm
 from itertools import islice
 
 from .wrapped_task import precompute_protocol_ranges, load_market_data, wrapped_tasks
-from ..mongodb_handler import get_mongo_database
+from src.backend.db.mongodb_handler import get_mongo_database
 
 logger = logging.getLogger(__name__)
 

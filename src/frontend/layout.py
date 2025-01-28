@@ -5,6 +5,7 @@ import streamlit as st
 
 
 from .components import github_button
+from ..backend.core.utils import data_loading
 
 
 def load_css():
@@ -17,7 +18,8 @@ def app_layout():
     from .layouts import page_0, page_1, page_2, page_3, page_4, page_5, page_6
 
     st.set_page_config(
-        page_title="SDA-MACHINE-LEARNING",
+        page_title="DeFI Behavior",
+        page_icon="random",
         layout="wide",
         initial_sidebar_state="auto",
     )
@@ -25,7 +27,7 @@ def app_layout():
     load_css()
 
     st.sidebar.markdown(
-        "# --- DeFi Ecosystem ---\n\n"
+        "# --- DeFi Behavior ---\n\n"
         " ## *'User Behavior Pattern Analysis in DeFi Applications'*\n"
     )
 
@@ -44,9 +46,9 @@ def app_layout():
     col1, col2 = st.columns([6, 4])
     with col1:
 
-        st.markdown('<div class="title">DeFi Ecosystem</div>', unsafe_allow_html=True)
+        st.markdown('<div class="title">DeFi Behavior</div>', unsafe_allow_html=True)
         st.markdown("#### *'User Behavior Pattern Analysis in DeFi Applications'* ")
-        col_a, col_b, col_c, col_d = st.columns([1, 4, 4, 2])
+        col_a, col_b, col_c, col_d = st.columns([1, 2, 2, 2])
 
         with col_a:
             github_button("https://github.com/mriusero/defi-user-behavior-clustering")
@@ -54,26 +56,27 @@ def app_layout():
         with col_b:
             st.text("")
             st.link_button(
-                "Kaggle Dataset",
+                "🪿  Kaggle Dataset",
                 "https://www.kaggle.com/datasets/mariusayrault/defi-protocol-data-on-ethereum-2yr-23-to-24",
             )
 
         with col_c:
             st.text("")
-            st.link_button(
-                "Hugging Face Dataset",
-                "https://huggingface.co/datasets/mriusero/DeFi-Protocol-Data-on-Ethereum-2023-2024",
-            )
+            if st.button("🌊 Clear cache"):
+                st.cache_data.clear()
+
 
         with col_d:
             st.text("")
-            if st.button("👾"):
+            if st.button("👾 Clear output"):
                 os.system("clear")
 
     with col2:
         st.text("")
         st.text("")
         st.text("")
+        st.write("###### ⚡️ Data download")
+        data_loading(['users', 'transactions', 'market', 'contracts'])
 
     line_style = """
         <style>

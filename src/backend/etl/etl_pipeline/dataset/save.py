@@ -1,12 +1,10 @@
-import os
-
 import pandas as pd
 import pyarrow.parquet as pq
 import pyarrow as pa
 import logging
 import json
 
-from ..mongodb_handler import get_mongo_collection, get_mongo_client
+from src.backend.db.mongodb_handler import get_mongo_collection, get_mongo_client
 
 logger = logging.getLogger(__name__)
 

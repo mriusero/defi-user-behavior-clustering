@@ -1,6 +1,6 @@
 import pandas as pd
 from tqdm import tqdm
-from ..mongodb_handler import get_mongo_collection
+from src.backend.db.mongodb_handler import get_mongo_collection
 
 
 def aggregate_transactions(df, time_delta=None):

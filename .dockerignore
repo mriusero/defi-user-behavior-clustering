@@ -22,10 +22,15 @@ scripts/
 src/tests/
 src/backend/etl/
 
+# Data files
+data/processed
+data/raw
+
 # Ignore cache folders
 **/.mypy_cache/
 **/.pytest_cache/
 **/.cache/
+*.ipynb_checkpoints/
 
 # Ignore logs and other temporary files
 *.log
