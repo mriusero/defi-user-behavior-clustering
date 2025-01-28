@@ -28,7 +28,7 @@ def data_loading(files_list, base_path='mariusayrault/defi-protocol-data-on-ethe
             progress_bar.progress((index + 1) / total_files)
 
         ## ====== Data cast ====== ##
-        for key, df in dataframes.items():
+        for _, df in dataframes.items():
 
             ## ====== Timestamp conversion ====== ##
             if 'timestamp' in df.columns:
@@ -47,4 +47,4 @@ def data_loading(files_list, base_path='mariusayrault/defi-protocol-data-on-ethe
             elif 'address' in df.columns:
                 df['address'] = df['address'].astype(str)
 
-            st.session_state['dataframes'][key] = dataframes
+            st.session_state['dataframes'] = dataframes
