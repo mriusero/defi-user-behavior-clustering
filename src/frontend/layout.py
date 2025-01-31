@@ -37,7 +37,7 @@ def app_layout():
             "#0 Introduction_",
             "#1 Exploration_",
             "#2 Feature Engineering_",
-            "#3 Page_",
+            "#3 Statistics_",
             "#4 Page_",
             "#5 Page_",
             "#6 Page_",
@@ -99,7 +99,7 @@ def app_layout():
         page_1()
     elif page == "#2 Feature Engineering_":
         page_2()
-    elif page == "#3 Page_":
+    elif page == "#3 Statistics_":
         page_3()
     elif page == "#4 Page_":
         page_4()
