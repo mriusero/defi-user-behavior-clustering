@@ -77,6 +77,11 @@ def page_2():
     - `total_high_value_exposure`: Exposure to high-value transactions on protocols.
         """)
 
+    st.markdown("""
+> If feature engineering is not done yet, please click the button below to launch the feature engineering process.   
+>This will will generate the features from the raw data (`users`, `transactions`, `market`, `contracts`) and save them to a parquet file.
+    """)
+
     if st.button("Launch feature engineering"):
         implement_features()
 
