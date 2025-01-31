@@ -3,7 +3,6 @@ import pandas as pd
 from typing import Dict
 
 
-from ..helper.splitting import split_dataframe
 
 def clean_column_names(df: pd.DataFrame) -> pd.DataFrame:
     """Normalize column names to snake_case and remove parentheses."""
