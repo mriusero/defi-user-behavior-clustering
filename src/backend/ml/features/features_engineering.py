@@ -196,13 +196,8 @@ def implement_features() -> None:
     merged_df = merged_df.fillna(0)
     progress_bar.progress(80)
 
-    dataset = split_dataframe(merged_df, random_state=42)                                    # 5 - Split
-    base_path = 'data/features/'
-
-    with st.spinner("Saving features..."):                                  # 6 - Save
-        dataset['train'].to_parquet(f'{base_path}' + 'train.parquet')
-        dataset['validation'].to_parquet(f'{base_path}' + 'validation.parquet')
-        dataset['test'].to_parquet(f'{base_path}' + 'test.parquet')
+    merged_df.to_parquet('data/features/features.parquet')                              # 5 - Save
+    st.session_state['dataframes']['features'] = merged_df
 
     progress_bar.progress(100)
 

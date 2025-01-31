@@ -80,19 +80,18 @@ def page_2():
     if st.button("Launch feature engineering"):
         implement_features()
 
-    if st.session_state.get('features') is None:
-        features = pd.read_parquet('data/features/train.parquet', engine='pyarrow')
-        st.session_state['features'] = features
+    if 'features' not in st.session_state.get('dataframes', {}):
+        features = pd.read_parquet('data/features/features.parquet', engine='pyarrow')
+    else:
+        features = st.session_state['dataframes']['features']
 
-    features = st.session_state['features']
-
-    viz = DataVisualizer(features)
+    viz = DataVisualizer(features.sample(10000))
 
     col1, col2 = st.columns([1, 2])
     with col1:
-        st.write('Train set columns:', features.columns.tolist())
+        st.write('### Features:', features.columns.tolist())
         viz.missing_data()
     with col2:
-        st.write('Train set :', features.sample(10000))
-        st.write('Train set description :', features.describe())
+        st.write('### Features sample:', features.sample(10000))
+        st.write('### Features description:', features.describe())
         viz.plot_correlation_heatmap()
