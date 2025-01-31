@@ -4,52 +4,95 @@ Decentralized finance (DeFi) has emerged as a significant sector within the bloc
 
 ---
 # About Dataset
-This dataset include several steps involved in preparing the dataset for analyzing decentralized finance (DeFi) protocols and transactions. The process to build it includes selecting DeFi protocols, extracting relevant contract data, collecting transaction information, and analyzing market trends. The dataset enables a comprehensive analysis of user behavior, protocol usage, transaction dynamics, and market performance on Ethereum blockchain.
+This dataset encompasses several steps involved in preparing data to analyze decentralized finance (DeFi) protocols and transactions. The process of building the dataset involves collecting data from various DeFi protocols, extracting relevant contract data, gathering transaction information, and aggregating market data. The final dataset, which contains 62 features, integrates data from four primary sources: `users.parquet`, `contracts.parquet`, `market.parquet`, and `transactions.parquet`. This combined dataset enables a comprehensive analysis of user behavior, protocol usage, transaction dynamics, and market performance within the Ethereum blockchain ecosystem.
+
+Each of these four files serves a distinct purpose and is carefully structured to facilitate deeper insights into the DeFi landscape:
 
     ├── contracts.parquet         # Contains contract details for selected DeFi protocols.
     ├── transactions.parquet      # Contains transaction data for Ethereum-based contracts.
     ├── market.parquet            # Contains enriched market data with aggregated transaction metrics.
     └── users.parquet             # User profiles based on transaction data.
 
-Each file serves a distinct purpose in facilitating analysis of the DeFi ecosystem.
+Together, these datasets are used to calculate 62 distinct features, which represent key aspects of user behavior, interaction with protocols, transaction volumes, market dynamics, and more.
 
+---
 #### Timeframe:
 * Start: `2022-12-31T22:59:59.000Z`   
 * End: `2024-12-30T23:00:11.000Z`
 
----
-
-## Objectives
-
-### `users.parquet`
-This file focuses on user-level data and is aimed at answering questions related to user behavior, activity trends, and protocol interactions. Potential use cases include:
-- Analyzing the lifecycle of user activity in DeFi.
-- Identifying power users or dormant users.
-- Mapping the interaction between users and various protocols.
+#### Splitting (random_state = 42)
+- `train` : 0.7
+- `test` : 0.15
+- `validation` : 0.15
 
 ---
+# Features
+#### 1. General Information
+- `address`: Unique address of the user on the blockchain.
 
-### `market.parquet`
-This file aggregates market-related data over time intervals, offering insights into protocol performance and market dynamics. Objectives include:
-- Understanding market trends across DeFi protocols and tokens.
-- Analyzing trading volumes, transaction activity, and price fluctuations.
-- Identifying periods of high or low activity for specific tokens or protocols.
+#### 2. Transaction Activity
+- `received_count`: Total number of transactions received.
+- `total_received_eth`: Total amount of ETH received.
+- `sent_count`: Total number of transactions sent.
+- `total_sent_eth`: Total amount of ETH sent.
 
----
+#### 3. Types of Interaction with Protocols
+- `type_dex`: Indicates whether the user interacts with DEXs (Decentralized Exchanges).
+- `type_lending`: Indicates whether the user interacts with lending protocols.
+- `type_stablecoin`: Indicates whether the user interacts with stablecoins.
+- `type_yield_farming`: Indicates whether the user participates in yield farming.
+- `type_nft_fi`: Indicates whether the user interacts with NFT-Fi protocols.
 
-### `transactions.parquet`
-This file provides granular transaction-level data, which is crucial for understanding the flow of assets within the DeFi ecosystem. Applications include:
-- Tracing the movement of funds between addresses.
-- Analyzing transaction costs (gas) and failure rates.
-- Identifying anomalous or fraudulent transactions.
+#### 4. Engagement with Specific Protocols
+(Number of transactions made on each protocol)
+- `curve_dao_count`
+- `aave_count`
+- `tether_count`
+- `uniswap_count`
+- `maker_count`
+- `yearn_finance_count`
+- `usdc_count`
+- `dai_count`
+- `balancer_count`
+- `harvest_finance_count`
+- `nftfi_count`
 
----
+#### 5. User Diversity and Influence
+- `protocol_type_diversity`: Number of different protocol types used by the user.
+- `protocol_name_diversity`: Number of unique protocols used by the user.
+- `net_flow_eth`: Difference between ETH sent and ETH received.
+- `whale_score`: A score indicating whether the user is a large fund holder.
 
-### `contracts.parquet`
-This file documents details about the smart contracts associated with various DeFi protocols. It supports:
-- Categorizing contracts by protocol, type, and use case.
-- Analyzing the adoption of specific contract standards (e.g., ERC-20, ERC-721).
-- Exploring the relationship between contract attributes and protocol performance.
+#### 6. Sent Transaction Statistics
+(Minimum, average, median, maximum values, and standard deviations)
+- `min_sent_eth`, `avg_sent_eth`, `med_sent_eth`, `max_sent_eth`, `std_sent_eth`: Statistics on amounts sent in ETH.
+- `min_sent_gas`, `avg_sent_gas`, `med_sent_gas`, `max_sent_gas`, `std_sent_gas`: Statistics on gas used for sent transactions.
+- `avg_gas_efficiency_sent`: Average gas efficiency for sent transactions.
+- `peak_hour_sent`: Time of day when the user sends the most transactions.
+- `peak_count_sent`: Maximum number of transactions sent during a given hour.
+- `tx_frequency_sent`: Average frequency of sent transactions.
+
+#### 7. Received Transaction Statistics
+(Same structure as for sent transactions)
+- `min_received_eth`, `avg_received_eth`, `med_received_eth`, `max_received_eth`, `std_received_eth`: Statistics on amounts received in ETH.
+- `min_received_gas`, `avg_received_gas`, `med_received_gas`, `max_received_gas`, `std_received_gas`: Statistics on gas used for received transactions.
+- `avg_gas_efficiency_received`: Average gas efficiency for received transactions.
+- `peak_hour_received`: Time of day when the user receives the most transactions.
+- `peak_count_received`: Maximum number of transactions received during a given hour.
+- `tx_frequency_received`: Average frequency of received transactions.
+
+#### 8. Exposure to Market Protocols
+(Evaluation of the user's risk and influence based on the market)
+- `total_volume_exposure`: Total exposure to the transaction volume of protocols.
+- `total_volatility_exposure`: Exposure to price volatility of protocols.
+- `total_gas_exposure`: Exposure to the average gas costs on used protocols.
+- `total_error_exposure`: Exposure to transaction errors of protocols.
+- `total_liquidity_exposure`: Exposure to protocol liquidity.
+- `total_activity_exposure`: Exposure to global transaction activity of protocols.
+- `total_user_adoption_exposure`: Exposure to the number of active users on protocols.
+- `total_gas_volatility_exposure`: Exposure to gas volatility used on protocols.
+- `total_error_volatility_exposure`: Exposure to the variability of transaction errors.
+- `total_high_value_exposure`: Exposure to high-value transactions on protocols.
 
 ---
 ## Conclusion
@@ -68,11 +111,14 @@ Tools used in this process:
 Code is available on [GitHub](https://github.com/mriusero/defi-user-behavior-clustering) and the ETL process is explained [here](https://github.com/mriusero/defi-user-behavior-clustering/blob/main/docs/etl_pipeline_flow.md).
 
 ---
-# Variables Descriptions
+## Subsets
 
-## `users.parquet`
-This dataset contains information about user activities and transactions. The variables are:
-
+### `users.parquet`
+This file focuses on user-level data and is aimed at answering questions related to user behavior, activity trends, and protocol interactions. Potential use cases include:
+- Analyzing the lifecycle of user activity in DeFi.
+- Identifying power users or dormant users.
+- Mapping the interaction between users and various protocols.
+---
 - **`address`** *(string)*: The wallet address of the user.
 - **`first_seen`** *(datetime)*: The first recorded activity of the user.
 - **`last_seen`** *(datetime)*: The most recent activity of the user.
@@ -86,9 +132,12 @@ This dataset contains information about user activities and transactions. The va
 
 ---
 
-## `market.parquet`
-This dataset contains market-related data aggregated over specific time intervals. The variables are:
-
+### `market.parquet`
+This file aggregates market-related data over time intervals, offering insights into protocol performance and market dynamics. Objectives include:
+- Understanding market trends across DeFi protocols and tokens.
+- Analyzing trading volumes, transaction activity, and price fluctuations.
+- Identifying periods of high or low activity for specific tokens or protocols.
+---
 - **`timestamp`** *(datetime)*: The time when the data was recorded.
 - **`blockchain`** *(string)*: The blockchain network (e.g., Ethereum, Binance Smart Chain).
 - **`protocol_name`** *(string)*: The name of the protocol associated with the data.
@@ -119,9 +168,12 @@ This dataset contains market-related data aggregated over specific time interval
 
 ---
 
-## `transactions.parquet`
-This dataset contains individual transaction-level data. The variables are:
-
+### `transactions.parquet`
+This file provides granular transaction-level data, which is crucial for understanding the flow of assets within the DeFi ecosystem. Applications include:
+- Tracing the movement of funds between addresses.
+- Analyzing transaction costs (gas) and failure rates.
+- Identifying anomalous or fraudulent transactions.
+---
 - **`timestamp`** *(datetime)*: The time when the transaction occurred.
 - **`transaction_hash`** *(string)*: The unique hash identifying the transaction.
 - **`from`** *(string)*: The sender's wallet address.
@@ -135,9 +187,12 @@ This dataset contains individual transaction-level data. The variables are:
 
 ---
 
-## `contracts.parquet`
-This dataset contains information about blockchain contracts. The variables are:
-
+### `contracts.parquet`
+This file documents details about the smart contracts associated with various DeFi protocols. It supports:
+- Categorizing contracts by protocol, type, and use case.
+- Analyzing the adoption of specific contract standards (e.g., ERC-20, ERC-721).
+- Exploring the relationship between contract attributes and protocol performance.
+---
 - **`contract_address`** *(string)*: The unique address of the smart contract.
 - **`blockchain`** *(string)*: The blockchain network where the contract is deployed.
 - **`type`** *(string)*: The type of contract (e.g., ERC-20, ERC-721).
