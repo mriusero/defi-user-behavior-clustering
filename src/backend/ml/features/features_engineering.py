@@ -196,7 +196,7 @@ def implement_features() -> None:
     merged_df = merged_df.fillna(0)
     progress_bar.progress(80)
 
-    dataset = split_dataframe(merged_df)                                    # 5 - Split
+    dataset = split_dataframe(merged_df, random_state=42)                                    # 5 - Split
     base_path = 'data/features/'
 
     with st.spinner("Saving features..."):                                  # 6 - Save
