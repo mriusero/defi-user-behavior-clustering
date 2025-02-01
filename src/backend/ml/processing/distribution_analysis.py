@@ -1,85 +1,103 @@
 import streamlit as st
+import numpy as np
 import pandas as pd
-import json
-from scipy.stats import kurtosis, skew, normaltest
+from scipy.stats import kurtosis, skew, normaltest, boxcox
 
 
-def save_analysis_to_markdown(filename, content):
-    """Saves the content to a Markdown file."""
-    with open(filename, "w", encoding="utf-8") as f:
-        f.write(content)
-
-
-def analyse_features(df, output_file="docs/statistical_analysis.md", json_output_file="data/features/statistical_analysis.json"):
-    """
-    Analyzes the DataFrame, applies several statistical tests on numeric columns, then saves the results in Markdown and JSON.
-    :param df: The DataFrame to be analyzed.  (pd.DataFrame)
-    :param output_file: The file path for saving the statistical analysis report in Markdown format. (str, default is "docs/statistical_analysis.md")
-    :param json_output_file: The file path for saving the statistical analysis results in JSON format. (str, default is "data/features/statistical_analysis.json")
-    :raise ValueError: If the provided input is not a DataFrame.
-    """
+def analyze_df(df, csv_out):
+    """ Analyze the distribution of numeric columns in a DataFrame, define a standardisation method associated and save the results to a CSV file."""
     if not isinstance(df, pd.DataFrame):
-        raise ValueError("The provided input is not a DataFrame.")
+        raise ValueError("Input is not a DataFrame.")
 
-    report = "# Statistical Analysis of Numeric Variables\n\n"
     numeric_cols = [col for col in df.columns if pd.api.types.is_numeric_dtype(df[col])]
-    results_summary = []
+    results = []
+    progress_bar = st.progress(0)
 
-    for col in numeric_cols:
+    for idx, col in enumerate(numeric_cols):
         try:
-            _, p_value = normaltest(df[col].dropna())            # Perform normality test
-            threshold = 1e-4
-            if p_value < threshold:
-                result_message = "Not-normal"
+            col_data = df[col].dropna()
+            p_val = normaltest(col_data)[1] if len(col_data) > 7 else np.nan
+            norm_status = "Not-normal" if p_val < 0.05 else "Normal"
+            skew_val = skew(col_data) if len(col_data) > 1 else np.nan
+            kurt_val = kurtosis(col_data) if len(col_data) > 1 else np.nan
+
+            skew_desc = "Symmetric" if abs(skew_val) < 0.5 else (
+                "Positively skewed" if skew_val > 0 else "Negatively skewed")
+            kurt_desc = "Mesokurtic (Normal)" if 2.5 <= kurt_val <= 3.5 else (
+                "Leptokurtic" if kurt_val > 3.5 else "Platykurtic")
+
+            if norm_status == "Normal":
+                standardization = "Z-score"
+            elif abs(skew_val) < 0.5:                                                   # Faible asymétrie
+                standardization = "Min-Max"
+            elif skew_val > 1:                                                          # Asymétrie positive forte
+                standardization = "Log" if (df[col] > 0).all() else "Box-Cox"
+            elif skew_val < -1:                                                         # Asymétrie négative forte
+                standardization = "Log Inverse" if (df[col] > 0).all() else "Box-Cox"
+            elif kurt_val > 3.5:                                                        # Kurtosis élevée, queues épaisses
+                standardization = "Box-Cox"
+            elif kurt_val < 2.5:                                                        # Kurtosis faible, queues légères
+                standardization = "Min-Max"
             else:
-                result_message = "Normal"
+                standardization = "None"
 
-            skewness = skew(df[col].dropna())                                   # Calculate skewness
-            kurt = kurtosis(df[col].dropna())                                   # Calculate kurtosis
-            skewness_desc = "Symmetric" if abs(skewness) < 0.5 else (
-                "Positively skewed" if skewness > 0 else "Negatively skewed")
-            kurtosis_desc = "Mesokurtic (Normal)" if 2.5 <= kurt <= 3.5 else (
-                "Leptokurtic" if kurt > 3.5 else "Platykurtic")
+            results.append([col, norm_status, p_val, skew_val, skew_desc, kurt_val, kurt_desc, standardization])
 
-            if result_message == "Normal":                        # Determine the recommended standardization method
-                standardization = "Z-score normalization"
-            elif abs(skewness) < 0.5:
-                standardization = "Min-Max normalization"
-            elif skewness > 1 or skewness < -1:
-                standardization = "Logarithmic transformation"
-            elif kurt > 3.5:
-                standardization = "Box-Cox transformation"
-            else:
-                standardization = "No transformation needed"
-
-            results_summary.append({
-                'Variable': col,
-                'Normality Test': result_message,
-                'Skewness': f"{skewness:.2f} → {skewness_desc}",
-                'Kurtosis': f"{kurt:.2f} → {kurtosis_desc}",
-                'Recommended Standardization': standardization
-            })
         except ValueError as e:
-            report += f"Error during statistical test on `{col}`: {e}\n\n"
+            print(f"Error on {col}: {e}")
+
+        progress = (idx + 1) / len(numeric_cols)
+        progress_bar.progress(progress)
+
+    df_results = pd.DataFrame(results, columns=['Variable', 'Normality', 'p_value', 'Skewness', 'Skew_Desc', 'Kurtosis', 'Kurt_Desc', 'Standardization'])
+    df_results.to_csv(csv_out, index=False, encoding="utf-8")
 
 
-    report += "## Summary of Results\n\n"
-    report += "| Variable | Normality Test | Skewness | Kurtosis | Recommended Standardization |\n"
-    report += "|----------|----------------|----------|----------|----------------------------|\n"
-    for result in results_summary:
-        report += f"| `{result['Variable']}` | {result['Normality Test']} | {result['Skewness']} | {result['Kurtosis']} | {result['Recommended Standardization']} |\n"
+def standardize_df(df, csv_in):
+    """Standardize the numeric columns in a DataFrame based on the standardization method defined in a CSV file."""
+    if not isinstance(df, pd.DataFrame):
+        raise ValueError("Input is not a DataFrame.")
+    try:
+        std_info = pd.read_csv(csv_in)
+    except (FileNotFoundError, pd.errors.EmptyDataError) as e:
+        raise ValueError(f"Error loading standardization file: {e}") from e
 
-    save_analysis_to_markdown(output_file, report)                            # Save analysis report to markdown file
+    df_transformed = df.copy()
+    progress_bar = st.progress(0)
+    total_rows = len(std_info)
 
-    with open(json_output_file, 'w', encoding="utf-8") as json_file:          # Save analysis results to json file
-        json.dump(results_summary, json_file, indent=4)
+    for idx, row in std_info.iterrows():
+        col, method = row['Variable'], row['Standardization']
+        if col in df_transformed.columns and pd.api.types.is_numeric_dtype(df_transformed[col]):
+            if method == "Z-score":
+                df_transformed[col] = (df_transformed[col] - df_transformed[col].mean()) / df_transformed[col].std()
+            elif method == "Min-Max":
+                df_transformed[col] = (df_transformed[col] - df_transformed[col].min()) / (
+                        df_transformed[col].max() - df_transformed[col].min())
+            elif method == "Log":
+                df_transformed[col] = np.log1p(np.maximum(df_transformed[col], 0))
+            elif method == "Log Inverse":
+                df_transformed[col] = np.log1p(np.maximum(-df_transformed[col], 0))
+            elif method == "Box-Cox":
+                df_transformed[col], _ = boxcox(df_transformed[col] - df_transformed[col].min() + 1)
+
+        progress = (idx + 1) / total_rows
+        progress_bar.progress(progress)
+
+    return df_transformed
 
 
 def statistical_tests():
-    """ Main processing pipeline for normalize and split data """
+    """Main pipeline to analyze and normalize data."""
     if 'features' not in st.session_state.get('dataframes', {}):
-        features = pd.read_parquet('data/features/features.parquet', engine='pyarrow')
+        df = pd.read_parquet('data/features/features.parquet', engine='pyarrow')
     else:
-        features = st.session_state['dataframes']['features']
+        df = st.session_state['dataframes']['features']
 
-    analyse_features(features)
+    analyze_df(df, csv_out="config/to_standardize.csv")
+    df_std = standardize_df(df, csv_in="config/to_standardize.csv")
+    analyze_df(df_std, csv_out="config/standardized.csv")
+
+    df_std.to_parquet('data/features/standardized.parquet', engine='pyarrow')
+
+    return df_std
