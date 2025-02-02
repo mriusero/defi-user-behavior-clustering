@@ -76,7 +76,7 @@ jobs:
       - name: Docker Push
         run: docker push $DOCKER_USER/$REPO_NAME:${{ env.DATE }}
 
-      - name: Update Dockerfile for Hugging Face Space
+      - name: Update Dockerfile for HF Space
         run: |
           echo "FROM docker.io/$DOCKER_USER/$REPO_NAME:${{ env.DATE }}" > Dockerfile
           echo "USER user" >> Dockerfile
@@ -85,38 +85,25 @@ jobs:
           echo "COPY --chown=user . /app/" >> Dockerfile
           echo "EXPOSE 8501" >> Dockerfile
           echo 'CMD ["uv", "run", "streamlit", "run", "app.py", "--server.port=8501", "--server.address=0.0.0.0"]' >> Dockerfile
-          
-      - name: Commit and Push Dockerfile.updated to Hugging Face Space
-        run: |
-          git config --global user.name "github-actions"
-          git config --global user.email "actions@github.com"
-
-          pip install huggingface_hub
-          huggingface-cli login --token $HF_API_TOKEN
-          
-          git clone https://huggingface.co/spaces/$HF_USER/$HF_SPACE_NAME.git hf_space
-          cd hf_space
-          cp ../Dockerfile .
-          git add Dockerfile
-          git commit -m "Update Docker Image - tag ${{ env.DATE }}"
-          git push origin main
 
       - name: Commit and Push Dockerfile to Hugging Face Space
         run: |
-            python -c "
-            from huggingface_hub import HfApi, Repository
-            import os
-            
-            api = HfApi()
-            api.set_access_token('$HF_API_TOKEN')
-    
-            repo = Repository(local_dir='hf_space', clone_from='$HF_USER/$HF_SPACE_NAME', token='$HF_API_TOKEN')
-    
-            with open(os.path.join('hf_space', 'Dockerfile'), 'w') as f:
-                f.write('$FILE_CONTENT')
-    
-            repo.git_add('Dockerfile')
-            repo.git_commit('Update Docker Image - tag ${{ env.DATE }}')
-    
-            repo.git_push()
-            "
+          python -c "
+          from huggingface_hub import HfApi, Repository
+          import os
+          import shutil
+          
+          api = HfApi()
+          api.set_access_token('$HF_API_TOKEN')
+          
+          if not os.path.exists('hf_space'):
+              repo = Repository(local_dir='hf_space', clone_from='$HF_USER/$HF_SPACE_NAME', token='$HF_API_TOKEN')
+          else:
+              repo = Repository(local_dir='hf_space', token='$HF_API_TOKEN')
+          
+          shutil.copy('Dockerfile', os.path.join('hf_space', 'Dockerfile'))
+          
+          repo.git_add('Dockerfile')
+          repo.git_commit('Update Docker Image - tag ${{ env.DATE }}')
+          repo.git_push()
+          "
