@@ -86,8 +86,9 @@ jobs:
           echo "EXPOSE 8501" >> Dockerfile
           echo 'CMD ["uv", "run", "streamlit", "run", "app.py", "--server.port=8501", "--server.address=0.0.0.0"]' >> Dockerfile
 
-      - name: Commit and Push Dockerfile to Hugging Face Space
+      - name: Commit and Push Dockerfile to HF Space
         run: |
+          pip install huggingface_hub
           python -c "
           from huggingface_hub import HfApi, Repository
           import os
