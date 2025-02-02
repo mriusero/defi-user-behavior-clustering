@@ -86,27 +86,15 @@ jobs:
           echo "EXPOSE 8501" >> Dockerfile
           echo 'CMD ["uv", "run", "streamlit", "run", "app.py", "--server.port=8501", "--server.address=0.0.0.0"]' >> Dockerfile
 
-      - name: Commit and Push Dockerfile to HF Space
+      - name: Commit and Push Dockerfile.updated to Hugging Face Space
         run: |
-          pip install huggingface_hub
-          python -c "
-          from huggingface_hub import HfApi, auth_check
-          from huggingface_hub.utils import GatedRepoError
+          git config --global user.name "github-actions"
+          git config --global user.email "actions@github.com"
           
-          api = HfApi()
+          git clone https://huggingface.co/spaces/$HF_USER/$HF_SPACE_NAME.git hf_space
+          cd hf_space
           
-          try:
-              auth_check('$HF_USER/$HF_SPACE_NAME')
-          except GatedRepoError:
-              print('No permission to access the repo')
-
-          api.create_commit(
-              repo_id='$HF_USER/$HF_SPACE_NAME',
-              commit_message="Update Docker Image - tag ${{ env.DATE }}",
-              token=$HF_API_TOKEN,
-              operations={
-                path_in_repo : 'Dockerfile',
-                path_or_fileobj : 'Dockerfile'
-              }   
-          )
-          "
+          cp ../Dockerfile .
+          git add Dockerfile
+          git commit -m "Update Docker Image - tag ${{ env.DATE }}"
+          git push "https://${{ secrets.HF_USER }}:${{ secrets.HF_TOKEN }}@huggingface.co/spaces/${{ secrets.HF_USER }}/${{ secrets.HF_SPACE_NAME }}.git" main
