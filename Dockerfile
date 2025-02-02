@@ -4,6 +4,8 @@ RUN useradd -m -u 1000 user
 
 USER user
 
+ENV PATH=$PATH:/home/user/.local/bin
+
 WORKDIR /app
 
 COPY --chown=user pyproject.toml uv.lock* /app/
