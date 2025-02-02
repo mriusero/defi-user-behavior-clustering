@@ -97,4 +97,5 @@ jobs:
           cp ../Dockerfile .
           git add Dockerfile
           git commit -m "Update Docker Image - tag ${{ env.DATE }}"
-          git push "https://${{ secrets.HF_USER }}:${{ secrets.HF_TOKEN }}@huggingface.co/spaces/${{ secrets.HF_USER }}/${{ secrets.HF_SPACE_NAME }}.git" main
+          git remote set-url origin https://${{ secrets.HF_USER }}:${{ secrets.HF_TOKEN }}@huggingface.co/spaces/${{ secrets.HF_USER }}/${{ secrets.HF_SPACE_NAME }}
+          git push origin main
