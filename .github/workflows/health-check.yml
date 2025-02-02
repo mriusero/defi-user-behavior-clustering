@@ -91,8 +91,7 @@ jobs:
           git config --global user.name "github-actions"
           git config --global user.email "actions@github.com"
 
-          pip install huggingface_hub
-          echo $HF_API_TOKEN | huggingface-cli login --token
+          huggingface-cli login --token $HF_API_TOKEN
           
           git clone https://huggingface.co/spaces/$HF_USER/$HF_SPACE_NAME.git hf_space
           cd hf_space
