@@ -90,21 +90,23 @@ jobs:
         run: |
           pip install huggingface_hub
           python -c "
-          from huggingface_hub import HfApi, Repository
-          import os
-          import shutil
+          from huggingface_hub import HfApi, auth_check
+          from huggingface_hub.utils import GatedRepoError
           
           api = HfApi()
-          api.set_access_token('$HF_API_TOKEN')
           
-          if not os.path.exists('hf_space'):
-              repo = Repository(local_dir='hf_space', clone_from='$HF_USER/$HF_SPACE_NAME', token='$HF_API_TOKEN')
-          else:
-              repo = Repository(local_dir='hf_space', token='$HF_API_TOKEN')
-          
-          shutil.copy('Dockerfile', os.path.join('hf_space', 'Dockerfile'))
-          
-          repo.git_add('Dockerfile')
-          repo.git_commit('Update Docker Image - tag ${{ env.DATE }}')
-          repo.git_push()
+          try:
+              auth_check('$HF_USER/$HF_SPACE_NAME')
+          except GatedRepoError:
+              print('No permission to access the repo')
+
+          api.create_commit(
+              repo_id='$HF_USER/$HF_SPACE_NAME',
+              commit_message="Update Docker Image - tag ${{ env.DATE }}",
+              token=$HF_API_TOKEN,
+              operations=(
+                path_in_repo='Dockerfile',
+                path_or_fileobj='Dockerfile'
+              )   
+          )
           "
