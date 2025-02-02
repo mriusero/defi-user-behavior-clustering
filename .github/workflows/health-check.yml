@@ -90,7 +90,8 @@ jobs:
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "actions@github.com"
-          
+          git config --global credential.helper store
+
           echo "https://$HF_API_TOKEN@huggingface.co" > ~/.git-credentials
           
           git clone https://huggingface.co/spaces/$HF_USER/$HF_SPACE_NAME.git hf_space
@@ -98,6 +99,7 @@ jobs:
           cp ../Dockerfile .
           git add Dockerfile
           git commit -m "Update Docker Image - tag ${{ env.DATE }}"
+          git remote set-url origin https://$HF_API_TOKEN@huggingface.co/spaces/$HF_USER/$HF_SPACE_NAME.git
           git push origin main
           
           rm ~/.git-credentials
