@@ -1,14 +1,18 @@
 FROM python:3.11-slim
 
+RUN useradd -m -u 1000 user
+
+USER user
+
 WORKDIR /app
 
-COPY pyproject.toml uv.lock* /app/
+COPY --chown=user pyproject.toml uv.lock* /app/
 
 RUN pip install --upgrade pip \
     && pip install uv \
     && uv sync
 
-COPY . /app/
+COPY --chown=user . /app/
 
 EXPOSE 8501
 
