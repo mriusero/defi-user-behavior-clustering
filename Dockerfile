@@ -7,18 +7,14 @@ USER user
 ENV PATH=$PATH:/home/user/.local/bin
 
 WORKDIR /app
-RUN ls -l /app
-
 
 COPY --chown=user pyproject.toml uv.lock* /app/
-RUN ls -l /app
 
 RUN pip install --upgrade pip \
     && pip install uv \
     && uv sync
 
 COPY --chown=user . /app/
-RUN ls -l /app
 
 EXPOSE 8501
 
