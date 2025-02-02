@@ -100,3 +100,23 @@ jobs:
           git add Dockerfile
           git commit -m "Update Docker Image - tag ${{ env.DATE }}"
           git push origin main
+
+      - name: Commit and Push Dockerfile to Hugging Face Space
+        run: |
+            python -c "
+            from huggingface_hub import HfApi, Repository
+            import os
+            
+            api = HfApi()
+            api.set_access_token('$HF_API_TOKEN')
+    
+            repo = Repository(local_dir='hf_space', clone_from='$HF_USER/$HF_SPACE_NAME', token='$HF_API_TOKEN')
+    
+            with open(os.path.join('hf_space', 'Dockerfile'), 'w') as f:
+                f.write('$FILE_CONTENT')
+    
+            repo.git_add('Dockerfile')
+            repo.git_commit('Update Docker Image - tag ${{ env.DATE }}')
+    
+            repo.git_push()
+            "
