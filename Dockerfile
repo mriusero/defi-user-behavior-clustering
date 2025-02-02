@@ -13,17 +13,12 @@ RUN ls -l /app
 COPY --chown=user pyproject.toml uv.lock* /app/
 RUN ls -l /app
 
-RUN apt-get update && apt-get install -y tree
-RUN tree /app
-
 RUN pip install --upgrade pip \
     && pip install uv \
     && uv sync
 
 COPY --chown=user . /app/
-
-RUN apt-get update && apt-get install -y tree
-RUN tree /app
+RUN ls -l /app
 
 EXPOSE 8501
 
