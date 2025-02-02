@@ -105,8 +105,8 @@ jobs:
               commit_message="Update Docker Image - tag ${{ env.DATE }}",
               token=$HF_API_TOKEN,
               operations={
-                path_in_repo='Dockerfile',
-                path_or_fileobj='Dockerfile'
+                path_in_repo : 'Dockerfile',
+                path_or_fileobj : 'Dockerfile'
               }   
           )
           "
