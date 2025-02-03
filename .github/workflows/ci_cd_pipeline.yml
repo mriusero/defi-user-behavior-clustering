@@ -1,9 +1,14 @@
-name: Health Check
+name: CI/CD Pipeline
+permissions:
+  contents: write
 
 env:
   DOCKER_USER: ${{secrets.DOCKER_USER}}
   DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
   REPO_NAME: ${{secrets.REPO_NAME}}
+  HF_USER: ${{secrets.HF_USER}}
+  HF_API_TOKEN: ${{secrets.HF_API_TOKEN}}
+  HF_SPACE_NAME: ${{secrets.HF_SPACE_NAME}}
 
 on:
   push:
@@ -59,16 +64,26 @@ jobs:
       steps:
 
       - uses: actions/checkout@v3
-      - name: docker login
-        run: |
-          docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+      - name: Docker login
+        run: echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USER" --password-stdin
 
       - name: Get current date
-        id: date
-        run: echo "::set-output name=date::$(date +'%Y-%m-%d--%M-%S')"
+        run: echo "DATE=$(date +'%Y-%m-%d--%M-%S')" >> $GITHUB_ENV
 
       - name: Build the Docker image
-        run: docker build . --file Dockerfile --tag $DOCKER_USER/$REPO_NAME:${{ steps.date.outputs.date }}
+        run: docker build . --file Dockerfile --tag $DOCKER_USER/$REPO_NAME:${{ env.DATE }}
 
       - name: Docker Push
-        run: docker push $DOCKER_USER/$REPO_NAME:${{ steps.date.outputs.date }}
+        run: docker push $DOCKER_USER/$REPO_NAME:${{ env.DATE }}
+
+      - name: Update the HF Space
+        env:
+          DOCKER_USER : ${{secrets.DOCKER_USER}}
+          REPO_NAME: ${{secrets.REPO_NAME}}
+          DATE: ${{ env.DATE }}
+          HF_USER: ${{secrets.HF_USER}}
+          HF_SPACE_NAME: ${{secrets.HF_SPACE_NAME}}
+          HF_API_TOKEN: ${{secrets.HF_API_TOKEN}}
+        run: |
+          pip install huggingface_hub
+          python scripts/update_hf_space.py
