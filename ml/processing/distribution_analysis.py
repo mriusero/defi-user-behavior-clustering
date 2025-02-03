@@ -1,8 +1,9 @@
-import streamlit as st
 import numpy as np
 import pandas as pd
-from scipy.stats import kurtosis, skew, normaltest, boxcox
+import pyarrow as pa
+import pyarrow.feather as feather
 
+from scipy.stats import kurtosis, skew, normaltest, boxcox
 
 def analyze_df(df, csv_out):
     """ Analyze the distribution of numeric columns in a DataFrame, define a standardisation method associated and save the results to a CSV file."""
@@ -11,7 +12,6 @@ def analyze_df(df, csv_out):
 
     numeric_cols = [col for col in df.columns if pd.api.types.is_numeric_dtype(df[col])]
     results = []
-    progress_bar = st.progress(0)
 
     for idx, col in enumerate(numeric_cols):
         try:
@@ -46,9 +46,6 @@ def analyze_df(df, csv_out):
         except ValueError as e:
             print(f"Error on {col}: {e}")
 
-        progress = (idx + 1) / len(numeric_cols)
-        progress_bar.progress(progress)
-
     df_results = pd.DataFrame(results, columns=['Variable', 'Normality', 'p_value', 'Skewness', 'Skew_Desc', 'Kurtosis', 'Kurt_Desc', 'Standardization'])
     df_results.to_csv(csv_out, index=False, encoding="utf-8")
 
@@ -63,8 +60,6 @@ def standardize_df(df, csv_in):
         raise ValueError(f"Error loading standardization file: {e}") from e
 
     df_transformed = df.copy()
-    progress_bar = st.progress(0)
-    total_rows = len(std_info)
 
     for idx, row in std_info.iterrows():
         col, method = row['Variable'], row['Standardization']
@@ -81,23 +76,31 @@ def standardize_df(df, csv_in):
             elif method == "Box-Cox":
                 df_transformed[col], _ = boxcox(df_transformed[col] - df_transformed[col].min() + 1)
 
-        progress = (idx + 1) / total_rows
-        progress_bar.progress(progress)
-
     return df_transformed
 
 
-def statistical_tests():
+def standardisation_process():
     """Main pipeline to analyze and normalize data."""
-    if 'features' not in st.session_state.get('dataframes', {}):
-        df = pd.read_parquet('data/features/features.parquet', engine='pyarrow')
-    else:
-        df = st.session_state['dataframes']['features']
+    print("\n===== Standardisation process ======\n")
 
-    analyze_df(df, csv_out="config/to_standardize.csv")
-    df_std = standardize_df(df, csv_in="config/to_standardize.csv")
-    analyze_df(df_std, csv_out="config/standardized.csv")
+    print("1.Loading data\n-------------------------------------")
+    table = feather.read_table('data/features/features.arrow')
+    df = table.to_pandas()
+    print('Data loaded successfully\n')
 
-    df_std.to_parquet('data/features/standardized.parquet', engine='pyarrow')
+    print("2. Analyzing data\n-------------------------------------")
+    analyze_df(df, csv_out="config/to_standardize_stats.csv")
+    print('Data analyzed successfully\n')
 
-    return df_std
+    print("3. Standardizing data\n-------------------------------------")
+    df_std = standardize_df(df, csv_in="config/to_standardize_stats.csv")
+    print('Data standardized successfully\n')
+
+    print("4. Analyzing standardized data\n-------------------------------------")
+    analyze_df(df_std, csv_out="config/standardized_stats.csv")
+    print('Data analyzed successfully\n')
+
+    print("5. Saving standardized data\n-------------------------------------")
+    table = pa.Table.from_pandas(df_std)
+    feather.write_feather(table, 'data/features/features_standardised.arrow')
+    print('Data saved successfully\n')
