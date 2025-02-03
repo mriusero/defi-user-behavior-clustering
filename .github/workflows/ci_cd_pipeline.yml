@@ -1,4 +1,4 @@
-name: Health Check
+name: CI/CD Pipeline
 permissions:
   contents: write
 
@@ -76,28 +76,16 @@ jobs:
       - name: Docker Push
         run: docker push $DOCKER_USER/$REPO_NAME:${{ env.DATE }}
 
-      - name: Update Dockerfile for HF Space
-        run: |
-          echo "FROM docker.io/$DOCKER_USER/$REPO_NAME:${{ env.DATE }}" > Dockerfile
-          echo "USER user" >> Dockerfile
-          echo "ENV PATH=\$PATH:/home/user/.local/bin" >> Dockerfile
-          echo "WORKDIR /app" >> Dockerfile
-          echo "COPY --chown=user . /app/" >> Dockerfile
-          echo "EXPOSE 8501" >> Dockerfile
-          echo 'CMD ["uv", "run", "streamlit", "run", "app.py", "--server.port=8501", "--server.address=0.0.0.0"]' >> Dockerfile
+      - name: Update the HF Space
+        env:
+          DOCKER_USER : ${{secrets.DOCKER_USER}}
+          REPO_NAME: ${{secrets.REPO_NAME}}
+          DATE: ${{ env.DATE }}
+          HF_USER: ${{secrets.HF_USER}}
+          HF_SPACE_NAME: ${{secrets.HF_SPACE_NAME}}
+          HF_API_TOKEN: ${{secrets.HF_API_TOKEN}}
+        run:
+          pip install huggingface_hub
+          python scripts/update_hf_space.py
 
-      - name: Commit and Push Dockerfile.updated to Hugging Face Space
-        run: |
-          git config --global user.name "github-actions"
-          git config --global user.email "actions@github.com"
-          
-          git clone https://huggingface.co/spaces/$HF_USER/$HF_SPACE_NAME.git hf_space
-          cd hf_space
-          
-          cp ../Dockerfile .
-          
-          git remote set-url origin https://${{ secrets.HF_USER }}:${{ secrets.HF_TOKEN }}@huggingface.co/spaces/${{ secrets.HF_USER }}/${{ secrets.HF_SPACE_NAME }}.git
-          
-          git add Dockerfile
-          git commit -m "Update Docker Image - tag ${{ env.DATE }}"
-          git push origin main
+
