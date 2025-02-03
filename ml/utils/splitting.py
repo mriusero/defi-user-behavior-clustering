@@ -1,8 +1,7 @@
 import pandas as pd
-import streamlit as st
 from sklearn.model_selection import train_test_split
 from typing import Dict, Tuple
-
+import pyarrow.feather as feather
 
 def split_dataframe(df: pd.DataFrame, train_size: float = 0.7, validation_size: float = 0.15, random_state: int = None) -> Dict[str, Tuple[pd.DataFrame, pd.Series]]:
     """Split DataFrame into train/validation/test sets while preserving the 'address' column in separate tuples."""
@@ -21,32 +20,33 @@ def split_dataframe(df: pd.DataFrame, train_size: float = 0.7, validation_size: 
     )
 
     return {
+        'all': (df, address),
         'train': (train_df, address.loc[train_df.index]),
         'validation': (val_df, address.loc[val_df.index]),
         'test': (test_df, address.loc[test_df.index])
     }
 
-@st.cache_data
+
 def splitting():
     """Step 1 of pipeline : split the dataset into train, validation, and test sets."""
-    df = pd.read_parquet('data/features/standardized.parquet', engine='pyarrow')
+
+    table = feather.read_table('data/features/features_standardised.arrow')
+    df = table.to_pandas()
+
     df.fillna(0, inplace=True)
 
     dataset = split_dataframe(df=df, train_size=0.7, validation_size=0.15, random_state=42)
-    datasets = ['train', 'validation', 'test']
+    datasets = ['all', 'train', 'validation', 'test']
+
     for data in datasets:
         x_data, y_data = dataset[data]
         print(f"- x_{data} shape:", x_data.shape)
         print(f"- y_{data} shape:", y_data.shape)
         missing_x = x_data.isnull().sum()
         missing_x = missing_x[missing_x > 0]
+
         if not missing_x.empty:
             print(f"- Missing values in x_{data}:")
             print(missing_x)
 
-    col1, col2 = st.columns([1, 3])
-    with col1:
-        st.write(dataset['train'][1].head())
-    with col2:
-        st.write(dataset['train'][0].head())
     return dataset

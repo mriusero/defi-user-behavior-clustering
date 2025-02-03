@@ -21,9 +21,10 @@ __pycache__/
 *.ipynb_checkpoints/
 
 # Logs
-*.log
+logs/
 
 # Data
-data/raw
-data/processed
-data/features/
+data/
+
+# Models
+models/

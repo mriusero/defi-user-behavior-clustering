@@ -1,6 +1,6 @@
-import streamlit as st
-import numpy as np
 import pandas as pd
+import numpy as np
+import joblib
 from matplotlib import pyplot as plt
 from sklearn.cluster import MiniBatchKMeans, KMeans
 from sklearn.metrics import silhouette_samples
@@ -33,7 +33,7 @@ def compute_silhouette_score(k, x_train):
     return np.mean(silhouette_samples(x_sample, labels_sample))
 
 
-def train_k_means(x_train, y_train):
+def analyze_kmeans(x_train, set):
     """Trains the K-Means model, assigns clusters, and displays the results."""
     k_range = range(2, 11)
 
@@ -67,12 +67,26 @@ def train_k_means(x_train, y_train):
     ax[1].set_xlabel("Number of clusters")
     ax[1].set_ylabel("Silhouette Score")
 
-    st.pyplot(fig)
+    fig.savefig(f"docs/graphics/kmeans/kmeans_{set}_scores.png", dpi=300, bbox_inches="tight")
+    plt.show()
 
-    best_k = k_range[np.argmax(silhouette_scores)]
-    print(f"Optimal number of clusters: {best_k}")
+    return k_range[np.argmax(silhouette_scores)]
 
+def train(best_k, x_train):
+    """Trains a KMeans model with a defined number of clusters."""
     kmeans = KMeans(n_clusters=best_k, random_state=42, n_init=10)
-    clusters = kmeans.fit_predict(x_train)
+    kmeans.fit(x_train)
+    return kmeans
 
-    return pd.DataFrame({"address": y_train, "cluster": clusters})
+def save_model(model, filename):
+    """Saves the trained model to a file."""
+    return joblib.dump(model, filename)
+
+def load_model(filename):
+    """Loads a saved KMeans model from a file."""
+    return joblib.load(filename)
+
+def predict(model, x_, y_):
+    """Predicts clusters for new data using a trained model."""
+    clusters = model.predict(x_)
+    return pd.DataFrame({"address": y_, "cluster": clusters})
