@@ -1,7 +1,7 @@
 
 
-from src.backend.ml.helper.splitting import splitting
-from src.backend.ml.modeling.k_means import train_k_means
+from ml.helper.splitting import splitting
+from ml.modeling.k_means import train_k_means
 
 def ml_pipeline():
     """Pipeline de traitement ML"""
