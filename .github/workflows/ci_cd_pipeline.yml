@@ -42,7 +42,7 @@ jobs:
 
     - name: Lint code with Pylint
       run: |
-        uv run pylint --ignore=etl --disable=R,C src/
+        uv run pylint --disable=R,C src/
 
     - name: Streamlit app health check
       run: |

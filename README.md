@@ -70,7 +70,7 @@ Dataset available on :
 
 To trigger pipeline:
 ```bash
-uv run src/backend/etl/main.py
+uv run etl/main.py
 ```
 ---
 ## Step 2 : Data Preprocessing

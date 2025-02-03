@@ -13,19 +13,18 @@
 **/*.pyo
 
 # Outputs and generated files
-LICENSE
-README.md
+config/
+data/
 docs/
+etl/
 logs/
+ml/
+models/
 notebooks/
 scripts/
-src/tests/
-src/backend/etl/
+LICENSE
+README.md
 
-# Data files
-data/processed
-data/raw
-data/features
 
 # Ignore cache folders
 **/.mypy_cache/
