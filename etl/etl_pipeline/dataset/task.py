@@ -6,7 +6,7 @@ from tqdm import tqdm
 from itertools import islice
 
 from .wrapped_task import precompute_protocol_ranges, load_market_data, wrapped_tasks
-from src.backend.db.mongodb_handler import get_mongo_database
+from ..mongodb_handler import get_mongo_database
 
 logger = logging.getLogger(__name__)
 

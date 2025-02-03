@@ -20,7 +20,7 @@ logs/
 notebooks/
 scripts/
 src/tests/
-src/backend/etl/
+etl/
 
 # Data files
 data/processed

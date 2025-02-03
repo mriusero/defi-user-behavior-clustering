@@ -6,8 +6,7 @@ from multiprocessing import Pool, cpu_count
 
 from .load import load_users_data
 from .transform import transform_to_user_data
-from src.backend.db.mongodb_handler import get_mongo_collection
-
+from ..mongodb_handler import get_mongo_collection
 
 def process_transactions_batch(transactions: list) -> dict:
     """

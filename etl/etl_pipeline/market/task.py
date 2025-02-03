@@ -6,7 +6,7 @@ from tqdm import tqdm
 from .extract_market import get_market_data
 from .aggregate import aggregate_transactions
 from .load import load_df_to_mongo
-from src.backend.db.mongodb_handler import get_mongo_database
+from ..mongodb_handler import get_mongo_database
 
 logger = logging.getLogger(__name__)
 

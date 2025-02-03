@@ -3,8 +3,7 @@ from datetime import datetime
 
 from pymongo import UpdateOne
 
-from src.backend.db.mongodb_handler import get_mongo_collection
-
+from ..mongodb_handler import get_mongo_collection
 
 def upsert_transactions(
     protocol_name, contract_type, contract_id, blockchain, transactions

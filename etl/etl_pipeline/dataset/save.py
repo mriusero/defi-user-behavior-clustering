@@ -4,7 +4,7 @@ import pyarrow as pa
 import logging
 import json
 
-from src.backend.db.mongodb_handler import get_mongo_collection, get_mongo_client
+from ..mongodb_handler import get_mongo_collection, get_mongo_client
 
 logger = logging.getLogger(__name__)
 

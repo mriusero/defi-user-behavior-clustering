@@ -1,8 +1,7 @@
 import pandas as pd
 import logging
 
-from src.backend.db.mongodb_handler import get_mongo_collection
-
+from ..mongodb_handler import get_mongo_collection
 
 logger = logging.getLogger(__name__)
 

@@ -1,11 +1,10 @@
 from pymongo import UpdateOne
 import logging
 from tqdm import tqdm
-from sortedcontainers import SortedDict
 import time
 import json
 
-from src.backend.db.mongodb_handler import get_mongo_database
+from ..mongodb_handler import get_mongo_database
 
 logger = logging.getLogger(__name__)
 

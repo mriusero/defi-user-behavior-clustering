@@ -1,7 +1,7 @@
 import hashlib
 import logging
 
-from src.backend.db.mongodb_handler import get_mongo_collection
+from ..mongodb_handler import get_mongo_collection
 
 
 def generate_contract_id(adress):
