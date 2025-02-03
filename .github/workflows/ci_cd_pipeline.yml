@@ -84,8 +84,6 @@ jobs:
           HF_USER: ${{secrets.HF_USER}}
           HF_SPACE_NAME: ${{secrets.HF_SPACE_NAME}}
           HF_API_TOKEN: ${{secrets.HF_API_TOKEN}}
-        run:
+        run: |
           pip install huggingface_hub
           python scripts/update_hf_space.py
-
-
