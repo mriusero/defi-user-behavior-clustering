@@ -1,7 +1,10 @@
-import streamlit as st
 import pandas as pd
-from typing import Dict
+import pyarrow as pa
+import pyarrow.feather as feather
 
+def load_data(path) -> pd.DataFrame:
+    """Load data from a parquet file."""
+    return pd.read_parquet(path, engine='pyarrow')
 
 
 def clean_column_names(df: pd.DataFrame) -> pd.DataFrame:
@@ -16,31 +19,22 @@ def clean_column_names(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
-def load_data() -> Dict[str, pd.DataFrame]:
-    """Load raw data from the cache storage."""
-    return st.session_state.get('dataframes', {})
-
-
 def aggregate_users(df: pd.DataFrame) -> pd.DataFrame:
     """Aggregate and enrich users data with derived metrics."""
-    with st.spinner("Users aggregation..."):
-        df = df.drop(columns=['first_seen', 'last_seen'])
-        protocol_types = ["type_dex", "type_lending", "type_stablecoin", "type_yield_farming", "type_nft_fi"]
-        protocol_names = [
-            "curve_dao_count", "aave_count", "tether_count", "uniswap_count",
-            "maker_count", "yearn_finance_count", "usdc_count", "dai_count",
-            "balancer_count", "harvest_finance_count", "nftfi_count"
-        ]
-        df['protocol_type_diversity'] = (df[protocol_types] != 0).sum(axis=1)
-        df['protocol_name_diversity'] = (df[protocol_names] != 0).sum(axis=1)
+    df = df.drop(columns=['first_seen', 'last_seen'])
+    protocol_types = ["type_dex", "type_lending", "type_stablecoin", "type_yield_farming", "type_nft_fi"]
+    protocol_names = [
+        "curve_dao_count", "aave_count", "tether_count", "uniswap_count",
+        "maker_count", "yearn_finance_count", "usdc_count", "dai_count",
+        "balancer_count", "harvest_finance_count", "nftfi_count"
+    ]
+    df['protocol_type_diversity'] = (df[protocol_types] != 0).sum(axis=1)
+    df['protocol_name_diversity'] = (df[protocol_names] != 0).sum(axis=1)
+    df['net_flow_eth'] = df['total_received_eth'] - df['total_sent_eth']
+    for col in ['net_flow_eth', 'total_received_eth', 'total_sent_eth']:
+        df[f'{col}_norm'] = df[col] / df[col].max()
+    df['whale_score'] = df[[f'{col}_norm' for col in ['net_flow_eth', 'total_received_eth', 'total_sent_eth']]].sum(axis=1)
 
-        df['net_flow_eth'] = df['total_received_eth'] - df['total_sent_eth']
-
-        for col in ['net_flow_eth', 'total_received_eth', 'total_sent_eth']:
-            df[f'{col}_norm'] = df[col] / df[col].max()
-
-        df['whale_score'] = df[[f'{col}_norm' for col in ['net_flow_eth', 'total_received_eth', 'total_sent_eth']]].sum(
-            axis=1)
     return df.drop(columns=[f'{col}_norm' for col in ['net_flow_eth', 'total_received_eth', 'total_sent_eth']])
 
 
@@ -62,7 +56,6 @@ def aggregation_metrics(df, total_days, group_col, prefix):
             f'avg_gas_efficiency_{prefix}': ('gas_efficiency', 'mean')
         }
     ).reset_index()
-
     hour_counts = df.groupby([group_col, 'hour']).size().reset_index(name='count')
     peak = hour_counts.loc[hour_counts.groupby(group_col)['count'].idxmax()]
     peak = peak.rename(columns={
@@ -78,27 +71,26 @@ def aggregation_metrics(df, total_days, group_col, prefix):
 
 def aggregate_transactions(users: pd.DataFrame, transactions: pd.DataFrame) -> pd.DataFrame:
     """Aggregate and enrich users with transactions metrics."""
-    with st.spinner("Transactions aggregation..."):
-        if transactions.empty:
-            return users            # Make sure to return the users DataFrame if no transactions are available
+    if transactions.empty:
+        return users            # Make sure to return the users DataFrame if no transactions are available
 
-        transactions['timestamp'] = pd.to_datetime(transactions['timestamp'])               # Preprocessing
-        transactions['date'] = transactions['timestamp'].dt.date
-        transactions['hour'] = transactions['timestamp'].dt.hour
-        transactions['gas_efficiency'] = transactions['value_eth'] / transactions['gas_used']
+    transactions['timestamp'] = pd.to_datetime(transactions['timestamp'])               # Preprocessing
+    transactions['date'] = transactions['timestamp'].dt.date
+    transactions['hour'] = transactions['timestamp'].dt.hour
+    transactions['gas_efficiency'] = transactions['value_eth'] / transactions['gas_used']
 
-        max_ts = transactions['timestamp'].max()            # Calculating total days
-        min_ts = transactions['timestamp'].min()
-        total_days = (max_ts - min_ts).days or 1            # Avoid division by zero
+    max_ts = transactions['timestamp'].max()            # Calculating total days
+    min_ts = transactions['timestamp'].min()
+    total_days = (max_ts - min_ts).days or 1            # Avoid division by zero
 
-        tx_sent_agg = aggregation_metrics(transactions, total_days, 'from', 'sent')           # Calculate metrics for sent transactions
-        tx_received_agg = aggregation_metrics(transactions, total_days,'to', 'received')      # Calculate metrics for received transactions
+    tx_sent_agg = aggregation_metrics(transactions, total_days, 'from', 'sent')           # Calculate metrics for sent transactions
+    tx_received_agg = aggregation_metrics(transactions, total_days,'to', 'received')      # Calculate metrics for received transactions
 
-        merged_df = (           # Merge aggregated data with users
-            users
-            .merge(tx_sent_agg, left_on='address', right_on='from', how='left')
-            .merge(tx_received_agg, left_on='address', right_on='to', how='left')
-        )
+    merged_df = (                               # Merge aggregated data with users
+        users
+        .merge(tx_sent_agg, left_on='address', right_on='from', how='left')
+        .merge(tx_received_agg, left_on='address', right_on='to', how='left')
+    )
     return merged_df
 
 
@@ -173,31 +165,36 @@ def aggregate_market(merged_df: pd.DataFrame, market: pd.DataFrame) -> pd.DataFr
 
 def implement_features() -> None:
     """Main processing pipeline for feature engineering and data splitting."""
+    print('\n ====== Implementing features ====== \n')
 
-    if 'dataframes' not in st.session_state:
-        raise ValueError("No data loaded in session state")
-    progress_bar = st.progress(0)
+    print('1. Loading data\n----------------------------------------')
+    users = load_data(path='data/processed/users_processed.parquet')
+    transactions = load_data(path='data/raw/transactions.parquet')
+    market = load_data(path='data/raw/market.parquet')
+    print('Data loaded successfully\n')
 
-    users = clean_column_names(st.session_state['dataframes']['users'])                 # 1 - Users aggregation
+    print('2. Processing users\n----------------------------------------')
+    users = clean_column_names(users)
     users = aggregate_users(users)
-    progress_bar.progress(20)
+    print('Users processed successfully\n')
 
-    transactions = clean_column_names(st.session_state['dataframes']['transactions'])   # 2 - Transactions aggregation
+    print('3. Processing transactions\n----------------------------------------')
+    transactions = clean_column_names(transactions)
     merged_df = aggregate_transactions(users, transactions)
-    progress_bar.progress(40)
+    print('Transactions processed successfully\n')
 
-    market = clean_column_names(st.session_state['dataframes']['market'])               # 3 - Market aggregation
+    print('4. Processing market\n----------------------------------------')
+    market = clean_column_names(market)
     merged_df = aggregate_market(merged_df, market)
-    progress_bar.progress(60)
+    print('Market processed successfully\n')
 
-    merged_df.drop(columns=['from', 'to', 'transactions'], inplace=True)                # 4 - Final cleaning
+    print('5. Cleaning data\n----------------------------------------')
+    merged_df.drop(columns=['from', 'to', 'transactions'], inplace=True)
     merged_df = merged_df.map(lambda x: pd.NA if x is None else x)
     merged_df = merged_df.fillna(0)
-    progress_bar.progress(80)
+    print('Data cleaned successfully\n')
 
-    merged_df.to_parquet('data/features/features.parquet')                              # 5 - Save
-    st.session_state['dataframes']['features'] = merged_df
-
-    progress_bar.progress(100)
-
-    st.success('Features processed successfully!')
+    print('6. Saving data\n----------------------------------------')
+    table = pa.Table.from_pandas(merged_df)
+    feather.write_feather(table, 'data/features/features.arrow')
+    print('Data saved successfully\n')
