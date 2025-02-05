@@ -2,6 +2,8 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from typing import Dict, Tuple
 import pyarrow.feather as feather
+from joblib import dump, load
+
 
 def split_dataframe(df: pd.DataFrame, train_size: float = 0.7, validation_size: float = 0.15, random_state: int = None) -> Dict[str, Tuple[pd.DataFrame, pd.Series]]:
     """Split DataFrame into train/validation/test sets while preserving the 'address' column in separate tuples."""
@@ -30,6 +32,14 @@ def split_dataframe(df: pd.DataFrame, train_size: float = 0.7, validation_size: 
 def splitting():
     """Step 1 of pipeline : split the dataset into train, validation, and test sets."""
 
+    cache_file = 'data/features/cached_dataset.joblib'
+    try:
+        dataset = load(cache_file)
+        print("Dataset chargé depuis le cache.")
+        return dataset
+    except FileNotFoundError:
+        print("No cached dataset found, creating a new one...")
+
     table = feather.read_table('data/features/features_standardised.arrow')
     df = table.to_pandas()
 
@@ -48,5 +58,7 @@ def splitting():
         if not missing_x.empty:
             print(f"- Missing values in x_{data}:")
             print(missing_x)
+
+    dump(dataset, cache_file)
 
     return dataset
