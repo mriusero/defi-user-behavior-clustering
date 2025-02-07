@@ -83,7 +83,7 @@ def optimize_hyperparams(x_all, n_trials, save_path="models/hdbscan/optuna_study
         study_name='hdbscan_optimization',
         pruner=pruner
     )
-    study.optimize(lambda trial: objective(trial, x_all), n_trials=n_trials, n_jobs=-1)
+    study.optimize(lambda trial: objective(trial, x_all), n_trials=n_trials)
     best_params = study.best_params
 
     if save_path:
