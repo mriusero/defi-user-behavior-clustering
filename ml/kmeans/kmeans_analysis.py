@@ -61,18 +61,22 @@ def analyze_kmeans(x_train, dataset_name):
 
     print("Dataset statistics:")
     print("- Shape:", x_train.shape)
-    print("- Unique values:", np.unique(x_train, axis=0).shape[0], "/", x_train.shape[0])
+    print(
+        "- Unique values:", np.unique(x_train, axis=0).shape[0], "/", x_train.shape[0]
+    )
     print("- Feature variance:", np.var(x_train, axis=0))
     print("- NaN values present:", np.any(np.isnan(x_train)))
     print("- Inf values present:", np.any(np.isinf(x_train)))
 
     inertia = Parallel(n_jobs=-1)(
-        delayed(compute_inertia)(k, x_train) for k in tqdm(k_range, desc="Calculating inertia")
+        delayed(compute_inertia)(k, x_train)
+        for k in tqdm(k_range, desc="Calculating inertia")
     )
 
     try:
         silhouette_scores = Parallel(n_jobs=-1)(
-            delayed(compute_silhouette_score)(k, x_train) for k in tqdm(k_range, desc="Calculating silhouette scores")
+            delayed(compute_silhouette_score)(k, x_train)
+            for k in tqdm(k_range, desc="Calculating silhouette scores")
         )
     except (ValueError, IndexError, RuntimeError) as e:
         print(f"Error during silhouette score calculation: {e}")
@@ -80,17 +84,21 @@ def analyze_kmeans(x_train, dataset_name):
 
     fig, ax = plt.subplots(1, 2, figsize=(12, 5))
 
-    ax[0].plot(k_range, inertia, marker='o')
+    ax[0].plot(k_range, inertia, marker="o")
     ax[0].set_title("Elbow Method")
     ax[0].set_xlabel("Number of clusters")
     ax[0].set_ylabel("Inertia")
 
-    ax[1].plot(k_range, silhouette_scores, marker='o')
+    ax[1].plot(k_range, silhouette_scores, marker="o")
     ax[1].set_title("Silhouette Scores")
     ax[1].set_xlabel("Number of clusters")
     ax[1].set_ylabel("Silhouette Score")
 
-    fig.savefig(f"docs/graphics/kmeans/kmeans_{dataset_name}_scores.png", dpi=300, bbox_inches="tight")
+    fig.savefig(
+        f"docs/graphics/kmeans/kmeans_{dataset_name}_scores.png",
+        dpi=300,
+        bbox_inches="tight",
+    )
     plt.show()
 
     return k_range[np.argmax(silhouette_scores)]
@@ -111,8 +119,14 @@ def objective(x, trial):
     max_iter = trial.suggest_int("max_iter", 100, 500)
     tol = trial.suggest_float("tol", 1e-6, 1e-2, log=True)
 
-    kmeans = MiniBatchKMeans(n_clusters=n_clusters, init=init, batch_size=batch_size,
-                             max_iter=max_iter, tol=tol, random_state=42)
+    kmeans = MiniBatchKMeans(
+        n_clusters=n_clusters,
+        init=init,
+        batch_size=batch_size,
+        max_iter=max_iter,
+        tol=tol,
+        random_state=42,
+    )
     labels = kmeans.fit_predict(x)
 
     sample_size = min(10000, x.shape[0])
@@ -126,7 +140,9 @@ def objective(x, trial):
     return np.mean(silhouette_samples(x_sample, labels_sample))
 
 
-def optimize_hyperparams(x, n_trials=50, save_path="models/kmeans/optuna_kmeans_results.json"):
+def optimize_hyperparams(
+    x, n_trials=50, save_path="models/kmeans/optuna_kmeans_results.json"
+):
     """
     Optimizes MiniBatchKMeans hyperparameters using Optuna and saves the results.
     :param:
@@ -148,7 +164,9 @@ def optimize_hyperparams(x, n_trials=50, save_path="models/kmeans/optuna_kmeans_
         except Exception as e:
             print(f"Error loading results: {e}")
 
-    study = optuna.create_study(direction="maximize", study_name="minibatch_kmeans_optimization")
+    study = optuna.create_study(
+        direction="maximize", study_name="minibatch_kmeans_optimization"
+    )
 
     if best_params:
         study.enqueue_trial(best_params)

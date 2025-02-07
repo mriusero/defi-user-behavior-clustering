@@ -82,7 +82,6 @@ def fetch_transactions_for_range(
             f"Fetching transactions for blocks {current_start} to {current_end}"
         )
         try:
-
             txs = fetch_transactions(
                 contract_address, current_start, current_end
             )  # API call for the current block range

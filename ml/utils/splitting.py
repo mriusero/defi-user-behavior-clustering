@@ -5,13 +5,20 @@ import pyarrow.feather as feather
 from joblib import dump, load
 
 
-def split_dataframe(df: pd.DataFrame, train_size: float = 0.7, validation_size: float = 0.15, random_state: int = None) -> Dict[str, Tuple[pd.DataFrame, pd.Series]]:
+def split_dataframe(
+    df: pd.DataFrame,
+    train_size: float = 0.7,
+    validation_size: float = 0.15,
+    random_state: int = None,
+) -> Dict[str, Tuple[pd.DataFrame, pd.Series]]:
     """Split DataFrame into train/validation/test sets while preserving the 'address' column in separate tuples."""
     if not abs((train_size + validation_size) - 0.85) < 1e-6:
-        raise ValueError("Train + validation sizes must sum to 0.85 (test size fixed at 0.15)")
+        raise ValueError(
+            "Train + validation sizes must sum to 0.85 (test size fixed at 0.15)"
+        )
 
-    address = df['address']
-    df = df.drop(columns=['address'])
+    address = df["address"]
+    df = df.drop(columns=["address"])
 
     train_df, temp_df = train_test_split(
         df, train_size=train_size, random_state=random_state
@@ -22,17 +29,17 @@ def split_dataframe(df: pd.DataFrame, train_size: float = 0.7, validation_size: 
     )
 
     return {
-        'all': (df, address),
-        'train': (train_df, address.loc[train_df.index]),
-        'validation': (val_df, address.loc[val_df.index]),
-        'test': (test_df, address.loc[test_df.index])
+        "all": (df, address),
+        "train": (train_df, address.loc[train_df.index]),
+        "validation": (val_df, address.loc[val_df.index]),
+        "test": (test_df, address.loc[test_df.index]),
     }
 
 
 def splitting():
     """Step 1 of pipeline : split the dataset into train, validation, and test sets."""
 
-    cache_file = 'tmp/cached_dataset.joblib'
+    cache_file = "tmp/cached_dataset.joblib"
     try:
         dataset = load(cache_file)
         print("Dataset loaded from cache")
@@ -40,13 +47,15 @@ def splitting():
     except FileNotFoundError:
         print("No cached dataset found, creating a new one...")
 
-    table = feather.read_table('data/features/features_standardised.arrow')
+    table = feather.read_table("data/features/features_standardised.arrow")
     df = table.to_pandas()
 
     df.fillna(0, inplace=True)
 
-    dataset = split_dataframe(df=df, train_size=0.7, validation_size=0.15, random_state=42)
-    datasets = ['all', 'train', 'validation', 'test']
+    dataset = split_dataframe(
+        df=df, train_size=0.7, validation_size=0.15, random_state=42
+    )
+    datasets = ["all", "train", "validation", "test"]
 
     for data in datasets:
         x_data, y_data = dataset[data]

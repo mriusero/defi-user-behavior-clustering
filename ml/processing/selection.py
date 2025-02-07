@@ -1,14 +1,12 @@
 # 1. General information
-general_info = [
-    "address"
-]
+general_info = ["address"]
 
 # 2. Transaction Activity
 transaction_activity = [
     "received_count",
     "total_received_eth",
     "sent_count",
-    "total_sent_eth"
+    "total_sent_eth",
 ]
 
 # 3. Types of Interaction with Protocols
@@ -17,7 +15,7 @@ interaction_protocols = [
     "type_lending",
     "type_stablecoin",
     "type_yield_farming",
-    "type_nft_fi"
+    "type_nft_fi",
 ]
 
 # 4. Engagement with Specific Protocols
@@ -32,7 +30,7 @@ engagement_protocols = [
     "dai_count",
     "balancer_count",
     "harvest_finance_count",
-    "nftfi_count"
+    "nftfi_count",
 ]
 
 # 5. User Diversity and Influence
@@ -40,7 +38,7 @@ user_diversity_influence = [
     "protocol_type_diversity",
     "protocol_name_diversity",
     "net_flow_eth",
-    "whale_score"
+    "whale_score",
 ]
 
 # 6. Sent Transaction Statistics
@@ -58,7 +56,7 @@ sent_tx_stats = [
     "avg_gas_efficiency_sent",
     "peak_hour_sent",
     "peak_count_sent",
-    "tx_frequency_sent"
+    "tx_frequency_sent",
 ]
 
 # 7. Received Transaction Statistics
@@ -76,7 +74,7 @@ received_tx_stats = [
     "avg_gas_efficiency_received",
     "peak_hour_received",
     "peak_count_received",
-    "tx_frequency_received"
+    "tx_frequency_received",
 ]
 
 # 8. Exposure to Market Protocols
@@ -90,15 +88,16 @@ market_protocols_exposure = [
     "total_user_adoption_exposure",
     "total_gas_volatility_exposure",
     "total_error_volatility_exposure",
-    "total_high_value_exposure"
+    "total_high_value_exposure",
 ]
 
-SELECTED_FEATURES = (general_info
-        + transaction_activity
-        + interaction_protocols
-        + engagement_protocols
-        + user_diversity_influence
-        + sent_tx_stats
-        + received_tx_stats
-        + market_protocols_exposure
+SELECTED_FEATURES = (
+    general_info
+    + transaction_activity
+    + interaction_protocols
+    + engagement_protocols
+    + user_diversity_influence
+    + sent_tx_stats
+    + received_tx_stats
+    + market_protocols_exposure
 )

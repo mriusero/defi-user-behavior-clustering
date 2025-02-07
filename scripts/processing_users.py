@@ -19,9 +19,9 @@ def clean_column_names(df):
     df.columns = (
         df.columns.str.strip()
         .str.lower()
-        .str.replace(r'[\s\-_/.]+', '_', regex=True)
-        .str.replace(r'_{2,}', '_', regex=True)
-        .str.strip('_')
+        .str.replace(r"[\s\-_/.]+", "_", regex=True)
+        .str.replace(r"_{2,}", "_", regex=True)
+        .str.strip("_")
     )
     return df
 
@@ -37,40 +37,51 @@ def parse_protocols(protocol_str):
 
 def process_user_protocols(users_df):
     """Process user protocol types"""
-    protocol_columns = ['type_' + k for k in ['DEX', 'Lending', 'Stablecoin', "Yield Farming", "NFT-Fi"]]
+    protocol_columns = [
+        "type_" + k for k in ["DEX", "Lending", "Stablecoin", "Yield Farming", "NFT-Fi"]
+    ]
     users_df = users_df.assign(**{col: 0 for col in protocol_columns})
 
     with tqdm(total=2, desc="Processing protocols") as pbar:
-        users_df['parsed_protocols'] = users_df['protocol_types'].apply(parse_protocols)
+        users_df["parsed_protocols"] = users_df["protocol_types"].apply(parse_protocols)
         pbar.update(1)
 
-        for protocol in tqdm(['DEX', 'Lending', 'Stablecoin', "Yield Farming", "NFT-Fi"], desc="Protocol types"):
-            column_name = f'type_{protocol}'
-            users_df[column_name] = users_df['parsed_protocols'].apply(lambda x: x.get(protocol, 0))
+        for protocol in tqdm(
+            ["DEX", "Lending", "Stablecoin", "Yield Farming", "NFT-Fi"],
+            desc="Protocol types",
+        ):
+            column_name = f"type_{protocol}"
+            users_df[column_name] = users_df["parsed_protocols"].apply(
+                lambda x: x.get(protocol, 0)
+            )
         pbar.update(1)
 
-    return users_df.drop(columns=['protocol_types', 'parsed_protocols'])
+    return users_df.drop(columns=["protocol_types", "parsed_protocols"])
 
 
-def transform_protocols_column(df, column_name='protocols_used'):
+def transform_protocols_column(df, column_name="protocols_used"):
     """Transform protocols used column into count features"""
-    df[column_name] = df[column_name].apply(lambda x: eval(x) if isinstance(x, str) else x)
+    df[column_name] = df[column_name].apply(
+        lambda x: eval(x) if isinstance(x, str) else x
+    )
 
     with tqdm(total=len(df), desc="Protocol details") as pbar:
         for index, row in df.iterrows():
             protocols = row[column_name]
             for protocol_name, protocol_data in protocols.items():
-                df.at[index, f'{protocol_name}_count'] = int(protocol_data.get('count', 0))
+                df.at[index, f"{protocol_name}_count"] = int(
+                    protocol_data.get("count", 0)
+                )
             pbar.update(1)
 
     return df.drop(columns=[column_name])
 
 
 def main():
-    dataframes = load_data(['users'], '../data/raw')
+    dataframes = load_data(["users"], "../data/raw")
 
     with tqdm(total=4, desc="Overall processing") as main_pbar:
-        users = dataframes['users'].copy()
+        users = dataframes["users"].copy()
 
         users = process_user_protocols(users)
         main_pbar.update(1)
@@ -83,12 +94,19 @@ def main():
 
         users.fillna(0, inplace=True)
         protocols_counts = [
-            'curve_dao_count', 'aave_count', 'tether_count', 'uniswap_count',
-            'maker_count', 'yearn_finance_count', 'usdc_count', 'dai_count',
-            'balancer_count', 'harvest_finance_count'
+            "curve_dao_count",
+            "aave_count",
+            "tether_count",
+            "uniswap_count",
+            "maker_count",
+            "yearn_finance_count",
+            "usdc_count",
+            "dai_count",
+            "balancer_count",
+            "harvest_finance_count",
         ]
         users[protocols_counts] = users[protocols_counts].astype(int)
-        users.to_parquet('../data/processed/users_processed.parquet', engine='pyarrow')
+        users.to_parquet("../data/processed/users_processed.parquet", engine="pyarrow")
         main_pbar.update(1)
 
     print("\nFinal columns:")

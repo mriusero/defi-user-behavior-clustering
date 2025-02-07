@@ -24,9 +24,7 @@ def app_layout():
 
     load_css()
 
-    st.sidebar.markdown(
-        " ## *DeFI Behavior*\n"
-    )
+    st.sidebar.markdown(" ## *DeFI Behavior*\n")
 
     page = st.sidebar.radio(
         "Summary",
@@ -40,7 +38,6 @@ def app_layout():
     )
     col1, col2 = st.columns([6, 4])
     with col1:
-
         st.markdown('<div class="title">DeFi Behavior</div>', unsafe_allow_html=True)
         st.markdown("#### *'User Behavior Pattern Analysis in DeFi Applications'* ")
         col_a, col_b, col_c, col_d = st.columns([1, 2, 2, 2])
@@ -65,7 +62,6 @@ def app_layout():
         st.text("")
         st.text("")
         st.text("")
-
 
     line_style = """
         <style>
