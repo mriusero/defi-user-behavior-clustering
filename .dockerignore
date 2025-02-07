@@ -22,6 +22,7 @@ ml/
 models/
 notebooks/
 scripts/
+tmp/
 LICENSE
 README.md
 

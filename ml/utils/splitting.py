@@ -32,10 +32,10 @@ def split_dataframe(df: pd.DataFrame, train_size: float = 0.7, validation_size: 
 def splitting():
     """Step 1 of pipeline : split the dataset into train, validation, and test sets."""
 
-    cache_file = 'data/features/cached_dataset.joblib'
+    cache_file = 'tmp/cached_dataset.joblib'
     try:
         dataset = load(cache_file)
-        print("Dataset chargé depuis le cache.")
+        print("Dataset loaded from cache")
         return dataset
     except FileNotFoundError:
         print("No cached dataset found, creating a new one...")
