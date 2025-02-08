@@ -145,7 +145,7 @@ if __name__ == "__main__":
     pipeline = HDBSCANPipeline(
         analyse=False,
         reduce_dimensions=True,
-        optimization=True,
-        upload=False,
+        optimization=False,
+        upload=True,
     )
     pipeline.run()

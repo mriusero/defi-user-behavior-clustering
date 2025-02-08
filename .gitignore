@@ -26,6 +26,3 @@ logs/
 # Data
 data/
 tmp/
-
-# Models
-models/
