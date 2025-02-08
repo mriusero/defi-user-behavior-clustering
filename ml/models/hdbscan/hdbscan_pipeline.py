@@ -11,7 +11,7 @@ from sklearn.decomposition import PCA
 
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
-from ml.hdbscan.hdbscan_analysis import optimize_hyperparams
+from ml.models.hdbscan.hdbscan_analysis import optimize_hyperparams
 from ml.utils.splitting import splitting
 from ml.utils.hf_hub import upload_model
 
