@@ -111,8 +111,8 @@ if __name__ == "__main__":
     features = table.to_pandas()
     transactions = pd.read_parquet("data/raw/transactions.parquet", engine='pyarrow')
 
-    features = features.sample(5000, random_state=42)
-    transactions = transactions.sample(5000, random_state=42)
+    features = features.sample(1500, random_state=42)
+    transactions = transactions.sample(1500, random_state=42)
 
     G_protocol_type = build_bipartite_graph(features, 'address', protocols_type, 'address-to-protocol_type')
     visualize_graph(G_protocol_type, "docs/graphics/network/address_protocol_type_graph.html")

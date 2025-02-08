@@ -16,19 +16,19 @@ def display_graph(selection):
         note = """
         # Address-Protocol-Type Graph
         This graph shows the connections between addresses and protocol-type (Stable-coins, Lending, NFT...). \n
-        > It contains only 10000 transactions against the full dataset of + 6,8 M transactions.
+        > It contains only 1500 transactions against the full dataset of + 6,8 M transactions.
         """
     elif selection == "Address-Protocol Graph":
         note = """
         # Address-Protocol Graph
         This graph shows the connections between addresses and protocols (Uniswap, Tether, USDC, NFT-Fi...).\n
-        > It contains only 10000 transactions against the full dataset of + 6,8 M transactions.
+        > It contains only 1500 transactions against the full dataset of + 6,8 M transactions.
         """
     else:
         note = """
         # Address-Address Graph
         This graph shows the connections between addresses based on transactions.\n
-        > It contains only 10000 transactions against the full dataset of + 22M transactions.
+        > It contains only 1500 transactions against the full dataset of + 22M transactions.
         """
 
     st.write(note)
