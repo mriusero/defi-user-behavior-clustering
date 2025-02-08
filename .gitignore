@@ -10,6 +10,9 @@ Thumbs.db
 .venv/
 env/
 
+# Compiled source
+lib/
+
 # Python-specific
 __pycache__/
 *.py[cod]

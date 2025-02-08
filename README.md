@@ -62,7 +62,7 @@ This will start the application, and you can access it in your web browser at [h
 ## Step 1 : Data Collection
 The first step in this project is to collect data from various DeFi protocols. This includes transaction data, user interactions, smart contract events, and other relevant information. By aggregating this data, we can create a comprehensive dataset that captures user behavior across different DeFi applications.
 
-See documentation for more details: [DeFi Protocol Data on Ethereum (doc)](docs/etl_pipeline_flow.md)  
+See documentation for more details: [DeFi Protocol Data on Ethereum (doc)](docs/markdown/etl_pipeline_flow.md)  
 
 Dataset available on :
 * Kaggle: [DeFi Protocol Data on Ethereum 2023-2024](https://www.kaggle.com/datasets/mariusayrault/defi-protocol-data-on-ethereum-2yr-23-to-24)

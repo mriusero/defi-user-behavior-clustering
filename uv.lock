@@ -427,12 +427,14 @@ dependencies = [
     { name = "ipykernel" },
     { name = "ipywidgets" },
     { name = "kagglehub" },
+    { name = "networkx" },
     { name = "optuna" },
     { name = "plotly" },
     { name = "pyarrow" },
     { name = "pylint" },
     { name = "pymongo" },
     { name = "python-dotenv" },
+    { name = "pyvis" },
     { name = "requests" },
     { name = "rich" },
     { name = "scikit-learn" },
@@ -452,12 +454,14 @@ requires-dist = [
     { name = "ipykernel", specifier = ">=6.29.5" },
     { name = "ipywidgets", specifier = ">=8.1.5" },
     { name = "kagglehub", specifier = ">=0.3.6" },
+    { name = "networkx", specifier = ">=3.4.2" },
     { name = "optuna", specifier = ">=4.2.0" },
     { name = "plotly", specifier = ">=5.24.1" },
     { name = "pyarrow", specifier = ">=19.0.0" },
     { name = "pylint", specifier = ">=3.3.3" },
     { name = "pymongo", specifier = ">=4.10.1" },
     { name = "python-dotenv", specifier = ">=1.0.1" },
+    { name = "pyvis", specifier = ">=0.3.2" },
     { name = "requests", specifier = ">=2.32.3" },
     { name = "rich", specifier = ">=13.9.4" },
     { name = "scikit-learn", specifier = ">=1.6.1" },
@@ -796,6 +800,15 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/64/33/60135848598c076ce4b231e1b1895170f45fbcaeaa2c9d5e38b04db70c35/joblib-1.4.2.tar.gz", hash = "sha256:2382c5816b2636fbd20a09e0f4e9dad4736765fdfb7dca582943b9c1366b3f0e", size = 2116621 }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/91/29/df4b9b42f2be0b623cbd5e2140cafcaa2bef0759a00b7b70104dcfe2fb51/joblib-1.4.2-py3-none-any.whl", hash = "sha256:06d478d5674cbc267e7496a410ee875abd68e4340feff4490bcb7afb88060ae6", size = 301817 },
+]
+
+[[package]]
+name = "jsonpickle"
+version = "4.0.1"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/4c/86/82c2829c3160dc5d6d8ec749c4fe18a87fdd001a13b441f2dbc21d8c7214/jsonpickle-4.0.1.tar.gz", hash = "sha256:b5336144d902958b92cb08bc1e76bfa47199b8afd454303693894defd2fa50c5", size = 314587 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/86/7c/c06580145924f60342f669f6e71905f838083d00e4b141172a75d22a23fc/jsonpickle-4.0.1-py3-none-any.whl", hash = "sha256:2973c0b0d988c6792ed6c446fa582c48352e79c2880fa2c013f1abde15905555", size = 46239 },
 ]
 
 [[package]]
@@ -1198,6 +1211,15 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/83/f8/51569ac65d696c8ecbee95938f89d4abf00f47d58d48f6fbabfe8f0baefe/nest_asyncio-1.6.0.tar.gz", hash = "sha256:6f172d5449aca15afd6c646851f4e31e02c598d553a667e38cafa997cfec55fe", size = 7418 }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/a0/c4/c2971a3ba4c6103a3d10c4b0f24f461ddc027f0f09763220cf35ca1401b3/nest_asyncio-1.6.0-py3-none-any.whl", hash = "sha256:87af6efd6b5e897c81050477ef65c62e2b2f35d51703cae01aff2905b1852e1c", size = 5195 },
+]
+
+[[package]]
+name = "networkx"
+version = "3.4.2"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/fd/1d/06475e1cd5264c0b870ea2cc6fdb3e37177c1e565c43f56ff17a10e3937f/networkx-3.4.2.tar.gz", hash = "sha256:307c3669428c5362aab27c8a1260aa8f47c4e91d3891f48be0141738d8d053e1", size = 2151368 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/b9/54/dd730b32ea14ea797530a4479b2ed46a6fb250f682a9cfb997e968bf0261/networkx-3.4.2-py3-none-any.whl", hash = "sha256:df5d4365b724cf81b8c6a7312509d0c22386097011ad1abe274afd5e9d3bbc5f", size = 1723263 },
 ]
 
 [[package]]
@@ -1743,6 +1765,20 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/5f/57/df1c9157c8d5a05117e455d66fd7cf6dbc46974f832b1058ed4856785d8a/pytz-2025.1.tar.gz", hash = "sha256:c2db42be2a2518b28e65f9207c4d05e6ff547d1efa4086469ef855e4ab70178e", size = 319617 }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/eb/38/ac33370d784287baa1c3d538978b5e2ea064d4c1b93ffbd12826c190dd10/pytz-2025.1-py2.py3-none-any.whl", hash = "sha256:89dd22dca55b46eac6eda23b2d72721bf1bdfef212645d81513ef5d03038de57", size = 507930 },
+]
+
+[[package]]
+name = "pyvis"
+version = "0.3.2"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "ipython" },
+    { name = "jinja2" },
+    { name = "jsonpickle" },
+    { name = "networkx" },
+]
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/ab/4b/e37e4e5d5ee1179694917b445768bdbfb084f5a59ecd38089d3413d4c70f/pyvis-0.3.2-py3-none-any.whl", hash = "sha256:5720c4ca8161dc5d9ab352015723abb7a8bb8fb443edeb07f7a322db34a97555", size = 756038 },
 ]
 
 [[package]]
