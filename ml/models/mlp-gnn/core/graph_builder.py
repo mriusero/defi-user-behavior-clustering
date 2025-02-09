@@ -51,6 +51,10 @@ class GraphBuilder:
         edge_index, edge_attr = self._get_edges(df, address_to_idx, protocol_to_idx)
         node_features = self._get_features(df)
 
+        print(f"Node features shape: {node_features.shape}")
+        print(f"Edge index shape: {edge_index.shape}")
+        print(f"Edge attributes shape: {edge_attr.shape if edge_attr is not None else 'None'}")
+
         return Data(x=node_features, edge_index=edge_index, edge_attr=edge_attr)
 
     def _get_edges(self, df, address_to_idx, protocol_to_idx):

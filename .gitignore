@@ -25,6 +25,7 @@ __pycache__/
 
 # Logs
 logs/
+mlruns/
 
 # Data
 data/

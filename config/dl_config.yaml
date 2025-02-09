@@ -1,0 +1,8 @@
+model:
+  hidden_dim: 64
+  learning_rate: 0.001
+  epochs: 100
+  batch_size: 32
+
+gpu:
+  use_mlx: true  # Enable MLX for Mac GPU acceleration
