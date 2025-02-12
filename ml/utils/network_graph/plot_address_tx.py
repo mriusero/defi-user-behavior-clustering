@@ -7,7 +7,7 @@ import datashader.transfer_functions as tf
 import networkx as nx
 import pandas as pd
 from datashader.utils import export_image
-from datashader.bundling import connect_edges
+from datashader.bundling import connect_edges, hammer_bundle
 from datashader.layout import random_layout, circular_layout, forceatlas2_layout
 
 from build_networks import build_address_tx_graph
@@ -28,7 +28,7 @@ print(f"\n--> device: {DEVICE} <--\n")
 start = time.time()
 print("-- Data loading --")
 transactions = pd.read_parquet("data/raw/transactions.parquet", engine='pyarrow')       # Chargement des données
-transactions = transactions.sample(100000, random_state=42)
+transactions = transactions.sample(500000, random_state=42)
 time_taken(start, "Data loading")
 
 # Network building
@@ -46,7 +46,7 @@ time_taken(start, "Address mapping")
 # Nodes computing
 start = time.time()
 print("-- Nodes computing --")
-pos = nx.spring_layout(G_address, k=0.15, iterations=10, seed=42)
+pos = nx.fruchterman_reingold_layout(G_address, k=0.15, iterations=10, seed=42)
 pos_array = np.array(list(pos.values()), dtype=np.float32)
 pos_tensor = torch.tensor(pos_array, device=DEVICE)
 all_positions = []
@@ -81,7 +81,7 @@ for i in pbar:
     pbar.set_postfix({'batch': i})
     pbar.refresh()
 
-edges_df = pd.concat(all_edges, ignore_index=True)
+edges = pd.concat(all_edges, ignore_index=True)
 time_taken(start, "Edges computing")
 
 
@@ -98,7 +98,7 @@ time_taken(start, "Canvas computing")
 start = time.time()
 print("-- Aggregating nodes and edges --")
 nodes_agg = canvas.points(nodes, 'x', 'y', ds.sum('size'))
-edge_agg = canvas.line(edges_df, 'x', 'y', ds.count())
+edge_agg = canvas.line(edges, 'x', 'y', ds.count())
 time_taken(start, "Aggregating nodes and edges")
 
 
