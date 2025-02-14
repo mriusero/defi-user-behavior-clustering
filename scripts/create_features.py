@@ -7,10 +7,9 @@ from ml.utils.hf_hub import upload_dataset
 
 
 if __name__ == "__main__":
-
     implement_features()
 
     upload_dataset(
-        dataset_path='data/features/features.arrow',
-        hub_path='dataset/data/features.arrow'
+        dataset_path="data/features/features.arrow",
+        hub_path="dataset/data/features.arrow",
     )

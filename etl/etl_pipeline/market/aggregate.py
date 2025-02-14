@@ -2,6 +2,7 @@ import pandas as pd
 from tqdm import tqdm
 from ..mongodb_handler import get_mongo_collection
 
+
 def aggregate_transactions(df, time_delta=None):
     """
     Aggregates the transaction data from the MongoDB collection based on the given DataFrame.

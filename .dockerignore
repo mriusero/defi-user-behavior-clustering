@@ -12,16 +12,20 @@
 **/*.pyc
 **/*.pyo
 
+# Compiled source
+lib/
+
 # Outputs and generated files
 config/
 data/
-docs/
+docs/markdown/
 etl/
 logs/
 ml/
 models/
 notebooks/
 scripts/
+tmp/
 LICENSE
 README.md
 

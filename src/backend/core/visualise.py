@@ -15,10 +15,10 @@ class DataVisualizer:
         """Configure le mode sombre ou clair pour les visualisations"""
         if self.dark_mode:
             sns.set_theme(style="darkgrid")
-            plt.style.use('dark_background')
+            plt.style.use("dark_background")
         else:
             sns.set_theme(style="whitegrid")
-            plt.style.use('seaborn-white')
+            plt.style.use("seaborn-white")
 
     def show_dataframe(self):
         """Affiche un aperçu des premières lignes du DataFrame"""
@@ -46,10 +46,10 @@ class DataVisualizer:
         sns.scatterplot(x=x, y=y, hue=color, size=size, data=self.df, ax=ax)
         st.pyplot(fig)
 
-    def plot_pairplot(self, hue=None, palette='viridis'):
+    def plot_pairplot(self, hue=None, palette="viridis"):
         """Pairplot des variables numériques"""
         st.write("### Pairplot")
-        numeric_df = self.df.select_dtypes(include=['number'])
+        numeric_df = self.df.select_dtypes(include=["number"])
         fig = plt.subplots(figsize=(10, 8))
         sns.pairplot(numeric_df, hue=hue, palette=palette)
         st.pyplot(fig)
@@ -57,25 +57,36 @@ class DataVisualizer:
     def plot_correlation_heatmap(self):
         """Carte de chaleur des corrélations entre variables (interactive avec Plotly)"""
         st.write("### Correlation matrix")
-        numeric_df = self.df.select_dtypes(include=['number'])
+        numeric_df = self.df.select_dtypes(include=["number"])
         corr_matrix = numeric_df.corr()
-        fig = go.Figure(data=go.Heatmap(
-            z=corr_matrix.values,
-            x=corr_matrix.columns,
-            y=corr_matrix.columns,
-            colorscale='Viridis',
-            zmin=-1, zmax=1,
-            colorbar=dict(title='Correlation'),
-            text=corr_matrix.round(2).values,
-            texttemplate="%{text}",
-            textfont=dict(color="black"),
-            hoverinfo='text'
-        ))
+        fig = go.Figure(
+            data=go.Heatmap(
+                z=corr_matrix.values,
+                x=corr_matrix.columns,
+                y=corr_matrix.columns,
+                colorscale="Viridis",
+                zmin=-1,
+                zmax=1,
+                colorbar=dict(title="Correlation"),
+                text=corr_matrix.round(2).values,
+                texttemplate="%{text}",
+                textfont=dict(color="black"),
+                hoverinfo="text",
+            )
+        )
         fig.update_layout(
             xaxis_title="Variables",
             yaxis_title="Variables",
-            xaxis=dict(tickmode='array', tickvals=list(range(len(corr_matrix.columns))), ticktext=corr_matrix.columns),
-            yaxis=dict(tickmode='array', tickvals=list(range(len(corr_matrix.columns))), ticktext=corr_matrix.columns),
+            xaxis=dict(
+                tickmode="array",
+                tickvals=list(range(len(corr_matrix.columns))),
+                ticktext=corr_matrix.columns,
+            ),
+            yaxis=dict(
+                tickmode="array",
+                tickvals=list(range(len(corr_matrix.columns))),
+                ticktext=corr_matrix.columns,
+            ),
             autosize=True,
             height=800,
         )
@@ -109,7 +120,7 @@ class DataVisualizer:
     def summarize_data(self):
         """Affiche un résumé statistique des données"""
         st.write("### Statistical Summary")
-        numeric_df = self.df.select_dtypes(include=['number'])
+        numeric_df = self.df.select_dtypes(include=["number"])
         st.write(numeric_df.describe())
 
     def missing_data(self):
@@ -122,44 +133,74 @@ class DataVisualizer:
         """Visualisation interactive de la distribution avec option KDE"""
         st.write(f"### Distribution of {column}")
         if kde:
-            fig = px.histogram(self.df, x=column, nbins=bins, marginal="rug", title=f"Distribution of {column}")
+            fig = px.histogram(
+                self.df,
+                x=column,
+                nbins=bins,
+                marginal="rug",
+                title=f"Distribution of {column}",
+            )
             fig.update_traces(marker=dict(line=dict(width=1, color="black")))
         else:
-            fig = px.histogram(self.df, x=column, nbins=bins, title=f"Distribution of {column}")
+            fig = px.histogram(
+                self.df, x=column, nbins=bins, title=f"Distribution of {column}"
+            )
         st.plotly_chart(fig)
 
-
-    def plot_ohlc(self, date_column, open_column, high_column, low_column, close_column):
+    def plot_ohlc(
+        self, date_column, open_column, high_column, low_column, close_column
+    ):
         """Affiche un graphique OHLC interactif"""
         st.write("### OHLC Chart")
         col1, col2 = st.columns([1, 1])
         with col1:
-            protocol = st.selectbox('Select a protocol', self.df['protocol_name'].unique())
+            protocol = st.selectbox(
+                "Select a protocol", self.df["protocol_name"].unique()
+            )
         with col2:
-            frequency = st.selectbox('Select a frequency', ['1YE', '1ME', '1D', '12h', '1h'])
-        df = self.df[self.df['protocol_name'] == protocol]
+            frequency = st.selectbox(
+                "Select a frequency", ["1YE", "1ME", "1D", "12h", "1h"]
+            )
+        df = self.df[self.df["protocol_name"] == protocol]
 
-        if not all(col in df.columns for col in [date_column, open_column, high_column, low_column, close_column]):
-            st.write(f"Following colonnes missing into DataFrame: "
-                     f"{', '.join([col for col in [date_column, open_column, high_column, low_column, close_column] if col not in self.df.columns])}")
+        if not all(
+            col in df.columns
+            for col in [date_column, open_column, high_column, low_column, close_column]
+        ):
+            st.write(
+                f"Following colonnes missing into DataFrame: "
+                f"{', '.join([col for col in [date_column, open_column, high_column, low_column, close_column] if col not in self.df.columns])}"
+            )
             return
-        df_resampled = self.df.resample(frequency, on=date_column).agg({
-            open_column: 'median',
-            high_column: 'median',
-            low_column: 'median',
-            close_column: 'median'
-        }).dropna()
-        fig = go.Figure(data=[go.Ohlc(x=df_resampled.index,
-                                      open=df_resampled[open_column],
-                                      high=df_resampled[high_column],
-                                      low=df_resampled[low_column],
-                                      close=df_resampled[close_column])])
+        df_resampled = (
+            self.df.resample(frequency, on=date_column)
+            .agg(
+                {
+                    open_column: "median",
+                    high_column: "median",
+                    low_column: "median",
+                    close_column: "median",
+                }
+            )
+            .dropna()
+        )
+        fig = go.Figure(
+            data=[
+                go.Ohlc(
+                    x=df_resampled.index,
+                    open=df_resampled[open_column],
+                    high=df_resampled[high_column],
+                    low=df_resampled[low_column],
+                    close=df_resampled[close_column],
+                )
+            ]
+        )
         fig.update_layout(
             xaxis_title="Date",
             yaxis_title="Price",
             xaxis_rangeslider_visible=False,
             template="plotly_dark",
             autosize=True,
-            height=600
+            height=600,
         )
         st.plotly_chart(fig)

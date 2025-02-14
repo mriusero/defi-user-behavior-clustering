@@ -3,24 +3,35 @@ name = "defi-user-behavior-clustering"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
-requires-python = ">=3.11"
+requires-python = ">=3.12"
 dependencies = [
     "black>=24.10.0",
+    "dask[complete]>=2025.1.0",
+    "datashader>=0.17.0",
     "huggingface-hub>=0.28.1",
     "ipykernel>=6.29.5",
     "ipywidgets>=8.1.5",
-    "kagglehub>=0.3.6",
+    "mlflow>=1.27.0",
+    "networkx>=3.4.2",
+    "optuna>=4.2.0",
     "plotly>=5.24.1",
+    "protobuf==3.20.*",
     "pyarrow>=19.0.0",
     "pylint>=3.3.3",
     "pymongo>=4.10.1",
     "python-dotenv>=1.0.1",
+    "pyvis>=0.3.2",
     "requests>=2.32.3",
     "rich>=13.9.4",
+    "scikit-image>=0.25.1",
     "scikit-learn>=1.6.1",
     "seaborn>=0.13.2",
+    "setuptools>=75.8.0",
     "statsmodels>=0.14.4",
     "streamlit>=1.41.1",
+    "torch>=2.6.0",
+    "torch-geometric>=2.6.1",
+    "torchsummary>=1.5.1",
     "tqdm>=4.67.1",
     "watchdog>=6.0.0",
     "yfinance>=0.2.52",

@@ -9,7 +9,6 @@ multiprocessing.log_to_stderr(logging.DEBUG)
 
 
 def run_etl():
-
     process_etl_pipeline(
         protocols=False,
         contracts=False,

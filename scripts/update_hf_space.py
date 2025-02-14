@@ -1,6 +1,7 @@
 import os
 from huggingface_hub import login, upload_file
 
+
 def update_dockerfile(docker_user, repo_name, date):
     dockerfile_content = f"""FROM docker.io/{docker_user}/{repo_name}:{date}
 USER user
@@ -13,6 +14,7 @@ CMD ["uv", "run", "streamlit", "run", "app.py", "--server.port=8501", "--server.
     with open("Dockerfile", "w") as f:
         f.write(dockerfile_content)
 
+
 def commit_and_push_on_space(hf_user, hf_space_name, hf_token):
     try:
         login(token=hf_token)
@@ -20,11 +22,12 @@ def commit_and_push_on_space(hf_user, hf_space_name, hf_token):
             path_or_fileobj="Dockerfile",
             path_in_repo="Dockerfile",
             repo_id=f"{hf_user}/{hf_space_name}",
-            repo_type="space"
+            repo_type="space",
         )
         print("Docker file updated successfully.")
     except Exception as e:
         print(f"Error during Dockerfile update: {e}")
+
 
 if __name__ == "__main__":
     DOCKER_USER = os.getenv("DOCKER_USER", "default_user")

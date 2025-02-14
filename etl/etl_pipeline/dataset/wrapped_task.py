@@ -85,7 +85,6 @@ def wrapped_tasks(args):
     dataset_updates = []
 
     for user in tqdm(users_batch, desc="Processing users", leave=False):
-
         transactions_with_market_data = []
 
         for transaction in user.get("transactions", []):

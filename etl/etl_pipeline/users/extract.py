@@ -8,6 +8,7 @@ from .load import load_users_data
 from .transform import transform_to_user_data
 from ..mongodb_handler import get_mongo_collection
 
+
 def process_transactions_batch(transactions: list) -> dict:
     """
     Processes a batch of transactions and returns transformed user data.

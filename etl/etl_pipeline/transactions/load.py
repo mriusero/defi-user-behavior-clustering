@@ -5,6 +5,7 @@ from pymongo import UpdateOne
 
 from ..mongodb_handler import get_mongo_collection
 
+
 def upsert_transactions(
     protocol_name, contract_type, contract_id, blockchain, transactions
 ):

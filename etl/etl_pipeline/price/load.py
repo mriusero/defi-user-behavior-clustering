@@ -3,6 +3,7 @@ from pymongo import UpdateOne
 
 from ..mongodb_handler import get_mongo_collection
 
+
 def load_data_to_mongodb(data: list):
     """
     Loads the new data into a MongoDB collection, inserting only new transactions.
