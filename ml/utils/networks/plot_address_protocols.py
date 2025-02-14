@@ -17,12 +17,18 @@ CVSOPTS = dict(plot_height=4000, plot_width=4000)
 NUM_P = mp.cpu_count()
 
 COLOR_KEY = {
-    'type_dex': "#FFFFFF",
-    'type_lending': "#7FFF00",
-    'type_stablecoin': "#DC143C",
-    'type_yield_farming': "#ffc909",
-    'type_nft_fi': "#c24ee2",
-    'address': "#12a7bb"
+    "curve_dao_count":       "#FF6347",
+    "aave_count":            "#4e000b",
+    "uniswap_count":         "#1e8b22",
+    "maker_count":           "#ffc909",
+    "tether_count":          "#DC143C",
+    "yearn_finance_count":   "#c24ee2",
+    "usdc_count":            "#00CED1",
+    "dai_count":             "#FFFFFF",
+    "balancer_count":        "#7FFF00",
+    "harvest_finance_count": "#efef24",
+    "nftfi_count":           "#FF1493",
+    "address":               "#12a7bb",
 }
 
 def time_taken(start, step_name):
@@ -59,7 +65,7 @@ def process_image(agg, px_size, min_alpha, shape, name, color_key=None, color_ba
     )
 
 def visualize_graph(graph, graph_type):
-    """Efficient visualization of the graph using Datashader, with Dask for parallel computing."""
+    """Efficient networks of the graph using Datashader, with Dask for parallel computing."""
 
     start = time.time()
     print(f"\n1. -- Building layout --")
@@ -156,17 +162,17 @@ def visualize_graph(graph, graph_type):
 
 if __name__ == "__main__":
     protocols = [
-        'type_dex', 'type_lending', 'type_stablecoin',
-        'type_yield_farming', 'type_nft_fi'
+        'curve_dao_count', 'aave_count', 'uniswap_count', 'maker_count', 'tether_count', 'yearn_finance_count',
+        'usdc_count', 'dai_count', 'balancer_count','harvest_finance_count', 'nftfi_count'
     ]
     table = feather.read_table("data/features/features.arrow")
     features = table.to_pandas()
     features = features.sample(100000, random_state=42)
 
     start = time.time()
-    G_protocol = build_bipartite_graph(features, 'address', protocols, 'address-to-protocol-type')
+    G_protocol = build_bipartite_graph(features, 'address', protocols, 'address-to-protocol')
     time_taken(start, "Total network building")
 
     start = time.time()
-    visualize_graph(G_protocol, "address_protocol_type")
+    visualize_graph(G_protocol, "address_protocol")
     time_taken(start, "Total graph building")
