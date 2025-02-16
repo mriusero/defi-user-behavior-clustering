@@ -1,14 +1,35 @@
 import streamlit as st
 
+#from ..layout import change_page
 
 def page_0():
     st.markdown(
         '<div class="header">Introduction_</div>',
         unsafe_allow_html=True,
     )
-    st.write("## Features_")
+    st.write("""
+This project aims to analyze and cluster user behavior in decentralized finance (DeFi) platforms using open-source data. By examining user interactions, transaction patterns, and other relevant metrics, the goal is to uncover meaningful insights into how users engage with DeFi applications. These insights can help to improve platform designs, identify emerging trends, and provide valuable information for both developers and users within the DeFi ecosystem.
+    
+## Scope of Analysis_
+
+The scope of this analysis encompasses various decentralized finance (DeFi) protocols and platforms.   
+Specifically, the study focuses on the following types of DeFi protocols on the `Ethereum blockchain`:
+
+- **Decentralized Exchanges (DEX)**: *`Uniswap`, `Curve DAO`, `Balancer`*
+- **Lending Platforms**: *`Aave`, `Maker`*
+- **Stablecoins**: *`Tether`, `USD Coin (USDC)`, `Dai`*
+- **Yield Farming**: *`Yearn Finance`, `Harvest Finance`*
+- **Non-Fungible Token (NFT)**: *`NFTfi`*
+
+## Data Collection_
+The data used in this analysis is sourced from the `Ethereum blockchain`.  
+All the process of data collection is detailed [here](http://localhost:8501/#Data-Collection_).
+
+    """)
 
     st.write("""
+    ## Features_
+    
     #### 1. General Information
     - `address`: Unique address of the user on the blockchain.
 

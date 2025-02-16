@@ -11,7 +11,6 @@ def load_css():
     with open(css_path, "r", encoding="utf-8") as f:  # Ajout de l'encodage ici
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
-
 def app_layout():
     from .layouts import page_0, page_1, page_2, page_3, page_4
 
@@ -26,16 +25,20 @@ def app_layout():
 
     st.sidebar.markdown(" ## *DeFI Behavior*\n")
 
-    page = st.sidebar.radio(
+    if 'page' not in st.session_state:
+        st.session_state.page = "# Introduction_"
+
+    st.session_state.page = st.sidebar.radio(
         "Summary",
         [
-            "# Home_",
-            "# Detected User Profiles_",
+            "# Introduction_",
+            "# Data Collection_",
             "# Capital Migration Tracking_",
             "# Anomaly Detection_",
             "# Summary of Results_",
         ],
     )
+
     col1, col2 = st.columns([6, 4])
     with col1:
         st.markdown('<div class="title">DeFi Behavior</div>', unsafe_allow_html=True)
@@ -78,15 +81,15 @@ def app_layout():
     st.markdown(line_style, unsafe_allow_html=True)
     st.markdown(line_html, unsafe_allow_html=True)
 
-    if page == "# Home_":
+    if st.session_state.page == "# Introduction_":
         page_0()
-    elif page == "# Detected User Profiles_":
+    elif st.session_state.page == "# Data Collection_":
         page_1()
-    elif page == "# Capital Migration Tracking_":
+    elif st.session_state.page == "# Capital Migration Tracking_":
         page_2()
-    elif page == "# Anomaly Detection_":
+    elif st.session_state.page == "# Anomaly Detection_":
         page_3()
-    elif page == "# Summary of Results_":
+    elif st.session_state.page == "# Summary of Results_":
         page_4()
 
     st.sidebar.markdown("&nbsp;")
