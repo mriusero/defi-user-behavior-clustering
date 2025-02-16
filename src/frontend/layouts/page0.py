@@ -1,6 +1,20 @@
 import streamlit as st
 import streamlit.components.v1 as components
 
+COLOR_KEY = {
+    "curve_dao_count": "#FF6347",
+    "aave_count": "#4e000b",
+    "uniswap_count": "#1e8b22",
+    "maker_count": "#ffc909",
+    "tether_count": "#DC143C",
+    "yearn_finance_count": "#c24ee2",
+    "usdc_count": "#00CED1",
+    "dai_count": "#FFFFFF",
+    "balancer_count": "#7FFF00",
+    "harvest_finance_count": "#efef24",
+    "nftfi_count": "#FF1493",
+}
+
 def page_0():
     st.markdown(
         '<div class="header">Introduction_</div>',
@@ -70,8 +84,30 @@ The features files are also available in the [Hugging Face Hub](https://huggingf
     ></iframe>
     '''
     components.html(iframe_features, height=600)
+    st.write("""
+---
 
+## Network Analysis_
+The network analysis provides an abstract vision of relationships between user addresses and DeFi protocols. By visualizing the connections between users and protocols, we can identify patterns in user behavior and protocol interactions.   
 
+#### Protocols Network_
+    
+This graph represents the network of user addresses and the protocols they interact with.  
+Each node represents a user address and each edge represents a transaction between a user and a protocol.  
+
+> **Note:** This graph contains only 100 000 users against 6 876 845 in the real dataset.
+
+        """)
+    col1, col2 = st.columns([1, 5])
+    with col1:
+        st.write("""
+        """)
+        st.write("**Legend:**")
+        for protocol, color in COLOR_KEY.items():
+            st.markdown(f"<span style='color: {color};'>■</span> {protocol.replace('_', ' ').title()}",
+                        unsafe_allow_html=True)
+    with col2:
+        st.image("docs/graphics/network/address_protocol_nx_plot.png", caption="")
 
 
 

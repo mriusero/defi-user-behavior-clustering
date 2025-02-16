@@ -34,7 +34,7 @@ def app_layout():
             "# Introduction_",
             "# Data Collection_",
             "# Features Engineering_",
-            "# Anomaly Detection_",
+            "# Exploratory Analysis_",
             "# Summary of Results_",
         ],
     )
@@ -94,7 +94,7 @@ def app_layout():
         page_1()
     elif st.session_state.page == "# Features Engineering_":
         page_2()
-    elif st.session_state.page == "# Anomaly Detection_":
+    elif st.session_state.page == "# Exploratory Analysis_":
         page_3()
     elif st.session_state.page == "# Summary of Results_":
         page_4()
