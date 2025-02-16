@@ -22,7 +22,7 @@ Following the feature engineering process, the exploratory analysis provides fir
     
 ---
 
-## Transactions Volumes and Values_  /!\ To review
+## Transactions Volumes and Values_ 
 
     """)
 
