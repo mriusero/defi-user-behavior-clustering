@@ -33,7 +33,7 @@ def app_layout():
         [
             "# Introduction_",
             "# Data Collection_",
-            "# Capital Migration Tracking_",
+            "# Features Engineering_",
             "# Anomaly Detection_",
             "# Summary of Results_",
         ],
@@ -51,16 +51,23 @@ def app_layout():
         with col_b:
             st.text("")
             st.link_button(
-                "See dataset",
-                "https://huggingface.co/datasets/mriusero/DeFi-Protocol-Data-on-Ethereum-2023-2024",
+                "See All Collection",
+                "https://huggingface.co/collections/mriusero/defi-behavior-analysis-67a0d6d132ccecdff8068369",
             )
 
         with col_c:
             st.text("")
+            st.link_button(
+                "See Dataset",
+                "https://huggingface.co/datasets/mriusero/DeFi-Protocol-Data-on-Ethereum-2023-2024",
+            )
 
         with col_d:
             st.text("")
-
+            st.link_button(
+                "See Models",
+                "https://huggingface.co/mriusero/DeFI-Behavior-Models",
+            )
     with col2:
         st.text("")
         st.text("")
@@ -85,7 +92,7 @@ def app_layout():
         page_0()
     elif st.session_state.page == "# Data Collection_":
         page_1()
-    elif st.session_state.page == "# Capital Migration Tracking_":
+    elif st.session_state.page == "# Features Engineering_":
         page_2()
     elif st.session_state.page == "# Anomaly Detection_":
         page_3()

@@ -216,5 +216,12 @@ This step allows to aggregate users activities across different protocols and th
   "volume": 0
 }
 ```
-    
+#### 6. **Data Storage**:
+All data are stored in Parquet format and are available in the [Hugging Face hub](https://huggingface.co/datasets/mriusero/DeFi-Protocol-Data-on-Ethereum-2023-2024/tree/main/dataset/data).
+
+    ├── contracts.parquet         # Contains contract details for selected DeFi protocols.
+    ├── transactions.parquet      # Contains transaction data for Ethereum-based contracts.
+    ├── market.parquet            # Contains enriched market data with aggregated transaction metrics.
+    └── users.parquet             # User profiles based on transaction data.
+
     """)
