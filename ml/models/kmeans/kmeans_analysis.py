@@ -5,9 +5,9 @@ import numpy as np
 from tqdm import tqdm
 from joblib import Parallel, delayed
 from matplotlib import pyplot as plt
-from sklearn.metrics import silhouette_samples
+from sklearn.metrics import davies_bouldin_score, calinski_harabasz_score, silhouette_score
 from sklearn.cluster import MiniBatchKMeans, KMeans
-
+from sklearn.utils import resample
 
 def compute_inertia(k, x_train):
     """
@@ -45,7 +45,7 @@ def compute_silhouette_score(k, x_train):
         print(f"Warning: only {len(np.unique(labels_sample))} clusters found for k={k}")
         return 0
 
-    return np.mean(silhouette_samples(x_sample, labels_sample))
+    return np.mean(silhouette_score(x_sample, labels_sample))
 
 
 def analyze_kmeans(x_train, dataset_name):
@@ -104,6 +104,18 @@ def analyze_kmeans(x_train, dataset_name):
     return k_range[np.argmax(silhouette_scores)]
 
 
+def measure_performances(data, labels):
+    """ Measure the performances of clustering algorithms """
+
+    db_index = davies_bouldin_score(data, labels)
+    ch_index = calinski_harabasz_score(data, labels)
+
+    data_sample, labels_sample = resample(data, labels, n_samples=10000, random_state=42)
+    silhouette_avg = silhouette_score(data_sample, labels_sample)
+
+    return db_index, ch_index, silhouette_avg
+
+
 def objective(x, trial):
     """
     Objective function for Optuna hyperparameter optimization of MiniBatchKMeans.
@@ -128,16 +140,15 @@ def objective(x, trial):
         random_state=42,
     )
     labels = kmeans.fit_predict(x)
+    db_index, ch_index, silhouette_avg = measure_performances(data=x, labels=labels)
 
-    sample_size = min(10000, x.shape[0])
-    sample_indices = np.random.choice(x.shape[0], sample_size, replace=False)
-    x_sample = x[sample_indices]
-    labels_sample = labels[sample_indices]
+    x = trial.suggest_float("silhouette_weight", 0.1, 1.0)
+    y = trial.suggest_float("ch_weight", 0.1, 1.0)
+    z = trial.suggest_float("db_weight", 0.1, 1.0)
 
-    if len(np.unique(labels_sample)) < 2:
-        return 0
+    combined_score = (x * silhouette_avg) + (y * ch_index) - (z * db_index)
 
-    return np.mean(silhouette_samples(x_sample, labels_sample))
+    return combined_score
 
 
 def optimize_hyperparams(

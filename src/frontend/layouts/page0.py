@@ -95,7 +95,8 @@ The network analysis provides an abstract vision of relationships between user a
 This graph represents the network of user addresses and the protocols they interact with.  
 Each node represents a user address and each edge represents a transaction between a user and a protocol.  
 
-> **Note:** This graph contains only 100 000 users against 6 876 845 in the real dataset.
+> **Note:** This graph contains only 100 000 users against 6 876 845 in the real dataset.  
+> Image available [here](https://github.com/mriusero/defi-user-behavior-clustering/blob/main/docs/graphics/network/address_protocol_nx_plot.png).
 
         """)
     col1, col2 = st.columns([1, 5])
@@ -107,10 +108,11 @@ Each node represents a user address and each edge represents a transaction betwe
             st.markdown(f"<span style='color: {color};'>■</span> {protocol.replace('_', ' ').title()}",
                         unsafe_allow_html=True)
     with col2:
-        st.image("docs/graphics/network/address_protocol_nx_plot.png", caption="")
+        st.image("src/frontend/layouts/pictures/address_protocol_nx_plot.png", caption="")
 
-
-
+    st.write("""
+## Clustering_
+    """)
 
 
 

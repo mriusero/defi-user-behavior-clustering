@@ -8,10 +8,12 @@ import pyarrow.feather as feather
 from sklearn.cluster import KMeans
 from sklearn.decomposition import PCA
 
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
-from ml.models.kmeans.kmeans_analysis import analyze_kmeans, optimize_hyperparams
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../../..")))
+from kmeans_analysis import analyze_kmeans, optimize_hyperparams, measure_performances
 from ml.utils.splitting import splitting
 from ml.utils.hf_hub import upload_model
+from ml.interpreter.comparison import clusters_analysis
 
 
 class KMeansPipeline:
@@ -36,9 +38,11 @@ class KMeansPipeline:
         self.y_all = None
         self.best_k = 4
         self.model = None
+        self.clusters = None
+        self.features_path = f"data/features/features.arrow"
         self.model_path = f"models/kmeans/DeFI-Kmeans.pkl"
         self.optuna_results_path = "models/kmeans/optuna_study_results.json"
-        self.predictions_path = f"data/results/kmeans_predictions.arrow"
+        self.predictions_path = f"data/clustering/kmeans/kmeans_predictions.arrow"
 
     def run(self):
         """Run the KMeans pipeline"""
@@ -53,6 +57,7 @@ class KMeansPipeline:
         self.load()
         self.predict()
         self.upload_model() if self.upload else None
+        self.analyse_results()
         print("\n ======= KMeans pipeline completed ======= \n")
 
     def load_data(self):
@@ -90,7 +95,7 @@ class KMeansPipeline:
                     best_params = saved_results.get("best_params", {})
                     self.best_k = best_params.get("n_clusters", 4)
                     print(
-                        f"Best hyperparameters loaded: {best_params}\nSilhouette score associated: {saved_results.get('best_value', 0)}"
+                        f"Best hyperparameters loaded: {best_params}\nMetric associated: {saved_results.get('best_value', 0)}"
                     )
             except Exception as e:
                 print(f"Error loading hyperparameters: {e}, proceeding with default.")
@@ -101,7 +106,7 @@ class KMeansPipeline:
         """Optimize hyperparameters using Optuna"""
         print("\n5. Optimizing hyperparameters\n---------------------------------")
         results = optimize_hyperparams(
-            self.x_all, n_trials=300, save_path=self.optuna_results_path
+            self.x_all, n_trials=500, save_path=self.optuna_results_path
         )
         self.best_k = results["best_params"]["n_clusters"]
         print(f"Optimal number of clusters (all): {self.best_k}")
@@ -128,20 +133,33 @@ class KMeansPipeline:
     def predict(self):
         """Predict the clusters for all addresses and save the results"""
         print("\n9. Predict\n---------------------------------")
-        clusters = self.model.predict(self.x_all)
-        results = pd.DataFrame({"address": self.y_all, "cluster": clusters})
+        self.clusters = self.model.predict(self.x_all)
+        results = pd.DataFrame({"address": self.y_all, "cluster": self.clusters})
         print(f"Predictions: {results.shape[0]} rows clustered")
 
         print("\n10. Save predictions\n---------------------------------")
         table = pa.Table.from_pandas(results)
         feather.write_feather(table, self.predictions_path)
-        print(f"Predictions saved successfully to {self.predictions_path}\n")
+        print(f"Predictions saved successfully to {self.predictions_path}")
 
     def upload_model(self):
         """Upload the trained model to Hugging Face Hub"""
         print("\n11. Upload model to HF\n---------------------------------")
         upload_model(self.model_path, "DeFI-Kmeans.pkl")
 
+    def analyse_results(self):
+        """Analyze the results of the KMeans clustering"""
+        print("\n12. Analyzing results\n---------------------------------")
+
+        print("\nPerformances:\n")
+        db_index, ch_index, silhouette_avg = measure_performances(data=self.x_all, labels=self.clusters)
+        print(f"--> Davies-Bouldin Index: {db_index}")
+        print(f"--> Calinski-Harabasz Index: {ch_index}")
+        print(f"--> Silhouette Avg: {silhouette_avg}")
+
+        print("\nVariance synthesis:\n")
+        result = clusters_analysis(self.features_path, self.predictions_path)
+        print(f"Results analyzed successfully:\n {result.head(5)}")
 
 if __name__ == "__main__":
     pipeline = KMeansPipeline(

@@ -18,7 +18,7 @@ lib/
 # Outputs and generated files
 config/
 data/
-docs/markdown/
+docs/
 etl/
 logs/
 ml/
