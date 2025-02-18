@@ -8,11 +8,12 @@ import pyarrow.feather as feather
 from sklearn.cluster import KMeans
 from sklearn.decomposition import PCA
 
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
-from ml.models.kmeans.kmeans_analysis import analyze_kmeans, optimize_hyperparams
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../../..")))
+from kmeans_analysis import analyze_kmeans, optimize_hyperparams
 from ml.utils.splitting import splitting
 from ml.utils.hf_hub import upload_model
-
+from ml.interpreter.comparison import clusters_analysis
 
 class KMeansPipeline:
     """
@@ -36,9 +37,10 @@ class KMeansPipeline:
         self.y_all = None
         self.best_k = 4
         self.model = None
+        self.features_path = f"data/features/features.arrow"
         self.model_path = f"models/kmeans/DeFI-Kmeans.pkl"
         self.optuna_results_path = "models/kmeans/optuna_study_results.json"
-        self.predictions_path = f"data/results/kmeans_predictions.arrow"
+        self.predictions_path = f"data/clustering/kmeans/kmeans_predictions.arrow"
 
     def run(self):
         """Run the KMeans pipeline"""
@@ -53,6 +55,7 @@ class KMeansPipeline:
         self.load()
         self.predict()
         self.upload_model() if self.upload else None
+        self.analyse_results()
         print("\n ======= KMeans pipeline completed ======= \n")
 
     def load_data(self):
@@ -135,13 +138,18 @@ class KMeansPipeline:
         print("\n10. Save predictions\n---------------------------------")
         table = pa.Table.from_pandas(results)
         feather.write_feather(table, self.predictions_path)
-        print(f"Predictions saved successfully to {self.predictions_path}\n")
+        print(f"Predictions saved successfully to {self.predictions_path}")
 
     def upload_model(self):
         """Upload the trained model to Hugging Face Hub"""
         print("\n11. Upload model to HF\n---------------------------------")
         upload_model(self.model_path, "DeFI-Kmeans.pkl")
 
+    def analyse_results(self):
+        """Analyze the results of the KMeans clustering"""
+        print("\n12. Analyze results\n---------------------------------")
+        result = clusters_analysis(self.features_path, self.predictions_path)
+        print(f"Results analyzed successfully:\n {result.head(5)}")
 
 if __name__ == "__main__":
     pipeline = KMeansPipeline(
