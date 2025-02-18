@@ -16,7 +16,7 @@ def app_layout():
 
     st.set_page_config(
         page_title="DeFI Behavior",
-        page_icon="random",
+        page_icon="👾",
         layout="wide",
         initial_sidebar_state="auto",
     )
@@ -34,7 +34,7 @@ def app_layout():
             "# Introduction_",
             "# Data Collection_",
             "# Features Engineering_",
-            "# Exploratory Analysis_",
+            "# Clustering_",
             "# Summary of Results_",
         ],
     )
@@ -42,7 +42,7 @@ def app_layout():
     col1, col2 = st.columns([6, 4])
     with col1:
         st.markdown('<div class="title">DeFi Behavior</div>', unsafe_allow_html=True)
-        st.markdown("#### *'User Behavior Pattern Analysis in DeFi Applications'* ")
+        st.markdown("#### *'User Behavior Analysis in DeFi Applications'* ")
         col_a, col_b, col_c, col_d = st.columns([1, 2, 2, 2])
 
         with col_a:
@@ -50,24 +50,16 @@ def app_layout():
 
         with col_b:
             st.text("")
-            st.link_button(
-                "See All Collection",
-                "https://huggingface.co/collections/mriusero/defi-behavior-analysis-67a0d6d132ccecdff8068369",
-            )
+            st.write("[![HuggingFace](https://img.shields.io/badge/%20COLLECTION-FFD700?style=for-the-badge&logo=huggingface&logoColor=black)](https://huggingface.co/collections/mriusero/defi-behavior-analysis-67a0d6d132ccecdff8068369)")
+
 
         with col_c:
             st.text("")
-            st.link_button(
-                "See Dataset",
-                "https://huggingface.co/datasets/mriusero/DeFi-Protocol-Data-on-Ethereum-2023-2024",
-            )
+            st.write("[![HuggingFace](https://img.shields.io/badge/DATASET-FFD700?style=for-the-badge&logo=huggingface&logoColor=black)](https://huggingface.co/datasets/mriusero/DeFi-Protocol-Data-on-Ethereum-2023-2024)")
 
         with col_d:
             st.text("")
-            st.link_button(
-                "See Models",
-                "https://huggingface.co/mriusero/DeFI-Behavior-Models",
-            )
+            st.write("[![HuggingFace](https://img.shields.io/badge/MODELS-FFD700?style=for-the-badge&logo=huggingface&logoColor=black)](https://huggingface.co/mriusero/DeFI-Behavior-Models)")
     with col2:
         st.text("")
         st.text("")
@@ -94,7 +86,7 @@ def app_layout():
         page_1()
     elif st.session_state.page == "# Features Engineering_":
         page_2()
-    elif st.session_state.page == "# Exploratory Analysis_":
+    elif st.session_state.page == "# Clustering_":
         page_3()
     elif st.session_state.page == "# Summary of Results_":
         page_4()
