@@ -10,10 +10,11 @@ from sklearn.decomposition import PCA
 
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../../..")))
-from kmeans_analysis import analyze_kmeans, optimize_hyperparams
+from kmeans_analysis import analyze_kmeans, optimize_hyperparams, measure_performances
 from ml.utils.splitting import splitting
 from ml.utils.hf_hub import upload_model
 from ml.interpreter.comparison import clusters_analysis
+
 
 class KMeansPipeline:
     """
@@ -37,6 +38,7 @@ class KMeansPipeline:
         self.y_all = None
         self.best_k = 4
         self.model = None
+        self.clusters = None
         self.features_path = f"data/features/features.arrow"
         self.model_path = f"models/kmeans/DeFI-Kmeans.pkl"
         self.optuna_results_path = "models/kmeans/optuna_study_results.json"
@@ -93,7 +95,7 @@ class KMeansPipeline:
                     best_params = saved_results.get("best_params", {})
                     self.best_k = best_params.get("n_clusters", 4)
                     print(
-                        f"Best hyperparameters loaded: {best_params}\nSilhouette score associated: {saved_results.get('best_value', 0)}"
+                        f"Best hyperparameters loaded: {best_params}\nMetric associated: {saved_results.get('best_value', 0)}"
                     )
             except Exception as e:
                 print(f"Error loading hyperparameters: {e}, proceeding with default.")
@@ -104,7 +106,7 @@ class KMeansPipeline:
         """Optimize hyperparameters using Optuna"""
         print("\n5. Optimizing hyperparameters\n---------------------------------")
         results = optimize_hyperparams(
-            self.x_all, n_trials=300, save_path=self.optuna_results_path
+            self.x_all, n_trials=500, save_path=self.optuna_results_path
         )
         self.best_k = results["best_params"]["n_clusters"]
         print(f"Optimal number of clusters (all): {self.best_k}")
@@ -131,8 +133,8 @@ class KMeansPipeline:
     def predict(self):
         """Predict the clusters for all addresses and save the results"""
         print("\n9. Predict\n---------------------------------")
-        clusters = self.model.predict(self.x_all)
-        results = pd.DataFrame({"address": self.y_all, "cluster": clusters})
+        self.clusters = self.model.predict(self.x_all)
+        results = pd.DataFrame({"address": self.y_all, "cluster": self.clusters})
         print(f"Predictions: {results.shape[0]} rows clustered")
 
         print("\n10. Save predictions\n---------------------------------")
@@ -147,7 +149,15 @@ class KMeansPipeline:
 
     def analyse_results(self):
         """Analyze the results of the KMeans clustering"""
-        print("\n12. Analyze results\n---------------------------------")
+        print("\n12. Analyzing results\n---------------------------------")
+
+        print("\nPerformances:\n")
+        db_index, ch_index, silhouette_avg = measure_performances(data=self.x_all, labels=self.clusters)
+        print(f"--> Davies-Bouldin Index: {db_index}")
+        print(f"--> Calinski-Harabasz Index: {ch_index}")
+        print(f"--> Silhouette Avg: {silhouette_avg}")
+
+        print("\nVariance synthesis:\n")
         result = clusters_analysis(self.features_path, self.predictions_path)
         print(f"Results analyzed successfully:\n {result.head(5)}")
 
