@@ -1,78 +1,117 @@
 import streamlit as st
+import streamlit.components.v1 as components
 
+COLOR_KEY = {
+    "curve_dao_count": "#FF6347",
+    "aave_count": "#4e000b",
+    "uniswap_count": "#1e8b22",
+    "maker_count": "#ffc909",
+    "tether_count": "#DC143C",
+    "yearn_finance_count": "#c24ee2",
+    "usdc_count": "#00CED1",
+    "dai_count": "#FFFFFF",
+    "balancer_count": "#7FFF00",
+    "harvest_finance_count": "#efef24",
+    "nftfi_count": "#FF1493",
+}
 
 def page_0():
     st.markdown(
         '<div class="header">Introduction_</div>',
         unsafe_allow_html=True,
     )
-    st.write("## Features_")
-
     st.write("""
-    #### 1. General Information
-    - `address`: Unique address of the user on the blockchain.
+This project aims to analyze and cluster user behavior in decentralized finance (DeFi) platforms using open-source data. By examining user interactions, transaction patterns, and other relevant metrics, the goal is to uncover meaningful insights into how users engage with DeFi applications. These insights can help to improve platform designs, identify emerging trends, and provide valuable information for both developers and users within the DeFi ecosystem.
 
-    #### 2. Transaction Activity
-    - `received_count`: Total number of transactions received.
-    - `total_received_eth`: Total amount of ETH received.
-    - `sent_count`: Total number of transactions sent.
-    - `total_sent_eth`: Total amount of ETH sent.
+---
+## Scope of Analysis_
 
-    #### 3. Types of Interaction with Protocols
-    - `type_dex`: Indicates whether the user interacts with DEXs (Decentralized Exchanges).
-    - `type_lending`: Indicates whether the user interacts with lending protocols.
-    - `type_stablecoin`: Indicates whether the user interacts with stablecoins.
-    - `type_yield_farming`: Indicates whether the user participates in yield farming.
-    - `type_nft_fi`: Indicates whether the user interacts with NFT-Fi protocols.
+The scope of this analysis encompasses various decentralized finance (DeFi) protocols and platforms.   
+Specifically, the study focuses on the following types of DeFi protocols on the `Ethereum blockchain`:
 
-    #### 4. Engagement with Specific Protocols
-    (Number of transactions made on each protocol)
-    - `curve_dao_count`
-    - `aave_count`
-    - `tether_count`
-    - `uniswap_count`
-    - `maker_count`
-    - `yearn_finance_count`
-    - `usdc_count`
-    - `dai_count`
-    - `balancer_count`
-    - `harvest_finance_count`
-    - `nftfi_count`
+- **Decentralized Exchanges (DEX)**: *`Uniswap`, `Curve DAO`, `Balancer`*
+- **Lending Platforms**: *`Aave`, `Maker`*
+- **Stablecoins**: *`Tether`, `USD Coin (USDC)`, `Dai`*
+- **Yield Farming**: *`Yearn Finance`, `Harvest Finance`*
+- **Non-Fungible Token (NFT)**: *`NFTfi`*
 
-    #### 5. User Diversity and Influence
-    - `protocol_type_diversity`: Number of different protocol types used by the user.
-    - `protocol_name_diversity`: Number of unique protocols used by the user.
-    - `net_flow_eth`: Difference between ETH sent and ETH received.
-    - `whale_score`: A score indicating whether the user is a large fund holder.
+---
+## Data Collection_
+The data used in this analysis is sourced from the Ethereum blockchain and all the process is detailed in the section `Data Collection_`.  
+Process include information on protocols, user transactions and average usages, protocol interactions or market metrics.
 
-    #### 6. Sent Transaction Statistics
-    (Minimum, average, median, maximum values, and standard deviations)
-    - `min_sent_eth`, `avg_sent_eth`, `med_sent_eth`, `max_sent_eth`, `std_sent_eth`: Statistics on amounts sent in ETH.
-    - `min_sent_gas`, `avg_sent_gas`, `med_sent_gas`, `max_sent_gas`, `std_sent_gas`: Statistics on gas used for sent transactions.
-    - `avg_gas_efficiency_sent`: Average gas efficiency for sent transactions.
-    - `peak_hour_sent`: Time of day when the user sends the most transactions.
-    - `peak_count_sent`: Maximum number of transactions sent during a given hour.
-    - `tx_frequency_sent`: Average frequency of sent transactions.
+##### Timeframe *(2 years: 2023-2024)*
+* Start  -  `31th of December 2022, 22:59:59 UTC`
+* End  -  `30th of December 2024, 23:00:11 UTC`
 
-    #### 7. Received Transaction Statistics
-    (Same structure as for sent transactions)
-    - `min_received_eth`, `avg_received_eth`, `med_received_eth`, `max_received_eth`, `std_received_eth`: Statistics on amounts received in ETH.
-    - `min_received_gas`, `avg_received_gas`, `med_received_gas`, `max_received_gas`, `std_received_gas`: Statistics on gas used for received transactions.
-    - `avg_gas_efficiency_received`: Average gas efficiency for received transactions.
-    - `peak_hour_received`: Time of day when the user receives the most transactions.
-    - `peak_count_received`: Maximum number of transactions received during a given hour.
-    - `tx_frequency_received`: Average frequency of received transactions.
+##### Metrics
+- Total protocols (see scope above): `11` 
+- Total unique transactions : `22 682 739` 
+- Total unique users/addresses : `6 876 845` 
+- Total market hours covered : `177 955`
 
-    #### 8. Exposure to Market Protocols
-    (Evaluation of the user's risk and influence based on the market)
-    - `total_volume_exposure`: Total exposure to the transaction volume of protocols.
-    - `total_volatility_exposure`: Exposure to price volatility of protocols.
-    - `total_gas_exposure`: Exposure to the average gas costs on used protocols.
-    - `total_error_exposure`: Exposure to transaction errors of protocols.
-    - `total_liquidity_exposure`: Exposure to protocol liquidity.
-    - `total_activity_exposure`: Exposure to global transaction activity of protocols.
-    - `total_user_adoption_exposure`: Exposure to the number of active users on protocols.
-    - `total_gas_volatility_exposure`: Exposure to gas volatility used on protocols.
-    - `total_error_volatility_exposure`: Exposure to the variability of transaction errors.
-    - `total_high_value_exposure`: Exposure to high-value transactions on protocols.
+##### Storage
+All data are stored in Parquet format and are available in the [Hugging Face hub](https://huggingface.co/datasets/mriusero/DeFi-Protocol-Data-on-Ethereum-2023-2024/tree/main/dataset/data).
+
+    ├── contracts.parquet         # Contains contract details for selected DeFi protocols.
+    ├── transactions.parquet      # Contains transaction data for Ethereum-based contracts.
+    ├── market.parquet            # Contains enriched market data with aggregated transaction metrics.
+    └── users.parquet             # User profiles based on transaction data.
+
+---
+
+## Features Engineering_
+The features generated for each user address are detailed in the section `Feature Engineering_`.  
+Process include the following steps and allows to obtain a total of `62 features` for each user address: 
+1. Loading & Processing Data *(from .parquet files)*
+2. Aggregating User Metrics, Transactions Data, Market Data
+3. Standardizing Features *(with a specific method described in step 6)*
+
+##### Storage
+The features files are also available in the [Hugging Face Hub](https://huggingface.co/datasets/mriusero/DeFi-Protocol-Data-on-Ethereum-2023-2024/tree/main/dataset/data).
+
+    ├── features.arrow                   # Contains the 62 features generated for each user address.
+    └── features_standardised.arrow      # Contains the 62 features standardized following the process detailed in step 6.
+
+##### Raw features
+    """)
+    iframe_features = '''
+    <iframe
+      src="https://huggingface.co/datasets/mriusero/DeFi-Protocol-Data-on-Ethereum-2023-2024/embed/viewer/default/train"
+      frameborder="0"
+      width="100%"
+      height="560px"
+    ></iframe>
+    '''
+    components.html(iframe_features, height=600)
+    st.write("""
+---
+
+## Network Analysis_
+The network analysis provides an abstract vision of relationships between user addresses and DeFi protocols. By visualizing the connections between users and protocols, we can identify patterns in user behavior and protocol interactions.   
+
+#### Protocols Network_
+    
+This graph represents the network of user addresses and the protocols they interact with.  
+Each node represents a user address and each edge represents a transaction between a user and a protocol.  
+
+> **Note:** This graph contains only 100 000 users against 6 876 845 in the real dataset.
+
         """)
+    col1, col2 = st.columns([1, 5])
+    with col1:
+        st.write("""
+        """)
+        st.write("**Legend:**")
+        for protocol, color in COLOR_KEY.items():
+            st.markdown(f"<span style='color: {color};'>■</span> {protocol.replace('_', ' ').title()}",
+                        unsafe_allow_html=True)
+    with col2:
+        st.image("docs/graphics/network/address_protocol_nx_plot.png", caption="")
+
+
+
+
+
+
+
