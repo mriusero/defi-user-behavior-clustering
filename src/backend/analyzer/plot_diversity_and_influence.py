@@ -22,7 +22,7 @@ def plot_diversity_and_influence(hierarchical_metrics, base_path):
         sns.lineplot(x=list(min_data.keys()), y=list(min_data.values()), ax=ax, marker='o', linestyle='--', color='red', label='Min')
         sns.lineplot(x=list(median_data.keys()), y=list(median_data.values()), ax=ax, marker='o', linestyle='--', color='purple', label='Median')
 
-        ax.set_title(f'{metric.replace("_", " ").title()} by Cluster')
+        ax.set_title(metric.replace("_", " ").title() + " by Cluster")
         ax.set_ylabel('Value')
         ax.set_xlabel('Cluster')
         ax.legend()
@@ -33,9 +33,9 @@ def plot_diversity_and_influence(hierarchical_metrics, base_path):
             ax.set_yscale('symlog', linthresh=0.1)
 
     plt.tight_layout(rect=[0, 0, 1, 0.95])
-    try :
+    try:
         plt.savefig(f'{base_path}/diversity_influence_plot.png')
-        print(f"--> Diversity and Influence plot saved.")
+        print("--> Diversity and Influence plot saved.")
         plt.close()
-    except FileNotFoundError:
-        raise FileNotFoundError(f"--> Error: {base_path} does not exist.")
+    except FileNotFoundError as exc:
+        raise FileNotFoundError(f"--> Error: {base_path} does not exist.") from exc

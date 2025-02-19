@@ -1,6 +1,5 @@
 import matplotlib.pyplot as plt
 
-
 def plot_cluster_metrics(hierarchical_metrics, base_path):
     """
     Plots and saves the repartition rates and address counts for clusters.
@@ -9,9 +8,13 @@ def plot_cluster_metrics(hierarchical_metrics, base_path):
     repartition_rates = [hierarchical_metrics[cluster]['repartition_rate'] for cluster in clusters]
     address_count = [hierarchical_metrics[cluster]['address'] for cluster in clusters]
 
-    fig, axes = plt.subplots(1, 2, figsize=(14, 6))
+    _, axes = plt.subplots(1, 2, figsize=(14, 6))
 
-    bars = axes[0].bar(clusters, repartition_rates, color=plt.cm.Paired.colors)
+    # Utilisation correcte de la colormap 'Paired'
+    cmap = plt.cm.get_cmap('Paired')
+    colors = cmap.colors[:len(clusters)]
+
+    bars = axes[0].bar(clusters, repartition_rates, color=colors)
     axes[0].set_xlabel('Cluster')
     axes[0].set_ylabel('Repartition Rate')
     axes[0].set_title('Repartition Diagram by Cluster')
@@ -26,12 +29,12 @@ def plot_cluster_metrics(hierarchical_metrics, base_path):
                          textcoords="offset points",
                          ha='center', va='center')
 
-    axes[1].pie(repartition_rates, labels=clusters, autopct='%1.1f%%', startangle=140, colors=plt.cm.Paired.colors)
+    axes[1].pie(repartition_rates, labels=clusters, autopct='%1.1f%%', startangle=140, colors=colors)
     axes[1].set_title('Sector Repartition by Cluster')
 
     plt.tight_layout()
     try:
         plt.savefig(f"{base_path}/cluster_repartition.png")
-        print(f"--> cluster repartition plot saved.")
-    except FileNotFoundError:
-        raise f"Directory {base_path} does not exist."
+        print("--> cluster repartition plot saved.")
+    except FileNotFoundError as exc:
+        raise FileNotFoundError(f"Directory {base_path} does not exist.") from exc

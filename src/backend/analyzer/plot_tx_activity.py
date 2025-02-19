@@ -1,6 +1,5 @@
 import matplotlib.pyplot as plt
 
-
 def plot_tx_activity(hierarchical_metrics, base_path):
     """Plot transaction activity metrics per cluster and save the plot."""
     tx_activity_data = {}
@@ -14,7 +13,7 @@ def plot_tx_activity(hierarchical_metrics, base_path):
             'total_sent_eth': {t: metrics['tx-activity']['total_sent_eth'][t] for t in types}
         }
 
-    fig, axes = plt.subplots(2, 2, figsize=(15, 10))
+    _, axes = plt.subplots(2, 2, figsize=(15, 10))
     axes = axes.flatten()
 
     metrics_to_plot = ['received_count', 'total_received_eth', 'sent_count', 'total_sent_eth']
@@ -35,12 +34,12 @@ def plot_tx_activity(hierarchical_metrics, base_path):
         ax.set_ylabel('Value (symlog scale)')
         ax.set_yscale('symlog', linthresh=0.1)
         ax.set_xticks(x_values)
-        ax.set_title(f'{metric.replace("_", " ").title()} per cluster')
+        ax.set_title(metric.replace("_", " ").title() + " per cluster")
         ax.legend(title='Statistique')
 
     plt.tight_layout()
-    try :
+    try:
         plt.savefig(f"{base_path}/tx_activity_plot.png")
-        print(f"--> transaction activity plot saved.")
-    except FileNotFoundError:
-        raise "Error: The path does not exist"
+        print("--> transaction activity plot saved.")
+    except FileNotFoundError as exc:
+        raise FileNotFoundError("Error: The path does not exist") from exc

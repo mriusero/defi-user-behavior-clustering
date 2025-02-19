@@ -25,7 +25,7 @@ def plot_timing_behavior(hierarchical_metrics, base_path):
     timing_df = pd.concat({k: pd.DataFrame(v) for k, v in timing_behavior_data.items()}).reset_index(level=1, drop=True).reset_index()
     timing_df = timing_df.melt(id_vars='index', var_name='Metric', value_name='Value')
 
-    fig, axes = plt.subplots(nrows=3, ncols=2, figsize=(18, 15))
+    _, axes = plt.subplots(nrows=3, ncols=2, figsize=(18, 15))
 
     received_metrics = [
         'peak_hour_received',
@@ -41,7 +41,7 @@ def plot_timing_behavior(hierarchical_metrics, base_path):
 
     for ax, metric in zip(axes[:, 0], received_metrics):
         sns.boxplot(x='index', y='Value', hue='index', data=timing_df[timing_df['Metric'] == metric], ax=ax, palette='Set2')
-        ax.set_title(f'Box-plot of {metric} by Cluster')
+        ax.set_title("Box-plot of " + metric + " by Cluster")
         ax.set_xlabel('Cluster')
         ax.set_ylabel('Value')
         plt.setp(ax.get_xticklabels(), rotation=45)
@@ -49,16 +49,16 @@ def plot_timing_behavior(hierarchical_metrics, base_path):
 
     for ax, metric in zip(axes[:, 1], sent_metrics):
         sns.boxplot(x='index', y='Value', hue='index', data=timing_df[timing_df['Metric'] == metric], ax=ax, palette='Set2')
-        ax.set_title(f'Box-plot of {metric} by Cluster')
+        ax.set_title("Box-plot of " + metric + " by Cluster")
         ax.set_xlabel('Cluster')
         ax.set_ylabel('Value')
         plt.setp(ax.get_xticklabels(), rotation=45)
         ax.grid(True)
 
     plt.tight_layout()
-    try :
+    try:
         plt.savefig(f"{base_path}/timing_behavior_boxplots.png")
-        print(f"--> timing behavior box plots saved.")
+        print("--> timing behavior box plots saved.")
         plt.close()
-    except FileNotFoundError:
-        raise FileNotFoundError(f"--> Error: {base_path} does not exist.")
+    except FileNotFoundError as exc:
+        raise FileNotFoundError(f"--> Error: {base_path} does not exist.") from exc

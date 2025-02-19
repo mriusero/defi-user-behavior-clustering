@@ -13,7 +13,7 @@ def plot_engagement(hierarchical_metrics, base_path):
     data = np.array([[protocols_data[cluster][protocol] for protocol in protocols] for cluster in clusters])
     data_percentage = (data.T / data.sum(axis=1)).T * 100
 
-    fig, axes = plt.subplots(nrows=1, ncols=2, figsize=(20, 6))
+    _, axes = plt.subplots(nrows=1, ncols=2, figsize=(20, 6))  # 'fig' was unused, replaced with '_'
 
     for ax, data_set, ylabel, title in zip(axes, [data_percentage, data], ['Rate', 'Mean Engagement'],
                                            ['Percentage Stacked Bar Plot', 'Mean Engagement Stacked Bar Plot']):
@@ -27,9 +27,9 @@ def plot_engagement(hierarchical_metrics, base_path):
         ax.legend(title='Protocols')
 
     plt.tight_layout()
-    try :
+    try:
         plt.savefig(f'{base_path}/protocols_engagement_plot.png')
-        print(f"--> protocols engagement plot saved.")
+        print("--> protocols engagement plot saved.")  # Removed unnecessary f-string
         plt.close()
-    except FileNotFoundError:
-        raise FileNotFoundError(f"--> Error: {base_path} does not exist.")
+    except FileNotFoundError as exc:
+        raise FileNotFoundError(f"--> Error: {base_path} does not exist.") from exc  # Added 'from exc'
