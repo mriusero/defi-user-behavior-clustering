@@ -27,7 +27,6 @@ __pycache__/
 notebooks/
 *.ipynb_checkpoints/
 
-
 # Logs
 logs/
 mlruns/
@@ -35,3 +34,6 @@ mlruns/
 # Data
 data/
 tmp/
+
+# Config
+config/

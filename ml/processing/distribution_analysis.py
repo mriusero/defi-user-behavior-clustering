@@ -1,3 +1,5 @@
+import os
+
 import numpy as np
 import pandas as pd
 import pyarrow as pa
@@ -119,6 +121,9 @@ def standardize_df(df, csv_in):
 def standardisation_process():
     """Main pipeline to analyze and normalize data."""
     print("\n===== Standardisation process ======\n")
+
+    config_path = "config/"
+    os.makedirs(config_path, exist_ok=True)
 
     print("1.Loading data\n-------------------------------------")
     table = feather.read_table("data/features/features.arrow")
