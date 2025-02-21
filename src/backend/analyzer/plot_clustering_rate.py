@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 
-def plot_cluster_metrics(hierarchical_metrics, base_path):
+def plot_cluster_metrics(hierarchical_metrics, base_path, qualitative_cmap):
     """
     Plots and saves the repartition rates and address counts for clusters.
     """
@@ -8,16 +8,15 @@ def plot_cluster_metrics(hierarchical_metrics, base_path):
     repartition_rates = [hierarchical_metrics[cluster]['repartition_rate'] for cluster in clusters]
     address_count = [hierarchical_metrics[cluster]['address'] for cluster in clusters]
 
-    _, axes = plt.subplots(1, 2, figsize=(14, 6))
+    _, axes = plt.subplots(1, 2, figsize=(10, 5))
 
-    # Utilisation correcte de la colormap 'Paired'
-    cmap = plt.cm.get_cmap('Paired')
+    cmap = plt.cm.get_cmap(qualitative_cmap)
     colors = cmap.colors[:len(clusters)]
 
     bars = axes[0].bar(clusters, repartition_rates, color=colors)
     axes[0].set_xlabel('Cluster')
     axes[0].set_ylabel('Repartition Rate')
-    axes[0].set_title('Repartition Diagram by Cluster')
+    axes[0].set_title('User Repartition by Cluster')
     axes[0].tick_params(axis='x', rotation=45)
 
     for bar, count, rate in zip(bars, address_count, repartition_rates):
@@ -30,7 +29,8 @@ def plot_cluster_metrics(hierarchical_metrics, base_path):
                          ha='center', va='center')
 
     axes[1].pie(repartition_rates, labels=clusters, autopct='%1.1f%%', startangle=140, colors=colors)
-    axes[1].set_title('Sector Repartition by Cluster')
+    axes[1].set_title('User Repartition by Cluster')
+    axes[1].axis('equal')
 
     plt.tight_layout()
     try:

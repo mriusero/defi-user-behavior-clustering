@@ -1,8 +1,9 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import seaborn as sns
 
-def plot_engagement(hierarchical_metrics, base_path):
-    """Plot and save stacked bar plots of protocols engagement by cluster."""
+def plot_engagement(hierarchical_metrics, base_path, qualitative_cmap):
+    """Plot and save stacked bar plots of protocols engagement by cluster with a heatmap of percentage values."""
     protocols_data = {cluster: {protocol: metrics['protocols-engagement'][protocol]['mean']
                                 for protocol in metrics['protocols-engagement']}
                       for cluster, metrics in hierarchical_metrics.items()}
@@ -11,25 +12,32 @@ def plot_engagement(hierarchical_metrics, base_path):
     protocols = list(protocols_data[clusters[0]].keys())
 
     data = np.array([[protocols_data[cluster][protocol] for protocol in protocols] for cluster in clusters])
-    data_percentage = (data.T / data.sum(axis=1)).T * 100
 
-    _, axes = plt.subplots(nrows=1, ncols=2, figsize=(20, 6))  # 'fig' was unused, replaced with '_'
+    data_percentage = data / data.sum(axis=1, keepdims=True) * 100
 
-    for ax, data_set, ylabel, title in zip(axes, [data_percentage, data], ['Rate', 'Mean Engagement'],
-                                           ['Percentage Stacked Bar Plot', 'Mean Engagement Stacked Bar Plot']):
-        bottom_values = np.zeros(len(clusters))
-        for i, protocol in enumerate(protocols):
-            ax.bar(clusters, data_set[:, i], bottom=bottom_values, label=protocol)
-            bottom_values += data_set[:, i]
+    _, ax = plt.subplots(2, 1, figsize=(10, 10), gridspec_kw={'height_ratios': [3, 1]})
 
-        ax.set_ylabel(ylabel)
-        ax.set_title(title)
-        ax.legend(title='Protocols')
+    cmap = plt.cm.get_cmap(qualitative_cmap)
+    colors = cmap(range(len(protocols)))
+
+    bottom_values = np.zeros(len(clusters))
+    for i, protocol in enumerate(protocols):
+        ax[0].bar(clusters, data[:, i], bottom=bottom_values, label=protocol, color=colors[i])
+        bottom_values += data[:, i]
+
+    ax[0].set_ylabel('Mean Engagement')
+    ax[0].set_title('Mean Engagement Stacked Bar Plot')
+    ax[0].legend(title='Protocols')
+
+    sns.heatmap(data_percentage.T, ax=ax[1], cmap='YlGnBu', annot=True, fmt=".1f", xticklabels=clusters, yticklabels=protocols)
+    ax[1].set_title('Heatmap of Protocols Engagement by Cluster (Percentage)')
+    ax[1].set_xlabel('Cluster')
+    ax[1].set_ylabel('Protocol')
 
     plt.tight_layout()
     try:
         plt.savefig(f'{base_path}/protocols_engagement_plot.png')
-        print("--> protocols engagement plot saved.")  # Removed unnecessary f-string
+        print("--> protocols engagement plot saved.")
         plt.close()
     except FileNotFoundError as exc:
-        raise FileNotFoundError(f"--> Error: {base_path} does not exist.") from exc  # Added 'from exc'
+        raise FileNotFoundError(f"--> Error: {base_path} does not exist.") from exc

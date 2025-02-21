@@ -26,7 +26,7 @@ def plot_general_heatmap(df, base_path):
     sns.heatmap(
         cluster_correlation,
         annot=False,
-        cmap='viridis',
+        cmap='YlGnBu',
         cbar_kws={'label': 'Correlation'},
         linewidths=.5,
         linecolor='gray'
@@ -39,7 +39,7 @@ def plot_general_heatmap(df, base_path):
 
     try:
         plt.savefig(f'{base_path}/general_heatmap.png')
-        print(f"--> general heatmap saved.")
+        print("--> general heatmap saved.")
     except FileNotFoundError as exc:
         raise FileNotFoundError(f"--> Error: {base_path} does not exist.") from exc
 
@@ -58,7 +58,7 @@ def plot_heatmap(base_path):
         correlation_matrix = cluster_data[features].corr()
 
         fig = px.imshow(correlation_matrix,
-                        title=f'Heatmap de corrélation pour le cluster {cluster}',
+                        title=f'Correlation heatmap of {cluster}',
                         labels=dict(color="Corrélation"),
                         x=features,
                         y=features,
