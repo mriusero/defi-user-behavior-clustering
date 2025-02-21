@@ -1,77 +1,81 @@
 import streamlit as st
+import streamlit.components.v1 as components
 
-COLOR_KEY = {
-    "curve_dao_count": "#FF6347",
-    "aave_count": "#4e000b",
-    "uniswap_count": "#1e8b22",
-    "maker_count": "#ffc909",
-    "tether_count": "#DC143C",
-    "yearn_finance_count": "#c24ee2",
-    "usdc_count": "#00CED1",
-    "dai_count": "#FFFFFF",
-    "balancer_count": "#7FFF00",
-    "harvest_finance_count": "#efef24",
-    "nftfi_count": "#FF1493",
-}
+#from src.backend.analyzer.plotter import analyze_clusters
 
 def page_3():
-    st.markdown('<div class="header">Exploratory Analysis_</div>', unsafe_allow_html=True)
+    st.markdown('<div class="header">Clustering_</div>', unsafe_allow_html=True)
     st.write(""" 
     
-Following the feature engineering process, the exploratory analysis provides first draw of insights into user behavior and protocol interactions within the DeFi ecosystem. A variety of visualizations are used to illustrate the relationships between users, protocols, and market metrics.
+This section presents the clustering analysis performed on the dataset in the purpose of identifying user behavior patterns.
     
 ---
-
-## Transactions Volumes and Values_ 
-
     """)
 
-    st.image("docs/graphics/exploratory_analysis/tx_volumes_and_values.png", caption="")
+    #if st.button("Reload graphs"):
+    #    analyze_clusters()
+
     col1, col2 = st.columns(2)
     with col1:
-        st.write("""
-        ### Transactions Volumes_
-        This graph shows the number of transactions sent and received by users.
-        #### Distribution :
-        Il y a une concentration notable de points le long de la diagonale, ce qui suggère que pour de nombreux utilisateurs, le nombre de transactions envoyées est similaire au nombre de transactions reçues.
-        
-        #### Observations :
-        La densité des points diminue à mesure que l'on s'éloigne de l'origine, indiquant que les transactions élevées (envoi ou réception) sont moins fréquentes.
-        """)
+        st.write("## Identified Clusters_")
+        st.image('src/frontend/layouts/pictures/kmeans_analysis/cluster_repartition.png')
     with col2:
+        st.write("## Synthesis_")
         st.write("""
-        ### Transactions Values_
-        This graph shows the total value of transactions sent and received by users.
-        #### Distribution :
-        Les points sont largement dispersés, mais il y a une concentration le long de la diagonale, indiquant que pour de nombreux utilisateurs, la valeur totale de l'ETH envoyé est proche de la valeur totale de l'ETH reçu.
-
-        #### Observations :
-        La concentration le long de la diagonale suggère un équilibre entre les valeurs envoyées et reçues pour de nombreux utilisateurs.
-        Les points en dehors de la diagonale indiquent des utilisateurs avec des déséquilibres significatifs, on constate notamment que les valeurs totales envoyées sont généralement plus élevées que les totales reçues.
+        * **Cluster 0 (Small Investors)** - *Low transaction volume and frequency, limited platform activity, minimal market exposure.*
         
+        * **Cluster 1 (Active Investors)** - *Moderate transaction activity, diverse interactions including loans and trades, moderate market exposure.*
+        * **Cluster 2 (Whales)** - *High transaction volume and frequency, significant market influence, diverse asset holdings.*
+        * **Cluster 3 (Explorers)** - *Moderate transaction activity, high diversity in interactions and assets, limited market influence.*
         """)
 
-
-    st.write("""
-## Network Analysis_
-The network analysis provides an abstract vision of relationships between user addresses and DeFi protocols. By visualizing the connections between users and protocols, we can identify patterns in user behavior and protocol interactions.   
-
-#### Protocols Network_
-    
-This graph represents the network of user addresses and the protocols they interact with.  
-Each node represents a user address and each edge represents a transaction between a user and a protocol.  
-
-> **Note:** This graph contains only 100 000 users against 6 876 845 in the real dataset.
-
-        """)
-    col1, col2 = st.columns([1, 5])
+    st.write("## Interaction Types_")
+    col1, col2 = st.columns(2)
     with col1:
-        st.write("""
-        """)
-        st.write("**Legend:**")
-        for protocol, color in COLOR_KEY.items():
-            st.markdown(f"<span style='color: {color};'>■</span> {protocol.replace('_', ' ').title()}",
-                        unsafe_allow_html=True)
+        st.image('src/frontend/layouts/pictures/kmeans_analysis/interaction_types_plot.png')
     with col2:
-        st.image("docs/graphics/network/address_protocol_nx_plot.png", caption="")
+        st.image('src/frontend/layouts/pictures/kmeans_analysis/protocols_engagement_plot.png')
 
+    st.write("## Correlation matrix_")
+    st.image('src/frontend/layouts/pictures/kmeans_analysis/general_heatmap.png')
+
+    col1, col2 = st.columns(2)
+    with col1:
+        st.write("## Transactions Activity_")
+        st.image('src/frontend/layouts/pictures/kmeans_analysis/tx_activity_plot.png')
+    with col2:
+        st.write("## Diversity and Influence_")
+        st.image('src/frontend/layouts/pictures/kmeans_analysis/diversity_influence_plot.png')
+
+
+    col1, col2 = st.columns(2)
+    with col1:
+        st.write("## Sent Transactions Statistics_")
+        st.image('src/frontend/layouts/pictures/kmeans_analysis/sent_tx_statistics.png')
+    with col2:
+        st.write("## Received Transactions Statistics_")
+        st.image('src/frontend/layouts/pictures/kmeans_analysis/received_tx_statistics.png')
+
+
+    col1, col2 = st.columns(2)
+    with col1:
+        st.write("## Exposure Metrics_")
+        st.image('src/frontend/layouts/pictures/kmeans_analysis/exposure_metrics_plot.png')
+    with col2:
+        st.write("## Timing Behavior_")
+        st.image('src/frontend/layouts/pictures/kmeans_analysis/timing_behavior_plots.png')
+
+    col1, col2 = st.columns(2)
+    html_files = [f'src/frontend/layouts/pictures/kmeans_analysis/heatmap_{i}.html' for i in range(4)]
+    for i, html_file in enumerate(html_files):
+        with open(html_file, 'r', encoding='utf-8') as file:
+            html_content = file.read()
+
+            if i % 2 == 0:
+                with col1:
+                    st.write(f"## Heatmap Cluster_{i}")
+                    components.html(html_content, height=500)
+            else:
+                with col2:
+                    st.write(f"## Heatmap Cluster_{i}")
+                    components.html(html_content, height=500)

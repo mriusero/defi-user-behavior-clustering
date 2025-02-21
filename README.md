@@ -94,10 +94,6 @@ Follow these steps to install and set up the project:
    ```
     This will install dependencies listed in `pyproject.toml`.
 ---
-
-## Run the app
-You can run the application locally or inside a Docker container.
-
 ### Running Locally
 To run the application locally, execute the following command:
 
