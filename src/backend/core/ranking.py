@@ -124,7 +124,7 @@ By following this structure, you will create a comprehensive and well-organized 
         cluster_id = filtered_ranks['cluster'].values[0]
         cluster_description = cluster_descriptions.get(cluster_id, "Unknown Cluster")
 
-        structured_data = {
+        user_data = {
             "pre_prompt": pre_prompt,
             "address": filtered_ranks['address'].values[0],
             "cluster": {
@@ -133,7 +133,4 @@ By following this structure, you will create a comprehensive and well-organized 
             },
             "performances": performances
         }
-
-        st.json(structured_data)
-
-        return structured_data
+        return user_data
