@@ -14,6 +14,7 @@ from kmeans_analysis import analyze_kmeans, optimize_hyperparams, measure_perfor
 from ml.utils.splitting import splitting
 from ml.utils.hf_hub import upload_model
 from ml.interpreter.comparison import clusters_analysis
+from ml.interpreter.scoring.kpi import compute_scoring
 from src.backend.analyzer import plotter
 
 class KMeansPipeline:
@@ -49,18 +50,19 @@ class KMeansPipeline:
     def run(self):
         """Run the KMeans pipeline"""
         print("\n ======= Running ML pipeline ======= \n")
-        self.load_data()
-        self.analyze() if self.analyse else None
-        self.reduce()
-        self.load_hyperparameters()
-        self.optimize_hyperparameters() if self.optimization else None
-        self.train_model()
-        self.save()
-        self.load()
-        self.predict()
-        self.upload_model() if self.upload else None
-        self.analyse_results()
-        self.compute_graphics()
+        #self.load_data()
+        #self.analyze() if self.analyse else None
+        #self.reduce()
+        #self.load_hyperparameters()
+        #self.optimize_hyperparameters() if self.optimization else None
+        #self.train_model()
+        #self.save()
+        #self.load()
+        #self.predict()
+        #self.upload_model() if self.upload else None
+        #self.analyse_results()
+        #self.compute_graphics()
+        self.score_users()
         print("\n ======= KMeans pipeline completed ======= \n")
 
     def load_data(self):
@@ -171,8 +173,8 @@ class KMeansPipeline:
         metrics = clusters_analysis(self.features_path, self.predictions_path)
         for cluster, data in metrics.items():
             print(f"Cluster {cluster}:")
-            print(f"  Nombre d'adresses: {data['address']}")
-            print(f"  Taux de répartition: {data['repartition_rate']:.4f}")
+            print(f"  Addresses count: {data['address']}")
+            print(f"  Repartition rate: {data['repartition_rate']:.4f}")
 
     def compute_graphics(self):
         """Compute graphics for the KMeans clustering"""
@@ -184,9 +186,11 @@ class KMeansPipeline:
             plotter.analyze_clusters()
             print("Graphics computed successfully")
 
-    def scoring(self):
+    def score_users(self):
         """Compute the scoring of users"""
         print("\n14. Scoring\n---------------------------------")
+        scores = compute_scoring()
+        print(f"Scores computed successfully")
 
 
 if __name__ == "__main__":
