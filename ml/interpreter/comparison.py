@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 import json
 
-BASE_PATH = 'data/clustering/kmeans'
+BASE_PATH = 'src/frontend/layouts/data'
 
 
 def load_predictions(features_path, predictions_path):
@@ -12,11 +12,11 @@ def load_predictions(features_path, predictions_path):
     result = feather.read_table(predictions_path).to_pandas()
     df = pd.merge(users, result, on='address', how='left')
 
-    for i in range(4):
-        filtered_df = df[df['cluster'] == i]
-        feather.write_feather(filtered_df, f'{BASE_PATH}/cluster_{i}.arrow')
+    #for i in range(4):
+    #    filtered_df = df[df['cluster'] == i]
+    #    feather.write_feather(filtered_df, f'{BASE_PATH}/cluster_{i}.arrow')
 
-    print(f"Clusters saved to {BASE_PATH}")
+    #print(f"Clusters saved to {BASE_PATH}")
 
     return df
 
@@ -129,5 +129,5 @@ def identify_variance(metrics):
 def clusters_analysis(features_path, predictions_path):
     df = load_predictions(features_path, predictions_path)
     metrics = aggregate_metrics(df)
-    result = identify_variance(metrics)
-    return result
+    #result = identify_variance(metrics)
+    return metrics

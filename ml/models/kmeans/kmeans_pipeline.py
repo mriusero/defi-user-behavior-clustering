@@ -14,7 +14,7 @@ from kmeans_analysis import analyze_kmeans, optimize_hyperparams, measure_perfor
 from ml.utils.splitting import splitting
 from ml.utils.hf_hub import upload_model
 from ml.interpreter.comparison import clusters_analysis
-
+from src.backend.analyzer import plotter
 
 class KMeansPipeline:
     """
@@ -26,13 +26,14 @@ class KMeansPipeline:
     """
 
     def __init__(
-        self, analyse=False, reduce_dimensions=True, optimization=False, upload=False
+        self, analyse=False, reduce_dimensions=True, optimization=False, upload=False, no_graph=False
     ):
         """Initialize the KMeans pipeline"""
         self.analyse = analyse
         self.reduce_dimensions = reduce_dimensions
         self.optimization = optimization
         self.upload = upload
+        self.no_graph = no_graph
         self.dataset = None
         self.x_all = None
         self.y_all = None
@@ -40,9 +41,10 @@ class KMeansPipeline:
         self.model = None
         self.clusters = None
         self.features_path = f"data/features/features.arrow"
-        self.model_path = f"models/kmeans/DeFI-Kmeans.pkl"
-        self.optuna_results_path = "models/kmeans/optuna_study_results.json"
         self.predictions_path = f"data/clustering/kmeans/kmeans_predictions.arrow"
+        self.model_path = f"src/frontend/layouts/data/DeFI-Kmeans.pkl"
+        self.optuna_results_path = "src/frontend/layouts/data/optuna_study_results.json"
+        self.performance_path = f"src/frontend/layouts/data/kmeans_performance.json"
 
     def run(self):
         """Run the KMeans pipeline"""
@@ -58,6 +60,7 @@ class KMeansPipeline:
         self.predict()
         self.upload_model() if self.upload else None
         self.analyse_results()
+        self.compute_graphics()
         print("\n ======= KMeans pipeline completed ======= \n")
 
     def load_data(self):
@@ -156,13 +159,38 @@ class KMeansPipeline:
         print(f"--> Davies-Bouldin Index: {db_index}")
         print(f"--> Calinski-Harabasz Index: {ch_index}")
         print(f"--> Silhouette Avg: {silhouette_avg}")
+        results = {
+            "Davies-Bouldin Index": db_index,
+            "Calinski-Harabasz Index": ch_index,
+            "Silhouette Avg": silhouette_avg
+        }
+        with open(self.performance_path, 'w') as json_file:
+            json.dump(results, json_file, indent=4)
 
-        print("\nVariance synthesis:\n")
-        result = clusters_analysis(self.features_path, self.predictions_path)
-        print(f"Results analyzed successfully:\n {result.head(5)}")
+        print("\nClusters analysis:\n")
+        metrics = clusters_analysis(self.features_path, self.predictions_path)
+        for cluster, data in metrics.items():
+            print(f"Cluster {cluster}:")
+            print(f"  Nombre d'adresses: {data['address']}")
+            print(f"  Taux de répartition: {data['repartition_rate']:.4f}")
+
+    def compute_graphics(self):
+        """Compute graphics for the KMeans clustering"""
+        print("\n13. Computing graphics\n---------------------------------")
+        if self.no_graph:
+            print("Skipping graphics computation")
+            return
+        else:
+            plotter.analyze_clusters()
+            print("Graphics computed successfully")
+
+    def scoring(self):
+        """Compute the scoring of users"""
+        print("\n14. Scoring\n---------------------------------")
+
 
 if __name__ == "__main__":
     pipeline = KMeansPipeline(
-        analyse=False, reduce_dimensions=True, optimization=False, upload=False
+        analyse=False, reduce_dimensions=True, optimization=False, upload=False, no_graph=True,
     )
     pipeline.run()
