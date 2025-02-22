@@ -35,7 +35,7 @@ def app_layout():
             "# Data Collection_",
             "# Features Engineering_",
             "# Clustering_",
-            "# Summary of Results_",
+            "# Who am I ?",
         ],
     )
 
@@ -88,7 +88,7 @@ def app_layout():
         page_2()
     elif st.session_state.page == "# Clustering_":
         page_3()
-    elif st.session_state.page == "# Summary of Results_":
+    elif st.session_state.page == "# Who am I ?":
         page_4()
 
     st.sidebar.markdown("&nbsp;")
