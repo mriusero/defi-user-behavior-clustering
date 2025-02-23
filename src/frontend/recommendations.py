@@ -144,10 +144,10 @@ def recommendations_board(ranks, address):
 
     get_description(ranks, address)
 
-    st.write("### Performances scores_")
+    st.write("### Scores_")
     display_radar(ranks, user_data)
 
-    st.write("### Analysis report_")
+    st.write("### Analysis_")
     display_metrics(user_data)
 
     display_rates(user_data)
