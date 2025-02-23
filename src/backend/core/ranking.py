@@ -1,5 +1,5 @@
 import pandas as pd
-import streamlit as st
+
 
 def fetch_rank(ranks: pd.DataFrame, address: str):
     """ Fetch the ranking of a user based on its address """
