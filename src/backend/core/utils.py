@@ -1,4 +1,7 @@
+from typing import Any
+
 import streamlit as st
+import re
 import os
 import requests
 from pyarrow import feather
@@ -20,3 +23,19 @@ def preload_ranks():
     os.remove(local_file)
 
     return ranks
+
+def is_valid_ethereum_address(address: object) -> Any:
+    """ Check if address is a valid ethereum address. """
+    eth_address_regex = r'^0x[a-fA-F0-9]{40}$'
+    return re.match(eth_address_regex, address) is not None
+
+
+def check_address(address, ranks):
+    """ Check if address is in the ranks. """
+    if not is_valid_ethereum_address(address):
+        st.error("The input provided is not a valid Ethereum address.")
+        return False
+    elif address not in ranks['address'].values:
+        st.warning("This address is not in the study dataset.")
+        return False
+    return True
