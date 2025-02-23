@@ -1,8 +1,7 @@
-import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
 
-def plot_radar_chart(ranks, user_data, to_plot=None):
+def plot_radar_chart(user_data, to_plot=None):
 
 
     metrics_names = [metric['name'].replace("_", " ").title() for metric in user_data['performances']]

@@ -27,8 +27,8 @@ def page_4():
         user_data = fetch_rank(ranks, address)
 
         col1, col2 = st.columns([1, 1])
-        global_radar = plot_radar_chart(ranks, user_data, to_plot='global_rank')
-        cluster_radar = plot_radar_chart(ranks, user_data, to_plot='cluster_rank')
+        global_radar = plot_radar_chart(user_data, to_plot='global_rank')
+        cluster_radar = plot_radar_chart(user_data, to_plot='cluster_rank')
         with col1:
             st.pyplot(global_radar)
         with col2:
@@ -107,6 +107,10 @@ def page_4():
                     <div class='progress-text'>{name.replace('_', ' ').title()} ({percentage})</div>
                 </div>
                 """, unsafe_allow_html=True)
+
+        with col3:
+            st.write("#### ")
+            st.write("---")
 
         with col4:
             st.write("#### Cluster Performance")
