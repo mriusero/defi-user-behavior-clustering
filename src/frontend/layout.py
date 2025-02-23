@@ -1,10 +1,8 @@
 import gc
 import os
 import streamlit as st
-import requests
 
 from .components import github_button
-from src.backend.core.utils import preload_ranks
 
 def load_css():
     css_path = os.path.join(os.path.dirname(__file__), "styles.css")
@@ -64,11 +62,6 @@ def app_layout():
         st.text("")
         st.text("")
         st.text("")
-        try:
-            ranks = preload_ranks()
-            st.session_state['ranks'] = ranks
-        except requests.RequestException as e:
-            st.error(f"Error downloading file : {e}")
 
 
     line_style = """

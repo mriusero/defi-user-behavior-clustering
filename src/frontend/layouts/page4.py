@@ -1,15 +1,30 @@
 import streamlit as st
+import requests
 
 from src.backend.core.ranking import fetch_rank
 from src.backend.core.plot_radar import plot_radar_chart
+from src.backend.core.utils import preload_ranks
+
+
 
 
 def page_4():
     st.markdown('<div class="header">Who am I ?</div>', unsafe_allow_html=True)
+    st.write("""
+Give me your ethereum address and I will tell who you are.
 
-    st.markdown("""
-    Give me your ethereum address and I will tell who you are.
+---
     """)
+
+    try:
+        if 'ranks' not in st.session_state or st.session_state['ranks'] is None:
+            ranks = preload_ranks()
+            st.session_state['ranks'] = ranks
+        else:
+            ranks = st.session_state['ranks']
+    except requests.RequestException as e:
+        st.error(f"Error downloading file: {e}")
+
     ranks = st.session_state['ranks']
     st.write(ranks.sample(5))
     address = st.text_input("Address", value="0xbc8cbb3bcad18cd64de04a6d53503ccced07ef5b")

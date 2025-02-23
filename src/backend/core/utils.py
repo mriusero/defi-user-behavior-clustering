@@ -6,6 +6,9 @@ from pyarrow import feather
 @st.cache_data
 def preload_ranks():
     """ Preload data in streamlit cache. """
+
+    st.toast("Loading data in cache... please wait 30 sec.")
+
     url = 'https://huggingface.co/datasets/mriusero/DeFi-Protocol-Data-on-Ethereum-2023-2024/resolve/main/dataset/data/users_scored.arrow'
     local_file = 'users_scored.arrow'
 
