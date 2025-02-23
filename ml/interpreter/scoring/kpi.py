@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 
 from .calculate_score import performances_scores
 from .checks import check_scores, analyze_distribution
+from ...utils.hf_hub import upload_dataset
 
 FEATURES_PATH = 'data/features/features_standardised.arrow'
 RESULTS_PATH = 'data/clustering/kmeans/kmeans_predictions.arrow'
@@ -76,10 +77,10 @@ def rank_users(df):
 
 
 def save_scores(scores):
-    """ Save the scores to a feather file """
+    """ Save the scores to a feather file and upload it in the HF Hub """
     table = pa.Table.from_pandas(scores)
     feather.write_feather(table, SCORES_PATH)
-    print(f"\nScores saved to {SCORES_PATH}")
+    upload_dataset(SCORES_PATH, 'dataset/data/users_scored.arrow')
 
 
 def compute_scoring():
