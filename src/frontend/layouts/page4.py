@@ -1,14 +1,7 @@
 import streamlit as st
-from pyarrow import feather
 
 from src.backend.core.ranking import fetch_rank
 from src.backend.core.plot_radar import plot_radar_chart
-
-@st.cache_data
-def pre_load_ranks():
-    ranks = feather.read_table('src/frontend/layouts/data/users_scored.arrow').to_pandas()
-    return ranks
-
 
 
 def page_4():
@@ -17,7 +10,7 @@ def page_4():
     st.markdown("""
     Give me your ethereum address and I will tell who you are.
     """)
-    ranks = pre_load_ranks()
+    ranks = st.session_state['ranks']
     st.write(ranks.sample(5))
     address = st.text_input("Address", value="0xbc8cbb3bcad18cd64de04a6d53503ccced07ef5b")
 
