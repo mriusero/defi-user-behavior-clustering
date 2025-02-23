@@ -51,7 +51,7 @@ def plot_radar_chart(bounds, user_data, to_plot='global_rank'):
     means.append(means[0])
 
     angles = np.linspace(0, 2 * np.pi, len(metrics_names))
-    fig, ax = plt.subplots(figsize=(20, 14), subplot_kw=dict(polar=True))
+    fig, ax = plt.subplots(figsize=(12, 8), subplot_kw=dict(polar=True))
 
     ax.fill(angles, cluster_ranks, color='blue', alpha=0.25)
     ax.plot(angles, cluster_ranks, color='blue', linewidth=2)
@@ -68,10 +68,10 @@ def plot_radar_chart(bounds, user_data, to_plot='global_rank'):
     ax.fill(angles, means, color='brown', alpha=0.25)
     ax.plot(angles, means, color='brown', linewidth=2, linestyle='--', label='Means')
 
-    ax.set_rgrids([0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1], fontsize=14)
-    ax.set_thetagrids(np.degrees(angles), metrics_names, fontsize=14)
+    ax.set_rgrids([0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1], fontsize=8)
+    ax.set_thetagrids(np.degrees(angles), metrics_names, fontsize=10)
 
-    plt.title(f'Radar plot of {to_plot.replace("_", " ").title()}', size=20, y=1.1)
+    #plt.title(f'Radar plot of {to_plot.replace("_", " ").title()}', size=12, y=1.1)
     ax.legend()
     fig.subplots_adjust(top=0.80)
     plt.tight_layout()

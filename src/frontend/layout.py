@@ -29,11 +29,11 @@ def app_layout():
     st.session_state.page = st.sidebar.radio(
         "Summary",
         [
+            "# Who am I ?",
             "# Introduction_",
             "# Data Collection_",
             "# Features Engineering_",
             "# Clustering_",
-            "# Who am I ?",
         ],
     )
 
@@ -51,15 +51,13 @@ def app_layout():
             st.write(""
                      "[![HuggingFace](https://img.shields.io/badge/%20COLLECTION-FFD700?style=for-the-badge&logo=huggingface&logoColor=black)](https://huggingface.co/collections/mriusero/defi-behavior-analysis-67a0d6d132ccecdff8068369)"
                      "[![HuggingFace](https://img.shields.io/badge/DATASET-FFD700?style=for-the-badge&logo=huggingface&logoColor=black)](https://huggingface.co/datasets/mriusero/DeFi-Protocol-Data-on-Ethereum-2023-2024)"
-                     "[![HuggingFace](https://img.shields.io/badge/MODELS-FFD700?style=for-the-badge&logo=huggingface&logoColor=black)](https://huggingface.co/mriusero/DeFI-Behavior-Models)"
-                     "[![HuggingFace](https://img.shields.io/badge/MODELS-FFD700?style=for-the-badge&logo=huggingface&logoColor=black)](https://huggingface.co/mriusero/DeFI-Behavior-Models)")
-
+                     "[![HuggingFace](https://img.shields.io/badge/SPACE-FFD700?style=for-the-badge&logo=huggingface&logoColor=black)](https://huggingface.co/spaces/mriusero/DeFI-Behavior)"
+                     "[![HuggingFace](https://img.shields.io/badge/MODEL-FFD700?style=for-the-badge&logo=huggingface&logoColor=black)](https://huggingface.co/mriusero/DeFI-Behavior-Models)")
 
     with col2:
         st.text("")
         st.text("")
         st.text("")
-
 
     line_style = """
         <style>
@@ -76,7 +74,9 @@ def app_layout():
     st.markdown(line_style, unsafe_allow_html=True)
     st.markdown(line_html, unsafe_allow_html=True)
 
-    if st.session_state.page == "# Introduction_":
+    if st.session_state.page == "# Who am I ?":
+        page_4()
+    elif st.session_state.page == "# Introduction_":
         page_0()
     elif st.session_state.page == "# Data Collection_":
         page_1()
@@ -84,8 +84,7 @@ def app_layout():
         page_2()
     elif st.session_state.page == "# Clustering_":
         page_3()
-    elif st.session_state.page == "# Who am I ?":
-        page_4()
+
 
     st.sidebar.markdown("&nbsp;")
 

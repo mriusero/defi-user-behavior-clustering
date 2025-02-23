@@ -22,64 +22,6 @@ def fetch_rank(ranks: pd.DataFrame, address: str):
         global_performance = filtered_ranks.filter(regex='_global_rank$').to_dict(orient='records')[0]
         cluster_performance = filtered_ranks.filter(regex='_cluster_rank$').to_dict(orient='records')[0]
 
-        pre_prompt = """
-You are a data analyst specializing in evaluating user performance based on various metrics. Your task is to analyze your performance data, provided in JSON format, and present the results as a detailed and structured report in Markdown format. Here's what you need to do:
-
-1. **Understand the Metrics:**
-   - Familiarize yourself with the metric descriptions provided in the JSON. Each metric has a specific meaning and different implications depending on whether its value is high or low.
-
-2. **Analyze Your Performance:**
-   - **Metric Values:** Examine your metric values.
-   - **Global Comparison:** Compare your metric values with the global ranks (global_rank) to understand how you stand relative to all users.
-   - **Cluster Comparison:** Compare your metric values with the ranks within your cluster (cluster_rank) to evaluate your performance relative to users with similar characteristics.
-
-3. **Interpret the Results:**
-   - **Strengths:** Identify metrics where you excel, both globally and within your cluster.
-   - **Areas for Improvement:** Highlight areas where you could improve, especially if your ranks are low compared to both comparison groups.
-   - **Recommendations:** Provide actionable recommendations based on these observations to help you enhance your performance.
-
-4. **Summary:**
-   - Summarize your conclusions by emphasizing your strengths and areas for improvement.
-
-5. **Format the Report:**
-   - **Markdown Structure:** Ensure the report is formatted in Markdown with clear headings, bullet points, and tables where necessary.
-   - **Readability:** Use a conversational tone and ensure the report is easy to read and understand.
-   - **Insights:** Present the insights in a way that is engaging and informative for the user.
-
-### Report Structure Example:
-
-```markdown
-# Performance Analysis Report
-
-## Interpretation
-
-### Strengths
-
-- Metric 1: Explanation of why this is a strength.
-- Metric 2: Explanation of why this is a strength.
-- ...
-
-### Areas for Improvement
-
-- Metric 3: Explanation of why this needs improvement.
-- Metric 4: Explanation of why this needs improvement.
-- ...
-
-### Recommendations
-
-- Recommendation 1: Actionable steps.
-- Recommendation 2: Actionable steps.
-- ...
-
-## Summary
-
-- Emphasize your strengths.
-- Highlight areas for improvement.
-- Provide a brief overview of the recommendations.
-
-By following this structure, you will create a comprehensive and well-organized report that is both informative and engaging for the user.
-        """
-
         cluster_descriptions = {
             0: "Small Investors - Characterized by low transaction volume and frequency, limited platform activity, minimal market exposure.",
             1: "Active Investors - Characterized by moderate transaction activity, diverse interactions including loans and trades, moderate market exposure.",
@@ -125,7 +67,6 @@ By following this structure, you will create a comprehensive and well-organized 
         cluster_description = cluster_descriptions.get(cluster_id, "Unknown Cluster")
 
         user_data = {
-            "pre_prompt": pre_prompt,
             "address": filtered_ranks['address'].values[0],
             "cluster": {
                 "id": format(cluster_id),

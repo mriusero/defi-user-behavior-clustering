@@ -49,7 +49,7 @@ def page_4():
 
     with col2:
         st.write("")
-        random_addresses = ranks['address'].sample(9).values
+        random_addresses = ranks['address'].sample(8).values
         st.markdown("#### Pick an address_\n")
         for address in random_addresses:
             st.markdown(f"```\n{address}\n```")
@@ -60,8 +60,7 @@ def page_4():
             if check:
                 st.write(f"""
                 ---
-                
-                ## Performances report_
+                ### Requests_
                  Address: `{selected_address}`
                 """)
                 recommendations_board(ranks, selected_address)
