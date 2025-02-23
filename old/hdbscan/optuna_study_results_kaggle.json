@@ -1,0 +1,312 @@
+{
+    "best_params": {
+        "alpha": 6.736878216243162e-08,
+        "cluster_selection_epsilon": 0.6000000000000001,
+        "cluster_selection_method": "eom",
+        "min_cluster_size": 25,
+        "min_samples": 1
+    },
+    "trials": [
+        {
+            "alpha": 3.991485767698675e-05,
+            "cluster_selection_epsilon": 0.1,
+            "cluster_selection_method": "leaf",
+            "min_cluster_size": 40,
+            "min_samples": 4
+        },
+        {
+            "alpha": 6.540829885984267e-10,
+            "cluster_selection_epsilon": 0.35000000000000003,
+            "cluster_selection_method": "leaf",
+            "min_cluster_size": 15,
+            "min_samples": 10
+        },
+        {
+            "alpha": 0.25205856810108074,
+            "cluster_selection_epsilon": 0.30000000000000004,
+            "cluster_selection_method": "leaf",
+            "min_cluster_size": 50,
+            "min_samples": 1
+        },
+        {
+            "alpha": 1.97761502661625e-09,
+            "cluster_selection_epsilon": 0.45,
+            "cluster_selection_method": "eom",
+            "min_cluster_size": 25,
+            "min_samples": 2
+        },
+        {
+            "alpha": 4.826297590678547e-10,
+            "cluster_selection_epsilon": 0.5,
+            "cluster_selection_method": "leaf",
+            "min_cluster_size": 45,
+            "min_samples": 2
+        },
+        {
+            "alpha": 6.33246297991372e-09,
+            "cluster_selection_epsilon": 0.35000000000000003,
+            "cluster_selection_method": "eom",
+            "min_cluster_size": 50,
+            "min_samples": 9
+        },
+        {
+            "alpha": 0.011805313330963435,
+            "cluster_selection_epsilon": 0.9500000000000001,
+            "cluster_selection_method": "eom",
+            "min_cluster_size": 25,
+            "min_samples": 6
+        },
+        {
+            "alpha": 2.588905410184925e-08,
+            "cluster_selection_epsilon": 0.9500000000000001,
+            "cluster_selection_method": "leaf",
+            "min_cluster_size": 15,
+            "min_samples": 3
+        },
+        {
+            "alpha": 1.3733063748030076e-05,
+            "cluster_selection_epsilon": 0.45,
+            "cluster_selection_method": "leaf",
+            "min_cluster_size": 40,
+            "min_samples": 6
+        },
+        {
+            "alpha": 0.1806419905148013,
+            "cluster_selection_epsilon": 0.8500000000000001,
+            "cluster_selection_method": "eom",
+            "min_cluster_size": 15,
+            "min_samples": 10
+        },
+        {
+            "alpha": 0.003120309147708454,
+            "cluster_selection_epsilon": 0.0,
+            "cluster_selection_method": "leaf",
+            "min_cluster_size": 35,
+            "min_samples": 1
+        },
+        {
+            "alpha": 6.381262132912366e-08,
+            "cluster_selection_epsilon": 0.7000000000000001,
+            "cluster_selection_method": "eom",
+            "min_cluster_size": 25,
+            "min_samples": 1
+        },
+        {
+            "alpha": 1.2892304594316777e-07,
+            "cluster_selection_epsilon": 0.65,
+            "cluster_selection_method": "eom",
+            "min_cluster_size": 30,
+            "min_samples": 1
+        },
+        {
+            "alpha": 2.942236785939589e-07,
+            "cluster_selection_epsilon": 0.7000000000000001,
+            "cluster_selection_method": "eom",
+            "min_cluster_size": 5,
+            "min_samples": 4
+        },
+        {
+            "alpha": 4.1529994309142823e-07,
+            "cluster_selection_epsilon": 0.65,
+            "cluster_selection_method": "eom",
+            "min_cluster_size": 30,
+            "min_samples": 8
+        },
+        {
+            "alpha": 4.314880399457359e-07,
+            "cluster_selection_epsilon": 0.65,
+            "cluster_selection_method": "eom",
+            "min_cluster_size": 30,
+            "min_samples": 4
+        },
+        {
+            "alpha": 0.0001384811733691713,
+            "cluster_selection_epsilon": 0.8,
+            "cluster_selection_method": "eom",
+            "min_cluster_size": 20,
+            "min_samples": 1
+        },
+        {
+            "alpha": 0.0001259963217515858,
+            "cluster_selection_epsilon": 0.8,
+            "cluster_selection_method": "eom",
+            "min_cluster_size": 20,
+            "min_samples": 3
+        },
+        {
+            "alpha": 0.0003597577969898418,
+            "cluster_selection_epsilon": 0.8500000000000001,
+            "cluster_selection_method": "eom",
+            "min_cluster_size": 5,
+            "min_samples": 7
+        },
+        {
+            "alpha": 4.036131938958173e-06,
+            "cluster_selection_epsilon": 0.75,
+            "cluster_selection_method": "eom",
+            "min_cluster_size": 20,
+            "min_samples": 2
+        },
+        {
+            "alpha": 3.2558098641468798e-06,
+            "cluster_selection_epsilon": 1.0,
+            "cluster_selection_method": "eom",
+            "min_cluster_size": 10,
+            "min_samples": 3
+        },
+        {
+            "alpha": 2.544392408076068e-08,
+            "cluster_selection_epsilon": 0.6000000000000001,
+            "cluster_selection_method": "eom",
+            "min_cluster_size": 35,
+            "min_samples": 1
+        },
+        {
+            "alpha": 1.0686448015835981e-10,
+            "cluster_selection_epsilon": 0.55,
+            "cluster_selection_method": "eom",
+            "min_cluster_size": 35,
+            "min_samples": 1
+        },
+        {
+            "alpha": 1.752728586461058e-08,
+            "cluster_selection_epsilon": 0.55,
+            "cluster_selection_method": "eom",
+            "min_cluster_size": 20,
+            "min_samples": 2
+        },
+        {
+            "alpha": 0.0016145053932519265,
+            "cluster_selection_epsilon": 0.75,
+            "cluster_selection_method": "eom",
+            "min_cluster_size": 35,
+            "min_samples": 5
+        },
+        {
+            "alpha": 6.736878216243162e-08,
+            "cluster_selection_epsilon": 0.6000000000000001,
+            "cluster_selection_method": "eom",
+            "min_cluster_size": 25,
+            "min_samples": 1
+        },
+        {
+            "alpha": 2.0808289755608195e-06,
+            "cluster_selection_epsilon": 0.8500000000000001,
+            "cluster_selection_method": "eom",
+            "min_cluster_size": 25,
+            "min_samples": 3
+        },
+        {
+            "alpha": 2.6186150312872127e-05,
+            "cluster_selection_epsilon": 0.75,
+            "cluster_selection_method": "eom",
+            "min_cluster_size": 20,
+            "min_samples": 2
+        },
+        {
+            "alpha": 1.0424712771738253e-07,
+            "cluster_selection_epsilon": 0.6000000000000001,
+            "cluster_selection_method": "eom",
+            "min_cluster_size": 10,
+            "min_samples": 5
+        },
+        {
+            "alpha": 7.179093875351667e-05,
+            "cluster_selection_epsilon": 0.9,
+            "cluster_selection_method": "eom",
+            "min_cluster_size": 25,
+            "min_samples": 4
+        },
+        {
+            "alpha": 1.510515134199998e-06,
+            "cluster_selection_epsilon": 0.2,
+            "cluster_selection_method": "eom",
+            "min_cluster_size": 10,
+            "min_samples": 1
+        },
+        {
+            "alpha": 3.31501156282226e-08,
+            "cluster_selection_epsilon": 0.6000000000000001,
+            "cluster_selection_method": "eom",
+            "min_cluster_size": 40,
+            "min_samples": 1
+        },
+        {
+            "alpha": 2.6123517480883928e-09,
+            "cluster_selection_epsilon": 0.7000000000000001,
+            "cluster_selection_method": "eom",
+            "min_cluster_size": 30,
+            "min_samples": 2
+        },
+        {
+            "alpha": 9.654131888970498e-09,
+            "cluster_selection_epsilon": 0.45,
+            "cluster_selection_method": "eom",
+            "min_cluster_size": 35,
+            "min_samples": 1
+        },
+        {
+            "alpha": 7.927225368429342e-08,
+            "cluster_selection_epsilon": 0.55,
+            "cluster_selection_method": "leaf",
+            "min_cluster_size": 25,
+            "min_samples": 3
+        },
+        {
+            "alpha": 1.4745666939009026e-09,
+            "cluster_selection_epsilon": 0.4,
+            "cluster_selection_method": "eom",
+            "min_cluster_size": 45,
+            "min_samples": 2
+        },
+        {
+            "alpha": 2.4534525280065956e-10,
+            "cluster_selection_epsilon": 0.30000000000000004,
+            "cluster_selection_method": "leaf",
+            "min_cluster_size": 20,
+            "min_samples": 1
+        },
+        {
+            "alpha": 4.040978653415067e-09,
+            "cluster_selection_epsilon": 0.8,
+            "cluster_selection_method": "eom",
+            "min_cluster_size": 15,
+            "min_samples": 2
+        },
+        {
+            "alpha": 8.750458016813981e-07,
+            "cluster_selection_epsilon": 0.5,
+            "cluster_selection_method": "eom",
+            "min_cluster_size": 40,
+            "min_samples": 1
+        },
+        {
+            "alpha": 7.910833546878408e-10,
+            "cluster_selection_epsilon": 0.7000000000000001,
+            "cluster_selection_method": "leaf",
+            "min_cluster_size": 25,
+            "min_samples": 9
+        },
+        {
+            "alpha": 8.824834168597456e-06,
+            "cluster_selection_epsilon": 0.6000000000000001,
+            "cluster_selection_method": "eom",
+            "min_cluster_size": 30,
+            "min_samples": 2
+        },
+        {
+            "alpha": 1.029069399478475e-07,
+            "cluster_selection_epsilon": 0.65,
+            "cluster_selection_method": "eom",
+            "min_cluster_size": 30,
+            "min_samples": 1
+        },
+        {
+            "alpha": 4.69294639874043e-08,
+            "cluster_selection_epsilon": 0.8,
+            "cluster_selection_method": "eom",
+            "min_cluster_size": 25,
+            "min_samples": 1
+        }
+    ]
+}
