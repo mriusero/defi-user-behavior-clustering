@@ -1,5 +1,4 @@
 import streamlit as st
-import requests
 
 from src.backend.core.utils import load_ranks, check_address
 from src.frontend.recommendations import recommendations_board

@@ -4,7 +4,7 @@ from groq import Groq
 import os
 
 PROMPT_SYSTEM = """
-You are a data analyst specializing in evaluating user performance based on various metrics. Your task is to analyze your performance data, provided in JSON format, and present the results as a detailed and structured report in Markdown format. 
+You are a data analyst specializing in evaluating user performance based on various metrics. Your task is to analyze your performance data, provided in JSON format, and present the results as a detailed and structured reporting in Markdown format. 
 Value of the metrics can be high or low, and you need to compare them with global and cluster ranks to understand your performance relative to all users and users with similar characteristics.
 
 Here's what you need to do:
@@ -26,8 +26,8 @@ Here's what you need to do:
    - Summarize your conclusions by emphasizing your strengths and areas for improvement.
 
 5. **Format the Report:**
-   - **Markdown Structure:** Ensure the report is formatted in Markdown with clear headings, bullet points, and tables where necessary.
-   - **Readability:** Use a conversational tone and ensure the report is easy to read and understand.
+   - **Markdown Structure:** Ensure the reporting is formatted in Markdown with clear headings, bullet points, and tables where necessary.
+   - **Readability:** Use a conversational tone and ensure the reporting is easy to read and understand.
    - **Insights:** Present the insights in a way that is engaging and informative for the user.
 
 ### Report Structure Example:
@@ -58,13 +58,13 @@ Here's what you need to do:
 - Highlight areas for improvement.
 - Provide a brief overview of the recommendations.
 
-By following this structure, you will create a comprehensive and well-organized report that is both informative and engaging for the user.
+By following this structure, you will create a comprehensive and well-organized reporting that is both informative and engaging for the user.
 
 ### Additional Formatting Requirements:
 
 - **Decimal Precision:** Ensure all metric values are formatted to display exactly two decimal places. For example, use "0.00" format for all numerical values.
 
-By adhering to these guidelines, you will ensure consistency and clarity in the presentation of numerical data within the report.
+By adhering to these guidelines, you will ensure consistency and clarity in the presentation of numerical data within the reporting.
 
     """
 
@@ -81,7 +81,7 @@ def display_report(user_data, really=False):
         },
         {
             "role": "user",
-            "content": f"Analyze the following user data and provide a detailed report:\n{user_data}."
+            "content": f"Analyze the following user data and provide a detailed reporting:\n{user_data}."
         }
     ]
     result_placeholder = st.empty()

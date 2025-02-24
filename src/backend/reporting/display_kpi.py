@@ -1,16 +1,8 @@
 import streamlit as st
-from src.backend.report.inference import display_report
 
 
-def display_board(user_data, cluster_desc, global_radar, cluster_radar):
+def display_kpi(user_data, global_radar, cluster_radar):
     """ Display user rates on progress bars with custom CSS. """
-
-    # Display the cluster description
-    st.write(cluster_desc)
-
-    # Display the report
-    display_report(user_data, really=True)
-    st.write("---")
 
     # Display the radar charts with progress bars
     metrics = {}

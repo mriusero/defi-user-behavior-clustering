@@ -1,19 +1,9 @@
-from src.backend.report.ranking import fetch_rank
-from src.backend.report.plot_radar import upper_and_lower_bounds, plot_radar_chart
-from src.backend.report.reporting import display_board
+import streamlit as st
 
-def get_cluster_desc(ranks, address):
-    """ Get cluster description according to a given address """
-    cluster_descriptions = {
-        0: "Small Investors - Characterized by low transaction volume and frequency, limited platform activity, minimal market exposure.",
-        1: "Active Investors - Characterized by moderate transaction activity, diverse interactions including loans and trades, moderate market exposure.",
-        2: "Whales - Characterized by high transaction volume and frequency, significant market influence, diverse asset holdings.",
-        3: "Explorers - Characterized by moderate transaction activity, high diversity in interactions and assets, limited market influence."
-    }
-    cluster_id = ranks[ranks['address'] == address]['cluster'].values[0]
-    cluster_desc = cluster_descriptions[ranks[ranks['address'] == address]['cluster'].values[0]]
-    return f"*''Cluster {cluster_id} - {cluster_desc}''*"
-
+from src.backend.reporting.ranking import fetch_rank
+from src.backend.reporting.plot_radar import upper_and_lower_bounds, plot_radar_chart
+from src.backend.reporting.display_kpi import display_kpi
+from src.backend.reporting.inference import display_report
 
 def get_radar(ranks, user_data):
     """ Display radar chart for global and cluster ranks """
@@ -25,14 +15,22 @@ def get_radar(ranks, user_data):
 
 def recommendations_board(ranks, address):
     """ Display user recommendations board """
+    # Fetch metrics and cluster description of the user
     user_data = fetch_rank(ranks, address)
-    cluster_desc = get_cluster_desc(ranks, address)
 
+    # Display user information for introduction
+    cluster_desc = user_data['cluster'].get('description', "Unknown Cluster")
+    st.write(cluster_desc)
+    st.write("---")
+
+    # Display text-to-text reporting generated
+    display_report(user_data, really=True)
+    st.write("---")
+
+    # Display radar charts and KPI for global and cluster ranks
     global_radar, cluster_radar = get_radar(ranks, user_data)
-
-    display_board(
+    display_kpi(
         user_data,
-        cluster_desc,
         global_radar,
         cluster_radar
     )
