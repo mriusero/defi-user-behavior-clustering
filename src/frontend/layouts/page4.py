@@ -1,7 +1,7 @@
 import streamlit as st
 import requests
 
-from src.backend.core.utils import preload_ranks, check_address
+from src.backend.core.utils import load_ranks, check_address
 from src.frontend.recommendations import recommendations_board
 
 
@@ -12,16 +12,9 @@ def page_4():
     
     ---
     """)
-    # Load the ranks in cache
-    try:
-        if 'ranks' not in st.session_state or st.session_state['ranks'] is None:
-            ranks = preload_ranks()
-            st.session_state['ranks'] = ranks
-        else:
-            ranks = st.session_state['ranks']
-    except requests.RequestException as e:
-        st.error(f"Error downloading file: {e}")
-
+    ranks = load_ranks()
+    if ranks is not None:
+        pass
 
     col1, col2 = st.columns([8, 5])
     with col1:

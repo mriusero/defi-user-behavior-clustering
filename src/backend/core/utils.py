@@ -24,6 +24,21 @@ def preload_ranks():
 
     return ranks
 
+
+def load_ranks():
+    """ Load ranks into session state with error handling. """
+    try:
+        if 'ranks' not in st.session_state or st.session_state['ranks'] is None:
+            ranks = preload_ranks()
+            st.session_state['ranks'] = ranks
+        else:
+            ranks = st.session_state['ranks']
+    except requests.RequestException as e:
+        st.error(f"Error downloading file: {e}")
+        ranks = None
+    return ranks
+
+
 def is_valid_ethereum_address(address: object) -> Any:
     """ Check if address is a valid ethereum address. """
     eth_address_regex = r'^0x[a-fA-F0-9]{40}$'
