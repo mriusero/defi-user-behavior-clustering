@@ -1,139 +1,61 @@
 import streamlit as st
-from pyarrow import feather
 
-from src.backend.core.ranking import fetch_rank
-from src.backend.core.plot_radar import plot_radar_chart
-
-@st.cache_data
-def pre_load_ranks():
-    ranks = feather.read_table('src/frontend/layouts/data/users_scored.arrow').to_pandas()
-    return ranks
-
+from src.backend.core.utils import load_ranks, check_address
+from src.frontend.recommendations import recommendations_board
 
 
 def page_4():
     st.markdown('<div class="header">Who am I ?</div>', unsafe_allow_html=True)
-
-    st.markdown("""
-    Give me your ethereum address and I will tell who you are.
+    st.write("""
+    Give me your ethereum address and I will tell who you are.    
+    
+    ---
     """)
-    ranks = pre_load_ranks()
-    st.write(ranks.sample(5))
-    address = st.text_input("Address", value="0xbc8cbb3bcad18cd64de04a6d53503ccced07ef5b")
+    ranks = load_ranks()
+    if ranks is not None:
+        pass
 
-    if st.button("Submit"):
-        st.write(f"If your address is `{address}` then your performances are :")
+    col1, col2 = st.columns([8, 5])
+    with col1:
+        st.write("""
+        #### Disclaimer_
+                
+        > This project is for educational and research purposes only.
+        > - Not intended for real trading or investment.
+        > - No warranties or guarantees provided.
+        > - Past performance does not indicate future results.
+        > - Creator assumes no liability for financial losses.
+        > - Consult a financial advisor for investment decisions.
+        > - By using this software, you agree to use it solely for learning purposes.
+        
+        #### Get a report_
+        > **Note:**  This feature is exclusively compatible with Ethereum addresses that have interacted with the following DeFi protocols during 2023 and 2024:
+        > `curve_dao_count`, `aave_count`, `uniswap_count`, `maker_count`, `tether_count`, `yearn_finance_count`,
+        > `usdc_count`, `dai_count`, `balancer_count`, `harvest_finance_count`, `nftfi_count`.
+    
+        """)
+        st.write("")
 
-        user_data = fetch_rank(ranks, address)
+        selected_address = st.text_area("Enter an Ethereum Address here_", value='0x...', label_visibility='visible', height=68)
+        submitted = st.button("Get report")
 
-        col1, col2 = st.columns([1, 1])
-        global_radar = plot_radar_chart(user_data, to_plot='global_rank')
-        cluster_radar = plot_radar_chart(user_data, to_plot='cluster_rank')
-        with col1:
-            st.pyplot(global_radar)
-        with col2:
-            st.pyplot(cluster_radar)
+    with col2:
+        st.write("")
+        random_addresses = ranks['address'].sample(8).values
+        st.markdown("#### Pick an address_\n")
+        for address in random_addresses:
+            st.markdown(f"```\n{address}\n```")
 
-        st.write("---")
-        st.json(user_data)
-        st.write("---")
+    if submitted:
+        try:
+            check = check_address(selected_address, ranks)
+            if check:
+                st.write(f"""
+                ---
+                ### Requests_
+                 Address: `{selected_address}`
+                """)
+                recommendations_board(ranks, selected_address)
+        except ValueError as ve:
+            st.error(f"Value Error: {ve}")
 
-        metrics = {}
-        for metric in user_data['performances']:
-            name = metric['name']
-            description = metric['description']
-            cluster_rank = metric['cluster_rank']
-            global_rank = metric['global_rank']
-            metrics[name] = (description, global_rank, cluster_rank)
-
-        custom_css = """
-        <style>
-        .progress-container {
-            position: relative;
-            width: 100%;
-            height: 40px;
-            background-color: #e0e0e0;
-            border-radius: 5px;
-            overflow: hidden;
-            margin-bottom: 10px;
-        }
-        .progress-bar {
-            height: 100%;
-            background-color: #1e8b22;
-            position: absolute;
-            top: 0;
-            left: 0;
-            border-radius: 5px;
-        }
-        .progress-text {
-            position: absolute;
-            width: 100%;
-            text-align: center;
-            font-size: 16px;
-            font-weight: bold;
-            line-height: 40px;
-            color: #333;
-        }
-        </style>
-        """
-
-        # Afficher le CSS personnalisé
-        st.markdown(custom_css, unsafe_allow_html=True)
-
-        col1, col2, col3, col4, col5 = st.columns([2, 2, 1, 2, 2])
-
-        with col1:
-            st.write("#### Global Performance")
-            st.write("---")
-            for name, (description, global_rank, cluster_rank) in list(metrics.items())[:10]:
-                progress_width = f"{global_rank * 100}%"
-                percentage = f"{global_rank * 100:.1f}%"
-                st.markdown(f"""
-                <div class='progress-container'>
-                    <div class='progress-bar' style='width: {progress_width};'></div>
-                    <div class='progress-text'>{name.replace('_', ' ').title()} ({percentage})</div>
-                </div>
-                """, unsafe_allow_html=True)
-
-        with col2:
-            st.write("#### ")
-            st.write("---")
-            for name, (description, global_rank, cluster_rank) in list(metrics.items())[10:]:
-                progress_width = f"{global_rank * 100}%"
-                percentage = f"{global_rank * 100:.1f}%"
-                st.markdown(f"""
-                <div class='progress-container'>
-                    <div class='progress-bar' style='width: {progress_width};'></div>
-                    <div class='progress-text'>{name.replace('_', ' ').title()} ({percentage})</div>
-                </div>
-                """, unsafe_allow_html=True)
-
-        with col3:
-            st.write("#### ")
-            st.write("---")
-
-        with col4:
-            st.write("#### Cluster Performance")
-            st.write("---")
-            for name, (description, global_rank, cluster_rank) in list(metrics.items())[:10]:
-                progress_width = f"{cluster_rank * 100}%"
-                percentage = f"{cluster_rank * 100:.1f}%"
-                st.markdown(f"""
-                <div class='progress-container'>
-                    <div class='progress-bar' style='width: {progress_width};'></div>
-                    <div class='progress-text'>{name.replace('_', ' ').title()} ({percentage})</div>
-                </div>
-                """, unsafe_allow_html=True)
-
-        with col5:
-            st.write("#### ")
-            st.write("---")
-            for name, (description, global_rank, cluster_rank) in list(metrics.items())[10:]:
-                progress_width = f"{cluster_rank * 100}%"
-                percentage = f"{cluster_rank * 100:.1f}%"
-                st.markdown(f"""
-                <div class='progress-container'>
-                    <div class='progress-bar' style='width: {progress_width};'></div>
-                    <div class='progress-text'>{name.replace('_', ' ').title()} ({percentage}</div>
-                </div>
-                """, unsafe_allow_html=True)

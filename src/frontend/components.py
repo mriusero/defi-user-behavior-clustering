@@ -17,7 +17,7 @@ def github_button(
             text-align: center;
         }}
         .github-button img {{
-            height: 40px; /* Ajustez la taille de l'image ici */
+            height: 60px; /* Ajustez la taille de l'image ici */
         }}
         .github-button:hover {{
             background-color: #0E1117; /* Couleur de survol si désirée */

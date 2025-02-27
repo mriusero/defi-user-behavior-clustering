@@ -1,53 +1,54 @@
+from typing import Any
+
 import streamlit as st
-
-
+import re
+import os
+import requests
+from pyarrow import feather
 
 @st.cache_data
-def data_loading(
-    files_list, base_path="mariusayrault/defi-protocol-data-on-ethereum-2yr-23-to-24"
-):
-    """
-    Load data from parquet files
-    :param files_list: list of files to load (list)
-    :param base_path: the base path to the files (str)
-    :return: a dictionary of dataframes loaded from kaggle and stored in session state (dict)
-    """
-    print("Loading data...", files_list, base_path)
-    #if "dataframes" not in st.session_state:
-    #    dataframes = {}
-    #    progress_bar = st.progress(0)
-    #    total_files = len(files_list)
-#
-    #    for index, file in enumerate(files_list):
-    #        if file == "users":
-    #            path = "processed/users_processed.parquet"
-    #        else:
-    #            path = "dataset/data/" + file + ".parquet"
-#
-    #        endpoint = kagglehub.dataset_download(base_path, path=path)
-    #        df = pd.read_parquet(endpoint, engine="pyarrow")
-    #        dataframes[file] = df
-    #        progress_bar.progress((index + 1) / total_files)
-#
-    #    ## ====== Data cast ====== ##
-    #    for _, df in dataframes.items():
-    #        ## ====== Timestamp conversion ====== ##
-    #        if "timestamp" in df.columns:
-    #            df["timestamp"] = pd.to_datetime(
-    #                df["timestamp"], errors="coerce", unit="s"
-    #            )
-#
-    #        elif "first_seen" in df.columns:
-    #            df["first_seen"] = pd.to_datetime(df["first_seen"], errors="coerce")
-#
-    #        elif "last_seen" in df.columns:
-    #            df["last_seen"] = pd.to_datetime(df["last_seen"], errors="coerce")
-#
-    #        ## ====== Address conversion ====== ##
-    #        elif "contract_address" in df.columns:
-    #            df["contract_address"] = df["contract_address"].astype(str)
-#
-    #        elif "address" in df.columns:
-    #            df["address"] = df["address"].astype(str)
-#
-    #        st.session_state["dataframes"] = dataframes
+def cache():
+    """ Preload data in streamlit cache. """
+
+    url = 'https://huggingface.co/datasets/mriusero/DeFi-Protocol-Data-on-Ethereum-2023-2024/resolve/main/dataset/data/users_scored.arrow'
+    local_file = 'users_scored.arrow'
+
+    response = requests.get(url, timeout=10)
+    with open(local_file, 'wb') as file:
+        file.write(response.content)
+
+    ranks = feather.read_table(local_file).to_pandas()
+    os.remove(local_file)
+
+    return ranks
+
+
+def load_ranks():
+    """ Load ranks into session state with error handling. """
+    try:
+        if 'ranks' not in st.session_state or st.session_state['ranks'] is None:
+            ranks = cache()
+            st.session_state['ranks'] = ranks
+        else:
+            ranks = st.session_state['ranks']
+    except requests.RequestException as e:
+        st.error(f"Error downloading file: {e}")
+        ranks = None
+    return ranks
+
+
+def is_valid_ethereum_address(address: object) -> Any:
+    """ Check if address is a valid ethereum address. """
+    eth_address_regex = r'^0x[a-fA-F0-9]{40}$'
+    return re.match(eth_address_regex, address) is not None
+
+
+def check_address(address, ranks):
+    """ Check if address is in the ranks. """
+    if not is_valid_ethereum_address(address):
+        st.error("The input provided is not a valid Ethereum address.")
+        return False
+    elif address not in ranks['address'].values:
+        st.warning("This address is not in the study dataset.")
+        return False
+    return True
