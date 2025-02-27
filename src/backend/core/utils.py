@@ -25,7 +25,6 @@ def cache():
 
 def load_ranks():
     """ Load ranks into session state with error handling. """
-    st.toast("Loading data in cache... please wait 30 sec.")
     try:
         if 'ranks' not in st.session_state or st.session_state['ranks'] is None:
             ranks = cache()

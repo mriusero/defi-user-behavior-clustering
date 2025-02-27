@@ -52,7 +52,7 @@ def fetch_rank(ranks: pd.DataFrame, address: str):
         {
             "name": metric,
             "description": metric_descriptions.get(metric, "Description not available"),
-            "value": user_row[metric],
+           # "value": user_row[metric],
             "cluster_rank": user_row.get(f"{metric}_cluster_rank", "Cluster rank not available"),
             "global_rank": user_row.get(f"{metric}_global_rank", "Global rank not available")
         }
