@@ -65,7 +65,7 @@ By identifying distinct clusters, we can gain insights into different user profi
 To perform the clustering analysis, K-means algorithm is used to group users into clusters based on their features and transactional activities.
 
 ### Process_
-1. **PCA**: reduce dimensions of dataset. Here, 6 sigmas of the variance is explained by 28 dimensions against 62 initially.
+1. **PCA**: reduce dimensions. Here, 6 sigmas of the variance is explained by 28 dimensions against 62 initially.
 2. **Elbow Method**: analyze visually the optimal number of clusters for the K-means algorithm.
 3. **Hyperparameters Tuning**: identify the optimal hyperparameters with Optuna.
 
@@ -76,8 +76,6 @@ The analysis of main differences between each clusters is available in the secti
 
 ---
 ## Performance Report_
-> Try the experience in the section `Performance Report_` of the [HF Space](https://mriusero-defi-behavior.hf.space).
-
 As the final step of the project, the performance report delivers insights into a user's behavioral analysis. It includes a summary of the cluster analysis associated with the user, an evaluation of strengths and weaknesses within the DeFi ecosystem, and offers recommendations to enhance performance.
 
 ### Text-to-Text Reporting_
@@ -87,6 +85,9 @@ The report includes an analysis of strengths, areas for improvement, and actiona
 ### Metrics_
 Metrics are displayed for global and cluster ranks. The radar charts provide a visual representation of the user's performance across various metrics, highlighting strengths and areas for improvement.
 ![Logo](docs/graphics/kmeans/global_and_cluster_metrics.png)
+
+> [!NOTE]
+> Experience available in the section `Performance Report_` of the [HF Space](https://mriusero-defi-behavior.hf.space).
 
 ---
 # Run the App Locally
@@ -147,4 +148,5 @@ This will start the application, and you can access it in your web browser at [h
 
 ---
 ## License
-This project is licensed under the terms of the [MIT License](LICENSE).
+This project is licensed under the terms of the [MIT License](LICENSE).  
+If you find this project helpful, please consider giving it a star or citing it in your work.
