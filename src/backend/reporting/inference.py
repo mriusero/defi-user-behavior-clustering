@@ -94,7 +94,6 @@ def display_report(user_data, really=False):
     result_placeholder = st.empty()
 
     if really:
-        st.sidebar.write("### Input_\n", messages)
         completion = client.chat.completions.create(
             model="llama-3.3-70b-versatile",
             messages=messages,
@@ -109,8 +108,7 @@ def display_report(user_data, really=False):
             if chunk.choices[0].delta.content:
                 result += chunk.choices[0].delta.content
                 result_placeholder.markdown(result)
-
-        print(result)
         return result
     else:
+        st.write("### Input_\n", messages)
         return messages
