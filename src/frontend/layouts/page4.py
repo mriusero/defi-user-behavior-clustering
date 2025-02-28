@@ -9,7 +9,7 @@ def page_4():
     st.write("""
 As the final step of the project, the performance report delivers insights into a user's behavioral analysis. It includes a summary of the cluster analysis associated with the user, an evaluation of strengths and weaknesses within the DeFi ecosystem, and offers recommendations to enhance performance.
 
-To see the step-by-step analysis, please visit the `Study Overview_` section.
+>To see the step-by-step analysis, please visit the `Study Overview_` section.
 
 ---
     """)

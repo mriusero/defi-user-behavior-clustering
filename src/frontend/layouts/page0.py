@@ -180,9 +180,9 @@ Metrics are displayed for global and cluster ranks. The radar charts provide a v
     """)
     col1, col2 = st.columns(2)
     with col1:
-        st.image("src/frontend/layouts/pictures/cluster_rank_example.png", caption="", width=600)
+        st.image("src/frontend/layouts/pictures/cluster_metrics_example.png", caption="", width=600)
     with col2:
-        st.image("src/frontend/layouts/pictures/global_rank_example.png", caption="", width=600)
+        st.image("src/frontend/layouts/pictures/global_metrics_example.png", caption="", width=600)
 
     st.write("---")
 

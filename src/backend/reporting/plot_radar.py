@@ -45,7 +45,7 @@ def plot_radar_chart(bounds, user_data, to_plot='global_rank'):
     )
     ax.set_thetagrids(np.degrees(angles), metrics_names, fontsize=10, color='white')
 
-    ax.set_title(f"{to_plot.replace('_', ' ').title()} Performances", fontsize=14, color='white', pad=35)
+    #ax.set_title(f"{to_plot.replace('_', ' ').title().rstrip(' Rank')} Performances", fontsize=14, color='white', pad=35)
     ax.legend(loc='upper right', bbox_to_anchor=(1.1, 1.1), framealpha=0.5)
     fig.subplots_adjust(top=0.80)
     plt.tight_layout()
