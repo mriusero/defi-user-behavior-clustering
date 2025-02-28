@@ -112,8 +112,64 @@ Each node represents a user address and each edge represents a transaction betwe
 
     st.write("""
 ## Clustering_
+By identifying distinct clusters, we can gain insights into different user profiles and behaviors within the DeFi ecosystem.
+To perform the clustering analysis, K-means algorithm is used to group users into clusters based on their features and transactional activities.
+    """)
+    col1, col2 = st.columns(2)
+    with col1:
+        st.write("""
+#### PCA Analysis_
+The PCA reduction allow to determine the number of dimensions required to keep a certain rate of variance. Here, 6 sigmas of the variance is explained by 28 dimensions against 62 initially.")
+        """)
+        st.image("docs/graphics/pca/pca_variance.png", caption="", width=500)
+    with col2:
+        st.write("""
+#### Elbow Method_
+The Elbow Method is used to identify visually the optimal number of clusters for the K-means algorithm. The inertia value is plotted against the number of clusters, and the "elbow" point indicates the optimal number of clusters to use. Here the optimal number of clusters can be determined visually as 4.
+        """)
+        st.image("docs/graphics/kmeans/kmeans_test_scores.png", caption="", width=600)
+    st.write("""
+#### Hyperparameters Optimization_
+Thanks to Optuna, an hyperparameter optimization framework, best parameters for the K-means algorithm can be empirically identified.
+The goal is to find the best set of hyperparameters that maximize the clustering performance based on a combined score of multiple metrics. 
+
+```python
+# Objective function
+n_clusters = trial.suggest_int("n_clusters", 2, 10)                 # Suggest an integer between 2 and 10 for the number of clusters
+init = trial.suggest_categorical("init", ["k-means++", "random"])   # Suggest a categorical value for the initialization method: either "k-means++" or "random"
+batch_size = trial.suggest_int("batch_size", 50, 500, step=50)      # Suggest an integer between 50 and 500 (in steps of 50) for the batch size
+max_iter = trial.suggest_int("max_iter", 100, 500)                  # Suggest an integer between 100 and 500 for the maximum number of iterations
+tol = trial.suggest_float("tol", 1e-6, 1e-2, log=True)              # Suggest a floating-point number between 1e-6 and 1e-2 for the convergence tolerance, using a log scale
+
+# Weighting
+x = trial.suggest_float("silhouette_weight", 0.1, 1.0)
+y = trial.suggest_float("ch_weight", 0.1, 1.0)
+z = trial.suggest_float("db_weight", 0.1, 1.0)
+
+# Combined score maximisation based on silhouette score, Calinski-Harabasz index, and Davies-Bouldin index
+combined_score = (x * silhouette_avg) + (y * ch_index) - (z * db_index)
+```
+#### Performances obtained_
+```python
+{
+    "Davies-Bouldin Index": 0.3619108287721344      # Measures the average similarity ratio of each cluster with the cluster most similar to it. Lower values indicate better clustering.
+    "Calinski-Harabasz Index": 20025853.87041033    # Also known as the Variance Ratio Criterion, evaluates the ratio of between-cluster dispersion to within-cluster dispersion. Higher values indicate better-defined clusters.
+    "Silhouette Avg": 0.7608796914931638            # Measures how similar a data point is to its own cluster compared to other clusters. The score ranges from -1 to 1, with higher values indicating better clustering.
+}
+```
+
+#### Results_
+The analysis of main differences between each clusters is available in the section `Clustering_`. The clusters are described with their characteristics, interactions types, correlation matrix, transactions activity, diversity and influence, sent and received transactions statistics, exposure metrics and timing behavior.
+
+---
     """)
 
+
+    st.write("""
+## Recommandations_
+
+---
+    """)
 
 
 
