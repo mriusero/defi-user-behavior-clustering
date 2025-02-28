@@ -1,6 +1,5 @@
 import pandas as pd
 from pyarrow import feather
-import plotly.express as px
 import matplotlib.pyplot as plt
 import seaborn as sns
 
@@ -40,6 +39,7 @@ def plot_general_heatmap(df, base_path):
     try:
         plt.savefig(f'{base_path}/general_heatmap.png')
         print("--> general heatmap saved.")
+        plt.close()
     except FileNotFoundError as exc:
         raise FileNotFoundError(f"--> Error: {base_path} does not exist.") from exc
 
@@ -57,14 +57,16 @@ def plot_heatmap(base_path):
         cluster_data = df[df['cluster'] == cluster]
         correlation_matrix = cluster_data[features].corr()
 
-        fig = px.imshow(correlation_matrix,
-                        title=f'Correlation heatmap of {cluster}',
-                        labels=dict(color="Corrélation"),
-                        x=features,
-                        y=features,
-                        color_continuous_scale="Viridis")
+        plt.figure(figsize=(10, 8))
+        sns.heatmap(correlation_matrix, cmap="viridis", annot=False, fmt=".2f", center=0)
+        plt.title(f'Correlation heatmap of {cluster}')
+        plt.xlabel('Features')
+        plt.ylabel('Features')
+        plt.tight_layout()
+
         try:
-            fig.write_html(f'{base_path}/heatmap_{cluster}.html')
-            print(f"--> heatmap {cluster} saved.")
+            plt.savefig(f'{base_path}/heatmap_{cluster}.png')
+            print(f"--> heatmap {cluster} saved as PNG.")
+            plt.close()
         except FileNotFoundError as exc:
             raise FileNotFoundError(f"--> Error: {base_path} does not exist.") from exc

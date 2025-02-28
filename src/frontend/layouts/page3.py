@@ -1,5 +1,4 @@
 import streamlit as st
-import streamlit.components.v1 as components
 
 #from src.backend.analyzer.plotter import analyze_clusters
 
@@ -66,16 +65,13 @@ This section presents the clustering analysis performed on the dataset in the pu
         st.image('src/frontend/layouts/pictures/kmeans_analysis/timing_behavior_plots.png')
 
     col1, col2 = st.columns(2)
-    html_files = [f'src/frontend/layouts/pictures/kmeans_analysis/heatmap_{i}.html' for i in range(4)]
-    for i, html_file in enumerate(html_files):
-        with open(html_file, 'r', encoding='utf-8') as file:
-            html_content = file.read()
-
-            if i % 2 == 0:
-                with col1:
-                    st.write(f"## Heatmap Cluster_{i}")
-                    components.html(html_content, height=500)
-            else:
-                with col2:
-                    st.write(f"## Heatmap Cluster_{i}")
-                    components.html(html_content, height=500)
+    heatmap_files = [f'src/frontend/layouts/pictures/kmeans_analysis/heatmap_{i}.png' for i in range(4)]
+    for i, png_file in enumerate(heatmap_files):
+        if i % 2 == 0:
+            with col1:
+                st.write(f"## Heatmap Cluster_{i}")
+                st.image(png_file)
+        else:
+            with col2:
+                st.write(f"## Heatmap Cluster_{i}")
+                st.image(png_file)

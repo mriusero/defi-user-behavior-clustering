@@ -8,7 +8,6 @@ import pyarrow.feather as feather
 from sklearn.cluster import KMeans
 from sklearn.decomposition import PCA
 
-
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../../..")))
 from kmeans_analysis import analyze_kmeans, optimize_hyperparams, measure_performances
 from ml.utils.splitting import splitting
@@ -50,18 +49,18 @@ class KMeansPipeline:
     def run(self):
         """Run the KMeans pipeline"""
         print("\n ======= Running ML pipeline ======= \n")
-        #self.load_data()
-        #self.analyze() if self.analyse else None
-        #self.reduce()
-        #self.load_hyperparameters()
-        #self.optimize_hyperparameters() if self.optimization else None
-        #self.train_model()
-        #self.save()
-        #self.load()
-        #self.predict()
-        #self.upload_model() if self.upload else None
-        #self.analyse_results()
-        #self.compute_graphics()
+        self.load_data()
+        self.analyze() if self.analyse else None
+        self.reduce()
+        self.load_hyperparameters()
+        self.optimize_hyperparameters() if self.optimization else None
+        self.train_model()
+        self.save()
+        self.load()
+        self.predict()
+        self.upload_model() if self.upload else None
+        self.analyse_results()
+        self.compute_graphics()
         self.score_users()
         print("\n ======= KMeans pipeline completed ======= \n")
 
@@ -195,6 +194,6 @@ class KMeansPipeline:
 
 if __name__ == "__main__":
     pipeline = KMeansPipeline(
-        analyse=False, reduce_dimensions=True, optimization=False, upload=False, no_graph=True,
+        analyse=False, reduce_dimensions=True, optimization=False, upload=False, no_graph=False,
     )
     pipeline.run()
