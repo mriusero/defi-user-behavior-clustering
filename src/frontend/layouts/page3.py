@@ -7,8 +7,8 @@ def page_3():
     st.markdown('<div class="header">Clustering_</div>', unsafe_allow_html=True)
     st.write(""" 
     
-This section presents the clustering analysis performed on the dataset in the purpose of identifying user behavior patterns.
-    
+This section presents the clustering analysis performed on the dataset in the purpose of identifying user behavior patterns. The clusters are described with their characteristics, interactions types, correlation matrix, transactions activity, diversity and influence, sent and received transactions statistics, exposure metrics and timing behavior.
+
 ---
     """)
 

@@ -1,15 +1,17 @@
 import streamlit as st
 
 from src.backend.core.utils import load_ranks, check_address
-from src.frontend.recommendations import recommendations_board
+from src.backend.reporting.recommendations import recommendations_board
 
 
 def page_4():
-    st.markdown('<div class="header">Who am I ?</div>', unsafe_allow_html=True)
+    st.markdown('<div class="header">Performance Report_</div>', unsafe_allow_html=True)
     st.write("""
-    Give me your ethereum address and I will tell who you are.    
-    
-    ---
+As the final step of the project, the performance report delivers insights into a user's behavioral analysis. It includes a summary of the cluster analysis associated with the user, an evaluation of strengths and weaknesses within the DeFi ecosystem, and offers recommendations to enhance performance.
+
+To see the step-by-step analysis, please visit the `Study Overview_` section.
+
+---
     """)
     ranks = load_ranks()
     if ranks is not None:
@@ -30,8 +32,11 @@ def page_4():
         
         #### Get a report_
         > **Note:**  This feature is exclusively compatible with Ethereum addresses that have interacted with the following DeFi protocols during 2023 and 2024:
-        > `curve_dao_count`, `aave_count`, `uniswap_count`, `maker_count`, `tether_count`, `yearn_finance_count`,
-        > `usdc_count`, `dai_count`, `balancer_count`, `harvest_finance_count`, `nftfi_count`.
+        > - **Decentralized Exchanges (DEX)**: *`Uniswap`, `Curve DAO`, `Balancer`*
+        > - **Lending Platforms**: *`Aave`, `Maker`*
+        > - **Stablecoins**: *`Tether`, `USD Coin (USDC)`, `Dai`*
+        > - **Yield Farming**: *`Yearn Finance`, `Harvest Finance`*
+        > - **Non-Fungible Token (NFT)**: *`NFTfi`*
     
         """)
         st.write("")
@@ -41,7 +46,7 @@ def page_4():
 
     with col2:
         st.write("")
-        random_addresses = ranks['address'].sample(8).values
+        random_addresses = ranks['address'].sample(10).values
         st.markdown("#### Pick an address_\n")
         for address in random_addresses:
             st.markdown(f"```\n{address}\n```")

@@ -23,6 +23,7 @@ def recommendations_board(ranks, address):
     st.write(cluster_desc)
     st.write("---")
 
+
     # Display text-to-text reporting generated
     display_report(user_data, really=True)
     st.write("---")

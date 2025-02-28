@@ -26,7 +26,7 @@ def display_kpi(user_data, global_radar, cluster_radar):
                 }
                 .progress-bar {
                     height: 100%;
-                    background-color: #1e8b22;
+                    background-color: #00d2ba;
                     position: absolute;
                     top: 0;
                     left: 0;
@@ -46,8 +46,7 @@ def display_kpi(user_data, global_radar, cluster_radar):
 
     st.markdown(custom_css, unsafe_allow_html=True)
 
-    st.write("#### Cluster Performance_")
-    st.write("---")
+    st.write("#### Cluster Rank Performance_")
     col1, col2, col3 = st.columns([2, 1, 1])
 
     with col1:
@@ -75,9 +74,8 @@ def display_kpi(user_data, global_radar, cluster_radar):
                             </div>
                             """, unsafe_allow_html=True)
 
-
-    st.write("#### Global Performance_")
-    st.write("---")
+    st.write('---')
+    st.write("#### Global Rank Performance_")
     col1, col2, col3 = st.columns([2, 1, 1])
 
     with col1:

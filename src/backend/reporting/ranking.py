@@ -66,7 +66,7 @@ def fetch_rank(ranks: pd.DataFrame, address: str):
         "address": user_row['address'],
         "cluster": {
             "id": format(cluster_id),
-            "description": f"Cluster representing a group of users with similar characteristics and behaviors. Here, the user is in the cluster {cluster_id} which are classified as {cluster_description}"
+            "description": f"Cluster representing a group of users with similar characteristics and behaviors. Here, the address is in the cluster {cluster_id} which are classified as {cluster_description}"
         },
         "performances": performances
     }
