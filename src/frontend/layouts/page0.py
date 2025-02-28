@@ -37,11 +37,11 @@ Specifically, the study focuses on the following types of DeFi protocols on the 
 
 ---
 ## Data Collection_
-The data used in this analysis is sourced from the Ethereum blockchain, all the process is detailed in the `Data Collection_` section.  
+The data used in this analysis is sourced from the Ethereum blockchain, all the data collection process is detailed in the `Data Collection_` section.  
 Process include information on protocols, user transactions and average usages, protocol interactions or market metrics.
 
 ##### Timeframe_  *(2 years: 2023-2024)*
-* Start  -  `31th of December 2022, 22:59:59 UTC`
+* Start  -  `31st of December 2022, 22:59:59 UTC`
 * End  -  `30th of December 2024, 23:00:11 UTC`
 
 ##### Metrics_
@@ -65,7 +65,7 @@ The features generated for each user address are detailed in the `Feature Engine
 Process include the following steps and allows to obtain a total of `62 features` for each user address: 
 1. Loading & Processing Data *(from .parquet files)*
 2. Aggregating User Metrics, Transactions Data, Market Data
-3. Standardizing Features *(with a specific method described in step 6)*
+3. Standardizing Features *(with a specific method described in step 6 of the section)*
 
 #### Storage_
 The features files are also available in the [Hugging Face Hub](https://huggingface.co/datasets/mriusero/DeFi-Protocol-Data-on-Ethereum-2023-2024/tree/main/dataset/data).
