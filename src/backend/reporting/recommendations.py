@@ -28,10 +28,12 @@ def recommendations_board(ranks, address):
     display_report(user_data, really=True)
     st.write("---")
 
+
     # Display radar charts and KPI for global and cluster ranks
-    global_radar, cluster_radar = get_radar(ranks, user_data)
-    display_kpi(
+    with st.spinner('Loading charts'):
+        global_radar, cluster_radar = get_radar(ranks, user_data)
+        display_kpi(
         user_data,
         global_radar,
         cluster_radar
-    )
+        )

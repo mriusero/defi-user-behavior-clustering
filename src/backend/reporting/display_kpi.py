@@ -46,7 +46,7 @@ def display_kpi(user_data, global_radar, cluster_radar):
 
     st.markdown(custom_css, unsafe_allow_html=True)
 
-    st.write("#### Cluster Rank Performance_")
+    st.write("#### Performances in Cluster_")
     col1, col2, col3 = st.columns([2, 1, 1])
 
     with col1:
@@ -75,7 +75,7 @@ def display_kpi(user_data, global_radar, cluster_radar):
                             """, unsafe_allow_html=True)
 
     st.write('---')
-    st.write("#### Global Rank Performance_")
+    st.write("#### Global Performances_")
     col1, col2, col3 = st.columns([2, 1, 1])
 
     with col1:

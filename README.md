@@ -148,5 +148,4 @@ This will start the application, and you can access it in your web browser at [h
 
 ---
 ## License
-This project is licensed under the terms of the [MIT License](LICENSE).  
-If you find this project helpful, please consider giving it a star or citing it in your work.
+This project is licensed under the terms of the [MIT License](LICENSE). If you find this project helpful, please consider giving it a star or citing it in your work.
