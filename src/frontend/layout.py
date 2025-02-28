@@ -29,8 +29,8 @@ def app_layout():
     st.session_state.page = st.sidebar.radio(
         "Summary",
         [
-            "# Who am I ?",
-            "# Introduction_",
+            "# Performance Report_",
+            "# Study Overview_",
             "# Data Collection_",
             "# Features Engineering_",
             "# Clustering_",
@@ -74,9 +74,9 @@ def app_layout():
     st.markdown(line_style, unsafe_allow_html=True)
     st.markdown(line_html, unsafe_allow_html=True)
 
-    if st.session_state.page == "# Who am I ?":
+    if st.session_state.page == "# Performance Report_":
         page_4()
-    elif st.session_state.page == "# Introduction_":
+    elif st.session_state.page == "# Study Overview_":
         page_0()
     elif st.session_state.page == "# Data Collection_":
         page_1()

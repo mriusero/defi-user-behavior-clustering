@@ -5,11 +5,13 @@ from src.backend.reporting.recommendations import recommendations_board
 
 
 def page_4():
-    st.markdown('<div class="header">Who am I ?</div>', unsafe_allow_html=True)
+    st.markdown('<div class="header">Performance Report_</div>', unsafe_allow_html=True)
     st.write("""
-    Give me your ethereum address and I will tell who you are.    
-    
-    ---
+As the final step of the project, the performance report delivers insights into a user's behavioral analysis. It includes a summary of the cluster analysis associated with the user, an evaluation of strengths and weaknesses within the DeFi ecosystem, and offers recommendations to enhance performance.
+
+To see the step-by-step analysis, please visit the `Study Overview_` section.
+
+---
     """)
     ranks = load_ranks()
     if ranks is not None:

@@ -25,7 +25,7 @@ def recommendations_board(ranks, address):
 
 
     # Display text-to-text reporting generated
-    display_report(user_data, really=False)
+    display_report(user_data, really=True)
     st.write("---")
 
     # Display radar charts and KPI for global and cluster ranks
