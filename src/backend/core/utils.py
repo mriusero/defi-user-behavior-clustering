@@ -1,5 +1,5 @@
 from typing import Any
-
+import pandas as pd
 import streamlit as st
 import re
 import os
@@ -10,6 +10,7 @@ from pyarrow import feather
 def cache():
     """ Preload data in streamlit cache. """
 
+    # Load Ranks
     url = 'https://huggingface.co/datasets/mriusero/DeFi-Protocol-Data-on-Ethereum-2023-2024/resolve/main/dataset/data/users_scored.arrow'
     local_file = 'users_scored.arrow'
 
@@ -21,6 +22,21 @@ def cache():
     os.remove(local_file)
 
     return ranks
+
+@st.cache_data
+def load_transactions():
+
+    url = 'https://huggingface.co/datasets/mriusero/DeFi-Protocol-Data-on-Ethereum-2023-2024/resolve/main/dataset/data/transactions.parquet'
+    local_file = 'transactions.parquet'
+
+    response = requests.get(url, timeout=10)
+    with open(local_file, 'wb') as file:
+        file.write(response.content)
+
+    tx = pd.read_parquet(local_file)
+    os.remove(local_file)
+
+    return tx
 
 
 def load_ranks():
