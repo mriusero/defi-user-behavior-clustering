@@ -39,6 +39,22 @@ def load_transactions():
     return tx
 
 
+@st.cache_data
+def load_market():
+
+    url = 'https://huggingface.co/datasets/mriusero/DeFi-Protocol-Data-on-Ethereum-2023-2024/resolve/main/dataset/data/market.parquet'
+    local_file = 'market.parquet'
+
+    response = requests.get(url, timeout=10)
+    with open(local_file, 'wb') as file:
+        file.write(response.content)
+
+    mkt = pd.read_parquet(local_file)
+    os.remove(local_file)
+
+    return mkt
+
+
 def load_ranks():
     """ Load ranks into session state with error handling. """
     try:
