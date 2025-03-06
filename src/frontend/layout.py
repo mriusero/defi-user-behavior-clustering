@@ -6,7 +6,7 @@ from .components import github_button
 
 def load_css():
     css_path = os.path.join(os.path.dirname(__file__), "styles.css")
-    with open(css_path, "r", encoding="utf-8") as f:  # Ajout de l'encodage ici
+    with open(css_path, "r", encoding="utf-8") as f:
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
 def app_layout():
@@ -31,10 +31,10 @@ def app_layout():
         [
             "# Study Overview_",
             "# Data Collection_",
+            "# Trend Analysis_",
             "# Features Engineering_",
             "# Clustering_",
             "# Performance Report_",
-            "# Trend Analysis_",
         ],
     )
 

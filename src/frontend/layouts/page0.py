@@ -1,7 +1,7 @@
 import streamlit as st
 import streamlit.components.v1 as components
 
-COLOR_KEY = {
+PROTOCOL_COLOR_KEY = {
     "curve_dao_count": "#FF6347",
     "aave_count": "#4e000b",
     "uniswap_count": "#1e8b22",
@@ -14,7 +14,13 @@ COLOR_KEY = {
     "harvest_finance_count": "#efef24",
     "nftfi_count": "#FF1493",
 }
-
+TYPE_COLOR_KEY = {
+    'DEX': "#FFFFFF",
+    'Lending': "#7FFF00",
+    'Stablecoin': "#DC143C",
+    'Yield farming': "#ffc909",
+    'NFT': "#c24ee2",
+}
 def page_0():
     st.markdown(
         '<div class="header">Study Overview_</div>',
@@ -57,9 +63,91 @@ All data are stored in Parquet format and are available in the [Hugging Face hub
     ├── transactions.parquet      # Contains transaction data for Ethereum-based contracts.
     ├── market.parquet            # Contains enriched market data with aggregated transaction metrics.
     └── users.parquet             # User profiles based on transaction data.
+    
+##### Users Data_
+    """)
+    iframe_features = '''
+    <iframe
+      src="https://huggingface.co/datasets/mriusero/DeFi-Protocol-Data-on-Ethereum-2023-2024/embed/viewer/default/train"
+      frameborder="0"
+      width="100%"
+      height="560px"
+    ></iframe>
+    '''
+    components.html(iframe_features, height=600)
+
+    st.write("""
+---
+## Trends Analysis_
+By analyzing transactions, we can identify trends and correlation patterns within the DeFi ecosystem.
+All the trends analysis is available in the `Trends Analysis_` section.  
+   """)
+    st.write("""
+    #### Correlation_
+    With graphs below, we can conclude that there is a strong correlation between the number of users and the numbers of transactions.  
+    This  also signify that the number of transactions per user is approximately repetitive & stable.
+    """)
+    base_path = 'src/frontend/layouts/pictures/trends_analysis/'
+    col1, col2 = st.columns(2)
+    with col1:
+        st.write("###### Transactions Number vs Users per Protocol_")
+        st.image(base_path + 'protocol_tx_vs_users_scatter.png')
+    with col2:
+        st.write("###### Transactions Number vs Users per Type_")
+        st.image(base_path + 'type_tx_vs_users_scatter.png')
+
+    st.write("""
+    #### Proportion Trends_
+    Here, we can observe that stablecoins represent the major usage.  
+    Also, in termes of trends, the global count of user and the proportion of DEX and Lending protocols usage is increasing over time.
+    """)
+    col1, col2 = st.columns(2)
+    with col1:
+        st.write("###### Unique Transactions per Protocol by Month_")
+        st.image(base_path + 'protocol_tx_by_month.png')
+    with col2:
+        st.write("###### Unique Transactions per Type by Month_")
+        st.image(base_path + 'type_tx_by_month.png')
+    st.write("""
 
 ---
 
+## Network Analysis_
+The network analysis provides an abstract vision of relationships between user addresses and DeFi protocols. By visualizing the connections between users and protocols, we can identify patterns in user behavior and protocol interactions.   
+These graphs represents the network of user addresses and the protocols they interact with (by protocol or by type of protocol).  
+Each node represents a user address and each edge represents a transaction between a user and a protocol.  
+
+> **Note:** This graph only contains 100 000 users against 6 876 845 in the real dataset.  
+
+        """)
+    col1, col2 = st.columns(2)
+    with col1:
+        st.write("#### Address-Protocol Network_")
+    with col2:
+        st.write("#### Address-Type Network_")
+    col1, col2, col3, col4 = st.columns([2, 4, 1, 4])
+    with col1:
+        st.write("""
+        
+        """)
+        st.write("**Legend:**")
+        for protocol, color in PROTOCOL_COLOR_KEY.items():
+            st.markdown(f"<span style='color: {color};'>■</span> {protocol.replace('_', ' ').title().rstrip('Count')}",
+                        unsafe_allow_html=True)
+    with col2:
+        st.image("src/frontend/layouts/pictures/address_protocol_nx_plot2.png", caption="")
+
+    with col3:
+        st.write("""
+        """)
+        st.write("**Legend:**")
+        for protocol, color in TYPE_COLOR_KEY.items():
+            st.markdown(f"<span style='color: {color};'>■</span> {protocol}",
+                        unsafe_allow_html=True)
+    with col4:
+        st.image("src/frontend/layouts/pictures/address_protocol_type_nx_plot.png", caption="")
+
+    st.write("""
 ## Features Engineering_
 The features generated for each user address are detailed in the `Feature Engineering_` section.  
 Process include the following steps and allows to obtain a total of `62 features` for each user address: 
@@ -73,44 +161,6 @@ The features files are also available in the [Hugging Face Hub](https://huggingf
     ├── features.arrow                   # Contains the 62 features generated for each user address.
     └── features_standardised.arrow      # Contains the 62 features standardized following the process detailed in step 6.
 
-#### Raw features_
-    """)
-    iframe_features = '''
-    <iframe
-      src="https://huggingface.co/datasets/mriusero/DeFi-Protocol-Data-on-Ethereum-2023-2024/embed/viewer/default/train"
-      frameborder="0"
-      width="100%"
-      height="560px"
-    ></iframe>
-    '''
-    components.html(iframe_features, height=600)
-    st.write("""
----
-
-## Network Analysis_
-The network analysis provides an abstract vision of relationships between user addresses and DeFi protocols. By visualizing the connections between users and protocols, we can identify patterns in user behavior and protocol interactions.   
-
-#### Protocols Network_
-    
-This graph represents the network of user addresses and the protocols they interact with.  
-Each node represents a user address and each edge represents a transaction between a user and a protocol.  
-
-> **Note:** This graph contains only 100 000 users against 6 876 845 in the real dataset.  
-> Image available [here](https://github.com/mriusero/defi-user-behavior-clustering/blob/main/docs/graphics/network/address_protocol_nx_plot.png).
-
-        """)
-    col1, col2 = st.columns([1, 5])
-    with col1:
-        st.write("""
-        """)
-        st.write("**Legend:**")
-        for protocol, color in COLOR_KEY.items():
-            st.markdown(f"<span style='color: {color};'>■</span> {protocol.replace('_', ' ').title().rstrip('Count')}",
-                        unsafe_allow_html=True)
-    with col2:
-        st.image("src/frontend/layouts/pictures/address_protocol_nx_plot.png", caption="")
-
-    st.write("""
 ---
 
 ## Clustering_
