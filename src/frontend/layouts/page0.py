@@ -135,7 +135,7 @@ Each node represents a user address and each edge represents a transaction betwe
             st.markdown(f"<span style='color: {color};'>■</span> {protocol.replace('_', ' ').title().rstrip('Count')}",
                         unsafe_allow_html=True)
     with col2:
-        st.image("src/frontend/layouts/pictures/address_protocol_nx_plot2.png", caption="")
+        st.image("src/frontend/layouts/pictures/address_protocol_nx_plot.png", caption="")
 
     with col3:
         st.write("""
