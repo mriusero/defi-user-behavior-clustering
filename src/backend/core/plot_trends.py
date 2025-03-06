@@ -3,7 +3,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 from sklearn.linear_model import LinearRegression
 import seaborn as sns
-from tornado.gen import sleep
 
 plt.style.use('default')
 
@@ -272,7 +271,7 @@ class TransactionAnalyzer:
         plt.style.use('default')
         plt.figure(figsize=(10, 8))
         sns.heatmap(correlation_matrix, annot=True, cmap='viridis', fmt=".2f", linewidths=0.5)
-        plt.title(f'Correlation Heatmap of Transaction Variables')
+        plt.title('Correlation Heatmap of Transaction Variables')
         plt.tight_layout()
         plt.savefig(f'{base_path}/{filename}')
 
