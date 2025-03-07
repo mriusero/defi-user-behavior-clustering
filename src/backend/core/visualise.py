@@ -148,32 +148,37 @@ class DataVisualizer:
         st.plotly_chart(fig)
 
     def plot_ohlc(
-        self, date_column, open_column, high_column, low_column, close_column
+            self, date_column, open_column, high_column, low_column, close_column
     ):
         """Affiche un graphique OHLC interactif"""
-        st.write("### OHLC Chart")
-        col1, col2 = st.columns([1, 1])
+        col1, col2, _ = st.columns([1, 1, 1])
         with col1:
             protocol = st.selectbox(
-                "Select a protocol", self.df["protocol_name"].unique()
+                "Select a protocol",
+                self.df["protocol_name"].unique(),
+                index=2
             )
         with col2:
             frequency = st.selectbox(
-                "Select a frequency", ["1YE", "1ME", "1D", "12h", "1h"]
+                "Select a frequency",
+                ["1YE", "1ME", "1D", "12h", "6h"],
+                index=3
             )
+
         df = self.df[self.df["protocol_name"] == protocol]
 
         if not all(
-            col in df.columns
-            for col in [date_column, open_column, high_column, low_column, close_column]
+                col in df.columns
+                for col in [date_column, open_column, high_column, low_column, close_column]
         ):
             st.write(
                 f"Following colonnes missing into DataFrame: "
-                f"{', '.join([col for col in [date_column, open_column, high_column, low_column, close_column] if col not in self.df.columns])}"
+                f"{', '.join([col for col in [date_column, open_column, high_column, low_column, close_column] if col not in df.columns])}"
             )
             return
+
         df_resampled = (
-            self.df.resample(frequency, on=date_column)
+            df.resample(frequency, on=date_column)
             .agg(
                 {
                     open_column: "median",
@@ -184,6 +189,7 @@ class DataVisualizer:
             )
             .dropna()
         )
+
         fig = go.Figure(
             data=[
                 go.Ohlc(

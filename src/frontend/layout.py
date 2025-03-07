@@ -6,11 +6,11 @@ from .components import github_button
 
 def load_css():
     css_path = os.path.join(os.path.dirname(__file__), "styles.css")
-    with open(css_path, "r", encoding="utf-8") as f:  # Ajout de l'encodage ici
+    with open(css_path, "r", encoding="utf-8") as f:
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
 def app_layout():
-    from .layouts import page_0, page_1, page_2, page_3, page_4
+    from .layouts import page_0, page_1, page_2, page_3, page_4, page_5
 
     st.set_page_config(
         page_title="DeFI Behavior",
@@ -29,11 +29,12 @@ def app_layout():
     st.session_state.page = st.sidebar.radio(
         "Summary",
         [
-            "# Performance Report_",
             "# Study Overview_",
             "# Data Collection_",
+            "# Trend Analysis_",
             "# Features Engineering_",
             "# Clustering_",
+            "# Performance Report_",
         ],
     )
 
@@ -74,9 +75,8 @@ def app_layout():
     st.markdown(line_style, unsafe_allow_html=True)
     st.markdown(line_html, unsafe_allow_html=True)
 
-    if st.session_state.page == "# Performance Report_":
-        page_4()
-    elif st.session_state.page == "# Study Overview_":
+
+    if st.session_state.page == "# Study Overview_":
         page_0()
     elif st.session_state.page == "# Data Collection_":
         page_1()
@@ -84,6 +84,10 @@ def app_layout():
         page_2()
     elif st.session_state.page == "# Clustering_":
         page_3()
+    if st.session_state.page == "# Performance Report_":
+        page_4()
+    elif st.session_state.page == "# Trend Analysis_":
+        page_5()
 
 
     st.sidebar.markdown("&nbsp;")

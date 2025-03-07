@@ -19,7 +19,16 @@ Specifically, the study focuses on the following types of DeFi protocols on the 
 - **Yield Farming**: *`Yearn Finance`, `Harvest Finance`*
 - **Non-Fungible Token (NFT)**: *`NFTfi`*
 
-![Logo](docs/graphics/network/protocols_network_with_legend.png)
+<table>
+  <tr>
+    <td>
+      <img src="docs/graphics/network/protocols_network_with_legend.png" alt="Image">
+    </td>
+    <td>
+      <img src="docs/graphics/network/protocols_type_network_with_legend.png" alt="Image">
+    </td>
+  </tr>
+</table>
 
 ---
 ## Data Collection_
@@ -45,6 +54,44 @@ All data are stored in Parquet format and are available in the [HF Dataset](http
     └── users.parquet             # User profiles based on transaction data.
 
 ---
+## Trends Analysis_
+By analyzing transactions, we can identify trends and correlation patterns within the DeFi ecosystem.
+All the trends analysis is available in the section `Trends Analysis_` of the [HF Space](https://mriusero-defi-behavior.hf.space).  
+#### Correlation_
+With graphs below, we can conclude that there is a strong correlation between the number of users and the numbers of transactions.  
+This  also signify that the number of transactions per user is approximately repetitive & stable.
+
+<table>
+  <tr>
+    <td>
+      <h5>Transactions Number vs Users per Protocol</h5>
+      <img src="src/frontend/layouts/pictures/trends_analysis/protocol_tx_vs_users_scatter.png" alt="Image">
+    </td>
+    <td>
+      <h5>Transactions Number vs Users per Type</h5>
+      <img src="src/frontend/layouts/pictures/trends_analysis/type_tx_vs_users_scatter.png" alt="Image">
+    </td>
+  </tr>
+</table>
+
+#### Proportion Trends_
+Here, we can observe that stablecoins represent the major usage.  
+Also, in termes of trends, the global count of user and the proportion of DEX and Lending protocols usage is increasing over time.
+
+<table>
+  <tr>
+    <td>
+      <h5>Unique Transactions per Protocol by Month</h5>
+      <img src="src/frontend/layouts/pictures/trends_analysis/protocol_tx_by_month.png" alt="Image">
+    </td>
+    <td>
+      <h5>Unique Transactions per Type by Month</h5>
+      <img src="src/frontend/layouts/pictures/trends_analysis/type_tx_by_month.png" alt="Image">
+    </td>
+  </tr>
+</table>
+
+---
 ## Features Engineering_
 The features generated for each user address are detailed in the section `Feature Engineering_` of the [HF Space](https://mriusero-defi-behavior.hf.space).  
 Process include the following steps and allows to obtain a total of `62 features` for each user address: 
@@ -59,7 +106,6 @@ The features files are saved in arrow format and are also available in the [HF D
     └── features_standardised.arrow      # Contains the 62 features standardized following the process detailed in step 6.
 
 ---
-
 ## Clustering_
 By identifying distinct clusters, we can gain insights into different user profiles and behaviors within the DeFi ecosystem.
 To perform the clustering analysis, K-means algorithm is used to group users into clusters based on their features and transactional activities.
