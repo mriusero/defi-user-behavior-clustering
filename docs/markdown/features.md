@@ -2,6 +2,8 @@
 Following the data collection, below is a detailed, step-by-step explanation of the features created and the processes involved.  
 This pipeline enriches the users data with a variety of derived metrics, providing a comprehensive view of user behavior and market interactions.
 
+> Note : the code used in this process is available [here](https://github.com/mriusero/defi-user-behavior-clustering/blob/main/ml/processing/features_engineering.py)
+
 ## Table of Contents
 
 1. [Loading & Processing Data](#1-loading--processing-data)
