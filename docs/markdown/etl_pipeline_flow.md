@@ -366,7 +366,16 @@ We aggregate transaction data to calculate key metrics like average gas used, tr
 To aggregate transaction and market data into meaningful metrics that represent the overall health and activity of the protocols, facilitating trend analysis.
 
 ---
-## Credits
+## Storage
+All data are stored in Parquet format and are available in the [Hugging Face hub](https://huggingface.co/datasets/mriusero/DeFi-Protocol-Data-on-Ethereum-2023-2024/tree/main/dataset/data).
+
+    ├── contracts.parquet         # Contains contract details for selected DeFi protocols.
+    ├── transactions.parquet      # Contains transaction data for Ethereum-based contracts.
+    ├── market.parquet            # Contains enriched market data with aggregated transaction metrics.
+    └── users.parquet             # User profiles based on transaction data.
+
+---
+## Tools used
 This dataset preparation process establishes the foundation for analysis of user behavior, market trends, and protocol performance within the DeFi space. Each step builds upon the previous one, ensuring that the final dataset is rich and well-structured for deeper insights. It includes various technical steps for data extraction, user profiling, and market data aggregation, based on a combination of APIs and data sources. 
 
 Sources and tools used in this process:  
