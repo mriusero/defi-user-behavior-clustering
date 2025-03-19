@@ -1,114 +1,59 @@
-# DeFi Protocol Data on Ethereum 2023-2024
+---
+license: mit
+tags:
+- finance
+- blockchain
+size_categories:
+- 1M<n<10M
+---
 
 Decentralized finance (DeFi) has emerged as a significant sector within the blockchain and cryptocurrency space. DeFi protocols enable users to access financial services without traditional intermediaries, offering a wide range of applications such as lending, borrowing, trading, and yield farming. Understanding user behavior, protocol interactions, and market trends is crucial for analyzing the DeFi ecosystem's dynamics and identifying opportunities for innovation and growth.
 
 ---
 # About Dataset
-This dataset encompasses several steps involved in preparing data to analyze decentralized finance (DeFi) protocols and transactions. The process of building the dataset involves collecting data from various DeFi protocols, extracting relevant contract data, gathering transaction information, and aggregating market data. The final dataset, which contains 62 features, integrates data from four primary sources: `users.parquet`, `contracts.parquet`, `market.parquet`, and `transactions.parquet`. This combined dataset enables a comprehensive analysis of user behavior, protocol usage, transaction dynamics, and market performance within the Ethereum blockchain ecosystem.
+This dataset encompasses several steps involved in preparing data to analyze decentralized finance (DeFi) protocols and transactions. The process of building the dataset involves collecting data from various DeFi protocols, extracting relevant contract data, gathering transaction information, and aggregating market data. 
 
-Each of these four files serves a distinct purpose and is carefully structured to facilitate deeper insights into the DeFi landscape:
+Specifically, the scope focuses on the following types of DeFi protocols on the `Ethereum blockchain`:
 
-    ├── contracts.parquet         # Contains contract details for selected DeFi protocols.
-    ├── transactions.parquet      # Contains transaction data for Ethereum-based contracts.
-    ├── market.parquet            # Contains enriched market data with aggregated transaction metrics.
-    └── users.parquet             # User profiles based on transaction data.
+- **Decentralized Exchanges (DEX)**: *`Uniswap`, `Curve DAO`, `Balancer`*
+- **Lending Platforms**: *`Aave`, `Maker`*
+- **Stablecoins**: *`Tether`, `USD Coin (USDC)`, `Dai`*
+- **Yield Farming**: *`Yearn Finance`, `Harvest Finance`*
+- **Non-Fungible Token (NFT)**: *`NFTfi`*
 
-Together, these datasets are used to calculate 62 distinct features, which represent key aspects of user behavior, interaction with protocols, transaction volumes, market dynamics, and more.
+Four files serves a distinct purpose and is carefully structured to facilitate deeper insights into the DeFi landscape:
 
----
-#### Timeframe:
-* Start: `2022-12-31T22:59:59.000Z`   
-* End: `2024-12-30T23:00:11.000Z`
+    ├── contracts.parquet               # Contains contract details for selected DeFi protocols.
+    ├── transactions.parquet            # Contains transaction data for Ethereum-based contracts.
+    ├── market.parquet                  # Contains enriched market data with aggregated transaction metrics.
+    └── users.parquet                   # User profiles based on transaction data.
 
-#### Splitting (random_state = 42)
-- `train` : 0.7
-- `test` : 0.15
-- `validation` : 0.15
+Also, features have been aggregated to capture users behaviors and protocols interactions, and the documentation is available [here](https://github.com/mriusero/defi-user-behavior-clustering/blob/main/docs/features.md).
 
 ---
-# Features
-#### 1. General Information
-- `address`: Unique address of the user on the blockchain.
+## Metrics
 
-#### 2. Transaction Activity
-- `received_count`: Total number of transactions received.
-- `total_received_eth`: Total amount of ETH received.
-- `sent_count`: Total number of transactions sent.
-- `total_sent_eth`: Total amount of ETH sent.
+The metrics associated with the dataset are as follows:
 
-#### 3. Types of Interaction with Protocols
-- `type_dex`: Indicates whether the user interacts with DEXs (Decentralized Exchanges).
-- `type_lending`: Indicates whether the user interacts with lending protocols.
-- `type_stablecoin`: Indicates whether the user interacts with stablecoins.
-- `type_yield_farming`: Indicates whether the user participates in yield farming.
-- `type_nft_fi`: Indicates whether the user interacts with NFT-Fi protocols.
-
-#### 4. Engagement with Specific Protocols
-(Number of transactions made on each protocol)
-- `curve_dao_count`
-- `aave_count`
-- `tether_count`
-- `uniswap_count`
-- `maker_count`
-- `yearn_finance_count`
-- `usdc_count`
-- `dai_count`
-- `balancer_count`
-- `harvest_finance_count`
-- `nftfi_count`
-
-#### 5. User Diversity and Influence
-- `protocol_type_diversity`: Number of different protocol types used by the user.
-- `protocol_name_diversity`: Number of unique protocols used by the user.
-- `net_flow_eth`: Difference between ETH sent and ETH received.
-- `whale_score`: A score indicating whether the user is a large fund holder.
-
-#### 6. Sent Transaction Statistics
-(Minimum, average, median, maximum values, and standard deviations)
-- `min_sent_eth`, `avg_sent_eth`, `med_sent_eth`, `max_sent_eth`, `std_sent_eth`: Statistics on amounts sent in ETH.
-- `min_sent_gas`, `avg_sent_gas`, `med_sent_gas`, `max_sent_gas`, `std_sent_gas`: Statistics on gas used for sent transactions.
-- `avg_gas_efficiency_sent`: Average gas efficiency for sent transactions.
-- `peak_hour_sent`: Time of day when the user sends the most transactions.
-- `peak_count_sent`: Maximum number of transactions sent during a given hour.
-- `tx_frequency_sent`: Average frequency of sent transactions.
-
-#### 7. Received Transaction Statistics
-(Same structure as for sent transactions)
-- `min_received_eth`, `avg_received_eth`, `med_received_eth`, `max_received_eth`, `std_received_eth`: Statistics on amounts received in ETH.
-- `min_received_gas`, `avg_received_gas`, `med_received_gas`, `max_received_gas`, `std_received_gas`: Statistics on gas used for received transactions.
-- `avg_gas_efficiency_received`: Average gas efficiency for received transactions.
-- `peak_hour_received`: Time of day when the user receives the most transactions.
-- `peak_count_received`: Maximum number of transactions received during a given hour.
-- `tx_frequency_received`: Average frequency of received transactions.
-
-#### 8. Exposure to Market Protocols
-(Evaluation of the user's risk and influence based on the market)
-- `total_volume_exposure`: Total exposure to the transaction volume of protocols.
-- `total_volatility_exposure`: Exposure to price volatility of protocols.
-- `total_gas_exposure`: Exposure to the average gas costs on used protocols.
-- `total_error_exposure`: Exposure to transaction errors of protocols.
-- `total_liquidity_exposure`: Exposure to protocol liquidity.
-- `total_activity_exposure`: Exposure to global transaction activity of protocols.
-- `total_user_adoption_exposure`: Exposure to the number of active users on protocols.
-- `total_gas_volatility_exposure`: Exposure to gas volatility used on protocols.
-- `total_error_volatility_exposure`: Exposure to the variability of transaction errors.
-- `total_high_value_exposure`: Exposure to high-value transactions on protocols.
-
----
-## Conclusion
-This dataset preparation process establishes the foundation for analysis of user behavior, market trends, and protocol performance within the DeFi space. Each step builds upon the previous one, ensuring that the final dataset is rich and well-structured for deeper insights. It includes various technical steps for data extraction, user profiling, and market data aggregation, based on a combination of APIs and data sources.
+- **First Date:** December 31, 2022, at 22:59:59 UTC
+- **Last Date:** December 30, 2024, at 23:00:11 UTC
+- **Number of Protocols:** 11
+- **Number of Protocol Types:** 5
+- **Number of Unique Transactions:** 22,682,739
+- **Number of Unique Users/Addresses:** 6,876,845
+- **Total Market Hours:** 177,955
 
 ---
 ## Source
 
 Tools used in this process:  
-1.	**CoinGecko API** - For contract data related to DeFi protocols and their market details.
-2.	**Etherscan API** - For transaction data extraction on Ethereum smart contracts.
-3.	**Yahoo Finance API** - For market data including OHLC values of tokens and trading volume.  
-4. **MongoDB** - For managing and storing large volumes of transaction and protocol data in a structured format.  
-5. **Ethereum Blockchain** - For the decentralized financial infrastructure that powers these protocols and transactions.
+1.	**CoinGecko API** - For contract data related to DeFi protocols and their market details.  
+2.	**Etherscan API** - For transaction data extraction on Ethereum smart contracts.  
+3.	**Yahoo Finance API** - For market data including OHLC values of tokens and trading volume.    
+4. **MongoDB** - For managing and storing large volumes of transaction and protocol data in a structured format.    
+5. **Ethereum Blockchain** - For the decentralized financial infrastructure that powers these protocols and transactions.   
 
-Code is available on [GitHub](https://github.com/mriusero/defi-user-behavior-clustering) and the ETL process is explained [here](https://github.com/mriusero/defi-user-behavior-clustering/blob/main/docs/etl_pipeline_flow.md).
+Code is available on [GitHub](https://github.com/mriusero/defi-user-behavior-clustering) and ETL process documentation is explained [here](https://github.com/mriusero/defi-user-behavior-clustering/blob/main/docs/etl_pipeline_flow.md).  
 
 ---
 ## Subsets
@@ -200,3 +145,7 @@ This file documents details about the smart contracts associated with various De
 - **`protocol_symbol`** *(string)*: The symbol of the protocol or token.
 - **`description`** *(string)*: A description of the contract's purpose or functionality.
 - **`website_url`** *(string)*: The URL of the contract or protocol's official website.
+
+---
+license: mit
+---

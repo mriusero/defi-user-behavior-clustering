@@ -1,6 +1,6 @@
 import streamlit as st
 
-from src.backend.core.utils import load_market # , load_transactions
+from src.backend.core.utils import load_market#, load_transactions
 #from src.backend.core.plot_trends import TransactionAnalyzer
 from src.backend.core.visualise import DataVisualizer
 
@@ -102,6 +102,20 @@ def page_5():
     #df = load_transactions()
     #st.write(df.columns.to_list())
     #df = df.sample(10000)
+
+   # plotter = TransactionAnalyzer(df)
+   # protocol_user_counts, type_user_counts = plotter.plot_usage_rate('usage_rates.png', base_path=base_path)
+   # st.write("## Usage Rate per Protocol_")
+   # #st.image(base_path + 'usage_rates.png')
+#
+   # col1, col2 = st.columns(2)
+   # with col1:
+   #     st.write("### Protocol Usage Rates_")
+   #     st.write(protocol_user_counts)
+   # with col2:
+   #     st.write("### Type Usage Rates_")
+   #     st.write(type_user_counts)
+
 
     # -- Analysis
     #df = df[df['protocol_name'] == 'Aave']

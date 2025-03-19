@@ -123,14 +123,16 @@ def objective(x, trial):
         x (ndarray): Training data.
         trial (optuna.Trial): Optuna trial instance.
     :return:
-        float: Silhouette score of the clustering result.
+        float: performance score of the clustering result.
     """
+    # Define the search space
     n_clusters = trial.suggest_int("n_clusters", 2, 10)
     init = trial.suggest_categorical("init", ["k-means++", "random"])
     batch_size = trial.suggest_int("batch_size", 50, 500, step=50)
     max_iter = trial.suggest_int("max_iter", 100, 500)
     tol = trial.suggest_float("tol", 1e-6, 1e-2, log=True)
 
+    # Define the model with the hyperparameters
     kmeans = MiniBatchKMeans(
         n_clusters=n_clusters,
         init=init,
@@ -139,16 +141,17 @@ def objective(x, trial):
         tol=tol,
         random_state=42,
     )
+    # Measure the performances
     labels = kmeans.fit_predict(x)
     db_index, ch_index, silhouette_avg = measure_performances(data=x, labels=labels)
 
+    # Define the weights
     x = trial.suggest_float("silhouette_weight", 0.1, 1.0)
     y = trial.suggest_float("ch_weight", 0.1, 1.0)
     z = trial.suggest_float("db_weight", 0.1, 1.0)
 
-    combined_score = (x * silhouette_avg) + (y * ch_index) - (z * db_index)
-
-    return combined_score
+    # Return the weighted sum of the performances with the trial parameters
+    return (x * silhouette_avg) + (y * ch_index) - (z * db_index)
 
 
 def optimize_hyperparams(

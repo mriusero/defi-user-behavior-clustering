@@ -342,3 +342,51 @@ class TransactionAnalyzer:
         plt.subplots_adjust(left=0.05, right=0.85, top=0.85, bottom=0.15)
         plt.savefig(f'{base_path}/{file_name}')
         plt.close()
+
+    def plot_usage_rate(self, file_name, base_path):
+        """ Plot total usage rate per protocol and type """
+        plt.style.use('default')
+
+        total_unique_users = len(pd.unique(self.df[['from', 'to']].values.ravel()))
+
+        protocol_user_counts = self.df.groupby('protocol_name').apply(
+            lambda x: pd.Series({
+                'unique_user_count': len(pd.unique(x[['from', 'to']].values.ravel())),
+                'types': ', '.join(pd.unique(x['type']))
+            })
+        ).reset_index()
+        protocol_user_counts.columns = ['protocol', 'users', 'type']
+        protocol_user_counts['rate'] = round((protocol_user_counts['users'] / total_unique_users) * 100, 2)
+
+        type_user_counts = self.df.groupby('type').apply(
+            lambda x: len(pd.unique(x[['from', 'to']].values.ravel()))
+        ).reset_index()
+        type_user_counts.columns = ['type', 'users']
+        type_user_counts['rate'] = round((type_user_counts['users'] / total_unique_users) * 100, 2)
+
+        protocol_user_counts.sort_values('rate', ascending=False, inplace=True)
+        type_user_counts.sort_values('rate', ascending=False, inplace=True)
+
+        _, axes = plt.subplots(2, 2, figsize=(14, 10))
+
+        axes[0, 0].bar(protocol_user_counts['protocol'], protocol_user_counts['users'])
+        axes[0, 0].set_title('Protocol Usage')
+        axes[0, 0].set_xlabel('Protocol')
+        axes[0, 0].set_ylabel('Number of Users')
+
+        sns.heatmap(protocol_user_counts.set_index('protocol'), cmap='viridis', ax=axes[1, 0], annot=True, cbar=False)
+        axes[1, 0].set_title('Protocol Usage Heatmap')
+
+        axes[0, 1].bar(type_user_counts['type'], type_user_counts['users'])
+        axes[0, 1].set_title('Type Usage')
+        axes[0, 1].set_xlabel('Type')
+        axes[0, 1].set_ylabel('Number of Users')
+
+        sns.heatmap(type_user_counts.set_index('type'), cmap='viridis', ax=axes[1, 1], annot=True, cbar=False)
+        axes[1, 1].set_title('Type Usage Heatmap')
+
+        plt.tight_layout()
+        plt.savefig(f'{base_path}/{file_name}')
+        plt.close()
+
+        return protocol_user_counts, type_user_counts
