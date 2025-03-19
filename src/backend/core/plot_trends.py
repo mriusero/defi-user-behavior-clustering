@@ -367,7 +367,7 @@ class TransactionAnalyzer:
         protocol_user_counts.sort_values('rate', ascending=False, inplace=True)
         type_user_counts.sort_values('rate', ascending=False, inplace=True)
 
-        fig, axes = plt.subplots(2, 2, figsize=(14, 10))
+        _, axes = plt.subplots(2, 2, figsize=(14, 10))
 
         axes[0, 0].bar(protocol_user_counts['protocol'], protocol_user_counts['users'])
         axes[0, 0].set_title('Protocol Usage')
