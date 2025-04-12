@@ -6,6 +6,19 @@ import os
 import requests
 from pyarrow import feather
 
+def wait_message():
+    """ Display a waiting message. """
+    message_placeholder = st.empty()
+    message_html = """
+    <div style="display: flex; align-items: center;">
+        <strong style="margin-right: 10px;">🕒</strong>
+        <span style="font-size: 1em;">Please wait while the data loads, it only takes 1 minute.</span>
+    </div>
+    """
+    message_placeholder.markdown(message_html, unsafe_allow_html=True)
+    return message_placeholder
+
+
 @st.cache_data
 def cache():
     """ Preload data in streamlit cache. """

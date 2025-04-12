@@ -29,12 +29,12 @@ def app_layout():
     st.session_state.page = st.sidebar.radio(
         "Summary",
         [
+            "# Performance Report_",
             "# Study Overview_",
             "# Data Collection_",
             "# Trend Analysis_",
             "# Features Engineering_",
             "# Clustering_",
-            "# Performance Report_",
         ],
     )
 

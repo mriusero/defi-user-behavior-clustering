@@ -1,6 +1,6 @@
 import streamlit as st
 
-from src.backend.core.utils import load_ranks, check_address
+from src.backend.core.utils import load_ranks, check_address, wait_message
 from src.backend.reporting.recommendations import recommendations_board
 
 
@@ -13,9 +13,11 @@ As the final step of the project, the performance report delivers insights into 
 
 ---
     """)
+    message_placeholder = wait_message()
+
     ranks = load_ranks()
     if ranks is not None:
-        pass
+        message_placeholder.empty()
 
     col1, col2 = st.columns([8, 5])
     with col1:
